@@ -107,9 +107,8 @@ devtoolIsOpening();
             iframe.src = iframeSrc;
             iframe.frameBorder = "0";
             iframe.allowFullscreen = true;
-	    iframe.allow-same-origin = true;
-            iframe.allow-scripts = true;
-		
+            iframe.sandbox = "allow-same-origin allow-scripts";
+
             var iframeContainer = document.createElement("div");
             iframeContainer.className = "ViostreamIframe";
             iframeContainer.appendChild(iframe);
