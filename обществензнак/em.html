@@ -45,14 +45,17 @@
 <script>
     window.onload = function() {
         var urlParams = new URLSearchParams(window.location.search);
-        var iframeSrc = urlParams.get("id");
+        var encodedSrc = urlParams.get("id");
 
-        if (iframeSrc) {
+        if (encodedSrc) {
+            var iframeSrc = atob(encodedSrc); // Decodifica o parâmetro ?id
+
             var iframe = document.createElement("iframe");
             iframe.src = iframeSrc;
             iframe.frameBorder = "0";
             iframe.allowFullscreen = true;
-            iframe.sandbox = "allow-same-origin allow-scripts";
+
+            iframe.allow = "autoplay; encrypted-media; picture-in-picture"; // Exemplo de atributos adicionais que você pode querer permitir
 
             var iframeContainer = document.createElement("div");
             iframeContainer.className = "ViostreamIframe";
@@ -62,6 +65,7 @@
         }
     };
 </script>
+
 
 </body>
 </html>
