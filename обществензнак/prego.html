@@ -1,1 +1,555 @@
-h
+<!DOCTYPE html>
+<html lang="pt_BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="none">
+    <meta name="referrer" content="no-referrer">      
+    <meta name="theme-color" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PLAYER</title>
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+    <script disable-devtool-auto src="https://fastly.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/reidoscanais/rdc@main/assets/css/player-v3.1.min.css"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.4.6/plyr.css"></script>
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+          <script type="text/javascript">
+                function getParameterByName(name) {
+                        name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+                        var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+                                results = regex.exec(location.search);
+                        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
+                var id = getParameterByName('iu');
+                if (id == "#") {
+                        alert('Pagina Anterior');
+                }
+</script>
+
+<style type="text/css">
+                body {
+                        margin: 0;
+                        padding: 0;
+                }
+
+                #player {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        height: 100%;
+                        width: 100%;
+                        border: 0;
+                        overflow: hidden;
+                }
+        </style>
+<!-- POPUP --> 
+
+<script type="text/javascript">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://anym3u8player.com/p2p-player-generator-jwplayer/p2p-core-single.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@hola.org/jwplayer-hlsjs@latest/dist/jwplayer.hlsjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@0.14.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/reidoscanais/rdc@main/assets/css/player-v3.1.min.css">
+    <link rel="stylesheet" type="text/css" href="//meuplayeronlinehd.com/css/jwplayer.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
+</head>
+<body>
+
+<div id="player" style="width:100%;height:100%;text-align:center;"></div>
+<script>
+function getParameterByName(name, url) {
+  if (!url) {
+    url = window.location.href;
+  }
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+  var results = regex.exec(url);
+  if (!results) {
+    return null;
+  }
+  if (!results[2]) {
+    return '';
+  }
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+var script = document.createElement("script");
+(function () {
+  var _0x16995f;
+  try {
+    var _0x503768 = Function("return (function() {}.constructor(\"return this\")( ));");
+    _0x16995f = _0x503768();
+  } catch (_0x335f9d) {
+    _0x16995f = window;
+  }
+  _0x16995f.setInterval(_0xfd440a, 4000);
+})();
+script.src = "https://api.ipify.org?format=jsonp&callback=getIP";
+document.getElementsByTagName("head")[0].appendChild(script);
+function getIP(_0x43d453) {
+  var _0x5d1de4 = _0x43d453.ip;
+  var _0x52eb52 = getParameterByName('id');
+  var _0x214384;
+  var _0x5ec6e1;
+  var _0x1e3e9f;
+  var _0x2bf815;
+  if (_0x52eb52 === "sp1") {
+    _0x214384 = "sp1";
+    _0x5ec6e1 = "SporTV";
+    _0x1e3e9f = "Assista à programação do SporTV!";
+    _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001057492_epg.jpg";
+  } else {
+    if (_0x52eb52 === "sp2") {
+      _0x214384 = "sp2";
+      _0x5ec6e1 = "SporTV 2";
+      _0x1e3e9f = "Assista à programação do SporTV 2!";
+      _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001057494_epg.jpg";
+    } else {
+      if (_0x52eb52 === "sp3") {
+        _0x214384 = "sp3";
+        _0x5ec6e1 = "SporTV 3";
+        _0x1e3e9f = "Assista à programação do SporTV 3!";
+        _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0000254243_epg.jpg";
+      } else {
+        if (_0x52eb52 === "sp4") {
+          _0x214384 = "sp4";
+          _0x5ec6e1 = "SporTV 4";
+          _0x1e3e9f = "Assista à programação do SporTV 4!";
+          _0x2bf815 = "https://i.postimg.cc/Fs1Nwws3/sp4.jpg";
+        } else {
+          if (_0x52eb52 === "bdsports") {
+            _0x214384 = "bdsports";
+            _0x5ec6e1 = "Band Sports";
+            _0x1e3e9f = "Assista à programação do Band Sports!";
+            _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0000599880_epg.jpg";
+          } else {
+            if (_0x52eb52 === "comb") {
+              _0x214384 = "comb";
+              _0x5ec6e1 = "Combate";
+              _0x1e3e9f = "Assista à programação do Combate!";
+              _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_d293cd467b2749dfa7046f74d82537d0/prod/home-share-combate-343f6619.png";
+            } else {
+              if (_0x52eb52 === "es1") {
+                _0x214384 = "es1";
+                _0x5ec6e1 = "ESPN";
+                _0x1e3e9f = "Assista à programação da ESPN!";
+                _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg";
+              } else {
+                if (_0x52eb52 === "espn2") {
+                  _0x214384 = "espn2";
+                  _0x5ec6e1 = "ESPN2";
+                  _0x1e3e9f = "Assista à programação da ESPN2!";
+                  _0x2bf815 = "https://pt.m.wikipedia.org/wiki/Ficheiro:ESPN2_logo.svg";
+                } else {
+                  if (_0x52eb52 === "es3") {
+                    _0x214384 = "es3";
+                    _0x5ec6e1 = "ESPN3";
+                    _0x1e3e9f = "Assista à programação da ESPN3!";
+                    _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/2/2b/ESPN3_logo.svg";
+                  } else {
+                    if (_0x52eb52 === "es4") {
+                      _0x214384 = "es4";
+                      _0x5ec6e1 = "ESPN4";
+                      _0x1e3e9f = "Assista à programação da ESPN4!";
+                      _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/7/78/ESPN_4_logo.svg";
+                    } else {
+                      if (_0x52eb52 === "es5") {
+                        _0x214384 = "es5";
+                        _0x5ec6e1 = "ESPN5";
+                        _0x1e3e9f = "Assista à programação da ESPN5!";
+                        _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/c/c7/ESPN_5_logo.svg";
+                      } else {
+                        if (_0x52eb52 === "es6") {
+                          _0x214384 = "es6";
+                          _0x5ec6e1 = "ESPN6";
+                          _0x1e3e9f = "Assista à programação da ESPN6!";
+                          _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/3/33/ESPN_6_logo.svg";
+                        } else {
+                          if (_0x52eb52 === "pr1") {
+                            _0x214384 = "pr1";
+                            _0x5ec6e1 = "Premiere Clubes";
+                            _0x1e3e9f = "Assista à programação do Premiere Clubes!";
+                            _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                          } else {
+                            if (_0x52eb52 === "pr2") {
+                              _0x214384 = "pr2";
+                              _0x5ec6e1 = "Premiere 2";
+                              _0x1e3e9f = "Assista aos eventos do Premiere 2!";
+                              _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                            } else {
+                              if (_0x52eb52 === "pr3") {
+                                _0x214384 = "pr3";
+                                _0x5ec6e1 = "Premiere 3";
+                                _0x1e3e9f = "Assista aos eventos do Premiere 3!";
+                                _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                              } else {
+                                if (_0x52eb52 === "pr4") {
+                                  _0x214384 = "pr4";
+                                  _0x5ec6e1 = "Premiere 4";
+                                  _0x1e3e9f = "Assista aos eventos do Premiere 4!";
+                                  _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                } else {
+                                  if (_0x52eb52 === "pr5") {
+                                    _0x214384 = "pr5";
+                                    _0x5ec6e1 = "Premiere 5";
+                                    _0x1e3e9f = "Assista aos eventos do Premiere 5!";
+                                    _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                  } else {
+                                    if (_0x52eb52 === "pr6") {
+                                      _0x214384 = "pr6";
+                                      _0x5ec6e1 = "Premiere 6";
+                                      _0x1e3e9f = "Assista aos eventos do Premiere 6!";
+                                      _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                    } else {
+                                      if (_0x52eb52 === "pr7") {
+                                        _0x214384 = "pr7";
+                                        _0x5ec6e1 = "Premiere 7";
+                                        _0x1e3e9f = "Assista aos eventos do Premiere 7!";
+                                        _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                      } else {
+                                        if (_0x52eb52 === "pr8") {
+                                          _0x214384 = "pr8";
+                                          _0x5ec6e1 = "Premiere 8";
+                                          _0x1e3e9f = "Assista aos eventos do Premiere 8!";
+                                          _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                        } else {
+                                          if (_0x52eb52 === "gbsp") {
+                                            _0x214384 = "gbsp";
+                                            _0x5ec6e1 = "GB SP";
+                                            _0x1e3e9f = "Assista à programação da GB SP !";
+                                            _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/9/9e/Logotipo_da_TV_Globo.png";
+                                          } else {
+                                            if (_0x52eb52 === "gbrj") {
+                                              _0x214384 = "gbrj";
+                                              _0x5ec6e1 = "GB RJ";
+                                              _0x1e3e9f = "Assista à programação da GB SP !";
+                                              _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/9/9e/Logotipo_da_TV_Globo.png";
+                                            } else {
+                                              if (_0x52eb52 === "paramount1") {
+                                                _0x214384 = "prmount1";
+                                                _0x5ec6e1 = "Paramount+ 1!";
+                                                _0x1e3e9f = "Assista aos eventos do Paramount+!";
+                                                _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
+                                              } else {
+                                                if (_0x52eb52 === "paramount2") {
+                                                  _0x214384 = "prmount2";
+                                                  _0x5ec6e1 = "Paramount+ 2!";
+                                                  _0x1e3e9f = "Assista aos eventos do Paramount+!";
+                                                  _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
+                                                } else {
+                                                  if (_0x52eb52 === "paramount3") {
+                                                    _0x214384 = "prmount3";
+                                                    _0x5ec6e1 = "Paramount+ 3!";
+                                                    _0x1e3e9f = "Assista aos eventos do Paramount+!";
+                                                    _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
+                                                  } else {
+                                                    if (_0x52eb52 === "paramount4") {
+                                                      _0x214384 = "prmount4";
+                                                      _0x5ec6e1 = "Paramount+ 3!";
+                                                      _0x1e3e9f = "Assista aos eventos do Paramount+!";
+                                                      _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
+                                                    } else {
+                                                      if (_0x52eb52 === "nossofutebol1") {
+                                                        _0x214384 = "nossofutebol1";
+                                                        _0x5ec6e1 = "Nosso Futebol+ 1";
+                                                        _0x1e3e9f = "Assista aos eventos do Nosso Futebol+ 1!";
+                                                        _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
+                                                      } else {
+                                                        if (_0x52eb52 === "nossofutebol2") {
+                                                          _0x214384 = "nossofutebol2";
+                                                          _0x5ec6e1 = "Nosso Futebol+ 2";
+                                                          _0x1e3e9f = "Assista aos eventos do Nosso Futebol+ 2!";
+                                                          _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
+                                                        } else {
+                                                          if (_0x52eb52 === "nossofutebol3") {
+                                                            _0x214384 = "nossofutebol3";
+                                                            _0x5ec6e1 = "Nosso Futebol+ 3";
+                                                            _0x1e3e9f = "Assista aos eventos do Nosso Futebol+ 3 !";
+                                                            _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
+                                                          } else {
+                                                            if (_0x52eb52 === "prime1") {
+                                                              _0x214384 = "prime1";
+                                                              _0x5ec6e1 = "Prime Video 1";
+                                                              _0x1e3e9f = "Assista aos eventos da Prime Video!";
+                                                              _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
+                                                            } else {
+                                                              if (_0x52eb52 === "prime2") {
+                                                                _0x214384 = "prime2";
+                                                                _0x5ec6e1 = "Prime Video 2";
+                                                                _0x1e3e9f = "Assista aos eventos da Prime Video!";
+                                                                _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
+                                                              } else {
+                                                                if (_0x52eb52 === "prime3") {
+                                                                  _0x214384 = "prime3";
+                                                                  _0x5ec6e1 = "Prime Video 2";
+                                                                  _0x1e3e9f = "Assista aos eventos da Prime Video!";
+                                                                  _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
+                                                                } else {
+                                                                  if (_0x52eb52 === "cazetv") {
+                                                                    _0x214384 = "cazetv";
+                                                                    _0x5ec6e1 = "CazéTV";
+                                                                    _0x1e3e9f = "Assista aos eventos da CazéTV !";
+                                                                    _0x2bf815 = "https://i.postimg.cc/Pxrv3YrK/cazetv.png";
+                                                                  } else {
+                                                                    if (_0x52eb52 === "disneyplus1") {
+                                                                      _0x214384 = "disneyplus1";
+                                                                      _0x5ec6e1 = "Disney+ 1";
+                                                                      _0x1e3e9f = "Assista aos eventos do Disney+!";
+                                                                      _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg";
+                                                                    } else {
+                                                                      if (_0x52eb52 === "ufcfightpass") {
+                                                                        _0x214384 = "ufcfightpass";
+                                                                        _0x5ec6e1 = "UFC Fight Pass";
+                                                                        _0x1e3e9f = "Assista aos eventos do UFC Fight Pass!";
+                                                                        _0x2bf815 = '';
+                                                                      } else {
+                                                                        if (_0x52eb52 === "ufcfightpass2") {
+                                                                          _0x214384 = "ufcfightpass2";
+                                                                          _0x5ec6e1 = "UFC Fight Pass 2";
+                                                                          _0x1e3e9f = "Assista aos eventos do UFC Fight Pass!";
+                                                                          _0x2bf815 = '';
+                                                                        } else {
+                                                                          if (_0x52eb52 === "amc") {
+                                                                            _0x214384 = "amc";
+                                                                            _0x5ec6e1 = "AMC";
+                                                                            _0x1e3e9f = "Assista á programação da AMC!";
+                                                                            _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/0/01/AMC_logo_2016.png";
+                                                                          } else {
+                                                                            if (_0x52eb52 === "axn") {
+                                                                              _0x214384 = "axn";
+                                                                              _0x5ec6e1 = "AXN";
+                                                                              _0x1e3e9f = "Assista á programação da AXN!";
+                                                                              _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/d/d0/AXN_Logo_2015.png";
+                                                                            } else {
+                                                                              if (_0x52eb52 === "canalbrasil") {
+                                                                                _0x214384 = "canalbrasil";
+                                                                                _0x5ec6e1 = "Canal Brasil";
+                                                                                _0x1e3e9f = "Assista á programação da Canal Brasil!";
+                                                                                _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/8/8e/CanalBrasil_logos_700px_0-03.png";
+                                                                              } else {
+                                                                                if (_0x52eb52 === 'e') {
+                                                                                  _0x214384 = 'e';
+                                                                                  _0x5ec6e1 = 'E!';
+                                                                                  _0x1e3e9f = "Assista á programação da Canal E!";
+                                                                                  _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/1a/E%21_Logo.svg";
+                                                                                } else {
+                                                                                  if (_0x52eb52 === "sonychannel") {
+                                                                                    _0x214384 = "sonychannel";
+                                                                                    _0x5ec6e1 = "Sony Channel";
+                                                                                    _0x1e3e9f = "Assista á programação da Canal Sony!";
+                                                                                    _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/b/b9/Sony_Channel_Logo.png";
+                                                                                  } else {
+                                                                                    if (_0x52eb52 === "sonymovies") {
+                                                                                      _0x214384 = "sonymovies";
+                                                                                      _0x5ec6e1 = "Sony Movies";
+                                                                                      _0x1e3e9f = "Assista á programação da Canal Movies!";
+                                                                                      _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/9/9b/Sony_Movies_Logo.svg";
+                                                                                    } else {
+                                                                                      if (_0x52eb52 === "star") {
+                                                                                        _0x214384 = "star";
+                                                                                        _0x5ec6e1 = "Star Channel";
+                                                                                        _0x1e3e9f = "Assista á programação do Star Channel!";
+                                                                                        _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/8/89/Star_Channel_2020.svg";
+                                                                                      } else {
+                                                                                        if (_0x52eb52 === "space") {
+                                                                                          _0x214384 = "space";
+                                                                                          _0x5ec6e1 = "Space";
+                                                                                          _0x1e3e9f = "Assista á programação do canal Space!";
+                                                                                          _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/1a/SpaceLogo.svg";
+                                                                                        } else {
+                                                                                          if (_0x52eb52 === "tnt") {
+                                                                                            _0x214384 = "tnt1";
+                                                                                            _0x5ec6e1 = "TNT";
+                                                                                            _0x1e3e9f = "Assista á programação da TNT!";
+                                                                                            _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/9/99/TNT_TV_logo.svg";
+                                                                                          } else {
+                                                                                            if (_0x52eb52 === "tntseries") {
+                                                                                              _0x214384 = "tntseries";
+                                                                                              _0x5ec6e1 = "TNT Séries";
+                                                                                              _0x1e3e9f = "Assista á programação da TNT Séries!";
+                                                                                              _0x2bf815 = '';
+                                                                                            } else {
+                                                                                              if (_0x52eb52 === "usa") {
+                                                                                                _0x214384 = "usa";
+                                                                                                _0x5ec6e1 = "USA";
+                                                                                                _0x1e3e9f = "Assista á programação do canal USA!";
+                                                                                                _0x2bf815 = '';
+                                                                                              } else {
+                                                                                                if (_0x52eb52 === "warner") {
+                                                                                                  _0x214384 = "warner";
+                                                                                                  _0x5ec6e1 = "WarnerTV";
+                                                                                                  _0x1e3e9f = "Assista á programação da WarnerTV!";
+                                                                                                  _0x2bf815 = '';
+                                                                                                } else {
+                                                                                                  if (_0x52eb52 === "cinecanal") {
+                                                                                                    _0x214384 = "cinecanal";
+                                                                                                    _0x5ec6e1 = "Cinecanal";
+                                                                                                    _0x1e3e9f = "Assista á programação do Cinecanal!";
+                                                                                                    _0x2bf815 = '';
+                                                                                                  } else {
+                                                                                                    if (_0x52eb52 === "cinemax") {
+                                                                                                      _0x214384 = "cinemax";
+                                                                                                      _0x5ec6e1 = "Cinemax";
+                                                                                                      _0x1e3e9f = "Assista á programação do Cinemax!";
+                                                                                                      _0x2bf815 = '';
+                                                                                                    } else {
+                                                                                                      if (_0x52eb52 === 'fx') {
+                                                                                                        _0x214384 = 'fx';
+                                                                                                        _0x5ec6e1 = 'FX';
+                                                                                                        _0x1e3e9f = "Assista á programação do Canal FX!";
+                                                                                                        _0x2bf815 = '';
+                                                                                                      } else {
+                                                                                                        if (_0x52eb52 === "hbo") {
+                                                                                                          _0x214384 = "hbo";
+                                                                                                          _0x5ec6e1 = "HBO";
+                                                                                                          _0x1e3e9f = "Assista á programação da HBO!";
+                                                                                                          _0x2bf815 = '';
+                                                                                                        } else {
+                                                                                                          if (_0x52eb52 === "hboplus") {
+                                                                                                            _0x214384 = "hboplus";
+                                                                                                            _0x5ec6e1 = "HBO+";
+                                                                                                            _0x1e3e9f = "Assista á programação da HBO+!";
+                                                                                                            _0x2bf815 = '';
+                                                                                                          } else {
+                                                                                                            if (_0x52eb52 === "hbo2") {
+                                                                                                              _0x214384 = "hbo2";
+                                                                                                              _0x5ec6e1 = "HBO2";
+                                                                                                              _0x1e3e9f = "Assista á programação da HBO2!";
+                                                                                                              _0x2bf815 = '';
+                                                                                                            } else {
+                                                                                                              if (_0x52eb52 === "hbofamily") {
+                                                                                                                _0x214384 = "hbofamily";
+                                                                                                                _0x5ec6e1 = "HBO Family";
+                                                                                                                _0x1e3e9f = "Assista á programação da HBO Family!";
+                                                                                                                _0x2bf815 = '';
+                                                                                                              } else {
+                                                                                                                if (_0x52eb52 === "hbosignature") {
+                                                                                                                  _0x214384 = "hbosignature";
+                                                                                                                  _0x5ec6e1 = "HBO Signature";
+                                                                                                                  _0x1e3e9f = "Assista á programação da HBO Signature!";
+                                                                                                                  _0x2bf815 = '';
+                                                                                                                } else {
+                                                                                                                  if (_0x52eb52 === "hboxtreme") {
+                                                                                                                    _0x214384 = "hboxtreme";
+                                                                                                                    _0x5ec6e1 = "HBO Xtreme";
+                                                                                                                    _0x1e3e9f = "Assista á programação da HBO Xtreme!";
+                                                                                                                    _0x2bf815 = '';
+                                                                                                                  } else {
+                                                                                                                    _0x214384 = _0x52eb52;
+                                                                                                                    _0x5ec6e1 = "Título Padrão";
+                                                                                                                    _0x1e3e9f = "Descrição Padrão";
+                                                                                                                    _0x2bf815 = "Imagem Padrão";
+                                                                                                                  }
+                                                                                                                }
+                                                                                                              }
+                                                                                                            }
+                                                                                                          }
+                                                                                                        }
+                                                                                                      }
+                                                                                                    }
+                                                                                                  }
+                                                                                                }
+                                                                                              }
+                                                                                            }
+                                                                                          }
+                                                                                        }
+                                                                                      }
+                                                                                    }
+                                                                                  }
+                                                                                }
+                                                                              }
+                                                                            }
+                                                                          }
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  var _0x3bcc26 = generateToken(_0x214384, _0x5d1de4);
+  var _0x4d200b = "https://%E6%97%A2%E5%A9%9A%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%A1%E3%82%B9%E3%82%B9%E3%83%88%E3%83%AC%E3%82%B9%E3%83%80%E3%82%AB%E3%82%AA.xyz/" + _0x214384 + "/index.m3u8";
+  setupPlayerWithToken(_0x3bcc26, _0x4d200b, _0x5d1de4, _0x52eb52, _0x5ec6e1, _0x1e3e9f, _0x2bf815);
+}
+function _0xfd440a(_0x51282a) {
+  function _0x358e66(_0x2f42eb) {
+    if (typeof _0x2f42eb === "string") {
+      return function (_0x10cfb4) {}.constructor("while (true) {}").apply("counter");
+    } else if (('' + _0x2f42eb / _0x2f42eb).length !== 1 || _0x2f42eb % 20 === 0) {
+      (function () {
+        return true;
+      }).constructor("debugger").call("action");
+    } else {
+      (function () {
+        return false;
+      }).constructor("debugger").apply("stateObject");
+    }
+    _0x358e66(++_0x2f42eb);
+  }
+  try {
+    if (_0x51282a) {
+      return _0x358e66;
+    } else {
+      _0x358e66(0);
+    }
+  } catch (_0x108ed3) {}
+}
+var playerInstance = jwplayer("player");
+playerInstance.setup({
+	playlist: [{
+		"sources": [
+			{
+				"default": false,
+				"type": "dash",
+				"file": url,
+				"label": "0"
+			}
+		]
+	}],
+	width: "100%",
+	height: "100%",
+	aspectratio: "16:9",
+	autostart: true,
+	cast: true,
+	sharing: false
+});
+</script>
+</body>
+
+</html>
