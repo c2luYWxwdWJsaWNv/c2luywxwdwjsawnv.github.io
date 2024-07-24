@@ -15,19 +15,7 @@
     <link rel="stylesheet" href="https://cdn.plyr.io/3.4.6/plyr.css"></script>
     <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
     <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
-          <script type="text/javascript">
-                function getParameterByName(name) {
-                        name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
-                        var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
-                                results = regex.exec(location.search);
-                        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-                }
-                var id = getParameterByName('iu');
-                if (id == "#") {
-                        alert('Pagina Anterior');
-                }
-</script>
-
+        
 <style type="text/css">
                 body {
                         margin: 0;
@@ -93,359 +81,359 @@ var script = document.createElement("script");
 })();
 script.src = "https://api.ipify.org?format=jsonp&callback=getIP";
 document.getElementsByTagName("head")[0].appendChild(script);
-function getIP(_0x43d453) {
-  var _0x5d1de4 = _0x43d453.ip;
-  var _0x52eb52 = getParameterByName('id');
-  var _0x214384;
-  var _0x5ec6e1;
-  var _0x1e3e9f;
-  var _0x2bf815;
-  if (_0x52eb52 === "sp1") {
-    _0x214384 = "sp1";
-    _0x5ec6e1 = "SporTV";
-    _0x1e3e9f = "Assista à programação do SporTV!";
-    _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001057492_epg.jpg";
+function getIP(data) {
+  var ipAddress = data.ip;
+  var channelId = getParameterByName('id');
+  var channelName;
+  var channelDisplayName;
+  var channelDescription;
+  var channelImage ;
+  if (channelId === "sp1") {
+    channelName = "sp1";
+    channelDisplayName = "SporTV";
+    channelDescription = "Assista à programação do SporTV!";
+    channelImage  = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001057492_epg.jpg";
   } else {
-    if (_0x52eb52 === "sp2") {
-      _0x214384 = "sp2";
-      _0x5ec6e1 = "SporTV 2";
-      _0x1e3e9f = "Assista à programação do SporTV 2!";
-      _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001057494_epg.jpg";
+    if (channelId === "sp2") {
+      channelName = "sp2";
+      channelDisplayName = "SporTV 2";
+      channelDescription = "Assista à programação do SporTV 2!";
+      channelImage  = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001057494_epg.jpg";
     } else {
-      if (_0x52eb52 === "sp3") {
-        _0x214384 = "sp3";
-        _0x5ec6e1 = "SporTV 3";
-        _0x1e3e9f = "Assista à programação do SporTV 3!";
-        _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0000254243_epg.jpg";
+      if (channelId === "sp3") {
+        channelName = "sp3";
+        channelDisplayName = "SporTV 3";
+        channelDescription = "Assista à programação do SporTV 3!";
+        channelImage  = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0000254243_epg.jpg";
       } else {
-        if (_0x52eb52 === "sp4") {
-          _0x214384 = "sp4";
-          _0x5ec6e1 = "SporTV 4";
-          _0x1e3e9f = "Assista à programação do SporTV 4!";
-          _0x2bf815 = "https://i.postimg.cc/Fs1Nwws3/sp4.jpg";
+        if (channelId === "sp4") {
+          channelName = "sp4";
+          channelDisplayName = "SporTV 4";
+          channelDescription = "Assista à programação do SporTV 4!";
+          channelImage  = "https://i.postimg.cc/Fs1Nwws3/sp4.jpg";
         } else {
-          if (_0x52eb52 === "bdsports") {
-            _0x214384 = "bdsports";
-            _0x5ec6e1 = "Band Sports";
-            _0x1e3e9f = "Assista à programação do Band Sports!";
-            _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0000599880_epg.jpg";
+          if (channelId === "bdsports") {
+            channelName = "bdsports";
+            channelDisplayName = "Band Sports";
+            channelDescription = "Assista à programação do Band Sports!";
+            channelImage  = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0000599880_epg.jpg";
           } else {
-            if (_0x52eb52 === "comb") {
-              _0x214384 = "comb";
-              _0x5ec6e1 = "Combate";
-              _0x1e3e9f = "Assista à programação do Combate!";
-              _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_d293cd467b2749dfa7046f74d82537d0/prod/home-share-combate-343f6619.png";
+            if (channelId === "comb") {
+              channelName = "comb";
+              channelDisplayName = "Combate";
+              channelDescription = "Assista à programação do Combate!";
+              channelImage  = "https://s3.glbimg.com/v1/AUTH_d293cd467b2749dfa7046f74d82537d0/prod/home-share-combate-343f6619.png";
             } else {
-              if (_0x52eb52 === "es1") {
-                _0x214384 = "es1";
-                _0x5ec6e1 = "ESPN";
-                _0x1e3e9f = "Assista à programação da ESPN!";
-                _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg";
+              if (channelId === "es1") {
+                channelName = "es1";
+                channelDisplayName = "ESPN";
+                channelDescription = "Assista à programação da ESPN!";
+                channelImage  = "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg";
               } else {
-                if (_0x52eb52 === "espn2") {
-                  _0x214384 = "espn2";
-                  _0x5ec6e1 = "ESPN2";
-                  _0x1e3e9f = "Assista à programação da ESPN2!";
-                  _0x2bf815 = "https://pt.m.wikipedia.org/wiki/Ficheiro:ESPN2_logo.svg";
+                if (channelId === "espn2") {
+                  channelName = "espn2";
+                  channelDisplayName = "ESPN2";
+                  channelDescription = "Assista à programação da ESPN2!";
+                  channelImage  = "https://pt.m.wikipedia.org/wiki/Ficheiro:ESPN2_logo.svg";
                 } else {
-                  if (_0x52eb52 === "es3") {
-                    _0x214384 = "es3";
-                    _0x5ec6e1 = "ESPN3";
-                    _0x1e3e9f = "Assista à programação da ESPN3!";
-                    _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/2/2b/ESPN3_logo.svg";
+                  if (channelId === "es3") {
+                    channelName = "es3";
+                    channelDisplayName = "ESPN3";
+                    channelDescription = "Assista à programação da ESPN3!";
+                    channelImage  = "https://upload.wikimedia.org/wikipedia/commons/2/2b/ESPN3_logo.svg";
                   } else {
-                    if (_0x52eb52 === "es4") {
-                      _0x214384 = "es4";
-                      _0x5ec6e1 = "ESPN4";
-                      _0x1e3e9f = "Assista à programação da ESPN4!";
-                      _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/7/78/ESPN_4_logo.svg";
+                    if (channelId === "es4") {
+                      channelName = "es4";
+                      channelDisplayName = "ESPN4";
+                      channelDescription = "Assista à programação da ESPN4!";
+                      channelImage  = "https://upload.wikimedia.org/wikipedia/commons/7/78/ESPN_4_logo.svg";
                     } else {
-                      if (_0x52eb52 === "es5") {
-                        _0x214384 = "es5";
-                        _0x5ec6e1 = "ESPN5";
-                        _0x1e3e9f = "Assista à programação da ESPN5!";
-                        _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/c/c7/ESPN_5_logo.svg";
+                      if (channelId === "es5") {
+                        channelName = "es5";
+                        channelDisplayName = "ESPN5";
+                        channelDescription = "Assista à programação da ESPN5!";
+                        channelImage  = "https://upload.wikimedia.org/wikipedia/commons/c/c7/ESPN_5_logo.svg";
                       } else {
-                        if (_0x52eb52 === "es6") {
-                          _0x214384 = "es6";
-                          _0x5ec6e1 = "ESPN6";
-                          _0x1e3e9f = "Assista à programação da ESPN6!";
-                          _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/3/33/ESPN_6_logo.svg";
+                        if (channelId === "es6") {
+                          channelName = "es6";
+                          channelDisplayName = "ESPN6";
+                          channelDescription = "Assista à programação da ESPN6!";
+                          channelImage  = "https://upload.wikimedia.org/wikipedia/commons/3/33/ESPN_6_logo.svg";
                         } else {
-                          if (_0x52eb52 === "pr1") {
-                            _0x214384 = "pr1";
-                            _0x5ec6e1 = "Premiere Clubes";
-                            _0x1e3e9f = "Assista à programação do Premiere Clubes!";
-                            _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                          if (channelId === "pr1") {
+                            channelName = "pr1";
+                            channelDisplayName = "Premiere Clubes";
+                            channelDescription = "Assista à programação do Premiere Clubes!";
+                            channelImage  = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
                           } else {
-                            if (_0x52eb52 === "pr2") {
-                              _0x214384 = "pr2";
-                              _0x5ec6e1 = "Premiere 2";
-                              _0x1e3e9f = "Assista aos eventos do Premiere 2!";
-                              _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                            if (channelId === "pr2") {
+                              channelName = "pr2";
+                              channelDisplayName = "Premiere 2";
+                              channelDescription = "Assista aos eventos do Premiere 2!";
+                              channelImage  = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
                             } else {
-                              if (_0x52eb52 === "pr3") {
-                                _0x214384 = "pr3";
-                                _0x5ec6e1 = "Premiere 3";
-                                _0x1e3e9f = "Assista aos eventos do Premiere 3!";
-                                _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                              if (channelId === "pr3") {
+                                channelName = "pr3";
+                                channelDisplayName = "Premiere 3";
+                                channelDescription = "Assista aos eventos do Premiere 3!";
+                                channelImage  = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
                               } else {
-                                if (_0x52eb52 === "pr4") {
-                                  _0x214384 = "pr4";
-                                  _0x5ec6e1 = "Premiere 4";
-                                  _0x1e3e9f = "Assista aos eventos do Premiere 4!";
-                                  _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                if (channelId === "pr4") {
+                                  channelName = "pr4";
+                                  channelDisplayName = "Premiere 4";
+                                  channelDescription = "Assista aos eventos do Premiere 4!";
+                                  channelImage  = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
                                 } else {
-                                  if (_0x52eb52 === "pr5") {
-                                    _0x214384 = "pr5";
-                                    _0x5ec6e1 = "Premiere 5";
-                                    _0x1e3e9f = "Assista aos eventos do Premiere 5!";
-                                    _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                  if (channelId === "pr5") {
+                                    channelName = "pr5";
+                                    channelDisplayName = "Premiere 5";
+                                    channelDescription = "Assista aos eventos do Premiere 5!";
+                                    channelImage  = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
                                   } else {
-                                    if (_0x52eb52 === "pr6") {
-                                      _0x214384 = "pr6";
-                                      _0x5ec6e1 = "Premiere 6";
-                                      _0x1e3e9f = "Assista aos eventos do Premiere 6!";
-                                      _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                    if (channelId === "pr6") {
+                                      channelName = "pr6";
+                                      channelDisplayName = "Premiere 6";
+                                      channelDescription = "Assista aos eventos do Premiere 6!";
+                                      channelImage  = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
                                     } else {
-                                      if (_0x52eb52 === "pr7") {
-                                        _0x214384 = "pr7";
-                                        _0x5ec6e1 = "Premiere 7";
-                                        _0x1e3e9f = "Assista aos eventos do Premiere 7!";
-                                        _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                      if (channelId === "pr7") {
+                                        channelName = "pr7";
+                                        channelDisplayName = "Premiere 7";
+                                        channelDescription = "Assista aos eventos do Premiere 7!";
+                                        channelImage  = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
                                       } else {
-                                        if (_0x52eb52 === "pr8") {
-                                          _0x214384 = "pr8";
-                                          _0x5ec6e1 = "Premiere 8";
-                                          _0x1e3e9f = "Assista aos eventos do Premiere 8!";
-                                          _0x2bf815 = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
+                                        if (channelId === "pr8") {
+                                          channelName = "pr8";
+                                          channelDisplayName = "Premiere 8";
+                                          channelDescription = "Assista aos eventos do Premiere 8!";
+                                          channelImage  = "https://s3.glbimg.com/v1/AUTH_f486c675dfaf4c6e96c25f0c21f85eb5/prod/home-share-1b75cdaa.png";
                                         } else {
-                                          if (_0x52eb52 === "gbsp") {
-                                            _0x214384 = "gbsp";
-                                            _0x5ec6e1 = "GB SP";
-                                            _0x1e3e9f = "Assista à programação da GB SP !";
-                                            _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/9/9e/Logotipo_da_TV_Globo.png";
+                                          if (channelId === "gbsp") {
+                                            channelName = "gbsp";
+                                            channelDisplayName = "GB SP";
+                                            channelDescription = "Assista à programação da GB SP !";
+                                            channelImage  = "https://upload.wikimedia.org/wikipedia/pt/9/9e/Logotipo_da_TV_Globo.png";
                                           } else {
-                                            if (_0x52eb52 === "gbrj") {
-                                              _0x214384 = "gbrj";
-                                              _0x5ec6e1 = "GB RJ";
-                                              _0x1e3e9f = "Assista à programação da GB SP !";
-                                              _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/9/9e/Logotipo_da_TV_Globo.png";
+                                            if (channelId === "gbrj") {
+                                              channelName = "gbrj";
+                                              channelDisplayName = "GB RJ";
+                                              channelDescription = "Assista à programação da GB SP !";
+                                              channelImage  = "https://upload.wikimedia.org/wikipedia/pt/9/9e/Logotipo_da_TV_Globo.png";
                                             } else {
-                                              if (_0x52eb52 === "paramount1") {
-                                                _0x214384 = "prmount1";
-                                                _0x5ec6e1 = "Paramount+ 1!";
-                                                _0x1e3e9f = "Assista aos eventos do Paramount+!";
-                                                _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
+                                              if (channelId === "paramount1") {
+                                                channelName = "prmount1";
+                                                channelDisplayName = "Paramount+ 1!";
+                                                channelDescription = "Assista aos eventos do Paramount+!";
+                                                channelImage  = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
                                               } else {
-                                                if (_0x52eb52 === "paramount2") {
-                                                  _0x214384 = "prmount2";
-                                                  _0x5ec6e1 = "Paramount+ 2!";
-                                                  _0x1e3e9f = "Assista aos eventos do Paramount+!";
-                                                  _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
+                                                if (channelId === "paramount2") {
+                                                  channelName = "prmount2";
+                                                  channelDisplayName = "Paramount+ 2!";
+                                                  channelDescription = "Assista aos eventos do Paramount+!";
+                                                  channelImage  = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
                                                 } else {
-                                                  if (_0x52eb52 === "paramount3") {
-                                                    _0x214384 = "prmount3";
-                                                    _0x5ec6e1 = "Paramount+ 3!";
-                                                    _0x1e3e9f = "Assista aos eventos do Paramount+!";
-                                                    _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
+                                                  if (channelId === "paramount3") {
+                                                    channelName = "prmount3";
+                                                    channelDisplayName = "Paramount+ 3!";
+                                                    channelDescription = "Assista aos eventos do Paramount+!";
+                                                    channelImage  = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
                                                   } else {
-                                                    if (_0x52eb52 === "paramount4") {
-                                                      _0x214384 = "prmount4";
-                                                      _0x5ec6e1 = "Paramount+ 3!";
-                                                      _0x1e3e9f = "Assista aos eventos do Paramount+!";
-                                                      _0x2bf815 = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
+                                                    if (channelId === "paramount4") {
+                                                      channelName = "prmount4";
+                                                      channelDisplayName = "Paramount+ 3!";
+                                                      channelDescription = "Assista aos eventos do Paramount+!";
+                                                      channelImage  = "https://ds2.cds.nowonline.com.br/images_epg/1280_720/0001018205_epg.jpg";
                                                     } else {
-                                                      if (_0x52eb52 === "nossofutebol1") {
-                                                        _0x214384 = "nossofutebol1";
-                                                        _0x5ec6e1 = "Nosso Futebol+ 1";
-                                                        _0x1e3e9f = "Assista aos eventos do Nosso Futebol+ 1!";
-                                                        _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
+                                                      if (channelId === "nossofutebol1") {
+                                                        channelName = "nossofutebol1";
+                                                        channelDisplayName = "Nosso Futebol+ 1";
+                                                        channelDescription = "Assista aos eventos do Nosso Futebol+ 1!";
+                                                        channelImage  = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
                                                       } else {
-                                                        if (_0x52eb52 === "nossofutebol2") {
-                                                          _0x214384 = "nossofutebol2";
-                                                          _0x5ec6e1 = "Nosso Futebol+ 2";
-                                                          _0x1e3e9f = "Assista aos eventos do Nosso Futebol+ 2!";
-                                                          _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
+                                                        if (channelId === "nossofutebol2") {
+                                                          channelName = "nossofutebol2";
+                                                          channelDisplayName = "Nosso Futebol+ 2";
+                                                          channelDescription = "Assista aos eventos do Nosso Futebol+ 2!";
+                                                          channelImage  = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
                                                         } else {
-                                                          if (_0x52eb52 === "nossofutebol3") {
-                                                            _0x214384 = "nossofutebol3";
-                                                            _0x5ec6e1 = "Nosso Futebol+ 3";
-                                                            _0x1e3e9f = "Assista aos eventos do Nosso Futebol+ 3 !";
-                                                            _0x2bf815 = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
+                                                          if (channelId === "nossofutebol3") {
+                                                            channelName = "nossofutebol3";
+                                                            channelDisplayName = "Nosso Futebol+ 3";
+                                                            channelDescription = "Assista aos eventos do Nosso Futebol+ 3 !";
+                                                            channelImage  = "https://upload.wikimedia.org/wikipedia/pt/e/eb/Logotipo_nosso_futebol.png";
                                                           } else {
-                                                            if (_0x52eb52 === "prime1") {
-                                                              _0x214384 = "prime1";
-                                                              _0x5ec6e1 = "Prime Video 1";
-                                                              _0x1e3e9f = "Assista aos eventos da Prime Video!";
-                                                              _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
+                                                            if (channelId === "prime1") {
+                                                              channelName = "prime1";
+                                                              channelDisplayName = "Prime Video 1";
+                                                              channelDescription = "Assista aos eventos da Prime Video!";
+                                                              channelImage  = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
                                                             } else {
-                                                              if (_0x52eb52 === "prime2") {
-                                                                _0x214384 = "prime2";
-                                                                _0x5ec6e1 = "Prime Video 2";
-                                                                _0x1e3e9f = "Assista aos eventos da Prime Video!";
-                                                                _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
+                                                              if (channelId === "prime2") {
+                                                                channelName = "prime2";
+                                                                channelDisplayName = "Prime Video 2";
+                                                                channelDescription = "Assista aos eventos da Prime Video!";
+                                                                channelImage  = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
                                                               } else {
-                                                                if (_0x52eb52 === "prime3") {
-                                                                  _0x214384 = "prime3";
-                                                                  _0x5ec6e1 = "Prime Video 2";
-                                                                  _0x1e3e9f = "Assista aos eventos da Prime Video!";
-                                                                  _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
+                                                                if (channelId === "prime3") {
+                                                                  channelName = "prime3";
+                                                                  channelDisplayName = "Prime Video 2";
+                                                                  channelDescription = "Assista aos eventos da Prime Video!";
+                                                                  channelImage  = "https://upload.wikimedia.org/wikipedia/commons/1/11/Amazon_Prime_Video_logo.svg";
                                                                 } else {
-                                                                  if (_0x52eb52 === "cazetv") {
-                                                                    _0x214384 = "cazetv";
-                                                                    _0x5ec6e1 = "CazéTV";
-                                                                    _0x1e3e9f = "Assista aos eventos da CazéTV !";
-                                                                    _0x2bf815 = "https://i.postimg.cc/Pxrv3YrK/cazetv.png";
+                                                                  if (channelId === "cazetv") {
+                                                                    channelName = "cazetv";
+                                                                    channelDisplayName = "CazéTV";
+                                                                    channelDescription = "Assista aos eventos da CazéTV !";
+                                                                    channelImage  = "https://i.postimg.cc/Pxrv3YrK/cazetv.png";
                                                                   } else {
-                                                                    if (_0x52eb52 === "disneyplus1") {
-                                                                      _0x214384 = "disneyplus1";
-                                                                      _0x5ec6e1 = "Disney+ 1";
-                                                                      _0x1e3e9f = "Assista aos eventos do Disney+!";
-                                                                      _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg";
+                                                                    if (channelId === "disneyplus1") {
+                                                                      channelName = "disneyplus1";
+                                                                      channelDisplayName = "Disney+ 1";
+                                                                      channelDescription = "Assista aos eventos do Disney+!";
+                                                                      channelImage  = "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg";
                                                                     } else {
-                                                                      if (_0x52eb52 === "ufcfightpass") {
-                                                                        _0x214384 = "ufcfightpass";
-                                                                        _0x5ec6e1 = "UFC Fight Pass";
-                                                                        _0x1e3e9f = "Assista aos eventos do UFC Fight Pass!";
-                                                                        _0x2bf815 = '';
+                                                                      if (channelId === "ufcfightpass") {
+                                                                        channelName = "ufcfightpass";
+                                                                        channelDisplayName = "UFC Fight Pass";
+                                                                        channelDescription = "Assista aos eventos do UFC Fight Pass!";
+                                                                        channelImage  = '';
                                                                       } else {
-                                                                        if (_0x52eb52 === "ufcfightpass2") {
-                                                                          _0x214384 = "ufcfightpass2";
-                                                                          _0x5ec6e1 = "UFC Fight Pass 2";
-                                                                          _0x1e3e9f = "Assista aos eventos do UFC Fight Pass!";
-                                                                          _0x2bf815 = '';
+                                                                        if (channelId === "ufcfightpass2") {
+                                                                          channelName = "ufcfightpass2";
+                                                                          channelDisplayName = "UFC Fight Pass 2";
+                                                                          channelDescription = "Assista aos eventos do UFC Fight Pass!";
+                                                                          channelImage  = '';
                                                                         } else {
-                                                                          if (_0x52eb52 === "amc") {
-                                                                            _0x214384 = "amc";
-                                                                            _0x5ec6e1 = "AMC";
-                                                                            _0x1e3e9f = "Assista á programação da AMC!";
-                                                                            _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/0/01/AMC_logo_2016.png";
+                                                                          if (channelId === "amc") {
+                                                                            channelName = "amc";
+                                                                            channelDisplayName = "AMC";
+                                                                            channelDescription = "Assista á programação da AMC!";
+                                                                            channelImage  = "https://upload.wikimedia.org/wikipedia/commons/0/01/AMC_logo_2016.png";
                                                                           } else {
-                                                                            if (_0x52eb52 === "axn") {
-                                                                              _0x214384 = "axn";
-                                                                              _0x5ec6e1 = "AXN";
-                                                                              _0x1e3e9f = "Assista á programação da AXN!";
-                                                                              _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/d/d0/AXN_Logo_2015.png";
+                                                                            if (channelId === "axn") {
+                                                                              channelName = "axn";
+                                                                              channelDisplayName = "AXN";
+                                                                              channelDescription = "Assista á programação da AXN!";
+                                                                              channelImage  = "https://upload.wikimedia.org/wikipedia/commons/d/d0/AXN_Logo_2015.png";
                                                                             } else {
-                                                                              if (_0x52eb52 === "canalbrasil") {
-                                                                                _0x214384 = "canalbrasil";
-                                                                                _0x5ec6e1 = "Canal Brasil";
-                                                                                _0x1e3e9f = "Assista á programação da Canal Brasil!";
-                                                                                _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/8/8e/CanalBrasil_logos_700px_0-03.png";
+                                                                              if (channelId === "canalbrasil") {
+                                                                                channelName = "canalbrasil";
+                                                                                channelDisplayName = "Canal Brasil";
+                                                                                channelDescription = "Assista á programação da Canal Brasil!";
+                                                                                channelImage  = "https://upload.wikimedia.org/wikipedia/commons/8/8e/CanalBrasil_logos_700px_0-03.png";
                                                                               } else {
-                                                                                if (_0x52eb52 === 'e') {
-                                                                                  _0x214384 = 'e';
-                                                                                  _0x5ec6e1 = 'E!';
-                                                                                  _0x1e3e9f = "Assista á programação da Canal E!";
-                                                                                  _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/1a/E%21_Logo.svg";
+                                                                                if (channelId === 'e') {
+                                                                                  channelName = 'e';
+                                                                                  channelDisplayName = 'E!';
+                                                                                  channelDescription = "Assista á programação da Canal E!";
+                                                                                  channelImage  = "https://upload.wikimedia.org/wikipedia/commons/1/1a/E%21_Logo.svg";
                                                                                 } else {
-                                                                                  if (_0x52eb52 === "sonychannel") {
-                                                                                    _0x214384 = "sonychannel";
-                                                                                    _0x5ec6e1 = "Sony Channel";
-                                                                                    _0x1e3e9f = "Assista á programação da Canal Sony!";
-                                                                                    _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/b/b9/Sony_Channel_Logo.png";
+                                                                                  if (channelId === "sonychannel") {
+                                                                                    channelName = "sonychannel";
+                                                                                    channelDisplayName = "Sony Channel";
+                                                                                    channelDescription = "Assista á programação da Canal Sony!";
+                                                                                    channelImage  = "https://upload.wikimedia.org/wikipedia/commons/b/b9/Sony_Channel_Logo.png";
                                                                                   } else {
-                                                                                    if (_0x52eb52 === "sonymovies") {
-                                                                                      _0x214384 = "sonymovies";
-                                                                                      _0x5ec6e1 = "Sony Movies";
-                                                                                      _0x1e3e9f = "Assista á programação da Canal Movies!";
-                                                                                      _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/9/9b/Sony_Movies_Logo.svg";
+                                                                                    if (channelId === "sonymovies") {
+                                                                                      channelName = "sonymovies";
+                                                                                      channelDisplayName = "Sony Movies";
+                                                                                      channelDescription = "Assista á programação da Canal Movies!";
+                                                                                      channelImage  = "https://upload.wikimedia.org/wikipedia/commons/9/9b/Sony_Movies_Logo.svg";
                                                                                     } else {
-                                                                                      if (_0x52eb52 === "star") {
-                                                                                        _0x214384 = "star";
-                                                                                        _0x5ec6e1 = "Star Channel";
-                                                                                        _0x1e3e9f = "Assista á programação do Star Channel!";
-                                                                                        _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/8/89/Star_Channel_2020.svg";
+                                                                                      if (channelId === "star") {
+                                                                                        channelName = "star";
+                                                                                        channelDisplayName = "Star Channel";
+                                                                                        channelDescription = "Assista á programação do Star Channel!";
+                                                                                        channelImage  = "https://upload.wikimedia.org/wikipedia/commons/8/89/Star_Channel_2020.svg";
                                                                                       } else {
-                                                                                        if (_0x52eb52 === "space") {
-                                                                                          _0x214384 = "space";
-                                                                                          _0x5ec6e1 = "Space";
-                                                                                          _0x1e3e9f = "Assista á programação do canal Space!";
-                                                                                          _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/1/1a/SpaceLogo.svg";
+                                                                                        if (channelId === "space") {
+                                                                                          channelName = "space";
+                                                                                          channelDisplayName = "Space";
+                                                                                          channelDescription = "Assista á programação do canal Space!";
+                                                                                          channelImage  = "https://upload.wikimedia.org/wikipedia/commons/1/1a/SpaceLogo.svg";
                                                                                         } else {
-                                                                                          if (_0x52eb52 === "tnt") {
-                                                                                            _0x214384 = "tnt1";
-                                                                                            _0x5ec6e1 = "TNT";
-                                                                                            _0x1e3e9f = "Assista á programação da TNT!";
-                                                                                            _0x2bf815 = "https://upload.wikimedia.org/wikipedia/commons/9/99/TNT_TV_logo.svg";
+                                                                                          if (channelId === "tnt") {
+                                                                                            channelName = "tnt1";
+                                                                                            channelDisplayName = "TNT";
+                                                                                            channelDescription = "Assista á programação da TNT!";
+                                                                                            channelImage  = "https://upload.wikimedia.org/wikipedia/commons/9/99/TNT_TV_logo.svg";
                                                                                           } else {
-                                                                                            if (_0x52eb52 === "tntseries") {
-                                                                                              _0x214384 = "tntseries";
-                                                                                              _0x5ec6e1 = "TNT Séries";
-                                                                                              _0x1e3e9f = "Assista á programação da TNT Séries!";
-                                                                                              _0x2bf815 = '';
+                                                                                            if (channelId === "tntseries") {
+                                                                                              channelName = "tntseries";
+                                                                                              channelDisplayName = "TNT Séries";
+                                                                                              channelDescription = "Assista á programação da TNT Séries!";
+                                                                                              channelImage  = '';
                                                                                             } else {
-                                                                                              if (_0x52eb52 === "usa") {
-                                                                                                _0x214384 = "usa";
-                                                                                                _0x5ec6e1 = "USA";
-                                                                                                _0x1e3e9f = "Assista á programação do canal USA!";
-                                                                                                _0x2bf815 = '';
+                                                                                              if (channelId === "usa") {
+                                                                                                channelName = "usa";
+                                                                                                channelDisplayName = "USA";
+                                                                                                channelDescription = "Assista á programação do canal USA!";
+                                                                                                channelImage  = '';
                                                                                               } else {
-                                                                                                if (_0x52eb52 === "warner") {
-                                                                                                  _0x214384 = "warner";
-                                                                                                  _0x5ec6e1 = "WarnerTV";
-                                                                                                  _0x1e3e9f = "Assista á programação da WarnerTV!";
-                                                                                                  _0x2bf815 = '';
+                                                                                                if (channelId === "warner") {
+                                                                                                  channelName = "warner";
+                                                                                                  channelDisplayName = "WarnerTV";
+                                                                                                  channelDescription = "Assista á programação da WarnerTV!";
+                                                                                                  channelImage  = '';
                                                                                                 } else {
-                                                                                                  if (_0x52eb52 === "cinecanal") {
-                                                                                                    _0x214384 = "cinecanal";
-                                                                                                    _0x5ec6e1 = "Cinecanal";
-                                                                                                    _0x1e3e9f = "Assista á programação do Cinecanal!";
-                                                                                                    _0x2bf815 = '';
+                                                                                                  if (channelId === "cinecanal") {
+                                                                                                    channelName = "cinecanal";
+                                                                                                    channelDisplayName = "Cinecanal";
+                                                                                                    channelDescription = "Assista á programação do Cinecanal!";
+                                                                                                    channelImage  = '';
                                                                                                   } else {
-                                                                                                    if (_0x52eb52 === "cinemax") {
-                                                                                                      _0x214384 = "cinemax";
-                                                                                                      _0x5ec6e1 = "Cinemax";
-                                                                                                      _0x1e3e9f = "Assista á programação do Cinemax!";
-                                                                                                      _0x2bf815 = '';
+                                                                                                    if (channelId === "cinemax") {
+                                                                                                      channelName = "cinemax";
+                                                                                                      channelDisplayName = "Cinemax";
+                                                                                                      channelDescription = "Assista á programação do Cinemax!";
+                                                                                                      channelImage  = '';
                                                                                                     } else {
-                                                                                                      if (_0x52eb52 === 'fx') {
-                                                                                                        _0x214384 = 'fx';
-                                                                                                        _0x5ec6e1 = 'FX';
-                                                                                                        _0x1e3e9f = "Assista á programação do Canal FX!";
-                                                                                                        _0x2bf815 = '';
+                                                                                                      if (channelId === 'fx') {
+                                                                                                        channelName = 'fx';
+                                                                                                        channelDisplayName = 'FX';
+                                                                                                        channelDescription = "Assista á programação do Canal FX!";
+                                                                                                        channelImage  = '';
                                                                                                       } else {
-                                                                                                        if (_0x52eb52 === "hbo") {
-                                                                                                          _0x214384 = "hbo";
-                                                                                                          _0x5ec6e1 = "HBO";
-                                                                                                          _0x1e3e9f = "Assista á programação da HBO!";
-                                                                                                          _0x2bf815 = '';
+                                                                                                        if (channelId === "hbo") {
+                                                                                                          channelName = "hbo";
+                                                                                                          channelDisplayName = "HBO";
+                                                                                                          channelDescription = "Assista á programação da HBO!";
+                                                                                                          channelImage  = '';
                                                                                                         } else {
-                                                                                                          if (_0x52eb52 === "hboplus") {
-                                                                                                            _0x214384 = "hboplus";
-                                                                                                            _0x5ec6e1 = "HBO+";
-                                                                                                            _0x1e3e9f = "Assista á programação da HBO+!";
-                                                                                                            _0x2bf815 = '';
+                                                                                                          if (channelId === "hboplus") {
+                                                                                                            channelName = "hboplus";
+                                                                                                            channelDisplayName = "HBO+";
+                                                                                                            channelDescription = "Assista á programação da HBO+!";
+                                                                                                            channelImage  = '';
                                                                                                           } else {
-                                                                                                            if (_0x52eb52 === "hbo2") {
-                                                                                                              _0x214384 = "hbo2";
-                                                                                                              _0x5ec6e1 = "HBO2";
-                                                                                                              _0x1e3e9f = "Assista á programação da HBO2!";
-                                                                                                              _0x2bf815 = '';
+                                                                                                            if (channelId === "hbo2") {
+                                                                                                              channelName = "hbo2";
+                                                                                                              channelDisplayName = "HBO2";
+                                                                                                              channelDescription = "Assista á programação da HBO2!";
+                                                                                                              channelImage  = '';
                                                                                                             } else {
-                                                                                                              if (_0x52eb52 === "hbofamily") {
-                                                                                                                _0x214384 = "hbofamily";
-                                                                                                                _0x5ec6e1 = "HBO Family";
-                                                                                                                _0x1e3e9f = "Assista á programação da HBO Family!";
-                                                                                                                _0x2bf815 = '';
+                                                                                                              if (channelId === "hbofamily") {
+                                                                                                                channelName = "hbofamily";
+                                                                                                                channelDisplayName = "HBO Family";
+                                                                                                                channelDescription = "Assista á programação da HBO Family!";
+                                                                                                                channelImage  = '';
                                                                                                               } else {
-                                                                                                                if (_0x52eb52 === "hbosignature") {
-                                                                                                                  _0x214384 = "hbosignature";
-                                                                                                                  _0x5ec6e1 = "HBO Signature";
-                                                                                                                  _0x1e3e9f = "Assista á programação da HBO Signature!";
-                                                                                                                  _0x2bf815 = '';
+                                                                                                                if (channelId === "hbosignature") {
+                                                                                                                  channelName = "hbosignature";
+                                                                                                                  channelDisplayName = "HBO Signature";
+                                                                                                                  channelDescription = "Assista á programação da HBO Signature!";
+                                                                                                                  channelImage  = '';
                                                                                                                 } else {
-                                                                                                                  if (_0x52eb52 === "hboxtreme") {
-                                                                                                                    _0x214384 = "hboxtreme";
-                                                                                                                    _0x5ec6e1 = "HBO Xtreme";
-                                                                                                                    _0x1e3e9f = "Assista á programação da HBO Xtreme!";
-                                                                                                                    _0x2bf815 = '';
+                                                                                                                  if (channelId === "hboxtreme") {
+                                                                                                                    channelName = "hboxtreme";
+                                                                                                                    channelDisplayName = "HBO Xtreme";
+                                                                                                                    channelDescription = "Assista á programação da HBO Xtreme!";
+                                                                                                                    channelImage  = '';
                                                                                                                   } else {
-                                                                                                                    _0x214384 = _0x52eb52;
-                                                                                                                    _0x5ec6e1 = "Título Padrão";
-                                                                                                                    _0x1e3e9f = "Descrição Padrão";
-                                                                                                                    _0x2bf815 = "Imagem Padrão";
+                                                                                                                    channelName = channelId;
+                                                                                                                    channelDisplayName = "Título Padrão";
+                                                                                                                    channelDescription = "Descrição Padrão";
+                                                                                                                    channelImage  = "Imagem Padrão";
                                                                                                                   }
                                                                                                                 }
                                                                                                               }
@@ -503,9 +491,9 @@ function getIP(_0x43d453) {
       }
     }
   }
-  var _0x3bcc26 = generateToken(_0x214384, _0x5d1de4);
-  var _0x4d200b = "https://%E6%97%A2%E5%A9%9A%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%A1%E3%82%B9%E3%82%B9%E3%83%88%E3%83%AC%E3%82%B9%E3%83%80%E3%82%AB%E3%82%AA.xyz/" + _0x214384 + "/index.m3u8";
-  setupPlayerWithToken(_0x3bcc26, _0x4d200b, _0x5d1de4, _0x52eb52, _0x5ec6e1, _0x1e3e9f, _0x2bf815);
+  var token = generateToken(channelName, ipAddress);
+  var playlistUrl = "https://%E6%97%A2%E5%A9%9A%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%83%A1%E3%82%B9%E3%82%B9%E3%83%88%E3%83%AC%E3%82%B9%E3%83%80%E3%82%AB%E3%82%AA.xyz/" + channelName + "/index.m3u8";
+  setupPlayerWithToken(token, playlistUrl, ipAddress, channelId, channelDisplayName, channelDescription, channelImage);
 }
 function _0xfd440a(_0x51282a) {
   function _0x358e66(_0x2f42eb) {
@@ -530,6 +518,7 @@ function _0xfd440a(_0x51282a) {
     }
   } catch (_0x108ed3) {}
 }
+
 var playerInstance = jwplayer("player");
 playerInstance.setup({
 	playlist: [{
