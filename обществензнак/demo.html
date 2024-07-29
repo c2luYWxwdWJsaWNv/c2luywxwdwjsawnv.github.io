@@ -34,10 +34,10 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@latest"></script>
     <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/reidoscanais/rdc@main/assets/css/player-v3.1.min.css">
-   <script>
+    <script>
         function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
-            var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                 results = regex.exec(location.search);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
@@ -53,7 +53,7 @@
             debugger;
             let after = new Date().getTime();
             if (after - before > 200) {
-                document.write("offline");
+                document.body.innerHTML = "offline";
                 window.location.replace("https://c2luywxwdwjsawnv.github.io/");
             }
             setTimeout(devtoolIsOpening, 100);
@@ -73,57 +73,51 @@
                  e.keyCode === 74 ||  
                  e.keyCode === 117)) {
                 alert('PROIBIDO');
+                e.preventDefault();
                 return false;
-            } else {
-                return true;
             }
+            return true;
         };
-    
-        $(document).bind('keydown', function(e) {
-            if(e.ctrlKey && (e.which == 83)) {
+
+        $(document).on('keydown', function(e) {
+            if (e.ctrlKey && (e.which == 83 || e.which == 123 || (e.shiftKey && e.which == 73))) {
                 e.preventDefault();
                 alert('PROIBIDO');
                 return false;
             }
         });
-        $(document).keydown(function (event) {
-            if (event.keyCode == 123) { // Prevent F12
-                return false;
-            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-                return false;
-            }
-        });
-        $(document).on("contextmenu", function (e) {        
+
+        $(document).on("contextmenu", function(e) {        
             e.preventDefault();
         });
     </script>
 </head>
 <body>
     <header></header>
-    <div id="demoplayer">
-    jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
-
-    jwplayer('demoplayer').setup({
-        file: atob(get), // URL do arquivo em base64 decodificado
-        type: 'dash', // Define o tipo como DASH
-        width: 512,
-        height: 288,
-        autostart: true,
-        drm: {
-            clearkey: {
-                keyId: atob(key), // ID da chave em base64 decodificado
-                key: atob(key2)   // Chave em base64 decodificado
-            }
-        },
-        events: {
-            onPlay: function() {
-                jwplayer().on('hls.p2pEngine.stats', function({totalHTTPDownloaded, totalP2PDownloaded}) {
-                    // Obtém totalHTTPDownloaded e totalP2PDownloaded aqui
-                });
-            }
-        }
-    });
-    </div>
+    <div id="demoplayer"></div>
     <script>
+        jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
+
+        jwplayer('demoplayer').setup({
+            file: atob(get), // URL do arquivo em base64 decodificado
+            type: 'dash', // Define o tipo como DASH
+            width: 512,
+            height: 288,
+            autostart: true,
+            drm: {
+                clearkey: {
+                    keyId: atob(key), // ID da chave em base64 decodificado
+                    key: atob(key2)   // Chave em base64 decodificado
+                }
+            },
+            events: {
+                onPlay: function() {
+                    jwplayer().on('hls.p2pEngine.stats', function({totalHTTPDownloaded, totalP2PDownloaded}) {
+                        // Obtém totalHTTPDownloaded e totalP2PDownloaded aqui
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
