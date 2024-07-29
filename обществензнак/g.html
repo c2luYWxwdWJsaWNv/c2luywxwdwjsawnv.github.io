@@ -34,9 +34,9 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
-        var get = getParameterByName('get');
-        var key = getParameterByName('key');
-        var key2 = getParameterByName('key2');
+        var get = getParameterByName('g');
+        var key = getParameterByName('k1');
+        var key2 = getParameterByName('k2');
         var getIMG = getParameterByName('img');
 
         function devtoolIsOpening() {
@@ -114,9 +114,9 @@
             width: "100%",
             height: "100%",
             aspectratio: "16:9",
-            autostart: false,
+            autostart: true,
+            mute: false,
             cast: {},
-            sharing: {}
         });
     </script>
 </body>
