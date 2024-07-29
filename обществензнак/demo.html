@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GB</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        body {
+            overflow: hidden;
+        }
+        #demoplayer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #demoplayer iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@latest"></script>
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/reidoscanais/rdc@main/assets/css/player-v3.1.min.css">
+   <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+            var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var get = getParameterByName('g');
+        var key = getParameterByName('k1');
+        var key2 = getParameterByName('k2');
+        var getIMG = getParameterByName('img');
+
+        function devtoolIsOpening() {
+            console.clear();
+            let before = new Date().getTime();
+            debugger;
+            let after = new Date().getTime();
+            if (after - before > 200) {
+                document.write("offline");
+                window.location.replace("https://c2luywxwdwjsawnv.github.io/");
+            }
+            setTimeout(devtoolIsOpening, 100);
+        }
+        devtoolIsOpening();
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && 
+                (e.keyCode === 67 || 
+                 e.keyCode === 86 || 
+                 e.keyCode === 83 || 
+                 e.keyCode === 85 || 
+                 e.keyCode === 80 || 
+                 e.keyCode === 123 || 
+                 e.keyCode === 73 || 
+                 e.keyCode === 74 ||  
+                 e.keyCode === 117)) {
+                alert('PROIBIDO');
+                return false;
+            } else {
+                return true;
+            }
+        };
+    
+        $(document).bind('keydown', function(e) {
+            if(e.ctrlKey && (e.which == 83)) {
+                e.preventDefault();
+                alert('PROIBIDO');
+                return false;
+            }
+        });
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+                return false;
+            }
+        });
+        $(document).on("contextmenu", function (e) {        
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <header></header>
+    <div id="demoplayer">
+       var playerInstance = jwplayer("demoplayer");
+
+        playerInstance.setup({
+            playlist: [{
+                "image": atob(getIMG),
+                "sources": [
+                    {
+                        "default": false,
+                        "type": "dash",
+                        "file": atob(get),
+                        "drm": {
+                            "clearkey": { "keyId": atob(key), "key": atob(key2) }
+                        },
+                        "label": "0"
+                    }
+                ]
+            }],
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            autostart: true,
+            mute: false,
+            cast: {},
+        });
+    </div>
+    <script>
+        // Seu código JavaScript vai aqui
+    </script>
+</body>
+</html>
