@@ -101,33 +101,29 @@
 <body>
     <header></header>
     <div id="demoplayer">
-       var playerInstance = jwplayer("demoplayer");
+    jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
 
-        playerInstance.setup({
-            playlist: [{
-                "image": atob(getIMG),
-                "sources": [
-                    {
-                        "default": false,
-                        "type": "dash",
-                        "file": atob(get),
-                        "drm": {
-                            "clearkey": { "keyId": atob(key), "key": atob(key2) }
-                        },
-                        "label": "0"
-                    }
-                ]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            mute: false,
-            cast: {},
-        });
+    jwplayer('demoplayer').setup({
+        file: atob(get), // URL do arquivo em base64 decodificado
+        type: 'dash', // Define o tipo como DASH
+        width: 512,
+        height: 288,
+        autostart: true,
+        drm: {
+            clearkey: {
+                keyId: atob(key), // ID da chave em base64 decodificado
+                key: atob(key2)   // Chave em base64 decodificado
+            }
+        },
+        events: {
+            onPlay: function() {
+                jwplayer().on('hls.p2pEngine.stats', function({totalHTTPDownloaded, totalP2PDownloaded}) {
+                    // Obtém totalHTTPDownloaded e totalP2PDownloaded aqui
+                });
+            }
+        }
+    });
     </div>
     <script>
-        // Seu código JavaScript vai aqui
-    </script>
 </body>
 </html>
