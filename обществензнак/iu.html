@@ -55,31 +55,13 @@ function devtoolIsOpening() {
 }
 devtoolIsOpening();
 </script>
-
-    <meta name="referrer" content="none">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css"></script>
-    <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
-    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        #player {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            height: 100%;
-            width: 100%;
-            border: 0;
-            overflow: hidden;
-        }
-    </style>
-	    
-<script type="text/javascript">
+        <meta name="referrer" content="no-referrer">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css"></script>
+        <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+        <script>
+                jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+        </script>
+        <script type="text/javascript">
 function getParameterByName(name) {
 	name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
 	var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
@@ -93,7 +75,6 @@ var key2 = getParameterByName('key2');
 var getIMG = getParameterByName('img');
 </script>
 <div id="player"></div>
-<script type="text/javascript">
 var playerInstance = jwplayer("player");
 
 playerInstance.setup({
@@ -119,3 +100,6 @@ playerInstance.setup({
 	sharing: {}
 });
 </script>
+
+</body>
+</html>
