@@ -58,8 +58,8 @@ devtoolIsOpening();
 
     <meta name="referrer" content="none">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css"></script>
-    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
+    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
 
     <style>
         body {
@@ -78,35 +78,22 @@ devtoolIsOpening();
             overflow: hidden;
         }
     </style>
-
+	    
 <script type="text/javascript">
-    function getParameterByName(name) {
+function getParameterByName(name) {
 	name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
 	var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
 	results = regex.exec(location.search);
 	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-var getURL = getParameterByName('id');
+var get = getParameterByName('get');
+var key = getParameterByName('key');
+var key2 = getParameterByName('key2');
 var getIMG = getParameterByName('img');
-var getKEY  = getParameterByName('k1');
-var getKEY2  = getParameterByName('k2');
-if (getURL == "#") {alert('Vuelve a la pÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡gina anterior');}
 </script>
-<script>
-var play = getParameterByName('play');
-
-if (play == "2") {
-play = "true"
-}else{
-	play = "false"
-	}
-</script>
-	
-</head>
-<body>
 <div id="player"></div>
-<script>
+<script type="text/javascript">
 var playerInstance = jwplayer("player");
 
 playerInstance.setup({
@@ -124,16 +111,11 @@ playerInstance.setup({
 			}
 		]
 	}],
-    logo: { file: "",  },
-    width: "100%",
-    height: "100%",
-    aspectratio: "16:9",
-    autostart: true,
-    mute: false,
-    cast: {},
-});
-
-playerInstance.on('play', function() {
-    playerInstance.setCurrentAudioTrack(2); 
+	width: "100%",
+	height: "100%",
+	aspectratio: "16:9",
+	autostart: false,
+	cast: {},
+	sharing: {}
 });
 </script>
