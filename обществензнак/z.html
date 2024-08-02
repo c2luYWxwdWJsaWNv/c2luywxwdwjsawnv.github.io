@@ -1,124 +1,227 @@
-<!DOCTYPE html><html lang="pt-br"><head>
-    <meta charset="utf-8">
-    <title>Player</title>
-    <script src="https://c2luywxwdwjsawnv.github.io/css
-/player.js" type="text/javascript"></script>
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        } 
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-        #player {
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="https://embedflix.online/css/selectize.min.css?v=1.0.0.1">
+    <link rel="stylesheet" href="https://embedflix.online/css/player.css?v=1.0.0.1">
+    <link rel="stylesheet" href="https://embedflix.online/css/lancaster_io.css?v=1.0.0.1">
+    <link rel="stylesheet" href="https://embedflix.online/css/remixicon.css?v=1.0.0.1">
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6/dist/jquery.min.js"></script>
+    <style>
+        .plyr--video {
+            overflow: hidden;
+            position: fixed;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .plyr__volume,
+        [data-plyr=play],
+        .vjs-big-play-button,
+        .media-control,
+        .play-wrapper {
+            display: none !important;
+        }
+
+        .player-poster {
+            background-size: auto !important;
+            background-color: rgb(33, 42, 49) !important;
+        }
+
+        #videoControl {
+            position: absolute;
+            display: flex;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            color: aqua;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(0 0 0 / 61%);
+        }
+
+        #videoControl .button .play {
+            color: #c6c6c6;
+            width: 80px;
+        }
+
+        #videoControl .button .pause {
+            color: #c6c6c6;
+            width: 80px;
+            display: none;
         }
     </style>
 </head>
 
-<body>
-    <div id="player"></div>
-    <script type="text/javascript">
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
+<div id="videoControl">
+    <div class="button">
+        <svg class="pause" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="M2 6C2 4.11438 2 3.17157 2.58579 2.58579C3.17157 2 4.11438 2 6 2C7.88562 2 8.82843 2 9.41421 2.58579C10 3.17157 10 4.11438 10 6V18C10 19.8856 10 20.8284 9.41421 21.4142C8.82843 22 7.88562 22 6 22C4.11438 22 3.17157 22 2.58579 21.4142C2 20.8284 2 19.8856 2 18V6Z" fill="#c6c6c6"></path>
+                <path d="M14 6C14 4.11438 14 3.17157 14.5858 2.58579C15.1716 2 16.1144 2 18 2C19.8856 2 20.8284 2 21.4142 2.58579C22 3.17157 22 4.11438 22 6V18C22 19.8856 22 20.8284 21.4142 21.4142C20.8284 22 19.8856 22 18 22C16.1144 22 15.1716 22 14.5858 21.4142C14 20.8284 14 19.8856 14 18V6Z" fill="#c6c6c6"></path>
+            </g>
+        </svg>
+        <svg class="play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z" fill="#c6c6c6"></path>
+            </g>
+        </svg>
+    </div>
+</div>
+<div class="player_screen">
+    <div class="player_container visible">
+        <!-- Info -->
+        <div class="infra" style="width:100%;height:100vh;"></div>
+    </div>
+</div>
+</div>
 
-        var id = getParameterByName('id');
-        var url = '';
+<script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clappr@latest"></script>
+<script type="text/javascript" charset="utf-8" src="https://cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/ewwink/clappr-quality-selector-plugin@latest/quality-selector.js"></script>
+<script>
+    if (p2pml.hlsjs.Engine.isSupported()) {
+        const config = {
+            segments: {
+                swarmId: 7,
+            },
+            cachedSegmentExpiration: 86400000,
+            cachedSegmentsCount: 1000,
+            // number of simultaneous downloads for P2P and HTTP methods
+            simultaneousHttpDownloads: 5, // Aumentado para melhorar a velocidade de download via HTTP
+            httpDownloadProbabilitySkipIfNoPeers: true,
+            httpDownloadInitialTimeout: 30000, // Reduzido para iniciar a reprodução mais rapidamente
+            httpDownloadInitialTimeoutPerSegment: 5000, // try to prevent HTTP download per segment during first 17 seconds
 
-        if (id === "#") {
-            alert('Pagina Anterior');
-        } else if (id === "ae") {
-            url = 'https://abc.embedmax.site/globoSP/video.m3u8';
-        } else if (id === "sonyMovies") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.m3u8';
-        } else if (id === "nick") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/284/284.m3u8';
-        } else if (id === "nickjr") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/285/285.m3u8';
-        } else if (id === "paramount") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/289/289.m3u8';
-        } else if (id === "sony") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/279/279.m3u8';
-        } else if (id === "mtvLive") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/286/286.m3u8';
-        } else if (id === "mtv") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/287/287.m3u8';
-        } else if (id === "lifetime") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/280/280.m3u8';
-        } else if (id === "h2") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/282/282.m3u8';
-        } else if (id === "h1") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/281/281.m3u8';
-        } else if (id === "bandNews") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/276/276.m3u8';
-        } else if (id === "bandSports") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/290/290.m3u8';
-        } else if (id === "band") {
-            url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/3361/3361.m3u8";
-        } else if (id === "comedyCentral") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/288/288.m3u8';
-        } else if (id === "arte1") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/292/292.m3u8';
-        } else if (id === "axn") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/278/278.m3u8';
-        } else if (id === "newBrasil") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/3067/3067.m3u8';
-        } else if (id === "saborArte") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/3066/3066.m3u8';
-        } else if (id === "terraViva") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/293/293.m3u8';
-        } else if (id === "agroMais") {
-            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/291/291.m3u8';
-        } else if (id === "espn") {
-            url = 'https://liveplay-cdn.com/espn/index.m3u8';
-        } else if (id === "espn2") {
-            url = 'https://liveplay-cdn.com/espn2/index.m3u8';
-        } else if (id === "espn3") {
-            url = 'https://liveplay-cdn.com/espn3/index.m3u8';
-        } else if (id === "espn4") {
-            url = 'https://liveplay-cdn.com/espn4/index.m3u8';
-        } else if (id === "sportv2") {
-            url = 'https://liveplay-cdn.com/sportv22play/index.m3u8';
-        } else if (id === "sportv3") {
-            url = 'https://liveplay-cdn.com/sportv3/index.m3u8';
-        } else if (id === "globoSP") {
-            url = 'https://cdn-4.nxplay.com.br/GLOBO_SP_TK/index.m3u8';
-        } else if (id === "tvTEM") {
-            url = 'https://cdn-4.nxplay.com.br/TV_TEM_TK/index.m3u8';
-        } else if (id === "espn4_nx") {
-            url = 'https://cdn-4.nxplay.com.br/ESPN_4/index.m3u8';
-        } else if (id === "espn3_nx") {
-            url = 'https://cdn-4.nxplay.com.br/ESPN_3/index.m3u8';
-        } else if (id === "espn2_nx") {
-            url = 'https://cdn-4.nxplay.com.br/ESPN_2/index.m3u8';
-        } else if (id === "espn_nx") {
-            url = 'https://cdn-4.nxplay.com.br/ESPN/index.m3u8';
-        } else if (id === "sportv") {  
-            url = 'https://z02.ubtvfans.com/live/rx1/1779/af3c2582a145776f0d35d1e96229c627/index.m3u8';
-        } else if (id === "recordsp") {  
-            url = 'https://spo4.akamaized.net/hls/live/2029736/spo4/index.m3u8'; 
-             }
-
-        var media = {
-            dataProvider: {
-                source: [{
-                    url: url,
-                    autoplay: true
-                }]
+            loader: {
+                httpUseRanges: true,
+                WaitForTracker: true,
+                WaitForTrackerCounter: 9500,
+                trackerAnnounce: [
+                    "ws://89.149.197.225:666"
+                    //"wss://up.embedflix.info:442"
+                ],
+                rtcConfig: {
+                    iceServers: [{
+                            urls: "stun:stun4.l.google.com:19302"
+                        },
+                        {
+                            urls: "stun:stun3.l.google.com:19302"
+                        },
+                        {
+                            urls: "stun:stun2.l.google.com:19302"
+                        },
+                        {
+                            urls: "stun:stun2.l.google.com:19302"
+                        },
+                    ]
+                }
             }
         };
-        var element = document.getElementById("player");
-        window.bigsoda.player.create(element, media);
-    </script>
+
+        var engine = new p2pml.hlsjs.Engine(config);
+        engine.on("peer_connect", peer => console.log("peer_connect", peer.id, peer.remoteAddress));
+        engine.on("peer_close", peerId => console.log("peer_close", peerId));
+        engine.on("segment_loaded", (segment, peerId) => console.log("segment_loaded from", peerId ? `peer ${peerId}` : "HTTPS", segment.url));
 
 
+        $('.player_container .infra').append(`<div id="video" style="height: 100%; width: 100%;"></div>`);
 
-</body></html>
+        var player = new Clappr.Player({
+            parentId: "#video",
+            source: `https://abc.embedmax.site/globoSP/video.m3u8`,
+            mimeType: 'application/x-mpegURL',
+            poster: 'https://fazoeli.co.za/images/sportv.png',
+            autoPlay: true,
+            //mute:true,
+            width: '100%',
+            height: '100%',
+            //plugins: [ChromecastPlugin, QualitySelector],
+            playback: {
+                hlsjsConfig: {
+                    liveSyncDurationCount: 10, // To have at least 7 segments in queue
+                    maxBufferLength: 30,
+                    loader: engine.createLoaderClass(),                }
+            },
+            events: {
+                onError: function(e) {
+                    console.log('error');
+                    setTimeout(function() {
+                        player.configure(player.options);
+                    }, 7000);
+                }
+            }
+        });
+
+        p2pml.hlsjs.initClapprPlayer(player);
+        //player.setVolume(50);
+    } else {
+        alert('Seu navegador não suporta a');
+    }
+
+    var pause = 1;
+
+    $(document).on('click', ".play", function(e) {
+        player.play();
+        $(".play").hide();
+        $(".pause").show();
+        $("#videoControl").hide();
+        pause = 0;
+    });
+    $(document).on('click', ".pause", function(e) {
+        player.stop();
+    });
+
+    player.on("play", function(e) {
+        pause = 0;
+    });
+
+    player.on("stop", function(e) {
+        $(".pause").hide();
+        $(".play").show();
+        pause = 1;
+    });
+
+    var interval;
+    $(document).on('mouseover', function() {
+        clearInterval(interval);
+        $("#videoControl").show();
+
+
+        if (pause == 0)
+            interval = setInterval(function() {
+                $("#videoControl").hide();
+            }, 3000);
+
+    });
+
+
+    /*setInterval(function() {
+        if (pause == 1)
+            $("#videoControl").show();
+        else
+        if ($(".vjs-user-active").length)
+            $("#videoControl").show();
+        else
+            $("#videoControl").hide();
+    }, 100);*/
+</script>
+</body>
+
+</html>
