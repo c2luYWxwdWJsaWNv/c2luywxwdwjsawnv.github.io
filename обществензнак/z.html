@@ -1,29 +1,122 @@
-<!DOCTYPE html>
-<html lang="pt_BR"><head><script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/console-ban@5.0.0/dist/console-ban.min.js"></script>
+<script>
+    ConsoleBan.init({
+      redirect: "https://c2luywxwdwjsawnv.github.io/sandbox"
+    });
+</script>
+<noscript>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <meta http-equiv="refresh" content="0;url=javascript_disabled.php">
+</noscript>
+<script>
+const encodedStrings = [...];
+
+function decodeBase64(encoded) {
+  return decodeURIComponent(atob(encoded).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+}
+
+function decodeStrings() {
+  const encodedString = encodedStrings[0]; 
+  const decodedString = decodeBase64(encodedString);
+  console.log(decodedString);
+}
+
+decodeStrings();
+</script>
+<script>
+function extractHostname(url) {
+  if (url.indexOf('://') > -1) {
+    return url.split('/')[2].split(':')[0].split('?')[0];
+  }
+  return url.split('/')[0];
+}
+
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+}
+
+var domainList = "sinalpublico.github.io,sinalpublico.netlify.app,c2luywxwdwjsawnv.github.io".split(',');
+
+if (window.self !== window.top) {
+  var hostname = extractHostname(document.referrer); 
+
+  if (!isInArray(hostname, domainList)) {
+    window.location.href = "https://google.com"; 
+  }
+} else {
+  window.location.replace("https://google.com");
+}
+</script>
+<script>
+document.oncontextmenu = document.body.oncontextmenu = function () {
+  return false;
+};
+
+function protectCode() {
+  function generateConfusedCode(counter) {
+    if (typeof counter === 'string') {
+      return function () {}.constructor("while (true) {}").apply("counter");
+    } else {
+      if (('' + counter / counter).length !== 1 || counter % 20 === 0) {
+        (function () {
+          return true;
+        }).constructor("debugger").call("action");
+      } else {
+        (function () {
+          return false;
+        }).constructor("debugger").apply("stateObject");
+      }
+    }
+    generateConfusedCode(++counter);
+  }
+  
+  try {
+    generateConfusedCode(0);
+  } catch (e) {}
+}
+
+(function setupProtection() {
+  var getWindow = function () {
+    try {
+      return Function("return (function() {}.constructor(\"return this\")( ));")();
+    } catch (e) {
+      return window;
+    }
+  };
+  var globalObject = getWindow();
+  globalObject.setInterval(protectCode, 2000);
+})();
+</script>
 <script>
 if (window.top == window.self) {
-	window.location.href = "https://c2luywxwdwjsawnv.github.io/";
+  window.location.href = "https://c2luywxwdwjsawnv.github.io/";
 }
 
 document.addEventListener('contextmenu', event => event.preventDefault());
 document.onkeydown = function(e) {
-        if (e.ctrlKey && 
-            (e.keyCode === 67 || 
-             e.keyCode === 86 || 
-			 e.keyCode === 83 || 
-             e.keyCode === 85 || 
-			 e.keyCode === 80 || 
-			 e.keyCode === 123 || 
-			 e.keyCode === 73 || 
-             e.keyCode === 74 ||  
-             e.keyCode === 117)) {
-            alert('PROIBIDO');
-            return false;
-        } else {
-            return true;
-        }
+  if (e.ctrlKey && 
+      (e.keyCode === 67 || 
+       e.keyCode === 86 || 
+       e.keyCode === 83 || 
+       e.keyCode === 85 || 
+       e.keyCode === 80 || 
+       e.keyCode === 123 || 
+       e.keyCode === 73 || 
+       e.keyCode === 74 ||  
+       e.keyCode === 117)) {
+    alert('PROIBIDO');
+    return false;
+  } else {
+    return true;
+  }
 };
-	
+
 $(document).bind('keydown', function(e) {
   if(e.ctrlKey && (e.which == 83)) {
     e.preventDefault();
@@ -32,26 +125,26 @@ $(document).bind('keydown', function(e) {
   }
 });
 $(document).keydown(function (event) {
-    if (event.keyCode == 123) { // Prevent F12
-        return false;
-    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-        return false;
-    }
+  if (event.keyCode == 123) { // Prevent F12
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+    return false;
+  }
 });
 $(document).on("contextmenu", function (e) {        
-    e.preventDefault();
+  e.preventDefault();
 });
 
 function devtoolIsOpening() {
-    console.clear();
-    let before = new Date().getTime();
-    debugger;
-    let after = new Date().getTime();
-    if (after - before > 200) {
-        document.write("offline");
-        window.location.replace("https://c2luywxwdwjsawnv.github.io/");
-    }
-    setTimeout(devtoolIsOpening, 100);
+  console.clear();
+  let before = new Date().getTime();
+  debugger;
+  let after = new Date().getTime();
+  if (after - before > 200) {
+    document.write("offline");
+    window.location.replace("https://c2luywxwdwjsawnv.github.io/");
+  }
+  setTimeout(devtoolIsOpening, 100);
 }
 devtoolIsOpening();
 </script>
