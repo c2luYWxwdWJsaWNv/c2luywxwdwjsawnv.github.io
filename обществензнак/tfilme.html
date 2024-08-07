@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniking</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eaeaea;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        header img {
+            height: 40px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+        header .search-container {
+            display: flex;
+            align-items: center;
+        }
+        header .search-container input {
+            padding: 10px;
+            border: 1px solid #3498db;
+            border-radius: 20px;
+            outline: none;
+            width: 200px;
+        }
+        header .search-container img {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .section-title {
+            padding: 10px;
+            font-size: 1.6em;
+            font-weight: bold;
+            margin: 90px 20px 10px 20px; /* Offset for header and title */
+            color: #2c3e50;
+        }
+        #trending-slider-container {
+            position: relative;
+            width: 100%;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        #trending-slider {
+            display: flex;
+            width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            gap: 10px;
+            padding: 10px;
+        }
+        .trending-slide {
+            flex: 0 0 auto;
+            width: 280px; /* Adjusted width for better visibility */
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .trending-slide img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .trending-slide h3 {
+            margin: 0;
+            padding: 8px;
+            font-size: 1.2em;
+            color: #34495e;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #trending-indicators {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #7f8c8d;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .indicator.active {
+            background-color: #3498db;
+        }
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px;
+            gap: 10px;
+            margin: 0 20px;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none; /* Hides scrollbar in Webkit browsers */
+        }
+        .card {
+            flex: 0 0 auto;
+            width: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card h3 {
+            margin: 0;
+            padding: 10px;
+            font-size: 1.1em;
+            color: #2c3e50;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .card p {
+            margin: 0;
+            padding: 0 10px 10px;
+            color: #3498db;
+        }
+        .spinner {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/40" alt="Logo">
+        <h1>Aniking</h1>
+        <div class="search-container">
+            <input type="text" placeholder="Pesquisar...">
+            <img src="https://via.placeholder.com/20" alt="Search Icon">
+        </div>
+    </header>
+    <div class="section-title">Em Alta</div>
+    <div id="trending-slider-container">
+        <div id="trending-slider"></div>
+        <div id="trending-indicators"></div>
+    </div>
+    <div id="trending-spinner" class="spinner">Carregando...</div>
+    <div class="section-title">Animes Legendados</div>
+    <div id="anime-container" class="scroll-container"></div>
+    <div id="anime-spinner" class="spinner">Carregando...</div>
+    <div class="section-title">Filmes</div>
+    <div id="movie-container" class="scroll-container"></div>
+    <div id="movie-spinner" class="spinner">Carregando...</div>
+
+    <script>
+        const API_KEY = '05902896074695709d7763505bb88b4d';
+        const TRENDING_URL = `https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}&with_genres=16`;
+        const ANIME_BASE_URL = 'https://api.themoviedb.org/3/discover/tv';
+        const MOVIE_BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=16`;
+        let currentPageAnime = 1;
+        let currentPageMovie = 1;
+        let loadingTrending = false;
+        let loadingAnime = false;
+        let loadingMovie = false;
+        let totalPagesAnime = 1;
+        let totalPagesMovie = 1;
+
+        function createCard(container, className, posterPath, titleText, dateText) {
+            const card = document.createElement('div');
+            card.className = className;
+
+            const img = document.createElement('img');
+            img.src = `https://image.tmdb.org/t/p/w500${posterPath}`;
+            img.alt = titleText;
+
+            const title = document.createElement('h3');
+            title.textContent = titleText;
+
+            card.appendChild(img);
+            card.appendChild(title);
+
+            if (dateText) {
+                const year = document.createElement('p');
+                year.textContent = dateText.split('-')[0];
+                card.appendChild(year);
+            }
+
+            container.appendChild(card);
+        }
+
+        async function fetchTrendingData() {
+            if (loadingTrending) return;
+            loadingTrending = true;
+            document.getElementById('trending-spinner').style.display = 'block';
+
+            try {
+                const response = await fetch(TRENDING_URL);
+                const data = await response.json();
+
+                const container = document.getElementById('trending-slider');
+                const indicators = document.getElementById('trending-indicators');
+
+                data.results.forEach((trending, index) => {
+                    if (trending.poster_path) {
+                        createCard(container, 'trending-slide', trending.poster_path, trending.name);
+                        
+                        const indicator = document.createElement('div');
+                        indicator.className = 'indicator';
+                        indicator.dataset.index = index;
+                        indicators.appendChild(indicator);
+                    }
+                });
+
+                // Inicializa o slider automático
+                startSlider();
+            } catch (error) {
+                console.error('Error fetching trending data:', error);
+            } finally {
+                loadingTrending = false;
+                document.getElementById('trending-spinner').style.display = 'none';
+            }
+        }
+
+        function startSlider() {
+            const slides = document.querySelectorAll('.trending-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.display = i === index ? 'block' : 'none';
+                    indicators[i].classList.toggle('active', i === index);
+                });
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', (event) => {
+                    currentIndex = parseInt(event.target.dataset.index);
+                    showSlide(currentIndex);
+                });
+            });
+
+            showSlide(currentIndex);
+            setInterval(nextSlide, 3000); // Muda o slide a cada 3 segundos
+        }
+
+        async function fetchAnimeData(page) {
+            if (loadingAnime || page > totalPagesAnime) return;
+            loadingAnime = true;
+            document.getElementById('anime-spinner').style.display = 'block';
+
+            try {
+                const response = await fetch(`${ANIME_BASE_URL}?api_key=${API_KEY}&with_genres=16&page=${page}`);
+                const data = await response.json();
+                totalPagesAnime = data.total_pages;
+
+                const container = document.getElementById('anime-container');
+
+                data.results.forEach(anime => {
+                    if (anime.poster_path) {
+                        createCard(container, 'card', anime.poster_path, anime.name, anime.first_air_date);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching anime data:', error);
+            } finally {
+                loadingAnime = false;
+                document.getElementById('anime-spinner').style.display = 'none';
+            }
+        }
+
+        async function fetchMovieData(page) {
+            if (loadingMovie || page > totalPagesMovie) return;
+            loadingMovie = true;
+            document.getElementById('movie-spinner').style.display = 'block';
+
+            try {
+                const response = await fetch(`${MOVIE_BASE_URL}&page=${page}`);
+                const data = await response.json();
+                totalPagesMovie = data.total_pages;
+
+                const container = document.getElementById('movie-container');
+
+                data.results.forEach(movie => {
+                    if (movie.poster_path) {
+                        createCard(container, 'card', movie.poster_path, movie.title, movie.release_date);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching movie data:', error);
+            } finally {
+                loadingMovie = false;
+                document.getElementById('movie-spinner').style.display = 'none';
+            }
+        }
+
+        function loadMoreAnime() {
+            if (!loadingAnime && currentPageAnime < totalPagesAnime) {
+                currentPageAnime++;
+                fetchAnimeData(currentPageAnime);
+            }
+        }
+
+        function loadMoreMovies() {
+            if (!loadingMovie && currentPageMovie < totalPagesMovie) {
+                currentPageMovie++;
+                fetchMovieData(currentPageMovie);
+            }
+        }
+
+        function isAtEndOfScroll(containerId) {
+            const container = document.getElementById(containerId);
+            return container.scrollWidth - container.scrollLeft <= container.clientWidth + 1; // Added 1px to handle rounding errors
+        }
+
+        document.getElementById('anime-container').addEventListener('scroll', () => {
+            if (isAtEndOfScroll('anime-container')) {
+                loadMoreAnime();
+            }
+        });
+
+        document.getElementById('movie-container').addEventListener('scroll', () => {
+            if (isAtEndOfScroll('movie-container')) {
+                loadMoreMovies();
+            }
+        });
+
+        // Initial fetch
+        fetchTrendingData();
+        fetchAnimeData(currentPageAnime);
+        fetchMovieData(currentPageMovie);
+    </script>
+</body>
+</html>
