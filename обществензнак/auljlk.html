@@ -1,0 +1,157 @@
+<script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            overflow: hidden;
+        }
+
+        .jwplayer {
+            position: absolute !important;
+        }
+
+        .jwplayer.jw-flag-aspect-mode {
+            min-height: 100%;
+            max-height: 100%;
+        }
+    </style>
+    <meta name="referrer" content="no-referrer">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css"></link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script>
+        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+    </script>
+</head>
+
+<body>
+    <div id="player"></div>
+    </div>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+            var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var id = getParameterByName('id');
+        if (id == "#") {
+            alert('Pagina Anterior');
+        }
+
+        // Timer script
+        var timerElement = document.getElementById('timer');
+        var loadingTimerElement = document.getElementById('loading-timer');
+        var timeLeft = 30;
+
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                timerElement.textContent = '00';
+                loadingTimerElement.style.display = 'none'; // Hide the timer when done
+                return;
+            }
+            timerElement.textContent = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+            timeLeft--;
+        }
+
+        setInterval(updateTimer, 1000);
+
+        // Setup JWPlayer
+        var url, k;
+               if (id == "stv1") {
+                        url = 'https://d1wwtskvr1r98k.cloudfront.net/out/v1/cf21a2135bf34023bac760360f637ce2/index.mpd';
+                        k = "a9f0d48961354e5cb655c7bc2408210f:13c8692e685888a323129659f5e116eb";
+
+                } else if (id == "stv2") {
+                        url = 'https://d1wwtskvr1r98k.cloudfront.net/out/v1/208c57f14bb24c4484c0c4caeaab20e3/index.mpd';
+                        k = "829e409e491b42c4a1a80800b23702e9:4bb14850c53cdaa15e8ad04d1c72e8f2";
+
+                } else if (id == "stv3") {
+                        url = 'https://d31ii3fk8fd7mh.cloudfront.net/out/v1/21ff683173064914834b140be21515bd/index.mpd';
+                        k = "ee8aa3c0dc054e23a22a9fbe0e6f9c11:6fcf401f579d72209bad0bbba977103b";
+
+                } 
+
+        if (typeof k2 !== 'undefined') {
+            const kid = (k.substr(0, 32));
+            const key = (k.substr(33, 65));
+            const kid2 = (k2.substr(0, 32));
+            const key2 = (k2.substr(33, 65));
+            var playerInstance = jwplayer("player");
+            playerInstance.setup({
+                playlist: [{
+                    "sources": [{
+                        "default": false,
+                        "type": "dash",
+                        "file": url,
+                        "drm": {
+                            "clearkey": {
+                                "keyId": kid,
+                                "key": key
+                            },
+                            "clearkey": {
+                                "keyId": kid2,
+                                "key": key2
+                            }
+                        },
+                        "label": "0"
+                    }]
+                }],
+                width: "100%",
+                height: "100%",
+                aspectratio: "16:9",
+                stretching: "exactfit",
+                autostart: true,
+                cast: {},
+                sharing: false
+            });
+        } else {
+            const kid = (k.substr(0, 32));
+            const key = (k.substr(33, 65));
+            var playerInstance = jwplayer("player");
+            playerInstance.setup({
+                playlist: [{
+                    "sources": [{
+                        "default": false,
+                        "type": "dash",
+                        "file": url,
+                        "drm": {
+                            "clearkey": {
+                                "keyId": kid,
+                                "key": key
+                            }
+                        },
+                        "label": "0"
+                    }]
+                }],
+                width: "100%",
+                height: "100%",
+                aspectratio: "16:9",
+                stretching: "exactfit",
+                autostart: true,
+                cast: {},
+                sharing: false
+            });
+        }
+    </script>
+</body>
+</html>
