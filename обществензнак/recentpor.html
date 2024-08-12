@@ -36,18 +36,12 @@
         .content {
             flex: 1;
         }
-        .time {
-            font-weight: bold;
-            color: #004080;
-            display: block;
-            margin-bottom: 5px;
-        }
         h2 {
             font-size: 1.2em;
             color: #0056b3;
             margin: 0;
         }
-        .sub-title, .synopsis {
+        .synopsis {
             color: #666;
         }
     </style>
@@ -78,9 +72,7 @@
 
                 // Get only the first future broadcast
                 const firstBroadcast = broadcasts[0];
-                const time = firstBroadcast.querySelector('.time')?.textContent.trim() || '';
                 const title = firstBroadcast.querySelector('h2')?.textContent.trim() || '';
-                const subTitle = firstBroadcast.querySelector('.sub-title')?.textContent.trim() || '';
                 const synopsis = firstBroadcast.querySelector('.synopsis')?.textContent.trim() || '';
                 const imageUrl = firstBroadcast.querySelector('.image')?.style.backgroundImage.replace(/^url\(['"]?|['"]?\)$/, '') || '';
 
@@ -96,9 +88,7 @@
                             <div class="image" style="background-image: url('https://cdn.mitvstatic.com/programs/${cleanImageUrl}');"></div>
                         </div>
                         <div class="content">
-                            <span class="time">${time}</span>
                             <h2>${title}</h2>
-                            ${subTitle ? `<span class="sub-title">${subTitle}</span>` : ''}
                             ${synopsis ? `<p class="synopsis">${synopsis}</p>` : ''}
                         </div>
                     </a>
