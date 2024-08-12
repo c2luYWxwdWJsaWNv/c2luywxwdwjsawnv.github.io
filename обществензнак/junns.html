@@ -28,10 +28,10 @@
 
     <script>
         // URL a ser carregada
-        const targetUrl = 'https://api.codetabs.com/v1/proxy/?quest=https://mi.tv/br/async/guide/all/-180'; // Altere para a URL desejada
+        const targetUrl = 'https://mi.tv/br/async/guide/all/-180'; // Altere para a URL desejada
 
         function fetchHtml(url) {
-            return fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`)
+            return fetch(`https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(url)}`)
                 .then(response => response.text())
                 .catch(error => 'Erro ao buscar HTML: ' + error);
         }
