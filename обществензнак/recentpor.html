@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programação de TV</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            margin: 20px;
+            color: #333;
+            background-color: #f0f0f0;
+        }
+        .broadcasts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .broadcast-item {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .broadcast-item:last-child {
+            border-bottom: none;
+        }
+        .image-parent {
+            margin-right: 15px;
+        }
+        .image {
+            width: 120px;
+            height: 67px;
+            background-size: cover;
+            background-position: center;
+        }
+        .content {
+            flex: 1;
+        }
+        .time {
+            font-weight: bold;
+            color: #004080;
+            display: block;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 1.2em;
+            color: #0056b3;
+            margin: 0;
+        }
+        .sub-title, .synopsis {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Programação de TV</h1>
+    <ul class="broadcasts time24" id="broadcasts-list"></ul>
+
+    <script>
+        async function fetchProgramacao() {
+            try {
+                const response = await fetch('https://api.codetabs.com/v1/proxy/?quest=https://mi.tv/br/async/channel/comedy-central/-180');
+                const text = await response.text();
+
+                // Parse HTML content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(text, 'text/html');
+
+                // Extract broadcasts and filter out past ones
+                const broadcasts = Array.from(doc.querySelectorAll('ul.broadcasts.time24 li')).filter(broadcast => !broadcast.classList.contains('passed'));
+
+                if (broadcasts.length === 0) {
+                    console.error('Nenhuma transmissão futura encontrada.');
+                    return;
+                }
+
+                const broadcastsList = document.getElementById('broadcasts-list');
+
+                // Get only the first future broadcast
+                const firstBroadcast = broadcasts[0];
+                const time = firstBroadcast.querySelector('.time')?.textContent.trim() || '';
+                const title = firstBroadcast.querySelector('h2')?.textContent.trim() || '';
+                const subTitle = firstBroadcast.querySelector('.sub-title')?.textContent.trim() || '';
+                const synopsis = firstBroadcast.querySelector('.synopsis')?.textContent.trim() || '';
+                const imageUrl = firstBroadcast.querySelector('.image')?.style.backgroundImage.replace(/^url\(['"]?|['"]?\)$/, '') || '';
+
+                // Ensure that imageUrl does not contain the base URL
+                const cleanImageUrl = imageUrl.replace(/^https:\/\/cdn\.mitvstatic\.com\/programs\//, '');
+
+                const listItem = document.createElement('li');
+                listItem.className = 'broadcast-item';
+
+                listItem.innerHTML = `
+                    <a href="${firstBroadcast.querySelector('a')?.href || '#'}" class="program-link">
+                        <div class="image-parent">
+                            <div class="image" style="background-image: url('https://cdn.mitvstatic.com/programs/${cleanImageUrl}');"></div>
+                        </div>
+                        <div class="content">
+                            <span class="time">${time}</span>
+                            <h2>${title}</h2>
+                            ${subTitle ? `<span class="sub-title">${subTitle}</span>` : ''}
+                            ${synopsis ? `<p class="synopsis">${synopsis}</p>` : ''}
+                        </div>
+                    </a>
+                `;
+                broadcastsList.appendChild(listItem);
+                
+            } catch (error) {
+                console.error('Erro ao buscar programação:', error);
+            }
+        }
+
+        // Fetch programacao on load
+        fetchProgramacao();
+    </script>
+</body>
+</html>
