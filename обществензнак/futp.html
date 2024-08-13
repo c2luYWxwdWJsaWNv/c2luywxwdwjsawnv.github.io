@@ -141,13 +141,17 @@
 </head>
 <body>
     <header>
-        Jogos de Hoje
+        Informações de Futebol
     </header>
     <div class="container">
-
+        <!-- Botão Adicional -->
+        <div class="button-container">
+            <button onclick="alert('Botão clicado!')">Clique Aqui</button>
+        </div>
+        
         <!-- Link para Copiar -->
         <div class="copy-link">
-            <a href="#" id="copyLink">Compartilhar</a>
+            <a href="#" id="copyLink">Copiar Link</a>
             <div class="copy-message" id="copyMessage">O link foi copiado!</div>
         </div>
 
@@ -156,7 +160,7 @@
         <div id="events" class="events">Carregando eventos...</div>
     </div>
     <footer>
-        © 2024 SinalPublico. Todos os direitos reservados.
+        © 2024 Futebol da Hora. Todos os direitos reservados.
     </footer>
 
     <script>
@@ -204,7 +208,7 @@
 
                         // Create HTML for each match
                         const matchHTML = `
-                            <a href="${link}" target="_blank" class="event">
+                            <a href="${link}" class="event">
                                 <div class="right-team">
                                     <div class="team-logo"><img src="${rightTeamLogo}" alt="${rightTeam} Logo" height="50" width="50"></div>
                                     <div class="team-name">${rightTeam}</div>
@@ -248,4 +252,4 @@
         });
     </script>
 </body>
-</
+</html>
