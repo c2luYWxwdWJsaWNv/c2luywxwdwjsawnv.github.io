@@ -6,7 +6,7 @@
     <title>Futebol Programação de Hoje</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -15,9 +15,10 @@
         header {
             background-color: #007BFF;
             color: #fff;
-            padding: 10px 20px;
+            padding: 15px 20px;
             text-align: center;
-            font-size: 24px;
+            font-size: 26px;
+            border-bottom: 4px solid #0056b3;
         }
         .container {
             width: 90%;
@@ -28,18 +29,27 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
-        .result, .events {
-            border: none;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-        }
-        .result {
-            background-color: #e9ecef;
+        .paragraph {
             text-align: center;
-            font-size: 18px;
-            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .paragraph input[type="text"] {
+            background-color: #f1f1f1;
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 80%;
+            max-width: 500px;
+        }
+        .paragraph input[type="text"]:focus {
+            border-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         .events {
             padding: 0;
@@ -55,7 +65,6 @@
             text-decoration: none;
             color: inherit;
             transition: background-color 0.3s ease;
-            flex-wrap: wrap;
         }
         .event:hover {
             background-color: #f1f1f1;
@@ -75,17 +84,16 @@
             text-align: center;
         }
         .match-center #match {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
         }
         .match-center #match-time {
-            font-size: 14px;
+            font-size: 16px;
             color: #666;
         }
         .left-team, .right-team {
             display: flex;
             align-items: center;
-            margin: 0 10px;
             flex: 1;
         }
         .right-team {
@@ -94,63 +102,14 @@
         .left-team {
             margin-left: 15px;
         }
-        .right-team img, .left-team img {
-            width: 40px;
-            height: 40px;
-        }
         footer {
             background-color: #007BFF;
             color: #fff;
             text-align: center;
             padding: 10px;
             font-size: 14px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            border-top: 1px solid #0056b3;
+            border-top: 4px solid #0056b3;
         }
-        .button-container, .copy-link {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .copy-link input {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            text-decoration: none;
-            display: block;
-            width: 30%;
-            margin: 0 auto;
-        }
-        .copy-link input:hover {
-            background-color: #0056b3;
-        }
-
-        /* Estilo para a caixa de texto */
-        .paragraph input[type="text"] {
-            background-color: #f1f1f1;
-            border: 2px solid #007BFF;
-            border-radius: 8px;
-            padding: 10px;
-            font-size: 16px;
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            color: #333;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .paragraph input[type="text"]:focus {
-            border-color: #0056b3;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Consultas de mídia para telas menores */
         @media (max-width: 768px) {
             .event {
                 flex-direction: column;
@@ -164,16 +123,15 @@
                 font-size: 14px;
             }
         }
-        
         @media (max-width: 480px) {
             header {
-                font-size: 20px;
+                font-size: 22px;
             }
-            .copy-link input {
+            .paragraph input[type="text"] {
                 font-size: 14px;
                 padding: 8px;
             }
-            .footer {
+            footer {
                 font-size: 12px;
             }
         }
@@ -184,30 +142,24 @@
         Futebol Programação de Hoje
     </header>
     <div class="container">
-        <!-- Campo de Texto para Copiar -->
-        <div class="paragraph" style="text-align:center;">
-                <font size="2">
-                    <input type="text" value="https://sinalpublico.netlify.app/" onclick="this.select(); document.execCommand('copy'); alert('Link copiado, cole no navegador!');">
-                </font>
+        <div class="paragraph">
+            <input type="text" value="Venha Assistir: https://sinalpublico.netlify.app/" onclick="this.select(); document.execCommand('copy'); alert('Link copiado, cole no navegador!');" readonly>
         </div>
-
-        <!-- Resultados e Eventos -->
         <div id="events" class="events">Carregando Eventos...</div>
     </div>
     <footer>
         © 2024 Todos os direitos reservados.
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const url = 'https://corsproxy.io/?url=https://apk.futemais.net/app2/';
-
+            
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data, 'text/html');
-
+                    
                     const eventsContainer = document.getElementById('events');
                     eventsContainer.innerHTML = '';
 
@@ -235,7 +187,7 @@
                         const matchHTML = `
                             <a href="${link}" class="event">
                                 <div class="right-team">
-                                    <div class="team-logo"><img src="${rightTeamLogo}" alt="${rightTeam} Logo" height="40" width="40"></div>
+                                    <div class="team-logo"><img src="${rightTeamLogo}" alt="${rightTeam} Logo"></div>
                                     <div class="team-name">${rightTeam}</div>
                                 </div>
                                 <div class="match-center">
@@ -243,7 +195,7 @@
                                     <div id="match-time">${time}</div>
                                 </div>
                                 <div class="left-team">
-                                    <div class="team-logo"><img src="${leftTeamLogo}" alt="${leftTeam} Logo" height="40" width="40"></div>
+                                    <div class="team-logo"><img src="${leftTeamLogo}" alt="${leftTeam} Logo"></div>
                                     <div class="team-name">${leftTeam}</div>
                                 </div>
                             </a>
@@ -257,6 +209,7 @@
                 });
         });
     </script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script disable-devtool-auto="" src="https://player.vimeo.com/api/player.js"></script>
     <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
