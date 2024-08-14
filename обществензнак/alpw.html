@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futebol Programação de Hoje</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .result, .events {
+            border: none;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .result {
+            background-color: #e9ecef;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .events {
+            padding: 0;
+        }
+        .event {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.3s ease;
+            flex-wrap: wrap;
+        }
+        .event:hover {
+            background-color: #f1f1f1;
+        }
+        .team-logo img {
+            border-radius: 50%;
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+        }
+        .team-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .match-center {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .match-center #match {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .match-center #match-time {
+            font-size: 14px;
+            color: #666;
+        }
+        .left-team, .right-team {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+            flex: 1;
+        }
+        .right-team {
+            margin-right: 15px;
+        }
+        .left-team {
+            margin-left: 15px;
+        }
+        .right-team img, .left-team img {
+            width: 40px;
+            height: 40px;
+        }
+        footer {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #0056b3;
+        }
+        .button-container, .copy-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .copy-link input {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: block;
+            width: 30%;
+            margin: 0 auto;
+        }
+        .copy-link input:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo para a caixa de texto */
+        .paragraph input[type="text"] {
+            background-color: #f1f1f1;
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .paragraph input[type="text"]:focus {
+            border-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Consultas de mídia para telas menores */
+        @media (max-width: 768px) {
+            .event {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .team-logo img {
+                width: 30px;
+                height: 30px;
+            }
+            .match-center #match, .match-center #match-time {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                font-size: 20px;
+            }
+            .copy-link input {
+                font-size: 14px;
+                padding: 8px;
+            }
+            .footer {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Futebol Programação de Hoje
+    </header>
+    <div class="container">
+        <!-- Campo de Texto para Copiar -->
+        <div class="paragraph" style="text-align:center;">
+                <font size="2">
+                    <input type="text" value="https://sinalpublico.netlify.app/" onclick="this.select(); document.execCommand('copy'); alert('Link copiado, cole no navegador!');">
+                </font>
+        </div>
+
+        <!-- Resultados e Eventos -->
+        <div id="events" class="events">Carregando Eventos...</div>
+    </div>
+    <footer>
+        © 2024 Todos os direitos reservados.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const url = 'https://api.codetabs.com/v1/proxy/?quest=https://apk.futemais.net/app2/';
+
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+
+                    const eventsContainer = document.getElementById('events');
+                    eventsContainer.innerHTML = '';
+
+                    const unwantedDiv = doc.querySelector('div.box-title');
+                    if (unwantedDiv) {
+                        unwantedDiv.remove();
+                    }
+
+                    const matches = doc.querySelectorAll('div.match-container');
+                    
+                    if (matches.length === 0) {
+                        eventsContainer.textContent = 'Nenhum evento encontrado.';
+                        return;
+                    }
+
+                    matches.forEach(match => {
+                        const competition = match.querySelector('#match')?.textContent.trim() || 'N/A';
+                        const time = match.querySelector('#match-time')?.textContent.trim() || 'N/A';
+                        const rightTeam = match.querySelector('.right-team .team-name')?.textContent.trim() || 'N/A';
+                        const rightTeamLogo = match.querySelector('.right-team .team-logo img')?.src || '';
+                        const leftTeam = match.querySelector('.left-team .team-name')?.textContent.trim() || 'N/A';
+                        const leftTeamLogo = match.querySelector('.left-team .team-logo img')?.src || '';
+                        const link = match.querySelector('a')?.href || '#';
+
+                        const matchHTML = `
+                            <a href="${link}" class="event">
+                                <div class="right-team">
+                                    <div class="team-logo"><img src="${rightTeamLogo}" alt="${rightTeam} Logo" height="40" width="40"></div>
+                                    <div class="team-name">${rightTeam}</div>
+                                </div>
+                                <div class="match-center">
+                                    <div id="match">${competition}</div>
+                                    <div id="match-time">${time}</div>
+                                </div>
+                                <div class="left-team">
+                                    <div class="team-logo"><img src="${leftTeamLogo}" alt="${leftTeam} Logo" height="40" width="40"></div>
+                                    <div class="team-name">${leftTeam}</div>
+                                </div>
+                            </a>
+                        `;
+                        
+                        eventsContainer.innerHTML += matchHTML;
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('events').textContent = 'Ocorreu um erro ao carregar os eventos: ' + error;
+                });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script disable-devtool-auto="" src="https://player.vimeo.com/api/player.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=G-2T0ZDSV7YR" async=""></script>
+</body>
+</html>
