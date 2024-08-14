@@ -55,6 +55,7 @@
             text-decoration: none;
             color: inherit;
             transition: background-color 0.3s ease;
+            flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte em telas pequenas */
         }
         .event:hover {
             background-color: #f1f1f1;
@@ -62,6 +63,8 @@
         .team-logo img {
             border-radius: 50%;
             margin-right: 10px;
+            width: 40px; /* Ajuste o tamanho das imagens */
+            height: 40px;
         }
         .team-name {
             font-weight: bold;
@@ -82,6 +85,8 @@
         .left-team, .right-team {
             display: flex;
             align-items: center;
+            margin: 0 10px; /* Ajusta o espaçamento */
+            flex: 1; /* Permite que ocupem espaço igual */
         }
         .right-team {
             margin-right: 15px;
@@ -90,8 +95,8 @@
             margin-left: 15px;
         }
         .right-team img, .left-team img {
-            width: 50px;
-            height: 50px;
+            width: 40px; /* Ajusta o tamanho das imagens */
+            height: 40px;
         }
         footer {
             background-color: #007BFF;
@@ -130,6 +135,34 @@
             color: #28a745;
             font-size: 16px;
         }
+
+        /* Consultas de mídia para telas menores */
+        @media (max-width: 768px) {
+            .event {
+                flex-direction: column; /* Coloca os itens na coluna para telas menores */
+                align-items: flex-start; /* Alinha os itens à esquerda */
+            }
+            .team-logo img {
+                width: 30px; /* Ajusta o tamanho das imagens para telas menores */
+                height: 30px;
+            }
+            .match-center #match, .match-center #match-time {
+                font-size: 14px; /* Reduz o tamanho da fonte */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header {
+                font-size: 20px; /* Ajusta o tamanho da fonte do cabeçalho para telas muito pequenas */
+            }
+            .copy-link button {
+                font-size: 14px; /* Ajusta o tamanho da fonte do botão para telas pequenas */
+                padding: 8px 16px; /* Ajusta o padding do botão */
+            }
+            .footer {
+                font-size: 12px; /* Ajusta o tamanho da fonte do rodapé para telas pequenas */
+            }
+        }
     </style>
 </head>
 <body>
@@ -157,18 +190,15 @@
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
-                    // Parse the HTML and extract the title and events
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data, 'text/html');
 
-                    // Extract the events
                     const eventsContainer = document.getElementById('events');
-                    eventsContainer.innerHTML = ''; // Clear previous content
+                    eventsContainer.innerHTML = '';
 
-                    // Find and ignore the div with the unwanted share link
                     const unwantedDiv = doc.querySelector('div.box-title');
                     if (unwantedDiv) {
-                        unwantedDiv.remove(); // Remove the unwanted div from the document
+                        unwantedDiv.remove();
                     }
 
                     const matches = doc.querySelectorAll('div.match-container');
@@ -179,7 +209,6 @@
                     }
 
                     matches.forEach(match => {
-                        // Extract details
                         const competition = match.querySelector('#match')?.textContent.trim() || 'N/A';
                         const time = match.querySelector('#match-time')?.textContent.trim() || 'N/A';
                         const rightTeam = match.querySelector('.right-team .team-name')?.textContent.trim() || 'N/A';
@@ -188,11 +217,10 @@
                         const leftTeamLogo = match.querySelector('.left-team .team-logo img')?.src || '';
                         const link = match.querySelector('a')?.href || '#';
 
-                        // Create HTML for each match
                         const matchHTML = `
                             <a href="${link}" class="event">
                                 <div class="right-team">
-                                    <div class="team-logo"><img src="${rightTeamLogo}" alt="${rightTeam} Logo" height="50" width="50"></div>
+                                    <div class="team-logo"><img src="${rightTeamLogo}" alt="${rightTeam} Logo" height="40" width="40"></div>
                                     <div class="team-name">${rightTeam}</div>
                                 </div>
                                 <div class="match-center">
@@ -200,13 +228,12 @@
                                     <div id="match-time">${time}</div>
                                 </div>
                                 <div class="left-team">
-                                    <div class="team-logo"><img src="${leftTeamLogo}" alt="${leftTeam} Logo" height="50" width="50"></div>
+                                    <div class="team-logo"><img src="${leftTeamLogo}" alt="${leftTeam} Logo" height="40" width="40"></div>
                                     <div class="team-name">${leftTeam}</div>
                                 </div>
                             </a>
                         `;
                         
-                        // Append match HTML to the container
                         eventsContainer.innerHTML += matchHTML;
                     });
                 })
@@ -214,7 +241,6 @@
                     document.getElementById('events').textContent = 'Ocorreu um erro ao carregar os eventos: ' + error;
                 });
 
-            // Copy link to clipboard and show confirmation
             const copyLink = document.getElementById('copyLink');
             const copyMessage = document.getElementById('copyMessage');
             copyLink.addEventListener('click', (event) => {
@@ -225,7 +251,7 @@
                     copyMessage.style.display = 'block';
                     setTimeout(() => {
                         copyMessage.style.display = 'none';
-                    }, 2000); // Hide the message after 2 seconds
+                    }, 2000);
                 }).catch(err => {
                     console.error('Erro ao copiar o link: ', err);
                 });
