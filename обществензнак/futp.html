@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informações de Futebol</title>
+    <title>Jogos de Hoje</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -108,8 +108,8 @@
             text-align: center;
             margin: 20px 0;
         }
-        .button-container button {
-            background-color: #28a745;
+        .copy-link button {
+            background-color: #007BFF;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -117,18 +117,11 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-        }
-        .button-container button:hover {
-            background-color: #218838;
-        }
-        .copy-link a {
-            color: #007BFF;
             text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s ease;
+            display: inline-block;
         }
-        .copy-link a:hover {
-            color: #0056b3;
+        .copy-link button:hover {
+            background-color: #0056b3;
         }
         .copy-message {
             display: none;
@@ -141,17 +134,16 @@
 </head>
 <body>
     <header>
-        Informações de Futebol
+        Jogos de Hoje
     </header>
     <div class="container">
         <!-- Link para Copiar -->
         <div class="copy-link">
-            <a href="#" id="copyLink">Compartilhar</a>
+            <button id="copyLink">Compartilhar Tabela de Jogos</button>
             <div class="copy-message" id="copyMessage">O link foi copiado!</div>
         </div>
 
         <!-- Resultados e Eventos -->
-        <div id="title" class="result">Carregando título...</div>
         <div id="events" class="events">Carregando eventos...</div>
     </div>
     <footer>
@@ -168,11 +160,6 @@
                     // Parse the HTML and extract the title and events
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data, 'text/html');
-
-                    // Extract the title
-                    const titleElement = doc.querySelector('div#today h2.boxstitle');
-                    const title = titleElement ? titleElement.textContent.trim() : 'Título não encontrado.';
-                    document.getElementById('title').textContent = title;
 
                     // Extract the events
                     const eventsContainer = document.getElementById('events');
@@ -224,7 +211,6 @@
                     });
                 })
                 .catch(error => {
-                    document.getElementById('title').textContent = 'Ocorreu um erro ao carregar o título: ' + error;
                     document.getElementById('events').textContent = 'Ocorreu um erro ao carregar os eventos: ' + error;
                 });
 
