@@ -170,6 +170,13 @@
         .button-text {
             font-size: 16px;
         }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -182,35 +189,36 @@
         </div>
         <div id="events" class="events">Carregando Eventos...</div>
         <div class="button-container">
-            <a href="https://sinalpublico.netlify.app/play/dtv?id=premiereclubes" class="custom-button">
+            <a href="https://sinalpublico.netlify.app/play/dtv?id=premiereclubes" class="custom-button" data-url="https://sinalpublico.netlify.app/play/dtv?id=premiereclubes">
                 <img src="https://sinalpublico.netlify.app/imgs/premiereclubes.png" alt="Premiere 1" class="button-image">
                 <span class="button-text">Premiere 1</span>
             </a>
-            <a href="https://sinalpublico.netlify.app/play/dtv?id=premiere2" class="custom-button">
+            <a href="https://sinalpublico.netlify.app/play/dtv?id=premiere2" class="custom-button" data-url="https://sinalpublico.netlify.app/play/dtv?id=premiere2">
                 <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 2" class="button-image">
                 <span class="button-text">Premiere 2</span>
             </a>
-            <a href="https://sinalpublico.netlify.app/play/dtv?id=premiere3" class="custom-button">
+            <a href="https://sinalpublico.netlify.app/play/dtv?id=premiere3" class="custom-button" data-url="https://sinalpublico.netlify.app/play/dtv?id=premiere3">
                 <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 3" class="button-image">
                 <span class="button-text">Premiere 3</span>
             </a>
-            <a href="https://sinalpublico.netlify.app/play/dtv?id=sportv1" class="custom-button">
+            <a href="https://sinalpublico.netlify.app/play/dtv?id=sportv1" class="custom-button" data-url="https://sinalpublico.netlify.app/play/dtv?id=sportv1">
                 <img src="https://sinalpublico.netlify.app/imgs/sportv.png" alt="Sportv 1" class="button-image">
                 <span class="button-text">Sportv 1</span>
             </a>
-            <a href="https://sinalpublico.netlify.app/play/dtv?id=sportv2" class="custom-button">
+            <a href="https://sinalpublico.netlify.app/play/dtv?id=sportv2" class="custom-button" data-url="https://sinalpublico.netlify.app/play/dtv?id=sportv2">
                 <img src="https://sinalpublico.netlify.app/imgs/sportv2.png" alt="Sportv 2" class="button-image">
                 <span class="button-text">Sportv 2</span>
             </a>
-            <a href="https://sinalpublico.netlify.app/play/dtv?id=sportv3" class="custom-button">
+            <a href="https://sinalpublico.netlify.app/play/dtv?id=sportv3" class="custom-button" data-url="https://sinalpublico.netlify.app/play/dtv?id=sportv3">
                 <img src="https://sinalpublico.netlify.app/imgs/sportv3.png" alt="Sportv 3" class="button-image">
                 <span class="button-text">Sportv 3</span>
             </a>
-            <a href="https://sinalpublico.netlify.app/play/dtv?id=bandsports" class="custom-button">
+            <a href="https://sinalpublico.netlify.app/play/dtv?id=bandsports" class="custom-button" data-url="https://sinalpublico.netlify.app/play/dtv?id=bandsports">
                 <img src="https://sinalpublico.netlify.app/imgs/bandsports.png" alt="BandSports" class="button-image">
                 <span class="button-text">BandSports</span>
             </a>
         </div>
+        <iframe id="content-frame" src="" title="Conteúdo"></iframe>
     </div>
     <footer>
         © 2024 Todos os direitos reservados.
@@ -272,6 +280,15 @@
                 .catch(error => {
                     document.getElementById('events').textContent = 'Ocorreu um erro ao carregar os eventos: ' + error;
                 });
+
+            document.querySelectorAll('.custom-button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault(); // Evita o comportamento padrão do link
+                    const url = button.getAttribute('data-url');
+                    const iframe = document.getElementById('content-frame');
+                    iframe.src = url;
+                });
+            });
         });
     </script>
 </body>
