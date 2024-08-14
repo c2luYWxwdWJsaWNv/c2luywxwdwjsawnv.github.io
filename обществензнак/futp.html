@@ -172,10 +172,12 @@
         }
         iframe {
             width: 100%;
-            height: 500px;
+            height: 230px;
             border: none;
             border-radius: 8px;
             margin-top: 20px;
+            /* Permite o conteúdo seguro, incluindo mídia criptografada */
+            allow: 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
         }
     </style>
 </head>
@@ -218,7 +220,7 @@
                 <span class="button-text">BandSports</span>
             </a>
         </div>
-        <iframe id="content-frame" src="" title="Conteúdo" allow="encrypted-media"></iframe>
+        <iframe id="content-frame" src="" title="Conteúdo" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
     </div>
     <footer>
         © 2024 Todos os direitos reservados.
