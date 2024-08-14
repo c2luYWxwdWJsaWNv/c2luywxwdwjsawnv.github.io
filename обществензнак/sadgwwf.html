@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futebol Programação de Hoje</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 26px;
+            border-bottom: 4px solid #0056b3;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .paragraph {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .paragraph input[type="text"] {
+            background-color: #f1f1f1;
+            border: 2px solid #007BFF;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 80%;
+            max-width: 500px;
+        }
+        .paragraph input[type="text"]:focus {
+            border-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .events {
+            padding: 0;
+        }
+        .event {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.3s ease;
+        }
+        .event:hover {
+            background-color: #f1f1f1;
+        }
+        .team-logo img {
+            border-radius: 50%;
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+        }
+        .team-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .match-center {
+            flex-grow: 1;
+            text-align: center;
+        }
+        .match-center #match {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .match-center #match-time {
+            font-size: 16px;
+            color: #666;
+        }
+        .left-team, .right-team {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        .right-team {
+            margin-right: 15px;
+        }
+        .left-team {
+            margin-left: 15px;
+        }
+        footer {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            border-top: 4px solid #0056b3;
+        }
+        @media (max-width: 768px) {
+            .event {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .team-logo img {
+                width: 30px;
+                height: 30px;
+            }
+            .match-center #match, .match-center #match-time {
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            header {
+                font-size: 22px;
+            }
+            .paragraph input[type="text"] {
+                font-size: 14px;
+                padding: 8px;
+            }
+            footer {
+                font-size: 12px;
+            }
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .custom-button {
+            display: flex;
+            align-items: center;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+        .custom-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .button-image {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        .button-text {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Futebol Programação de Hoje
+    </header>
+    <div class="container">
+        <div class="paragraph">
+            <input type="text" value="Venha Assistir: https://sinalpublico.netlify.app/" onclick="this.select(); document.execCommand('copy'); alert('Link copiado, cole no navegador!');" readonly>
+        </div>
+        <div id="events" class="events">Carregando Eventos...</div>
+        <div class="button-container">
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiereclubes.png" alt="Premiere 1" class="button-image">
+                <span class="button-text">Premiere 1</span>
+            </button>
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 2" class="button-image">
+                <span class="button-text">Premiere 2</span>
+            </button>
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 3" class="button-image">
+                <span class="button-text">Premiere 3</span>
+            </button>
+        </div>
+ <div class="button-container">
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiereclubes.png" alt="Premiere 1" class="button-image">
+                <span class="button-text">Premiere 1</span>
+            </button>
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 2" class="button-image">
+                <span class="button-text">Premiere 2</span>
+            </button>
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 3" class="button-image">
+                <span class="button-text">Premiere 3</span>
+            </button>
+        </div>
+ <div class="button-container">
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiereclubes.png" alt="Premiere 1" class="button-image">
+                <span class="button-text">Premiere 1</span>
+            </button>
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 2" class="button-image">
+                <span class="button-text">Premiere 2</span>
+            </button>
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 3" class="button-image">
+                <span class="button-text">Premiere 3</span>
+            </button>
+        </div>
+ <div class="button-container">
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiereclubes.png" alt="Premiere 1" class="button-image">
+                <span class="button-text">Premiere 1</span>
+            </button>
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 2" class="button-image">
+                <span class="button-text">Premiere 2</span>
+            </button>
+            <button class="custom-button">
+                <img src="https://sinalpublico.netlify.app/imgs/premiere.png" alt="Premiere 3" class="button-image">
+                <span class="button-text">Premiere 3</span>
+            </button>
+        </div>
+    </div>
+    <footer>
+        © 2024 Todos os direitos reservados.
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const url = 'https://corsproxy.io/?url=https://apk.futemais.net/app2/';
+            
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    
+                    const eventsContainer = document.getElementById('events');
+                    eventsContainer.innerHTML = '';
+
+                    const unwantedDiv = doc.querySelector('div.box-title');
+                    if (unwantedDiv) {
+                        unwantedDiv.remove();
+                    }
+
+                    const matches = doc.querySelectorAll('div.match-container');
+                    
+                    if (matches.length === 0) {
+                        eventsContainer.textContent = 'Nenhum evento encontrado.';
+                        return;
+                    }
+
+                    matches.forEach(match => {
+                        const competition = match.querySelector('#match')?.textContent.trim() || 'N/A';
+                        const time = match.querySelector('#match-time')?.textContent.trim() || 'N/A';
+                        const rightTeam = match.querySelector('.right-team .team-name')?.textContent.trim() || 'N/A';
+                        const rightTeamLogo = match.querySelector('.right-team .team-logo img')?.src || '';
+                        const leftTeam = match.querySelector('.left-team .team-name')?.textContent.trim() || 'N/A';
+                        const leftTeamLogo = match.querySelector('.left-team .team-logo img')?.src || '';
+                        const link = match.querySelector('a')?.href || '#';
+
+                        const matchHTML = `
+                            <a href="${link}" class="event">
+                                <div class="right-team">
+                                    <div class="team-logo"><img src="${rightTeamLogo}" alt="${rightTeam} Logo"></div>
+                                    <div class="team-name">${rightTeam}</div>
+                                </div>
+                                <div class="match-center">
+                                    <div id="match">${competition}</div>
+                                    <div id="match-time">${time}</div>
+                                </div>
+                                <div class="left-team">
+                                    <div class="team-logo"><img src="${leftTeamLogo}" alt="${leftTeam} Logo"></div>
+                                    <div class="team-name">${leftTeam}</div>
+                                </div>
+                            </a>
+                        `;
+                        
+                        eventsContainer.innerHTML += matchHTML;
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('events').textContent = 'Ocorreu um erro ao carregar os eventos: ' + error;
+                });
+        });
+    </script>
+</body>
+</html>
