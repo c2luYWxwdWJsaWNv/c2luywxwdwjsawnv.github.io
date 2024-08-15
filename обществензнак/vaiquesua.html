@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capturar e Reproduzir Video URL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #video-player {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Capturar e Reproduzir URL do Vídeo</h1>
+    <button id="capturar-url">Capturar URL do Vídeo</button>
+    <p id="resultado"></p>
+    <video id="video-player" controls>
+        Seu navegador não suporta o elemento de vídeo.
+    </video>
+
+    <script>
+        document.getElementById('capturar-url').addEventListener('click', async () => {
+            try {
+                // Substitua pela URL do HTML que contém a variável videoUrl
+                const pageUrl = 'https://api.codetabs.com/v1/proxy/?quest=https://receitasfoodbrasil.com.br/brrasil-receitas/play.php?id=6082049';
+                
+                // Fetch the HTML content of the page
+                const response = await fetch(pageUrl);
+                const html = await response.text();
+
+                // Create a temporary DOM parser to parse the HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                // Extract the content of the <script> tag that contains videoUrl
+                const scriptContent = Array.from(doc.querySelectorAll('script'))
+                    .map(script => script.textContent)
+                    .find(text => text.includes('const videoUrl'));
+
+                if (scriptContent) {
+                    // Extract the value of the videoUrl variable using a regular expression
+                    const urlMatch = scriptContent.match(/const\s+videoUrl\s*=\s*"([^"]+)"/);
+                    const videoUrl = urlMatch ? urlMatch[1] : '';
+
+                    if (videoUrl) {
+                        // Display the URL and set the video source
+                        document.getElementById('resultado').textContent = `URL do Vídeo: ${videoUrl}`;
+                        const videoPlayer = document.getElementById('video-player');
+                        videoPlayer.src = videoUrl;
+                        videoPlayer.style.display = 'block'; // Show the video player
+                        videoPlayer.play(); // Play the video automatically
+                    } else {
+                        document.getElementById('resultado').textContent = 'URL não encontrada.';
+                        document.getElementById('video-player').style.display = 'none'; // Hide the video player
+                    }
+                } else {
+                    document.getElementById('resultado').textContent = 'Variável videoUrl não encontrada.';
+                    document.getElementById('video-player').style.display = 'none'; // Hide the video player
+                }
+            } catch (error) {
+                console.error('Erro ao capturar a URL do vídeo:', error);
+                document.getElementById('resultado').textContent = 'Erro ao capturar a URL do vídeo.';
+                document.getElementById('video-player').style.display = 'none'; // Hide the video player
+            }
+        });
+    </script>
+</body>
+</html>
