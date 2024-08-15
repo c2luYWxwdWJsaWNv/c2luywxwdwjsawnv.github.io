@@ -7,25 +7,33 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            overflow: hidden; /* Evita barras de rolagem extras */
         }
         #video-player {
-            margin-top: 20px;
-            width: 100%;
-            max-width: 600px;
+            position: fixed; /* Fixa o vídeo na tela */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Largura completa da viewport */
+            height: 100vh; /* Altura completa da viewport */
+            object-fit: cover; /* Ajusta o vídeo para cobrir toda a área */
+            border: none; /* Remove bordas */
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
         }
     </style>
 </head>
 <body>
-    <h1>Capturar e Reproduzir URL do Vídeo</h1>
-    <button id="capturar-url">Capturar URL do Vídeo</button>
-    <p id="resultado"></p>
-    <video id="video-player" controls>
-        Seu navegador não suporta o elemento de vídeo.
-    </video>
+    <div id="loading">Carregando...</div>
+    <video id="video-player" controls autoplay></video>
 
     <script>
-        document.getElementById('capturar-url').addEventListener('click', async () => {
+        async function carregarVideo() {
             try {
                 // Substitua pela URL do HTML que contém a variável videoUrl
                 const pageUrl = 'https://api.codetabs.com/v1/proxy/?quest=https://receitasfoodbrasil.com.br/brrasil-receitas/play.php?id=6082049';
@@ -49,26 +57,26 @@
                     const videoUrl = urlMatch ? urlMatch[1] : '';
 
                     if (videoUrl) {
-                        // Display the URL and set the video source
-                        document.getElementById('resultado').textContent = `URL do Vídeo: ${videoUrl}`;
+                        // Set the video source and hide the loading message
                         const videoPlayer = document.getElementById('video-player');
                         videoPlayer.src = videoUrl;
+                        document.getElementById('loading').style.display = 'none';
                         videoPlayer.style.display = 'block'; // Show the video player
                         videoPlayer.play(); // Play the video automatically
                     } else {
-                        document.getElementById('resultado').textContent = 'URL não encontrada.';
-                        document.getElementById('video-player').style.display = 'none'; // Hide the video player
+                        document.getElementById('loading').textContent = 'URL não encontrada.';
                     }
                 } else {
-                    document.getElementById('resultado').textContent = 'Variável videoUrl não encontrada.';
-                    document.getElementById('video-player').style.display = 'none'; // Hide the video player
+                    document.getElementById('loading').textContent = 'Variável videoUrl não encontrada.';
                 }
             } catch (error) {
                 console.error('Erro ao capturar a URL do vídeo:', error);
-                document.getElementById('resultado').textContent = 'Erro ao capturar a URL do vídeo.';
-                document.getElementById('video-player').style.display = 'none'; // Hide the video player
+                document.getElementById('loading').textContent = 'Erro ao capturar a URL do vídeo.';
             }
-        });
+        }
+
+        // Chama a função assim que a página for carregada
+        window.onload = carregarVideo;
     </script>
 </body>
 </html>
