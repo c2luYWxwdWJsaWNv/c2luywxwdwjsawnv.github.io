@@ -89,15 +89,15 @@
         jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
 
         jwplayer('demoplayer').setup({
-            file: atob(get), // URL do arquivo em base64 decodificado
-            type: 'dash', // Define o tipo como DASH
+            file: atob(get), // 
+            type: 'dash', // 
             width: "100%",
             height: "100%",
             autostart: true,
             drm: {
                 clearkey: {
-                    keyId: atob(key), // ID da chave em base64 decodificado
-                    key: atob(key2)   // Chave em base64 decodificado
+                    keyId: atob(key), // 
+                    key: atob(key2)   // 
                 }
             },
             events: {
