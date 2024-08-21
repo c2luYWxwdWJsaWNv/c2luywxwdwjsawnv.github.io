@@ -1,0 +1,144 @@
+<script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+<script>
+if (window.top == window.self) {
+	window.location.href = "https://www.google.com.br/";
+}
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.onkeydown = function(e) {
+        if (e.ctrlKey && 
+            (e.keyCode === 67 || 
+             e.keyCode === 86 || 
+			 e.keyCode === 83 || 
+             e.keyCode === 85 || 
+			 e.keyCode === 80 || 
+			 e.keyCode === 123 || 
+			 e.keyCode === 73 || 
+             e.keyCode === 74 ||  
+             e.keyCode === 117)) {
+            alert('PROIBIDO');
+            return false;
+        } else {
+            return true;
+        }
+};
+	
+$(document).bind('keydown', function(e) {
+  if(e.ctrlKey && (e.which == 83)) {
+    e.preventDefault();
+    alert('PROIBIDO');
+    return false;
+  }
+});
+$(document).keydown(function (event) {
+    if (event.keyCode == 123) { // Prevent F12
+        return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+        return false;
+    }
+});
+$(document).on("contextmenu", function (e) {        
+    e.preventDefault();
+});
+
+function devtoolIsOpening() {
+    console.clear();
+    let before = new Date().getTime();
+    debugger;
+    let after = new Date().getTime();
+    if (after - before > 200) {
+        document.write("offline");
+        window.location.replace("https://www.google.com.br/");
+    }
+    setTimeout(devtoolIsOpening, 100);
+}
+devtoolIsOpening();
+</script>
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta http-equiv="Content-Language" content="pt-br" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script> 
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/provider.hlsjs.js"></script> 
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/jwplayer.core.controls.js"></script> 
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            overflow: hidden;
+        }
+    </style>
+
+<script>
+var play = getParameterByName('play');
+
+if (play == "2") {
+play = "true"
+}else{
+	play = "false"
+	}
+</script>
+	
+</head>
+<body>
+<div id="player"></div>
+<script>
+var playerInstance = jwplayer("player");
+playerInstance.setup({
+    playlist: [{
+      "sources": [{
+                    "default": false,
+                    "type": "dash",
+                    "file": "https://bakery.pplus.paramount.tech/l(fr,de,it,no,fi,da,sv)/paramountplus/2024/02/07/2307149891667/2668305_cenc_precon_dash/stream.mpd",
+                    "drm": {
+                        "widevine": {
+                            "url": "https://cbsi.live.ott.irdeto.com/widevine/getlicense?CrmId=cbsi&AccountId=cbsi&SubContentType=Default&ContentId=mZDJ9BnKllyIL2rfqN2PtEAlOulVUwtw",
+                            "headers": [{
+                                "name": "Authorization",
+                                "value": "Bearer eyJhbGciOiJIUzI1NiIsImtpZCI6IjNkNjg4NGJmLWViMDktNDA1Zi1hOWZjLWU0NGE1NmY3NjZiNiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ODQwMzIzM19CUiIsImVudCI6W3siYmlkIjoiQWxsQWNjZXNzTWFpbiIsImVwaWQiOjE1fV0sImlhdCI6MTcyNDI0ODk0OSwiZXhwIjoxNzI0MjYzMzQ5LCJpc3MiOiJjYnMiLCJhaWQiOiJjYnNpIiwiaXNlIjp0cnVlLCJqdGkiOiIzNTIwNjU1ZC1iNDczLTRiNzgtOGJhMi1hMWNlZjQ3ODY2Y2MifQ.EAV-ACxt4DiPlGsHz705ZpYHv-qXT7311xV-rP2zu9Y"
+                            }]
+                        }
+                    },
+                    "label": "0"
+                }]
+            }],
+	width: "100%",
+	height: "100%",
+	aspectratio: "16:9",
+	autostart: true,
+	cast: true,
+	sharing: false
+});
+
+playerInstance.on('play', function() {
+    playerInstance.setCurrentAudioTrack(2); 
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+<script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
+  
+</body>
+</html>
