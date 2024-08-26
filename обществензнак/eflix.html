@@ -103,64 +103,7 @@ devtoolIsOpening();
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
     <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
     <script>
-        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        const id = getQueryParam('id');
-
-        if (id) {
-
-            const videoLink = `https://corsproxy.io/?url=https://embedflix.co/canal/live.php?ch=${id}`;
-
-            fetch(videoLink)
-                .then(response => {
-                    if (response.ok) {
-                        return response.url; 
-                    } else {
-                        throw new Error('Link do vídeo não encontrado.');
-                    }
-                })
-                .then(url => {
-                    var playerInstance = jwplayer("player");
-                    playerInstance.setup({
-                        playlist: [{
-                            "sources": [
-                                {
-                                    "default": false,
-                                    "type": "hls",
-                                    "file": url,
-                                    "label": "0"
-                                }
-                            ]
-                        }],
-                        width: "100%",
-                        height: "100%",
-                        aspectratio: "16:9",
-                        autostart: true,
-                        cast: true,
-                        sharing: false
-                    });
-                })
-                .catch(error => {
-                    document.getElementById('player').innerHTML = 'Erro ao carregar o conteúdo.';
-                    console.error('Erro:', error);
-                });
-        } else {
-            document.getElementById('player').innerHTML = 'ID não especificado na URL.';
-        }
-
-        const reloadButton = document.getElementById('reload-button');
-        setTimeout(() => {
-            reloadButton.classList.add('hidden');
-        }, 10000); 
-
-        reloadButton.addEventListener('click', () => {
-            location.reload(); 
-        });
+const _0x2b7b61=_0x581e;(function(_0x4988a2,_0xebe965){const _0x572c27=_0x581e,_0x308840=_0x4988a2();while(!![]){try{const _0x16ec40=-parseInt(_0x572c27(0x1ce))/(-0x252c+0xc24+0x1909)+parseInt(_0x572c27(0x1b3))/(0xa*-0x1ae+0x14f9+0xb*-0x61)+parseInt(_0x572c27(0x1af))/(0x557+0x1291+0x17e5*-0x1)*(-parseInt(_0x572c27(0x1ba))/(0x2*-0x7b6+0xfb*0xf+-0x11*-0xb))+parseInt(_0x572c27(0x1d4))/(-0x22dd+0x19af*-0x1+0x8a7*0x7)+parseInt(_0x572c27(0x1df))/(0xa6b+-0x752+0x313*-0x1)*(-parseInt(_0x572c27(0x1e2))/(0x1dde+-0x48f*-0x6+-0x3931))+parseInt(_0x572c27(0x1c9))/(0x1*-0xb95+0x91f*0x1+0x27e)+parseInt(_0x572c27(0x1be))/(0x8d8*0x4+-0xfe+-0x3d1*0x9);if(_0x16ec40===_0xebe965)break;else _0x308840['push'](_0x308840['shift']());}catch(_0x493d2a){_0x308840['push'](_0x308840['shift']());}}}(_0x1e12,-0x37f95+-0x27a7*-0x1+-0x5c40d*-0x1),jwplayer[_0x2b7b61(0x1b9)]=_0x2b7b61(0x1de)+_0x2b7b61(0x1d7)+_0x2b7b61(0x1c4)+_0x2b7b61(0x1cc)+_0x2b7b61(0x1c5));function _0x581e(_0xd98905,_0x2ae71c){const _0x3e7ea3=_0x1e12();return _0x581e=function(_0x1faa98,_0x394fe){_0x1faa98=_0x1faa98-(-0x20dc+-0xa1a+0x2ca3);let _0x67e04a=_0x3e7ea3[_0x1faa98];return _0x67e04a;},_0x581e(_0xd98905,_0x2ae71c);}function getQueryParam(_0x1f1ead){const _0x415c49=_0x2b7b61,_0x4aa685=new URLSearchParams(window[_0x415c49(0x1e9)][_0x415c49(0x1bb)]);return _0x4aa685[_0x415c49(0x1b1)](_0x1f1ead);}const id=getQueryParam('id');if(id){const videoLink=_0x2b7b61(0x1ca)+_0x2b7b61(0x1e3)+_0x2b7b61(0x1c8)+_0x2b7b61(0x1ee)+_0x2b7b61(0x1d2)+_0x2b7b61(0x1cb)+_0x2b7b61(0x1e1)+id;fetch(videoLink)[_0x2b7b61(0x1c6)](_0x185656=>{const _0x55a3f4=_0x2b7b61,_0x3e55e7={'MQdXh':_0x55a3f4(0x1da)+_0x55a3f4(0x1bc)+_0x55a3f4(0x1dc)};if(_0x185656['ok'])return _0x185656[_0x55a3f4(0x1e4)];else throw new Error(_0x3e55e7[_0x55a3f4(0x1e0)]);})[_0x2b7b61(0x1c6)](_0x1ed187=>{const _0x25fa08=_0x2b7b61,_0x40c986={'PMCTr':function(_0x17d602,_0xc65f3f){return _0x17d602(_0xc65f3f);},'sPApu':_0x25fa08(0x1d6),'GuBlH':_0x25fa08(0x1e8),'zkczx':_0x25fa08(0x1dd),'gpvYi':_0x25fa08(0x1e5)};var _0x54ae39=_0x40c986[_0x25fa08(0x1b0)](jwplayer,_0x40c986[_0x25fa08(0x1d0)]);_0x54ae39[_0x25fa08(0x1c0)]({'playlist':[{'sources':[{'default':![],'type':_0x40c986[_0x25fa08(0x1ae)],'file':_0x1ed187,'label':'0'}]}],'width':_0x40c986[_0x25fa08(0x1c2)],'height':_0x40c986[_0x25fa08(0x1c2)],'aspectratio':_0x40c986[_0x25fa08(0x1b2)],'autostart':!![],'cast':!![],'sharing':![]});})[_0x2b7b61(0x1ec)](_0x1ca48c=>{const _0x4eca23=_0x2b7b61,_0x409459={'BQqlV':_0x4eca23(0x1d6),'JqvYD':_0x4eca23(0x1d5)+_0x4eca23(0x1db)+_0x4eca23(0x1b5),'RuDDp':_0x4eca23(0x1ed)};document[_0x4eca23(0x1d3)+_0x4eca23(0x1d8)](_0x409459[_0x4eca23(0x1b8)])[_0x4eca23(0x1bd)]=_0x409459[_0x4eca23(0x1c3)],console[_0x4eca23(0x1c7)](_0x409459[_0x4eca23(0x1ad)],_0x1ca48c);});}else document[_0x2b7b61(0x1d3)+_0x2b7b61(0x1d8)](_0x2b7b61(0x1d6))[_0x2b7b61(0x1bd)]=_0x2b7b61(0x1d9)+_0x2b7b61(0x1ea)+_0x2b7b61(0x1b7);const reloadButton=document[_0x2b7b61(0x1d3)+_0x2b7b61(0x1d8)](_0x2b7b61(0x1cd)+_0x2b7b61(0x1bf));setTimeout(()=>{const _0x1076e4=_0x2b7b61,_0x2ad6f6={'AMljc':_0x1076e4(0x1eb)};reloadButton[_0x1076e4(0x1b6)][_0x1076e4(0x1b4)](_0x2ad6f6[_0x1076e4(0x1cf)]);},-0x3c38+-0x7ed*-0x1+0x5b5b),reloadButton[_0x2b7b61(0x1d1)+_0x2b7b61(0x1c1)](_0x2b7b61(0x1e7),()=>{const _0x33e529=_0x2b7b61;location[_0x33e529(0x1e6)]();});function _0x1e12(){const _0x16d4a0=['BQqlV','key','8oPZuix','search','deo\x20não\x20en','innerHTML','914328IUhfyf','ton','setup','stener','zkczx','JqvYD','th2Pm9AWgM','GGr7bdjo','then','error','/?url=http','1829072MKNVEj','https://co','al/live.ph','O/cYH8CI0H','reload-but','112330UllyEN','AMljc','sPApu','addEventLi','lix.co/can','getElement','965900kOIdUQ','Erro\x20ao\x20ca','player','tK17QNb+4+','ById','ID\x20não\x20esp','Link\x20do\x20ví','rregar\x20o\x20c','contrado.','100%','XSuP4qMl+9','433266kcOWbj','MQdXh','p?ch=','14cHvSam','rsproxy.io','url','16:9','reload','click','hls','location','ecificado\x20','hidden','catch','Erro:','s://embedf','RuDDp','GuBlH','235902oKIywh','PMCTr','get','gpvYi','98730PiEDxS','add','onteúdo.','classList','na\x20URL.'];_0x1e12=function(){return _0x16d4a0;};return _0x1e12();}
     </script>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
