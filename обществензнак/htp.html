@@ -98,7 +98,7 @@ devtoolIsOpening();
             if (base64EncodedLink) {
                 const decodedLink = atob(base64EncodedLink);
                 
-                const apiUrl = `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(decodedLink)}`;
+                const apiUrl = `https://corsproxy.io/?url=${encodeURIComponent(decodedLink)}`;
                 
                 fetch(apiUrl)
                     .then(response => response.text())
