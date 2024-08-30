@@ -1,0 +1,132 @@
+<script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+<script>
+if (window.top == window.self) {
+	window.location.href = "https://www.google.com.br/";
+}
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.onkeydown = function(e) {
+        if (e.ctrlKey && 
+            (e.keyCode === 67 || 
+             e.keyCode === 86 || 
+			 e.keyCode === 83 || 
+             e.keyCode === 85 || 
+			 e.keyCode === 80 || 
+			 e.keyCode === 123 || 
+			 e.keyCode === 73 || 
+             e.keyCode === 74 ||  
+             e.keyCode === 117)) {
+            alert('PROIBIDO');
+            return false;
+        } else {
+            return true;
+        }
+};
+	
+$(document).bind('keydown', function(e) {
+  if(e.ctrlKey && (e.which == 83)) {
+    e.preventDefault();
+    alert('PROIBIDO');
+    return false;
+  }
+});
+$(document).keydown(function (event) {
+    if (event.keyCode == 123) { // Prevent F12
+        return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+        return false;
+    }
+});
+$(document).on("contextmenu", function (e) {        
+    e.preventDefault();
+});
+
+function devtoolIsOpening() {
+    console.clear();
+    let before = new Date().getTime();
+    debugger;
+    let after = new Date().getTime();
+    if (after - before > 200) {
+        document.write("offline");
+        window.location.replace("https://www.google.com.br/");
+    }
+    setTimeout(devtoolIsOpening, 100);
+}
+devtoolIsOpening();
+</script>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="none">
+    <meta name="referrer" content="no-referrer">      
+    <meta name="theme-color" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+    <script disable-devtool-auto src="https://fastly.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script> 
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwpsrv.js"></script>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/provider.hlsjs.js"></script> 
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/jwplayer.core.controls.js"></script> 
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .jwplayer {
+            position: absolute !important;
+        }
+
+        .jwplayer.jw-flag-aspect-mode {
+            min-height: 100%;
+            max-height: 100%;
+        }
+
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #refreshButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            background-color: #00bfff; /* Azul Claro */
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        #refreshButton.hide {
+            display: none;
+        }
+
+        #refreshButton:hover {
+            background-color: #87ceeb; 
+        }
+    </style>
+</head>
+<body>
+    <div id="player"></div>
+    <button id="refreshButton" onclick="refreshPage()">Travou? Clique Aqui</button>
+    <script>
+const _0x51c4ef=_0x403d;(function(_0x646759,_0x804dc){const _0x387db8=_0x403d,_0x450b99=_0x646759();while(!![]){try{const _0x238417=parseInt(_0x387db8(0xd8))/(-0x210e+-0x1204+-0x20b*-0x19)*(-parseInt(_0x387db8(0x11e))/(0x2*0xe7f+-0x10b1*0x2+0x466))+parseInt(_0x387db8(0xd3))/(-0x9e*0x5+0xcbe*0x2+0x209*-0xb)+parseInt(_0x387db8(0xf1))/(-0x2617+-0x5b*-0x66+0x1d9)+parseInt(_0x387db8(0xce))/(-0x163+-0x1f93+-0x20fb*-0x1)*(parseInt(_0x387db8(0xe6))/(0x16ea+-0x1bbb+0x3b*0x15))+-parseInt(_0x387db8(0x119))/(0x14*-0xe3+0x95e*0x2+0x3*-0x53)+-parseInt(_0x387db8(0x117))/(0x8c6+0x70d*-0x1+0x1b1*-0x1)*(-parseInt(_0x387db8(0xe3))/(0x1*-0x1829+-0xe5*0x4+0x1bc6))+parseInt(_0x387db8(0xeb))/(-0x151d+-0xad*-0x11+0x9aa)*(-parseInt(_0x387db8(0xfe))/(0x18e3+-0x2417*0x1+0x1*0xb3f));if(_0x238417===_0x804dc)break;else _0x450b99['push'](_0x450b99['shift']());}catch(_0x5632e5){_0x450b99['push'](_0x450b99['shift']());}}}(_0x5211,0x14d3b+-0x15267b+0xb37d3*0x3));async function carregarVideo(){const _0x55a8d3=_0x403d,_0x4d8b8f={'fzttU':function(_0x4b4600){return _0x4b4600();},'VpsNc':_0x55a8d3(0xf7),'qrBnz':_0x55a8d3(0xea)+_0x55a8d3(0x109)+_0x55a8d3(0xcf)+'o.','dgkcI':function(_0x3529b2,_0x4fe863){return _0x3529b2(_0x4fe863);},'macxL':function(_0x336794,_0x218b4a){return _0x336794(_0x218b4a);},'PhPWV':function(_0x31d9fe,_0x4ad07e){return _0x31d9fe(_0x4ad07e);},'APsUK':_0x55a8d3(0xc7),'lLLvm':_0x55a8d3(0xfc),'aXTVc':function(_0x4500c8,_0x1c9541){return _0x4500c8(_0x1c9541);},'zCRcU':_0x55a8d3(0xf9),'MfSqD':_0x55a8d3(0xf0),'fSrxH':_0x55a8d3(0xef),'cMjbX':_0x55a8d3(0xd6),'KBPUk':_0x55a8d3(0xdf),'CKZeV':_0x55a8d3(0x110),'HVsuu':function(_0x4bbc58){return _0x4bbc58();},'yzKDS':_0x55a8d3(0xd5),'UPHJz':_0x55a8d3(0x10a)+_0x55a8d3(0x107)+_0x55a8d3(0xdb),'nEqit':_0x55a8d3(0x112)+_0x55a8d3(0x11d)+_0x55a8d3(0x113)+_0x55a8d3(0xf2),'PbANJ':_0x55a8d3(0xd0)+_0x55a8d3(0x102)+_0x55a8d3(0xfa)+'o:'};try{const _0x5a3efb=new URLSearchParams(window[_0x55a8d3(0xed)][_0x55a8d3(0xda)]),_0x3744d1=_0x5a3efb[_0x55a8d3(0x104)]('u');if(!_0x3744d1){console[_0x55a8d3(0xcb)](_0x4d8b8f[_0x55a8d3(0xe7)]);return;}const _0xfa824f=_0x4d8b8f[_0x55a8d3(0x101)](atob,_0x3744d1),_0x111486=await _0x4d8b8f[_0x55a8d3(0xe0)](fetch,_0x55a8d3(0x10b)+_0x55a8d3(0x11b)+_0x55a8d3(0xe4)+_0x55a8d3(0x108)+'='+_0x4d8b8f[_0x55a8d3(0xca)](encodeURIComponent,_0xfa824f)),_0x12070a=await _0x111486[_0x55a8d3(0xe9)](),_0x3f643b=new DOMParser(),_0x2d0a8e=_0x3f643b[_0x55a8d3(0xcc)+_0x55a8d3(0xc8)](_0x12070a,_0x4d8b8f[_0x55a8d3(0x10c)]),_0x2391a5=Array[_0x55a8d3(0xf6)](_0x2d0a8e[_0x55a8d3(0x105)+_0x55a8d3(0xf3)](_0x4d8b8f[_0x55a8d3(0x116)]))[_0x55a8d3(0xfb)](_0x19d708=>_0x19d708[_0x55a8d3(0x10d)+'t'])[_0x55a8d3(0x11f)](_0x442283=>_0x442283[_0x55a8d3(0x11c)](_0x55a8d3(0xff)+_0x55a8d3(0x103)));if(_0x2391a5){const _0x1b1dfa=_0x2391a5[_0x55a8d3(0x118)](/const\s+videoUrl\s*=\s*"([^"]+)"/),_0x246e9a=_0x1b1dfa?_0x1b1dfa[0x1*-0x13e5+0x1672+-0x28c*0x1]:'';if(_0x246e9a){var _0x592fe5=_0x4d8b8f[_0x55a8d3(0x111)](jwplayer,_0x4d8b8f[_0x55a8d3(0xf5)]);_0x592fe5[_0x55a8d3(0xfd)]({'playlist':[{'sources':[{'type':_0x4d8b8f[_0x55a8d3(0x106)],'file':_0x246e9a,'drm':{'widevine':{},'playready':{}}}]}],'primary':_0x4d8b8f[_0x55a8d3(0xee)],'hlshtml':_0x4d8b8f[_0x55a8d3(0xd7)],'width':_0x4d8b8f[_0x55a8d3(0x115)],'height':_0x4d8b8f[_0x55a8d3(0x115)],'aspectratio':_0x4d8b8f[_0x55a8d3(0xf4)],'autostart':!![],'cast':!![],'hlsjsConfig':{'debug':![],'p2pConfig':{'live':!![]}}}),_0x4d8b8f[_0x55a8d3(0xe2)](jwplayer)['on'](_0x4d8b8f[_0x55a8d3(0xd4)],function(){const _0x59b0b9=_0x55a8d3;_0x4d8b8f[_0x59b0b9(0xe5)](jwplayer)[_0x59b0b9(0xf0)][_0x59b0b9(0xdc)]['on'](_0x4d8b8f[_0x59b0b9(0xcd)],function({totalHTTPDownloaded:_0x558b6c,totalP2PDownloaded:_0x2cfcd8}){});});}else console[_0x55a8d3(0xcb)](_0x4d8b8f[_0x55a8d3(0xe1)]);}else console[_0x55a8d3(0xcb)](_0x4d8b8f[_0x55a8d3(0x11a)]);}catch(_0xb02f56){console[_0x55a8d3(0xcb)](_0x4d8b8f[_0x55a8d3(0x114)],_0xb02f56);}}function refreshPage(){const _0x57e89a=_0x403d;window[_0x57e89a(0xed)][_0x57e89a(0xd9)]();}function _0x403d(_0x3f06b5,_0x26dd71){const _0xee3d94=_0x5211();return _0x403d=function(_0x265eaf,_0x14be91){_0x265eaf=_0x265eaf-(0x1f*-0x11b+-0x5a*-0x5d+0x25a);let _0x2693e4=_0xee3d94[_0x265eaf];return _0x2693e4;},_0x403d(_0x3f06b5,_0x26dd71);}window[_0x51c4ef(0xdd)]=()=>{const _0x43e5dd=_0x51c4ef,_0x1d4858={'zufEB':_0x43e5dd(0xd1)+_0x43e5dd(0xf8),'QXAXr':_0x43e5dd(0xd2),'yRlTq':function(_0x5f553f){return _0x5f553f();},'TWPBG':function(_0x5e64e4,_0x319231,_0x14b37a){return _0x5e64e4(_0x319231,_0x14b37a);}};_0x1d4858[_0x43e5dd(0xc9)](carregarVideo),_0x1d4858[_0x43e5dd(0xe8)](setTimeout,()=>{const _0x27d385=_0x43e5dd;document[_0x27d385(0x120)+_0x27d385(0x100)](_0x1d4858[_0x27d385(0xde)])[_0x27d385(0x10e)][_0x27d385(0xec)](_0x1d4858[_0x27d385(0x10f)]);},0x1fa5+-0x3ae0+0x424b);};function _0x5211(){const _0x1400c7=['text','Parâmetro\x20','1235260xdKChp','add','location','fSrxH','html5','hls','2273944HSHKzr','da.','torAll','CKZeV','zCRcU','from','stats','ton','player','RL\x20do\x20víde','map','script','setup','44lfjxlq','const\x20vide','ById','dgkcI','pturar\x20a\x20U','oUrl','get','querySelec','MfSqD','eo\x20não\x20enc','oxy/?quest','de\x20URL\x20não','URL\x20do\x20víd','https://ap','APsUK','textConten','classList','QXAXr','16:9','aXTVc','Variável\x20v','o\x20encontra','PbANJ','KBPUk','lLLvm','568fvztNd','match','7682360NlqvdW','nEqit','i.codetabs','includes','ideoUrl\x20nã','3384268bYNQHq','find','getElement','text/html','tring','yRlTq','PhPWV','error','parseFromS','VpsNc','3770JAsuhr','\x20encontrad','Erro\x20ao\x20ca','refreshBut','hide','4610250pdRMJo','yzKDS','play','true','cMjbX','1iMWXZx','reload','search','ontrada.','p2pEngine','onload','zufEB','100%','macxL','UPHJz','HVsuu','206631lvuyTW','.com/v1/pr','fzttU','3606NNjHrw','qrBnz','TWPBG'];_0x5211=function(){return _0x1400c7;};return _0x5211();}
+    </script>
+</body>
+</html>
