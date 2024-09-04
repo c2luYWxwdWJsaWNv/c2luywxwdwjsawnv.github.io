@@ -60,21 +60,23 @@ devtoolIsOpening();
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="none">
-    <meta name="referrer" content="no-referrer">      
+    <meta name="referrer" content="no-referrer">
     <meta name="theme-color" content="black">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-    <script src="http://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-    <script disable-devtool-auto src="https://fastly.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script> 
-    <script src="http://ssl.p.jwpcdn.com/player/v/8.26.0/jwpsrv.js"></script>
-    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/provider.hlsjs.js"></script> 
-    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/jwplayer.core.controls.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+    <script src="https://fastly.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwpsrv.js"></script>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/provider.hlsjs.js"></script>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/jwplayer.core.controls.js"></script>
     <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script>
+        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+    </script>
     <style type="text/css">
         body {
             margin: 0;
@@ -102,11 +104,6 @@ devtoolIsOpening();
             border: none;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-    <script>
-        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-    </script>
 </head>
 <body>
     <div id="player"></div>
@@ -118,18 +115,15 @@ devtoolIsOpening();
                 return urlParams.get(param);
             }
 
-            const base64EncodedLink = getQueryParam('k'); // 
+            const base64EncodedLink = getQueryParam('k');
 
             if (base64EncodedLink) {
-                // 
                 const decodedLink = atob(base64EncodedLink);
 
-                // 
                 const hiddenFrame = document.getElementById('hidden-frame');
                 hiddenFrame.src = decodedLink;
 
                 hiddenFrame.onload = function() {
-                    // 
                     fetch(`https://corsproxy.io/?url=${encodeURIComponent(decodedLink)}`)
                         .then(response => response.text())
                         .then(data => {
@@ -155,34 +149,33 @@ devtoolIsOpening();
                                     playlist: [{
                                         "sources": [
                                             {
-						"default": false,
-						"type": "hls",
-						"file": videoSourceLink,
-						"drm": {
-							"fairplay": {}
-							},
-							"label": "0"
-							},
-							{
-							"default": true,
-						"type": "hls",
-						"file": videoSourceLink,
-						"drm": {
-						"widevine": {},
-						"playready": {}
-						},
-							"label": "1"
-						}
-					]
-				}
-			],
-           width: "100%",
-           height: "100%",
-           aspectratio: "16:9",
-           autostart: true,
-           cast: true,
-           sharing: false
-             });
+                                                "default": false,
+                                                "type": "hls",
+                                                "file": videoSourceLink,
+                                                "drm": {
+                                                    "fairplay": {}
+                                                },
+                                                "label": "0"
+                                            },
+                                            {
+                                                "default": true,
+                                                "type": "hls",
+                                                "file": videoSourceLink,
+                                                "drm": {
+                                                    "widevine": {},
+                                                    "playready": {}
+                                                },
+                                                "label": "1"
+                                            }
+                                        ]
+                                    }],
+                                    width: "100%",
+                                    height: "100%",
+                                    aspectratio: "16:9",
+                                    autostart: true,
+                                    cast: true,
+                                    sharing: false
+                                });
                             } else {
                                 document.getElementById('player').innerHTML = 'Link do vídeo não encontrado.';
                             }
@@ -193,7 +186,6 @@ devtoolIsOpening();
                         });
                 };
 
-                // 
                 hiddenFrame.onerror = function() {
                     document.getElementById('player').innerHTML = 'Erro ao pré-carregar o conteúdo.';
                 };
