@@ -62,43 +62,7 @@ function devtoolIsOpening() {
 }
 devtoolIsOpening();
 </script>
-    <script type="text/javascript">
-    document.addEventListener("contextmenu", function(e){
-        e.preventDefault();
-    }, false);
-    document.onkeydown = function(e) {
-        if (event.keyCode == 123) {
-         return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'U'.charCodeAt(0)){
-         return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
-         return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
-         return false;
-        }
-        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
-         return false;
-        }
-        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
-         return false;
-        }
-    }
-    </script>
- <script>
-    /*function check(e)
-    {
-    alert(e.keyCode);
-    }*/
-    document.onkeydown = function(e) {
-            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)) {//Alt+c, Alt+v will also be disabled sadly.
-                alert('PROIBIDO');
-            }
-            return false;
-    };
-       </script>
+
     <style>
         body, html {
             margin: 0;
@@ -132,7 +96,7 @@ devtoolIsOpening();
 
         // 
         if (id === "globo") {
-            document.body.innerHTML = '<iframe src="/%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%B7%D0%BD%D0%B0%D0%BA/token.html?id=LyVEMCVCRSVEMCVCMSVEMSU4OSVEMCVCNSVEMSU4MSVEMSU4MiVEMCVCMiVEMCVCNSVEMCVCRCVEMCVCNyVEMCVCRCVEMCVCMCVEMCVCQS9jenAuaHRtbD9rPWFIUjBjSE02THk5d2JHRjVMbWR5WVhScGN5OWpMMk12Y0d4aGVTNXdhSEEvZGoxbmJHOWliMU5R" width="100%" height="100%" scrolling="no" allow="encrypted-media" allowfullscreen="true" frameborder="0"></iframe>';
+            document.body.innerHTML = '<iframe src="/%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%B7%D0%BD%D0%B0%D0%BA/token.html?id=LyVEMCVCRSVEMCVCMSVEMSU4OSVEMCVCNSVEMSU4MSVEMSU4MiVEMCVCMiVEMCVCNSVEMCVCRCVEMCVCNyVEMCVCRCVEMCVCMCVEMCVCQS96YnYuaHRtbD91PWFIUjBjSE02THk5alpDNXdiR0Y1WlhKMGRpNXZjbWN2Wnk5bkxuQm9jRDlwWkQweE1qYzNPRFEwTmc9PQ==" width="100%" height="100%" scrolling="no" allow="encrypted-media" allowfullscreen="true" frameborder="0"></iframe>';
         } else if (id === "bandsports") {
             document.body.innerHTML = '<iframe src="/%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%B7%D0%BD%D0%B0%D0%BA/token.html?id=LyVEMCVCRSVEMCVCMSVEMSU4OSVEMCVCNSVEMSU4MSVEMSU4MiVEMCVCMiVEMCVCNSVEMCVCRCVEMCVCNyVEMCVCRCVEMCVCMCVEMCVCQS9nLmh0bWw/Zz1hSFIwY0hNNkx5OWtNWEk1TkhweWQyRXpaMjVzYnk1amJHOTFaR1p5YjI1MExtNWxkQzlzYVhabGMzUnZjbVV4TURNdmMzUnlaV0Z0TDJoc2N5OHlPVEF2TWprd0xtMXdaQT09JmsxPU56UTBPREV4T1RSaVpqTXlOemMwWlRCallqUTBZVEZrTnpGa05tTmpNVGs9JmsyPU5HSm1aREkxWW1NNU5ERTVaakZqTnpGbE0yVmxPR1UyWW1ZMVkyTm1NbUU9" width="100%" height="100%" scrolling="no" allow="encrypted-media" allowfullscreen="true" frameborder="0"></iframe>';
 	} else if (id === "bandsports2") {
