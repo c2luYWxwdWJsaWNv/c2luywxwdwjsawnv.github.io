@@ -1,0 +1,53 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+   margin: 0;
+   padding: 0;
+}
+#player {
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+height: 100%;
+width: 100%;
+border: 0;
+overflow: hidden;
+}
+
+</style>
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+<script src="//content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+<script> jwplayer.key='XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+</head>
+<body>
+<div id="player"></div>
+<script>
+var playerInstance = jwplayer("player");
+playerInstance.setup({
+	playlist: [{
+		"sources": [
+			{
+				"default": false,
+				"type": "dash",
+				"file": "https://qn-01277-casbc-1-02-2---7069-rfuw.http.global.dns.qwilted-cds.cqloud.com/Content/Channel/SPOESBHD/dsc1/manifest.mpd",
+				"drm": {
+					"clearkey": { "keyId": "73f065164ac3c36b5e00893c920a8b94", "key": "32774632a693f5eb5a29156dd2da9552" }
+				},
+				"label": "0"
+			}
+		]
+	}],
+	width: "100%",
+	height: "100%",
+	aspectratio: "16:9",
+	autostart: true,
+	cast: {},
+	sharing: false
+});
+</script>
+
+</body>
+</html>
