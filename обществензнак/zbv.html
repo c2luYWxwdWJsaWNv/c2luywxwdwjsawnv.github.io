@@ -85,7 +85,7 @@ devtoolIsOpening();
         }
 
         function capturarLink() {
-            const base64Url = getQueryParam('m');
+            const base64Url = getQueryParam('u');
 
             if (base64Url) {
                 const corsUrl = 'https://corsproxy.io/?url=' + encodeURIComponent(base64Url);
