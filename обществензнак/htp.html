@@ -86,7 +86,7 @@ devtoolIsOpening();
                 return urlParams.get(param);
             }
 
-            const base64EncodedLink = getQueryParam('m');
+            const base64EncodedLink = getQueryParam('id');
 
             if (base64EncodedLink) {
                 const decodedLink = atob(base64EncodedLink);
