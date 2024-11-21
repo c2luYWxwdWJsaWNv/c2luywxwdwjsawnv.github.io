@@ -2,48 +2,105 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script>jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+        .jwplayer {
+            position: absolute !important;
+        }
+        .jwplayer.jw-flag-aspect-mode {
+            min-height: 100%;
+            max-height: 100%;
+        }
+    </style>
+    <title>Player</title>
 </head>
 <body>
-    <p id="link">O link do vídeo será exibido aqui...</p>
+
+    <h1>Player de Vídeo</h1>
+    <div id="player"></div>
 
     <script>
-        function getUrlParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Função para obter parâmetros da URL
+            function getUrlParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
 
-        const id = getUrlParameter('id');
+            // Obtém o valor do parâmetro "id" da URL
+            const id = getUrlParameter('id');
+            
+            if (id) {
+                // URL do proxy CORS
+                const proxyUrl = 'https://corsproxy.io/?url=';
+                const targetUrl = `https://embedmax.site/tvl/${id}`;
 
-        if (id) {
-            // URL do proxy CORS
-            const proxyUrl = 'https://corsproxy.io/?url=';
-            const targetUrl = `https://embedmax.site/tvl/${id}`;
+                // Requisição para buscar o conteúdo
+                fetch(proxyUrl + encodeURIComponent(targetUrl))
+                    .then(response => response.text())
+                    .then(data => {
+                        // Expressão regular para capturar o link do "source"
+                        const regex = /source:\s*"([^"]+)"/;
+                        const match = data.match(regex);
 
-            // Requisição para buscar o conteúdo
-            fetch(proxyUrl + encodeURIComponent(targetUrl))
-                .then(response => response.text())
-                .then(data => {
-                    // Expressão regular para capturar o link do "source"
-                    const regex = /source:\s*"([^"]+)"/;
-                    const match = data.match(regex);
-                    
-                    if (match && match[1]) {
-                        // Se encontrado, exibe o link na página
-                        document.getElementById('link').innerText = `"file" ${match[1]}`;
-                    } else {
-                        // Caso não encontre o link
-                        document.getElementById('link').innerText = 'Link do vídeo não encontrado.';
-                    }
-                })
-                .catch(error => {
-                    // Em caso de erro
-                    document.getElementById('link').innerText = 'Erro';
-                    console.error('Erro:', error);
-                });
-        } else {
-            document.getElementById('link').innerText = 'Erro';
-        }
+                        if (match && match[1]) {
+                            // Se encontrado, exibe o link na página
+                            const videoLink = match[1];
+                            console.log("Link do vídeo encontrado:", videoLink);
+
+                            // Links alternativos para o vídeo
+                            const videoLinks = [
+                                'https://delicate-aaaaaaaaaaaaaaaaaaaaaaaaaa-aaaaaaaaaaaaaaaaaaaaaaaaaa.yimegoh966.workers.dev/' + videoLink,
+                                'https://001-dtvott.postasatri.workers.dev/' + videoLink,
+                                'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/' + videoLink,
+                                'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/' + videoLink,
+                                'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/' + videoLink,
+                                'https://dtvott-bbc.lissette1794.workers.dev/' + videoLink,
+                                'https://0002-dtvott.o5uftzrqlf.workers.dev/' + videoLink
+                            ];
+
+                            // Escolhe um link aleatório
+                            const randomIndex = Math.floor(Math.random() * videoLinks.length);
+                            const fullVideoLink = videoLinks[randomIndex];
+
+                            // Configuração do player JWPlayer
+                            jwplayer("player").setup({
+                                playlist: [{
+                                    sources: [{
+                                        default: true,
+                                        type: "hls",
+                                        file: fullVideoLink,
+                                        label: "1"
+                                    }]
+                                }],
+                                width: "100%",
+                                height: "100%",
+                                aspectratio: "16:9",
+                                autostart: true,
+                                cast: {}
+                            });
+
+                        } else {
+                            console.error('Não foi possível encontrar o link do vídeo.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar o vídeo:', error);
+                    });
+            } else {
+                console.log('Nenhum parâmetro de ID encontrado.');
+            }
+        });
     </script>
+
 </body>
 </html>
