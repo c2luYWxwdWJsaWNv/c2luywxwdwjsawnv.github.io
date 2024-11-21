@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <p id="link">O link do vídeo será exibido aqui...</p>
+
+    <script>
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        const id = getUrlParameter('id');
+
+        if (id) {
+            // URL do proxy CORS
+            const proxyUrl = 'https://corsproxy.io/?url=';
+            const targetUrl = `https://embedmax.site/tvl/${id}`;
+
+            // Requisição para buscar o conteúdo
+            fetch(proxyUrl + encodeURIComponent(targetUrl))
+                .then(response => response.text())
+                .then(data => {
+                    // Expressão regular para capturar o link do "source"
+                    const regex = /source:\s*"([^"]+)"/;
+                    const match = data.match(regex);
+                    
+                    if (match && match[1]) {
+                        // Se encontrado, exibe o link na página
+                        document.getElementById('link').innerText = `"file" ${match[1]}`;
+                    } else {
+                        // Caso não encontre o link
+                        document.getElementById('link').innerText = 'Link do vídeo não encontrado.';
+                    }
+                })
+                .catch(error => {
+                    // Em caso de erro
+                    document.getElementById('link').innerText = 'Erro';
+                    console.error('Erro:', error);
+                });
+        } else {
+            document.getElementById('link').innerText = 'Erro';
+        }
+    </script>
+</body>
+</html>
