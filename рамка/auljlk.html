@@ -1,0 +1,237 @@
+<script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+if (window.top == window.self) {
+	window.location.href = "https://www.google.com.br/";
+}
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.onkeydown = function(e) {
+        if (e.ctrlKey && 
+            (e.keyCode === 67 || 
+             e.keyCode === 86 || 
+			 e.keyCode === 83 || 
+             e.keyCode === 85 || 
+			 e.keyCode === 80 || 
+			 e.keyCode === 123 || 
+			 e.keyCode === 73 || 
+             e.keyCode === 74 ||  
+             e.keyCode === 117)) {
+            alert('PROIBIDO');
+            return false;
+        } else {
+            return true;
+        }
+};
+	
+$(document).bind('keydown', function(e) {
+  if(e.ctrlKey && (e.which == 83)) {
+    e.preventDefault();
+    alert('PROIBIDO');
+    return false;
+  }
+});
+$(document).keydown(function (event) {
+    if (event.keyCode == 123) { // Prevent F12
+        return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+        return false;
+    }
+});
+$(document).on("contextmenu", function (e) {        
+    e.preventDefault();
+});
+
+function devtoolIsOpening() {
+    console.clear();
+    let before = new Date().getTime();
+    debugger;
+    let after = new Date().getTime();
+    if (after - before > 200) {
+        document.write("OFF-LINE");
+        window.location.replace("https://www.google.com.br/");
+    }
+    setTimeout(devtoolIsOpening, 100);
+}
+devtoolIsOpening();
+</script>
+    <script type="text/javascript">
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+    }, false);
+    document.onkeydown = function(e) {
+        if (event.keyCode == 123) {
+         return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'U'.charCodeAt(0)){
+         return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+         return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
+         return false;
+        }
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+         return false;
+        }
+        if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+         return false;
+        }
+    }
+    </script>
+ <script>
+    /*function check(e)
+    {
+    alert(e.keyCode);
+    }*/
+    document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 117)) {//Alt+c, Alt+v will also be disabled sadly.
+                alert('DESABILITADO');
+            }
+            return false;
+    };
+       </script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            overflow: hidden;
+        }
+    </style>
+    <meta name="referrer" content="no-referrer">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css"></link>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script>
+        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+    </script>
+</head>
+
+<body>
+    <div id="player"></div>
+    </div>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+            var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var id = getParameterByName('id');
+        if (id == "#") {
+            alert('Pagina Anterior');
+        }
+
+        // Timer script
+        var timerElement = document.getElementById('timer');
+        var loadingTimerElement = document.getElementById('loading-timer');
+        var timeLeft = 30;
+
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                timerElement.textContent = '00';
+                loadingTimerElement.style.display = 'none'; // Hide the timer when done
+                return;
+            }
+            timerElement.textContent = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+            timeLeft--;
+        }
+
+        setInterval(updateTimer, 1000);
+
+        // Setup JWPlayer
+        var url, k;
+               if (id == "stv1") {
+                        url = 'https://d1wwtskvr1r98k.cloudfront.net/out/v1/cf21a2135bf34023bac760360f637ce2/index.mpd';
+                        k = "c2bafcac3df54021b0fc11484817c9ae:e324157e4a0a41ba2ec4d627f3eaaf48";
+
+                } else if (id == "stv2") {
+                        url = 'https://d1wwtskvr1r98k.cloudfront.net/out/v1/208c57f14bb24c4484c0c4caeaab20e3/index.mpd';
+                        k = "52bb5b737b3c4074b5c636a3fa2e85ca:460b1e865d319531e6cdf586176b4a32";
+
+                } else if (id == "stv3") {
+                        url = 'https://d31ii3fk8fd7mh.cloudfront.net/out/v1/21ff683173064914834b140be21515bd/index.mpd';
+                        k = "857efac58e5d4bb5808a7075197247ec:8ea10f07f9625af19d302a82fbf88801";
+
+                } 
+
+        if (typeof k2 !== 'undefined') {
+            const kid = (k.substr(0, 32));
+            const key = (k.substr(33, 65));
+            const kid2 = (k2.substr(0, 32));
+            const key2 = (k2.substr(33, 65));
+            var playerInstance = jwplayer("player");
+            playerInstance.setup({
+                playlist: [{
+                    "sources": [{
+                        "default": false,
+                        "type": "dash",
+                        "file": url,
+                        "drm": {
+                            "clearkey": {
+                                "keyId": kid,
+                                "key": key
+                            },
+                            "clearkey": {
+                                "keyId": kid2,
+                                "key": key2
+                            }
+                        },
+                        "label": "0"
+                    }]
+                }],
+                width: "100%",
+                height: "100%",
+                aspectratio: "16:9",
+                stretching: "exactfit",
+                autostart: true,
+                cast: {},
+                sharing: false
+            });
+        } else {
+            const kid = (k.substr(0, 32));
+            const key = (k.substr(33, 65));
+            var playerInstance = jwplayer("player");
+            playerInstance.setup({
+                playlist: [{
+                    "sources": [{
+                        "default": false,
+                        "type": "dash",
+                        "file": url,
+                        "drm": {
+                            "clearkey": {
+                                "keyId": kid,
+                                "key": key
+                            }
+                        },
+                        "label": "0"
+                    }]
+                }],
+                width: "100%",
+                height: "100%",
+                aspectratio: "16:9",
+                autostart: true,
+                cast: {},
+                sharing: false
+            });
+        }
+    </script>
+</body>
+</html>
