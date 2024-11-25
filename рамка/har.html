@@ -1,5 +1,59 @@
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+<script>
+if (window.top == window.self) {
+    window.location.href = "https://www.google.com.br/";
+}
 
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.onkeydown = function(e) {
+    if (e.ctrlKey && 
+        (e.keyCode === 67 || 
+        e.keyCode === 86 || 
+        e.keyCode === 83 || 
+        e.keyCode === 85 || 
+        e.keyCode === 80 || 
+        e.keyCode === 123 || 
+        e.keyCode === 73 || 
+        e.keyCode === 74 ||  
+        e.keyCode === 117)) {
+        alert('PROIBIDO');
+        return false;
+    } else {
+        return true;
+    }
+};
+    
+$(document).bind('keydown', function(e) {
+  if(e.ctrlKey && (e.which == 83)) {
+    e.preventDefault();
+    alert('DESATIVADO');
+    return false;
+  }
+});
+$(document).keydown(function (event) {
+    if (event.keyCode == 123) { 
+        return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {         
+        return false;
+    }
+});
+$(document).on("contextmenu", function (e) {        
+    e.preventDefault();
+});
+
+function devtoolIsOpening() {
+    console.clear();
+    let before = new Date().getTime();
+    debugger;
+    let after = new Date().getTime();
+    if (after - before > 200) {
+        document.write("PROIBIDO");
+        window.location.replace("https://www.google.com.br/");
+    }
+    setTimeout(devtoolIsOpening, 100);
+}
+devtoolIsOpening();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
@@ -41,18 +95,15 @@
     var play = getParameterByName('play');
     play = (play == "2") ? "true" : "false";
 
-    // URLs base
     var baseUrls = [
         "https://o5uftzrqlf.o5uftzrqlf.workers.dev/",
         "https://rosohi9200rosohi9200.rosohi9200.workers.dev/",
-        "https://orange-union-orange.rosohi9200.workers.dev/",
-        "https://solitary-channel.rich-gibbon-lfpf.workers.dev/"
+        "https://solitary-channel.rich-gibbon-lfpf.workers.dev/",
+        "https://orange-union-orange.rosohi9200.workers.dev/"
     ];
 
-    // Seleciona uma URL base aleatoriamente
     var baseUrl = baseUrls[Math.floor(Math.random() * baseUrls.length)];
 
-    // Concatena o ID com a URL base
     var finalURL = baseUrl + getURL;
 
 </script>
