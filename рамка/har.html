@@ -98,12 +98,13 @@ devtoolIsOpening();
     var baseUrls = [
         "https://o5uftzrqlf.o5uftzrqlf.workers.dev/",
         "https://rosohi9200rosohi9200.rosohi9200.workers.dev/",
+        "https://glittermprs.balofa5423.workers.dev/",
         "https://solitary-channel.rich-gibbon-lfpf.workers.dev/",
         "https://balofa5423.balofa5423.workers.dev/",
         "https://orange-union-orange.rosohi9200.workers.dev/"
     ];
 
-    var finalURL = ""; // Initializing the final URL variable
+    var finalURL = ""; //
 
     function checkUrl(url, callback) {
         fetch(url, { method: 'HEAD' })
@@ -116,20 +117,20 @@ devtoolIsOpening();
             })
             .catch(error => {
                 console.log(`Erro ao acessar ${url}:`, error);
-                callback(null); // Try the next URL
+                callback(null); // 
             });
     }
 
-    // Try each base URL until one works
+    // 
     function tryUrls(urls, index) {
         if (index < urls.length) {
             let baseUrl = urls[index] + getURL;
             checkUrl(baseUrl, function(validUrl) {
                 if (validUrl) {
                     finalURL = validUrl;
-                    setupPlayer(finalURL); // Setup the player with the valid URL
+                    setupPlayer(finalURL); //
                 } else {
-                    tryUrls(urls, index + 1); // Try the next URL
+                    tryUrls(urls, index + 1); // 
                 }
             });
         } else {
