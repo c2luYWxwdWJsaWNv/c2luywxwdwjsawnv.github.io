@@ -98,10 +98,25 @@
                 height: "100%",
                 aspectratio: "16:9",
                 autostart: true,
-                cast: {}
+                cast: {},
+                events: {
+                    onError: function(event) {
+                        console.error('Erro ao carregar o vídeo:', event);
+                        alert('Ocorreu um erro ao tentar reproduzir o vídeo. Tentando novamente...');
+                        jwplayer("player").load({file: videoUrl});
+                        jwplayer("player").play();
+                    }
+                }
             });
+
+            // Forçando a reprodução
+            jwplayer("player").on('ready', function() {
+                jwplayer("player").play();
+            });
+
         } else {
             console.error('URL do vídeo não encontrada. Por favor, forneça o parâmetro "m".');
+            alert('O link do vídeo não foi encontrado. Verifique a URL e tente novamente.');
         }
     </script>
 </body>
