@@ -45,7 +45,8 @@
     function setupPlayer(url) {
         var playerInstance = jwplayer("player");
         playerInstance.setup({
-            file: url,  // URL do vídeo que será carregado no player
+            file: url,  // URL do arquivo .m3u8
+            type: 'hls',  // Especifica que o conteúdo é HLS (para arquivos .m3u8)
             width: "100%",
             height: "100%",
             aspectratio: "16:9",
