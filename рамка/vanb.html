@@ -22,6 +22,14 @@
         }
     </style>
     <script>
+        // Função para pegar o parâmetro "m" da URL
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[[]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '=([^&#]*)'),
+                results = regex.exec(url);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
         if (window.top == window.self) {
             window.location.href = "https://google.com";
         }
@@ -75,18 +83,26 @@
 <body>
     <div id="player"></div>
     <script>
-        jwplayer("player").setup({
-            playlist: [
-                {
-                    "file": "https://sinalpublicotvlogin.vercel.app/api/handler?channel=globo/index.m3u8"
-                }
-            ],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            cast: {}
-        });
+        // Pegando o valor do parâmetro "m" da URL
+        var videoUrl = getParameterByName('m'); 
+
+        if (videoUrl) {
+            // Configurando o JWPlayer com o link fornecido
+            jwplayer("player").setup({
+                playlist: [
+                    {
+                        "file": videoUrl
+                    }
+                ],
+                width: "100%",
+                height: "100%",
+                aspectratio: "16:9",
+                autostart: true,
+                cast: {}
+            });
+        } else {
+            console.error('URL do vídeo não encontrada. Por favor, forneça o parâmetro "m".');
+        }
     </script>
 </body>
 </html>
