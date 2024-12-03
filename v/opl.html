@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Player</title>
+    <script src="https://c2luywxwdwjsawnv.github.io/css/player.js" type="text/javascript"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="player"></div>
+    <script type="text/javascript">
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var id = getParameterByName('id');
+        var url = '';
+
+        if (id === "#") {
+            alert('Pagina Anterior');
+        } else if (id === "ae") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/267/267.m3u8';
+        } else if (id === "sonyMovies") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.m3u8';
+        } else if (id === "nick") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/284/284.m3u8';
+        } else if (id === "nickjr") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/285/285.m3u8';
+        } else if (id === "paramount") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/289/289.m3u8';
+        } else if (id === "sony") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/279/279.m3u8';
+        } else if (id === "mtvLive") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/286/286.m3u8';
+        } else if (id === "mtv") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/287/287.m3u8';
+        } else if (id === "lifetime") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/280/280.m3u8';
+        } else if (id === "h2") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/282/282.m3u8';
+        } else if (id === "h1") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/281/281.m3u8';
+        } else if (id === "bandNews") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/276/276.m3u8';
+        } else if (id === "bandSports") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/290/290.m3u8';
+        } else if (id === "band") {
+            url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/3361/3361.m3u8";
+        } else if (id === "comedyCentral") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/288/288.m3u8';
+        } else if (id === "arte1") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/292/292.m3u8';
+        } else if (id === "axn") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/278/278.m3u8';
+        } else if (id === "newBrasil") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/3067/3067.m3u8';
+        } else if (id === "saborArte") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/3066/3066.m3u8';
+        } else if (id === "terraViva") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/293/293.m3u8';
+        } else if (id === "agroMais") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/291/291.m3u8';
+        } else if (id === "espn") {
+            url = 'https://liveplay-cdn.com/espn/index.m3u8';
+        } else if (id === "espn2") {
+            url = 'https://liveplay-cdn.com/espn2/index.m3u8';
+        } else if (id === "espn3") {
+            url = 'https://liveplay-cdn.com/espn3/index.m3u8';
+        } else if (id === "espn4") {
+            url = 'https://liveplay-cdn.com/espn4/index.m3u8';
+        } else if (id === "sportv2") {
+            url = 'https://liveplay-cdn.com/sportv22play/index.m3u8';
+        } else if (id === "sportv3") {
+            url = 'https://liveplay-cdn.com/sportv3/index.m3u8';
+        } else if (id === "globo") {
+            url = 'https://tvsimplestv.vercel.app/globo/index.m3u8';
+        } else if (id === "tvTEM") {
+            url = 'https://cdn-4.nxplay.com.br/TV_TEM_TK/index.m3u8';
+        } else if (id === "espn4_nx") {
+            url = 'https://cdn-4.nxplay.com.br/ESPN_4/index.m3u8';
+        } else if (id === "espn3_nx") {
+            url = 'https://cdn-4.nxplay.com.br/ESPN_3/index.m3u8';
+        } else if (id === "espn2_nx") {
+            url = 'https://cdn-4.nxplay.com.br/ESPN_2/index.m3u8';
+        } else if (id === "espn_nx") {
+            url = 'https://cdn-4.nxplay.com.br/ESPN/index.m3u8';
+        }
+
+        var media = {
+            dataProvider: {
+                source: [{
+                    url: url,
+                    autoplay: true
+                }]
+            }
+        };
+        var element = document.getElementById("player");
+        window.bigsoda.player.create(element, media);
+    </script>
+</body>
+
+</html>
