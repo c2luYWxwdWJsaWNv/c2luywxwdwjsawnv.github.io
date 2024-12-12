@@ -38,7 +38,7 @@
                 return;
             }
 
-            const url = "https://corsproxy.io/?url=https://sinalpublicodntv.vercel.app/" + videoId;
+            const url = "https://sinalpublicodntv.vercel.app/" + videoId;
 
             function fetchPlayerConfig() {
                 fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
