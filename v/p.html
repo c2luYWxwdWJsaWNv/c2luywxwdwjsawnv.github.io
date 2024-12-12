@@ -6,9 +6,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
 <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-<script>
-    jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-</script>
+<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
 <style type="text/css">
     body {
         margin: 0;
@@ -37,12 +35,14 @@
         }
 
         const videoId = getQueryParam('m');
+        let playerInitialized = false; 
 
         if (videoId) {
-
             const url = "https://sinalchtv.vercel.app/" + videoId;
 
             function fetchPlayerConfig() {
+                if (playerInitialized) return;  
+
                 fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
                     .then(response => response.text())
                     .then(data => {
@@ -84,6 +84,8 @@
                                 autostart: true,
                                 cast: {}
                             });
+
+                            playerInitialized = true; 
 
                         } else {
                             showError("Link de vídeo não encontrado no conteúdo.");
