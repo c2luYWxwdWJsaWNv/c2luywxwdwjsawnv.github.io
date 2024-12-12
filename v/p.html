@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const url = "https://sinalchtv.vercel.app/" + videoId;
 
         function fetchPlayerConfig() {
-            if (playerInitialized) return;  // Impede que o player seja carregado novamente
+            if (playerInitialized) return;  
 
             fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
                 .then(response => response.text())
@@ -60,13 +60,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
 
                         const videoLinks = [
-                            'https://delicate-aaaaaaaaaaaaaaaaaaaaaaaaaa-aaaaaaaaaaaaaaaaaaaaaaaaaa.yimegoh966.workers.dev/' + videoLink,
+                            'https://0002-dtvott.o5uftzrqlf.workers.dev/' + videoLink,
                             'https://001-dtvott.postasatri.workers.dev/' + videoLink,
+                            'https://dtvott-classe-globo.jeowoa.workers.dev/' + videoLink,
                             'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/' + videoLink,
                             'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/' + videoLink,
                             'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/' + videoLink,
                             'https://dtvott-bbc.lissette1794.workers.dev/' + videoLink,
-                            'https://0002-dtvott.o5uftzrqlf.workers.dev/' + videoLink
+                            'https://jeowoa.jeowoa.workers.dev/' + videoLink,
+                            'https://delicate-aaaaaaaaaaaaaaaaaaaaaaaaaa-aaaaaaaaaaaaaaaaaaaaaaaaaa.yimegoh966.workers.dev/' + videoLink
                         ];
 
                         const randomIndex = Math.floor(Math.random() * videoLinks.length);
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             cast: {}
                         });
 
-                        playerInitialized = true; // Marque como inicializado
+                        playerInitialized = true; 
 
                     } else {
                         showError("Link de vídeo não encontrado no conteúdo.");
