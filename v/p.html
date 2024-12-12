@@ -38,7 +38,7 @@
 
         if (videoId) {
 
-            const url = "https://corsproxy.io/?url=https://sinalchtv.vercel.app/" + videoId;
+            const url = "https://sinalchtv.vercel.app/" + videoId;
 
             function fetchPlayerConfig() {
                 fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
