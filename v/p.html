@@ -4,40 +4,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
-
+<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
 <style type="text/css">
     body {
         margin: 0;
+        padding: 0;
+        overflow: hidden;
     }
-    .jwplayer {
-        position: absolute !important;
-    }
-    .jwplayer.jw-flag-aspect-mode {
-        min-height: 100%;
-        max-height: 100%;
+
+    #player {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        border: 0;
+        overflow: hidden;
     }
 </style>
-
 <div id="player"></div>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
 
-        // Aqui você pode acessar diretamente o parâmetro 'm', sem base64
-        const videoLinkParam = getQueryParam('m');
+    const videoId = getQueryParam('m');
+    let playerInitialized = false;
 
-        if (videoLinkParam) {
-            const apiUrl = `https://corsproxy.io/?url=https://sinalchtv.vercel.app/${encodeURIComponent(videoLinkParam)}`;
+    if (videoId) {
+        const url = "https://sinalchtv.vercel.app/" + videoId;
 
-            fetch(apiUrl)
+        function fetchPlayerConfig() {
+            if (playerInitialized) return;  // Impede que o player seja carregado novamente
+
+            fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
                 .then(response => response.text())
                 .then(data => {
                     const parser = new DOMParser();
@@ -46,7 +52,9 @@
                     const sourceElement = doc.querySelector('source');
                     if (sourceElement) {
                         const videoLink = sourceElement.getAttribute('src');
-                        console.log("Link do vídeo encontrado:", videoLink);
+                        if (!videoLink) {
+                            throw new Error("Link de vídeo não encontrado");
+                        }
 
                         const videoLinks = [
                             'https://delicate-aaaaaaaaaaaaaaaaaaaaaaaaaa-aaaaaaaaaaaaaaaaaaaaaaaaaa.yimegoh966.workers.dev/' + videoLink,
@@ -61,6 +69,7 @@
                         const randomIndex = Math.floor(Math.random() * videoLinks.length);
                         const fullVideoLink = videoLinks[randomIndex];
 
+                        // Inicializa o player JW
                         jwplayer("player").setup({
                             playlist: [{
                                 sources: [{
@@ -77,19 +86,29 @@
                             cast: {}
                         });
 
+                        playerInitialized = true; // Marque como inicializado
+
                     } else {
-                        console.error('Não foi possível encontrar o link do vídeo.');
+                        showError("Link de vídeo não encontrado no conteúdo.");
                     }
                 })
                 .catch(error => {
-                    console.error('Erro ao carregar o vídeo:', error);
+                    showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
+                    console.error(error);
                 });
-        } else {
-            console.log('Nenhum parâmetro de ID encontrado.');
         }
-    });
-</script>
 
+        fetchPlayerConfig();
+    } else {
+        showError("ID de vídeo não encontrado na URL.");
+    }
+
+    function showError(message) {
+        const playerDiv = document.getElementById('player');
+        playerDiv.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${message}</div>`;
+    }
+});
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script type="86514701dc429a0bf601b774-text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
