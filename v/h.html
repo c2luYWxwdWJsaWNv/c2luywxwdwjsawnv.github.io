@@ -28,87 +28,90 @@
 </style>
 <div id="player"></div>
 <script>
-    window.addEventListener("load", function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoId = urlParams.get('m');
-        
-        if (!videoId) {
-            console.error("Video ID não fornecido.");
-            return;
-        }
+        window.addEventListener("load", function () {
 
-        const url = "https://sinalpublicodntv.vercel.app/" + videoId;
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoId = urlParams.get('m');
+            
+            if (!videoId) {
+                console.error("false");
+                return;
+            }
 
-        function fetchPlayerConfig() {
-            fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
-                .then(response => response.text())  
-                .then(htmlContent => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(htmlContent, "text/html");
-                    const scripts = doc.querySelectorAll("script");
-                    let playerScript = null;
+            const url = "https://sinalpublicodntv.vercel.app/" + videoId;
 
-                    scripts.forEach(script => {
-                        if (script.textContent.includes("var playerInstance = jwplayer")) {
-                            playerScript = script.textContent.trim();
-                        }
-                    });
+            function fetchPlayerConfig() {
+                fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
+                    .then(response => response.text())  
+                    .then(htmlContent => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(htmlContent, "text/html");
+                        const scripts = doc.querySelectorAll("script");
+                        let playerScript = null;
 
-                    if (playerScript) {
-                        const fileRegex = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g;
-                        const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
-                        
-                        let fileMatch = fileRegex.exec(playerScript);
-                        let drmKeys = [];
-                        let videoUrl = fileMatch ? fileMatch[1] : null;
+                        scripts.forEach(script => {
+                            if (script.textContent.includes("var playerInstance = jwplayer")) {
+                                playerScript = script.textContent.trim();
+                            }
+                        });
 
-                        let keyMatch;
-                        while ((keyMatch = drmKeyRegex.exec(playerScript)) !== null) {
-                            drmKeys.push({
-                                keyId: keyMatch[1],
-                                key: keyMatch[2]
-                            });
-                        }
+                        if (playerScript) {
 
-                        const playerConfig = {
-                            playlist: [{
-                                sources: [{
-                                    default: false,
-                                    type: "application/dash+xml",
-                                    file: videoUrl,
-                                    label: '0'
-                                }]
-                            }],
-                            width: "100%",
-                            height: "100%",
-                            aspectratio: "16:9",
-                            autostart: true,
-                            cast: {},
-                            sharing: false
-                        };
+                            const fileRegex = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g;
+                            const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
+                            
+                            let fileMatch = fileRegex.exec(playerScript);
+                            let drmKeys = [];
+                            let videoUrl = fileMatch ? fileMatch[1] : null;
 
-                        if (drmKeys.length > 0) {
-                            playerConfig.playlist[0].sources[0].drm = {
-                                clearkey: {
-                                    keyId: drmKeys[0].keyId,
-                                    key: drmKeys[0].key
-                                }
+                            let keyMatch;
+                            while ((keyMatch = drmKeyRegex.exec(playerScript)) !== null) {
+                                drmKeys.push({
+                                    keyId: keyMatch[1],
+                                    key: keyMatch[2]
+                                });
+                            }
+
+                            const playerConfig = {
+                                playlist: [{
+                                    sources: [{
+                                        default: false,
+                                        type: "application/dash+xml",
+                                        file: videoUrl,
+                                        label: '0'
+                                    }]
+                                }],
+                                width: "100%",
+                                height: "100%",
+                                aspectratio: "16:9",
+                                autostart: true,
+                                cast: {},
+                                sharing: false
                             };
+
+                            if (drmKeys.length > 0) {
+                                playerConfig.playlist[0].sources[0].drm = {
+                                    clearkey: {
+                                        keyId: drmKeys[0].keyId,
+                                        key: drmKeys[0].key
+                                    }
+                                };
+                            }
+
+                            var playerInstance = jwplayer("player");
+                            playerInstance.setup(playerConfig);
+                            
+                        } else {
+                            console.error("false");
                         }
+                    })
+                    .catch(error => {
+                        console.error("false", error);
+                    });
+            }
 
-                        var playerInstance = jwplayer("player");
-                        playerInstance.setup(playerConfig);
-                    } else {
-                        console.error("Configuração do player não encontrada.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro ao buscar a configuração do player:", error);
-                });
-        }
-
-        fetchPlayerConfig();
-    });
+            fetchPlayerConfig();
+        });
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
