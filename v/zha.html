@@ -53,13 +53,18 @@
     var play = getParameterByName('play');
     play = (play === "2") ? "true" : "false";
 
-    var baseUrls = [
+    const baseUrls = [
         "https://steep-forest-8c47.gonero1637.workers.dev/",
         "https://getmidiastreamtv.ucdtv.workers.dev/",
         "https://sinalpublicochannels.lissette1794.workers.dev/",
         "https://uztptv.ucdtv.workers.dev/",
         "https://gonero1637.gonero1637.workers.dev/"
     ];
+
+    // Função para obter uma URL aleatória
+    function getRandomUrl(urls) {
+        return urls[Math.floor(Math.random() * urls.length)];
+    }
 
     var finalURL = "";
 
@@ -75,28 +80,24 @@
             })
             .catch(error => {
                 console.log(`Erro ao acessar ${url}:`, error);
-                callback(null);
+                callback(null); // URL não válida
             });
     }
 
-    // Função recursiva para tentar cada URL até encontrar uma válida
-    function tryUrls(urls, index) {
-        if (index < urls.length) {
-            let baseUrl = urls[index] + getURL;
-            checkUrl(baseUrl, function(validUrl) {
-                if (validUrl) {
-                    finalURL = validUrl;
-                    setupPlayer(finalURL);
-                } else {
-                    tryUrls(urls, index + 1);  // Tenta o próximo link
-                }
-            });
-        } else {
-            alert("Nenhum dos links funcionou.");
-        }
+    // Função para tentar URLs aleatórias até encontrar uma válida
+    function tryRandomUrl(urls) {
+        let randomUrl = getRandomUrl(urls) + getURL;
+        checkUrl(randomUrl, function(validUrl) {
+            if (validUrl) {
+                finalURL = validUrl;
+                setupPlayer(finalURL);
+            } else {
+                tryRandomUrl(urls);  // Tenta novamente se a URL não for válida
+            }
+        });
     }
 
-    tryUrls(baseUrls, 0); // Inicia a verificação das URLs
+    tryRandomUrl(baseUrls);  // Inicia a tentativa com URLs aleatórias
 
     // Função para configurar o player
     function setupPlayer(url) {
