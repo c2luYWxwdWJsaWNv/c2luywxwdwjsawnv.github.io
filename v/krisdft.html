@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            overflow: hidden;
+        }
+        .jwplayer {
+            position: absolute !important;
+        }
+
+        .jwplayer.jw-flag-aspect-mode {
+            min-height: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="player"></div>
+    <script>
+// Função para obter o valor de um parâmetro de URL
+function getParameterByName(paramName) {
+  // Escapa os caracteres especiais que podem ser usados no nome do parâmetro
+  paramName = paramName.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+
+  // Cria uma expressão regular para procurar o parâmetro na query string da URL
+  var regex = new RegExp("[\\?&]" + paramName + "=([^&#]*)");
+  
+  // Executa a regex na URL da página
+  var result = regex.exec(location.search);
+  
+  // Retorna o valor do parâmetro ou uma string vazia caso o parâmetro não exista
+  return result === null ? '' : decodeURIComponent(result[1].replace(/\+/g, " "));
+}
+
+// Obtém o valor do parâmetro 'id' na URL
+var id = getParameterByName('id');
+
+// Se o valor do parâmetro 'id' for '#', exibe um alerta
+if (id === '#') {
+  alert("Página Anterior");
+}
+
+// Elementos da página relacionados ao temporizador
+var timerElement = document.getElementById("timer");
+var loadingTimerElement = document.getElementById("loading-timer");
+
+// Tempo inicial do temporizador (30 segundos)
+var timeLeft = 30;
+
+// Função para atualizar o temporizador na página
+function updateTimer() {
+  if (timeLeft <= 0) {
+    // Quando o tempo acabar, mostra '00' e oculta o elemento de carregamento
+    timerElement.textContent = '00';
+    loadingTimerElement.style.display = "none";
+    return;
+  }
+  
+  // Exibe o tempo restante no formato de dois dígitos
+  timerElement.textContent = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+  
+  // Decrementa o tempo restante
+  timeLeft--;
+}
+
+// Atualiza o temporizador a cada segundo
+setInterval(updateTimer, 1000);
+
+// Declaração de variáveis não utilizadas no código fornecido
+var url;
+var k;
+if (id == "band") {
+  url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/3361/3361.mpd";
+  k = '3b43a1fbcf57cfe04109fbc1b381ac79:a23de064124dfddeaf3c23490d96328b';
+} else {
+  if (id == "sonyMovies") {
+    url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/1475/1475.mpd";
+    k = "99a33ed8fd9e660b42ae6be5c889bf6d:e1bdf81bc16ef854b1959802e9dfc5b1";
+  } else {
+    if (id == "warner") {
+      url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/277/277.mpd";
+      k = 'ff12e06c66327cd35b99013b38dd4f84:08320e9a44185e55074ac435d8c9a856';
+    } else {
+      if (id == "nick") {
+        url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore105/stream/hls/284/284.mpd";
+        k = "0c74d29a8c41ff6c22e556e0b956a56b:b512a7a7942be22f81f6cfa8bec43a29";
+      } else {
+        if (id == "sony") {
+          url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/279/279.mpd';
+          k = "5e8567bf0707bf910f611e5cf2ef352f:8b30ddee60bb9fe6653f1eb8c9b85d5d";
+        } else {
+          if (id == "paramount") {
+            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/289/289.mpd';
+            k = "7cba7770184e4064ad3fee87a2c67ca2:37653a3bc09133c91a74ede16f9f7ecc";
+          } else {
+            if (id == "mtvLive") {
+              url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/286/286.mpd";
+              k = '85b7f5fffb5a8d24ca5f8e751e2b9c96:a743ab8ad80860d491ed838b98c5946f';
+            } else {
+              if (id == "nickjr") {
+                url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/285/285.mpd";
+                k = "ed94b209506a59055e8f0285a52ed8b1:32ebb702e23c1de489bd6e16d00b12ed";
+              } else {
+                if (id == "lifetime") {
+                  url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/280/280.mpd';
+                  k = "e03395c6b541ce458ecdabeedd3a1081:2f4014c4368720ae639d9a2628baec7c";
+                } else {
+                  if (id == 'h1') {
+                    url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/281/281.mpd";
+                    k = "f7cb42541fbc6043627e4ee025c18300:24843d82b079bbefb73100b887493400";
+                  } else {
+                    if (id == 'h2') {
+                      url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/282/282.mpd';
+                      k = 'f37dac3a60634485c911b94a795f1bcd:7638047141fc5d4ce0c1cbcd3379708b';
+                    } else {
+                      if (id == 'bandNews') {
+                        url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/276/276.mpd';
+                        k = "cb62b82abf7bbcb17b0ccf501c3d735b:4ffbecceb0f8937a7bf3bf0bd5611811";
+                      } else {
+                        if (id == 'bandSports') {
+                          url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/290/290.mpd';
+                          k = "74481194bf32774e0cb44a1d71d6cc19:4bfd25bc9419f1c71e3ee8e6bf5ccf2a";
+                        } else {
+                          if (id == 'comedyCentral') {
+                            url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore105/stream/hls/288/288.mpd';
+                            k = "485ecb01b3e17aa43a46b4726f36d2f2:602459f8cd374e3e2aee7ce92e59d816";
+                          } else {
+                            if (id == "axn") {
+                              url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore105/stream/hls/278/278.mpd";
+                              k = "94ab9056f04692f7d56001515df427e2:c61964807f8cff271093fcc1f906d70e";
+                            } else {
+                              if (id == "saborArte") {
+                                url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore102/stream/hls/3066/3066.m3u8';
+                                k = '';
+                              } else {
+                                if (id == "newBrasil") {
+                                  url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore106/stream/hls/3067/3067.m3u8";
+                                  k = '';
+                                } else {
+                                  if (id == 'ae') {
+                                    url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore103/stream/hls/267/267.m3u8";
+                                    k = '';
+                                  } else {
+                                    if (id == 'mtv') {
+                                      url = 'https://d1r94zrwa3gnlo.cloudfront.net/livestore105/stream/hls/287/287.mpd';
+                                      k = '';
+                                    } else {
+                                      if (id == "arte1") {
+                                        url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore104/stream/hls/292/292.m3u8";
+                                        k = '';
+                                      } else {
+                                        if (id == "agroMais") {
+                                          url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore105/stream/hls/291/291.m3u8";
+                                          k = '';
+                                        } else if (id == "terraViva") {
+                                          url = "https://d1r94zrwa3gnlo.cloudfront.net/livestore105/stream/hls/293/293.m3u8";
+                                          k = '';
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Inicializa o player JWPlayer com o ID "player"
+var playerInstance = jwplayer("player");
+
+// Verifica se a URL termina com ".m3u8" (formato HLS)
+if (url.endsWith(".m3u8")) {
+  playerInstance.setup({
+    'playlist': [{
+      'sources': [{
+        'file': url, // URL do arquivo HLS
+        'type': 'hls', // Tipo de mídia HLS
+        'label': "HLS" // Rótulo do tipo de mídia
+      }]
+    }],
+    'width': "100%",          // Largura do player
+    'height': "100%",         // Altura do player
+    'aspectratio': "16:9",    // Proporção do player
+    'autostart': true,        // Iniciar automaticamente
+    'cast': true,             // Suporte a casting (ex: Chromecast)
+    'sharing': false          // Desabilitar compartilhamento
+  });
+} 
+// Verifica se a URL termina com ".mpd" (formato DASH)
+else if (url.endsWith(".mpd")) {
+  // Extrai o "kid" (ID da chave) e o "key" (chave de criptografia) de 'k'
+  const kid = k.substr(0, 32); // Extrai os primeiros 32 caracteres para o 'kid'
+  const key = k.substr(32, 64); // Extrai os próximos 64 caracteres para a 'key'
+  
+  playerInstance.setup({
+    'playlist': [{
+      'sources': [{
+        'file': url, // URL do arquivo DASH
+        'type': 'dash', // Tipo de mídia DASH
+        'drm': {
+          'clearkey': {
+            'keyId': kid, // ID da chave
+            'key': key    // Chave de criptografia
+          }
+        },
+        'label': "DASH" // Rótulo do tipo de mídia
+      }]
+    }],
+    'width': "100%",          // Largura do player
+    'height': "100%",         // Altura do player
+    'aspectratio': "16:9",    // Proporção do player
+    'autostart': true,        // Iniciar automaticamente
+    'cast': true,             // Suporte a casting (ex: Chromecast)
+    'sharing': false          // Desabilitar compartilhamento
+  });
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+<script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
+<script type="text/javascript" src="/clear/assets/js/front.scripts.min.js" id="scripts-js"></script><script type="text/javascript" id="live_search-js-extra">/* </script><script type="text/javascript" src="/clear/assets/js/front.livesearch.min.js" id="live_search-js"></script><img src="" style="display:none"><script src="/lib/burn.min.js"></script><script>function _0x24f5(){const _0x12318b=['vendor','45MNDuxq','1295048MswmyX','4109TIMJJU','15105WziaIW','1086956QWSukO','location','1598268CgAKIz','test','reload','358658yOQJLB','3zvekCp','110OuoWjl','documentElement','innerHTML','37500ukWjeZ','1164UHRwil','8RqbWRz'];_0x24f5=function(){return _0x12318b;};return _0x24f5();}function _0x4d2a(_0x4c40c0,_0x51f5f8){const _0x24f557=_0x24f5();return _0x4d2a=function(_0x4d2ae9,_0x33fbac){_0x4d2ae9=_0x4d2ae9-0x1ae;let _0x11fd0e=_0x24f557[_0x4d2ae9];return _0x11fd0e;},_0x4d2a(_0x4c40c0,_0x51f5f8);}(function(_0x2e28d3,_0x426a26){const _0x4605cd=_0x4d2a,_0x7bd50a=_0x2e28d3();while(!![]){try{const _0x56f249=parseInt(_0x4605cd(0x1b3))/0x1+parseInt(_0x4605cd(0x1ae))/0x2+-parseInt(_0x4605cd(0x1b4))/0x3*(-parseInt(_0x4605cd(0x1bd))/0x4)+parseInt(_0x4605cd(0x1bf))/0x5*(parseInt(_0x4605cd(0x1b9))/0x6)+parseInt(_0x4605cd(0x1be))/0x7*(parseInt(_0x4605cd(0x1ba))/0x8)+parseInt(_0x4605cd(0x1bc))/0x9*(parseInt(_0x4605cd(0x1b8))/0xa)+parseInt(_0x4605cd(0x1b5))/0xb*(-parseInt(_0x4605cd(0x1b0))/0xc);if(_0x56f249===_0x426a26)break;else _0x7bd50a['push'](_0x7bd50a['shift']());}catch(_0x974cd6){_0x7bd50a['push'](_0x7bd50a['shift']());}}}(_0x24f5,0x79edb));function isMobile(){const _0x105953=_0x4d2a;let _0x5a2e16=![];return function(_0x2a550e){const _0x1d2ec3=_0x4d2a;if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i[_0x1d2ec3(0x1b1)](_0x2a550e)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i[_0x1d2ec3(0x1b1)](_0x2a550e['substr'](0x0,0x4)))_0x5a2e16=!![];}(navigator['userAgent']||navigator[_0x105953(0x1bb)]||window['opera']),_0x5a2e16;}if(isMobile()){}else devtools['detect'](function(_0x2ccc01){const _0x11e803=_0x4d2a;_0x2ccc01===!![]?document[_0x11e803(0x1b6)][_0x11e803(0x1b7)]='':window[_0x11e803(0x1af)][_0x11e803(0x1b2)](![]);});</script><div id="oscuridad"></div>
+
+<script type="text/javascript">
+    document.addEventListener("contextmenu", function(e){
+        e.preventDefault();
+    }, false);
+
+    document.onkeydown = function(e) {
+      
+        if (e.keyCode == 123) {
+            e.preventDefault();
+            return false;
+        }
+
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+            return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+            return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+            e.preventDefault();
+            return false;
+        }
+
+        if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+            e.preventDefault();
+            return false;
+        }
+
+        if (e.ctrlKey && e.key === 'u') {
+            e.preventDefault();
+            return false;
+        }
+
+        if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'x')) {
+            e.preventDefault();
+            return false;
+        }
+    };
+</script>
+
+</body>
+</html>
