@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <script type="text/javascript" charset="utf-8" async="" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+    <script type="text/javascript" src="https://c2luywxwdwjsawnv.github.io/css/player.js" charset="utf-8"></script>
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+    <script type="text/javascript" src="https://acscdn.com/script/suv5.js"></script>
+    <title>Player</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 100%;
+            border: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="player"></div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Função para obter os parâmetros da URL
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            // Obtenção do ID do vídeo
+            const videoId = getQueryParam('m');
+            let playerInitialized = false;
+
+            // Verifique se o videoId existe
+            if (videoId) {
+                const url = "https://sinalchtv.vercel.app/" + videoId;
+
+                function fetchPlayerConfig() {
+                    if (playerInitialized) return;
+
+                    fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
+                        .then(response => response.text())
+                        .then(data => {
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(data, 'text/html');
+
+                            const sourceElement = doc.querySelector('source');
+                            if (sourceElement) {
+                                const videoLink = sourceElement.getAttribute('src');
+                                if (!videoLink) {
+                                    throw new Error("Link de vídeo não encontrado");
+                                }
+
+                                // Lista de links alternativos
+                                const videoLinks = [
+                                    'https://0002-dtvott.o5uftzrqlf.workers.dev/' + videoLink,
+                                    'https://001-dtvott.postasatri.workers.dev/' + videoLink,
+                                    'https://dtvott-classe-globo.jeowoa.workers.dev/' + videoLink,
+                                    'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/' + videoLink,
+                                    'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/' + videoLink,
+                                    'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/' + videoLink,
+                                    'https://automega.urlscamdark.workers.dev/' + videoLink,
+                                    'https://dtvott-bbc.lissette1794.workers.dev/' + videoLink,
+                                    'https://jeowoa.jeowoa.workers.dev/' + videoLink,
+                                    'https://autopage.urlscamdark.workers.dev/' + videoLink,
+                                    'https://delicate-aaaaaaaaaaaaaaaaaaaaaaaaaa-aaaaaaaaaaaaaaaaaaaaaaaaaa.yimegoh966.workers.dev/' + videoLink
+                                ];
+
+                                // Seleciona um link aleatório da lista
+                                const randomIndex = Math.floor(Math.random() * videoLinks.length);
+                                const fullVideoLink = videoLinks[randomIndex];
+
+                                // Configuração do player BigSoda
+                                var media = {
+                                    dataProvider: {
+                                        source: [{
+                                            url: fullVideoLink,
+                                            autoplay: true
+                                        }]
+                                    }
+                                };
+
+                                // Criação do player
+                                var element = document.getElementById("player");
+                                window.bigsoda.player.create(element, media);
+
+                                playerInitialized = true;
+                            } else {
+                                showError("Link de vídeo não encontrado no conteúdo.");
+                            }
+                        })
+                        .catch(error => {
+                            showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
+                            console.error(error);
+                        });
+                }
+
+                fetchPlayerConfig();
+            } else {
+                showError("ID de vídeo não encontrado na URL.");
+            }
+
+            // Função para exibir mensagens de erro
+            function showError(message) {
+                const playerDiv = document.getElementById('player');
+                playerDiv.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${message}</div>`;
+            }
+        });
+    </script>
+</body>
+</html>
