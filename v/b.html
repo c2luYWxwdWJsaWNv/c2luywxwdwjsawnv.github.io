@@ -38,16 +38,16 @@
 
   <script>
     function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+        name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]"); 
         var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
+            results = regex.exec(location.search); 
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
     var getURL = getParameterByName('id');
     
     if (getURL === "#") {
-        alert('Vuelva a la página anterior');
+        alert('anterior');
     }
 
     var play = getParameterByName('play');
@@ -58,14 +58,14 @@
         "https://tvsimplestv.vercel.app/"
     ];
 
-    // Função para obter uma URL aleatória
+
     function getRandomUrl(urls) {
         return urls[Math.floor(Math.random() * urls.length)];
     }
 
     var finalURL = "";
 
-    // Função para verificar se a URL está acessível
+
     function checkUrl(url, callback) {
         fetch(url, { method: 'HEAD' })
             .then(response => {
@@ -77,11 +77,11 @@
             })
             .catch(error => {
                 console.log(`Erro ao acessar ${url}:`, error);
-                callback(null); // URL não válida
+                callback(null); 
             });
     }
 
-    // Função para tentar URLs aleatórias até encontrar uma válida
+
     function tryRandomUrl(urls) {
         let randomUrl = getRandomUrl(urls) + getURL;
         checkUrl(randomUrl, function(validUrl) {
@@ -89,12 +89,12 @@
                 finalURL = validUrl;
                 setupPlayer(finalURL);
             } else {
-                tryRandomUrl(urls);  // Tenta novamente se a URL não for válida
+                tryRandomUrl(urls); 
             }
         });
     }
 
-    tryRandomUrl(baseUrls);  // Inicia a tentativa com URLs aleatórias
+    tryRandomUrl(baseUrls); 
 
     // Função para configurar o player
     function setupPlayer(url) {
@@ -110,7 +110,12 @@
             aspectratio: "16:9",
             autostart: true,
             mute: false,
-            cast: {}
+            cast: {},
+            logo: {
+                file: "https://sinalpublico.netlify.app/imgs/iconpage.png", 
+                position: "top-right",  
+                margin: 1 
+            }
         });
 
         playerInstance.on('play', function() {
