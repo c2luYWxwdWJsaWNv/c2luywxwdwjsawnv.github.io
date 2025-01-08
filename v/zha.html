@@ -30,14 +30,27 @@
       border: 0;
       overflow: hidden;
     }
+
+    #error-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      color: red;
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 5px;
+    }
   </style>
 </head>
 
 <body>
   <div id="player"></div>
+  <div id="error-message" style="display:none;"></div>
 
   <script>
-    
     function getParameterByName(name) {
       name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]"); 
       var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
@@ -45,11 +58,10 @@
       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    
     var getURL = getParameterByName('id');
     
     if (!getURL || getURL === "#") {
-        alert('ID do vídeo não encontrado ou inválido.');
+        showError('ID do vídeo não encontrado ou inválido.');
         return; 
     }
 
@@ -63,14 +75,12 @@
       "https://gonero1637.gonero1637.workers.dev/"
     ];
 
-    
     function getRandomUrl(urls) {
       return urls[Math.floor(Math.random() * urls.length)];
     }
 
     var finalURL = "";
 
-    
     function checkUrl(url, callback) {
       fetch(url, { method: 'HEAD' })
         .then(response => {
@@ -82,14 +92,13 @@
         })
         .catch(error => {
           console.log(`Erro ao acessar ${url}:`, error);
-          callback(null); // URL não válida
+          callback(null); 
         });
     }
 
-   
     function tryRandomUrl(urls, attempts = 0) {
       if (attempts >= urls.length) {
-        console.error("Todas as URLs falharam.");
+        showError("Todas as URLs falharam.");
         return;
       }
 
@@ -106,7 +115,6 @@
 
     tryRandomUrl(baseUrls);  
 
-    
     function setupPlayer(url) {
       var playerInstance = jwplayer("player");
       playerInstance.setup({
@@ -122,11 +130,20 @@
       });
 
       playerInstance.on('play', function() {
-        playerInstance.setCurrentAudioTrack(2); 
+        // Certifique-se de que o número de faixas de áudio seja suficiente
+        if (playerInstance.getAudioTracks().length > 2) {
+          playerInstance.setCurrentAudioTrack(2);
+        }
       });
     }
-</script>
-  
+
+    function showError(message) {
+      const errorDiv = document.getElementById('error-message');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+    }
+  </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script type="86514701dc429a0bf601b774-text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://www.looktotheright.com/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="86514701dc429a0bf601b774-|49" defer></script>
