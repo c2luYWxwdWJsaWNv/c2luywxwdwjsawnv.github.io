@@ -97,7 +97,10 @@
                                 aspectratio: "16:9",
                                 autostart: true,
                                 cast: {},
-                                sharing: false
+                                sharing: false,
+                                logo: {
+                                    file: "https://sinalpublico.netlify.app/imgs/iconmine.png"  
+                                }
                             };
 
                             if (drmKeys.length > 0) {
@@ -110,6 +113,7 @@
                             }
 
                             
+
                             const playerInstance = jwplayer("player");
                             playerInstance.setup(playerConfig);
                             
