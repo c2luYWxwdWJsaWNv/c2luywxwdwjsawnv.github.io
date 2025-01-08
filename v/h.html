@@ -9,7 +9,9 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
   <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-  <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
+  <script> 
+    jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; 
+  </script>
   <style>
     body {
       margin: 0;
@@ -40,7 +42,8 @@
       const videoId = urlParams.get('m');
       
       if (!videoId) {
-        console.error("false");
+        console.error("Parâmetro 'm' não encontrado na URL.");
+        alert("O parâmetro 'm' não foi fornecido para o vídeo.");
         return;
       }
 
@@ -62,7 +65,6 @@
             });
 
             if (playerScript) {
-
               const fileRegex = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g;
               const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
               
@@ -93,7 +95,6 @@
                 autostart: true,
                 cast: {},
                 sharing: false,
-                }
               };
 
               if (drmKeys.length > 0) {
@@ -109,11 +110,11 @@
               playerInstance.setup(playerConfig);
               
             } else {
-              console.error("false");
+              console.error("Script do player não encontrado na página de vídeo.");
             }
           })
           .catch(error => {
-            console.error("false", error);
+            console.error("Erro ao acessar o conteúdo do vídeo:", error);
           });
       }
 
