@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
   <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
   <script>
-    jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; // Chave do JWPlayer
+    jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; 
   </script>
   <style type="text/css">
     body {
@@ -50,10 +50,10 @@
     
     if (!getURL || getURL === "#") {
         alert('ID do vídeo não encontrado ou inválido.');
-        return; // Encerra o código caso o parâmetro 'id' não esteja presente
+        return; 
     }
 
-    var play = getParameterByName('play') === "2" ? true : false; // Condicional simplificado
+    var play = getParameterByName('play') === "2" ? true : false; 
 
     const baseUrls = [
       "https://steep-forest-8c47.gonero1637.workers.dev/",
@@ -63,14 +63,14 @@
       "https://gonero1637.gonero1637.workers.dev/"
     ];
 
-    // Função para escolher uma URL aleatória
+    
     function getRandomUrl(urls) {
       return urls[Math.floor(Math.random() * urls.length)];
     }
 
     var finalURL = "";
 
-    // Função para verificar se a URL é válida
+    
     function checkUrl(url, callback) {
       fetch(url, { method: 'HEAD' })
         .then(response => {
@@ -86,7 +86,7 @@
         });
     }
 
-    // Função para tentar uma URL aleatória até encontrar uma válida
+   
     function tryRandomUrl(urls, attempts = 0) {
       if (attempts >= urls.length) {
         console.error("Todas as URLs falharam.");
@@ -99,12 +99,12 @@
           finalURL = validUrl;
           setupPlayer(finalURL);
         } else {
-          tryRandomUrl(urls, attempts + 1);  // Incrementa o contador de tentativas
+          tryRandomUrl(urls, attempts + 1);  
         }
       });
     }
 
-    tryRandomUrl(baseUrls);  // Inicia as tentativas
+    tryRandomUrl(baseUrls);  
 
     // Função para configurar o player
     function setupPlayer(url) {
@@ -118,11 +118,11 @@
         aspectratio: "16:9",
         autostart: true,
         mute: false,
-        cast: {} // Funcionalidade de cast
+        cast: {} 
       });
 
       playerInstance.on('play', function() {
-        playerInstance.setCurrentAudioTrack(2);  // Ajusta a faixa de áudio
+        playerInstance.setCurrentAudioTrack(2); 
       });
     }
 </script>
