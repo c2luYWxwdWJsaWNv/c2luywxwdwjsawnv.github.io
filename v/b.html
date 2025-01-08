@@ -65,7 +65,6 @@
 
     var finalURL = "";
 
-
     function checkUrl(url, callback) {
         fetch(url, { method: 'HEAD' })
             .then(response => {
@@ -81,7 +80,6 @@
             });
     }
 
-
     function tryRandomUrl(urls) {
         let randomUrl = getRandomUrl(urls) + getURL;
         checkUrl(randomUrl, function(validUrl) {
@@ -96,29 +94,32 @@
 
     tryRandomUrl(baseUrls); 
 
-    // Função para configurar o player
+   
     function setupPlayer(url) {
-        var playerInstance = jwplayer("player");
-        playerInstance.setup({
-            playlist: [
-                {
-                    "file": url
-                }
-            ],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            mute: false,
-            cast: {},
-            }
-        });
+        if (url) {
+            var playerInstance = jwplayer("player");
+            playerInstance.setup({
+                playlist: [
+                    {
+                        "file": url
+                    }
+                ],
+                width: "100%",
+                height: "100%",
+                aspectratio: "16:9",
+                autostart: true,
+                mute: false,
+                cast: {}
+            });
 
-        playerInstance.on('play', function() {
-            playerInstance.setCurrentAudioTrack(2);
-        });
+            playerInstance.on('play', function() {
+                playerInstance.setCurrentAudioTrack(2);
+            });
+        } else {
+            console.error("Erro: URL não definida para o player.");
+        }
     }
-  </script>
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script type="86514701dc429a0bf601b774-text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
