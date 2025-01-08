@@ -37,7 +37,7 @@
   <div id="player"></div>
 
   <script>
-    // Função para obter parâmetro da URL
+    
     function getParameterByName(name) {
       name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]"); 
       var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
@@ -45,7 +45,7 @@
       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    // Obtenção do parâmetro 'id'
+    
     var getURL = getParameterByName('id');
     
     if (!getURL || getURL === "#") {
@@ -106,7 +106,7 @@
 
     tryRandomUrl(baseUrls);  
 
-    // Função para configurar o player
+    
     function setupPlayer(url) {
       var playerInstance = jwplayer("player");
       playerInstance.setup({
