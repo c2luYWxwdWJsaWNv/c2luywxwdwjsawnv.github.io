@@ -36,7 +36,8 @@
     <div id="player"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Função para pegar os parâmetros da URL
             function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(param);
@@ -105,7 +106,6 @@
                                 }
                             }
 
-                            // Se nenhum link funcionar
                             showError("Nenhum link de vídeo está acessível.");
                         } else {
                             showError("Link de vídeo não encontrado no conteúdo.");
