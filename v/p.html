@@ -39,12 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const videoId = getQueryParam('m');
     let playerInitialized = false;
-    let retries = 0;  // Contador de tentativas para recarregar
+    let retries = 0;  
 
     function tryInitializePlayer() {
-        if (playerInitialized || retries > 5) return;  // Limita as tentativas a 5 vezes
+        if (playerInitialized || retries > 5) return;  
 
-        retries++;  // Incrementa o contador de tentativas
+        retries++; 
 
         if (videoId) {
             const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error(error);
                     showError("Erro ao carregar o vídeo. Tentando novamente...");
                     setTimeout(() => {
-                        location.reload();  // Recarrega a página após 3 segundos
+                        location.reload();  
                     }, 3000); 
                 });
         } else {
