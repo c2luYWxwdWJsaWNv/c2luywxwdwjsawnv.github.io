@@ -41,12 +41,15 @@
 
             const videoId = getQueryParam('m');
             let playerInitialized = false;
+            let attempts = 0; // Variável para contar tentativas
 
+            // Verifica se existe o parâmetro 'm' na URL
             if (videoId) {
                 const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
 
+                // Função para buscar a configuração do player
                 function fetchPlayerConfig() {
-                    if (playerInitialized) return;
+                    if (playerInitialized) return; // Se o player já foi inicializado, não faz nada
 
                     fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
                         .then(response => response.text())
@@ -91,11 +94,19 @@
                                     height: "100%",
                                     aspectratio: "16:9",
                                     autostart: true,
-                                    cast: {}
+                                    cast: {},
+                                    events: {
+                                        onError: function(error) {
+                                            console.error("Erro ao tentar reproduzir o vídeo:", error);
+                                            showError("Erro ao carregar o vídeo. Tentando novamente...");
+                                            retryLoadingVideo();
+                                        },
+                                        onPlay: function() {
+                                            console.log("Vídeo iniciado com sucesso!");
+                                            playerInitialized = true; // Marca como inicializado
+                                        }
+                                    }
                                 });
-
-                                playerInitialized = true;
-
                             } else {
                                 showError("Atualize a Página.");
                             }
@@ -103,7 +114,20 @@
                         .catch(error => {
                             showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
                             console.error(error);
+                            retryLoadingVideo(); 
                         });
+                }
+
+                
+                function retryLoadingVideo() {
+                    attempts++;
+                    if (attempts < 5) { 
+                        setTimeout(function() {
+                            location.reload(); 
+                        }, 3000); 
+                    } else {
+                        showError("Erro ao carregar o vídeo após várias tentativas. Tente novamente mais tarde.");
+                    }
                 }
 
                 fetchPlayerConfig();
