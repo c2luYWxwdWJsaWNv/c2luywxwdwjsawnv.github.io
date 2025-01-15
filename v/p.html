@@ -28,8 +28,31 @@
             border: 0;
             overflow: hidden;
         }
+
+        /* Estilo para o botão */
+        #refreshButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Estilo para o botão oculto */
+        #refreshButton.hidden {
+            display: none;
+        }
 </style>
 <div id="player"></div>
+
+<!-- Botão para atualizar a página -->
+<button id="refreshButton">Atualizar</button>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     function getQueryParam(param) {
@@ -40,79 +63,85 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoId = getQueryParam('m');
     let playerInitialized = false;
 
-    if (videoId) {
+    // Função para inicializar o player
+    function fetchPlayerConfig() {
+        if (playerInitialized) return;
+
         const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
 
-        function fetchPlayerConfig() {
-            if (playerInitialized) return;  
+        fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
 
-            fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
-                .then(response => response.text())
-                .then(data => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data, 'text/html');
-                    
-                    const sourceElement = doc.querySelector('source');
-                    if (sourceElement) {
-                        const videoLink = sourceElement.getAttribute('src');
-                        if (!videoLink) {
-                            throw new Error("Link de vídeo não encontrado");
-                        }
-
-                        const videoLinks = [
-                                    'https://0002-dtvott.o5uftzrqlf.workers.dev/' + videoLink,
-                                    'https://001-dtvott.postasatri.workers.dev/' + videoLink,
-                                    'https://dtvott-classe-globo.jeowoa.workers.dev/' + videoLink,
-                                    'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/' + videoLink,
-                                    'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/' + videoLink,
-                                    'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/' + videoLink,
-                                    'https://automega.urlscamdark.workers.dev/' + videoLink,
-                                    'https://dtvott-bbc.lissette1794.workers.dev/' + videoLink,
-                                    'https://jeowoa.jeowoa.workers.dev/' + videoLink,
-                                    'https://autopage.urlscamdark.workers.dev/' + videoLink
-                        ];
-
-                        const randomIndex = Math.floor(Math.random() * videoLinks.length);
-                        const fullVideoLink = videoLinks[randomIndex];
-
-                        // Inicializa o player JW
-                        jwplayer("player").setup({
-                            playlist: [{
-                                sources: [{
-                                    default: true,
-                                    type: "hls",
-                                    file: fullVideoLink,
-                                    label: "1"
-                                }]
-                            }],
-                            width: "100%",
-                            height: "100%",
-                            aspectratio: "16:9",
-                            autostart: true,
-                            cast: {}
-                        });
-
-                        playerInitialized = true; 
-
-                    } else {
-                        showError("Link de vídeo não encontrado no conteúdo.");
+                const sourceElement = doc.querySelector('source');
+                if (sourceElement) {
+                    const videoLink = sourceElement.getAttribute('src');
+                    if (!videoLink) {
+                        throw new Error("Link de vídeo não encontrado");
                     }
-                })
-                .catch(error => {
-                    showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
-                    console.error(error);
-                });
-        }
 
-        fetchPlayerConfig();
-    } else {
-        showError("ID de vídeo não encontrado na URL.");
+                    const videoLinks = [
+                        'https://0002-dtvott.o5uftzrqlf.workers.dev/' + videoLink,
+                        'https://001-dtvott.postasatri.workers.dev/' + videoLink,
+                        'https://dtvott-classe-globo.jeowoa.workers.dev/' + videoLink,
+                        'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/' + videoLink,
+                        'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/' + videoLink,
+                        'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/' + videoLink,
+                        'https://automega.urlscamdark.workers.dev/' + videoLink,
+                        'https://dtvott-bbc.lissette1794.workers.dev/' + videoLink,
+                        'https://jeowoa.jeowoa.workers.dev/' + videoLink,
+                        'https://autopage.urlscamdark.workers.dev/' + videoLink
+                    ];
+
+                    const randomIndex = Math.floor(Math.random() * videoLinks.length);
+                    const fullVideoLink = videoLinks[randomIndex];
+
+                    // Inicializa o player JW
+                    jwplayer("player").setup({
+                        playlist: [{
+                            sources: [{
+                                default: true,
+                                type: "hls",
+                                file: fullVideoLink,
+                                label: "1"
+                            }]
+                        }],
+                        width: "100%",
+                        height: "100%",
+                        aspectratio: "16:9",
+                        autostart: true,
+                        cast: {}
+                    });
+
+                    playerInitialized = true;
+                } else {
+                    showError("Link de vídeo não encontrado no conteúdo.");
+                }
+            })
+            .catch(error => {
+                showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
+                console.error(error);
+            });
     }
+
+    fetchPlayerConfig();
 
     function showError(message) {
         const playerDiv = document.getElementById('player');
         playerDiv.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${message}</div>`;
     }
+
+    // Função para esconder o botão após 15 segundos
+    setTimeout(function() {
+        document.getElementById('refreshButton').classList.add('hidden');
+    }, 15000);
+
+    // Função para atualizar a página ao clicar no botão
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        location.reload();
+    });
 });
 </script>
 
