@@ -40,17 +40,15 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            z-index: 10; /* Garantir que o botão fique sobre o player */
+            z-index: 10; 
         }
 
-        /* Estilo para o botão oculto */
         #refreshButton.hidden {
             display: none;
         }
 </style>
 <div id="player"></div>
 
-<!-- Botão para atualizar a página -->
 <button id="refreshButton">Atualizar</button>
 
 <script>
@@ -63,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoId = getQueryParam('m');
     let playerInitialized = false;
 
-    // Função para inicializar o player
+
     function fetchPlayerConfig() {
         if (playerInitialized) return;
 
@@ -117,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     playerInitialized = true;
                 } else {
-                    showError("Link de vídeo não encontrado no conteúdo.");
+                    showError("Atualize a pagina ate o conteudoo ser exibido");
                 }
             })
             .catch(error => {
@@ -133,12 +131,10 @@ document.addEventListener('DOMContentLoaded', function() {
         playerDiv.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${message}</div>`;
     }
 
-    // Função para esconder o botão após 15 segundos
     setTimeout(function() {
         document.getElementById('refreshButton').classList.add('hidden');
     }, 15000);
 
-    // Função para atualizar a página ao clicar no botão
     document.getElementById('refreshButton').addEventListener('click', function() {
         location.reload();
     });
