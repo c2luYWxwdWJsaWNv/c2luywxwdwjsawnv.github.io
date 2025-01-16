@@ -79,22 +79,37 @@ document.addEventListener('DOMContentLoaded', function() {
                         throw new Error("Link de vídeo não encontrado");
                     }
 
-                    // Usar o videoLink diretamente
-                    const fullVideoLink = videoLink;
-
-                    // Inicializa o player JW
+                    // Inicializa o player JW com as configurações fornecidas
                     jwplayer("player").setup({
                         playlist: [{
-                            sources: [{
-                                default: true,
-                                type: "hls",
-                                file: fullVideoLink,
-                                label: "1"
-                            }]
+                            sources: [
+                                {
+                                    default: false,
+                                    type: "hls",
+                                    file: videoLink,
+                                    drm: {
+                                        fairplay: {}
+                                    },
+                                    label: "0"
+                                },
+                                {
+                                    default: true,
+                                    type: "hls",
+                                    file: videoLink,
+                                    drm: {
+                                        widevine: {},
+                                        playready: {}
+                                    },
+                                    label: "1"
+                                }
+                            ]
                         }],
+                        primary: "html5",
+                        hlshtml: true,
                         width: "100%",
                         height: "100%",
                         aspectratio: "16:9",
+                        stretching: "exactfit",
                         autostart: true,
                         cast: {}
                     });
