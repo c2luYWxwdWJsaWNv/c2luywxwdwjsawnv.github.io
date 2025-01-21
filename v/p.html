@@ -49,87 +49,87 @@
   <div id="player"></div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-      }
+document.addEventListener('DOMContentLoaded', function() {
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
 
-      const videoId = getQueryParam('m');
-      let playerInitialized = false;
+  const videoId = getQueryParam('m');
+  let playerInitialized = false;
 
-      if (videoId) {
-        const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
+  if (videoId) {
+    const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
 
-        function fetchPlayerConfig() {
-          if (playerInitialized) return;
+    function fetchPlayerConfig() {
+      if (playerInitialized) return;
 
-          fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
-            .then(response => response.text())
-            .then(data => {
-              const parser = new DOMParser();
-              const doc = parser.parseFromString(data, 'text/html');
-              
-              const sourceElement = doc.querySelector('source');
-              if (sourceElement) {
-                const videoLink = sourceElement.getAttribute('src');
-                if (!videoLink) {
-                  throw new Error("Link de vídeo não encontrado");
-                }
+      fetch(url)  
+        .then(response => response.text())
+        .then(data => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(data, 'text/html');
+          
+          const sourceElement = doc.querySelector('source');
+          if (sourceElement) {
+            const videoLink = sourceElement.getAttribute('src');
+            if (!videoLink) {
+              throw new Error("Link de vídeo não encontrado");
+            }
 
-                jwplayer("player").setup({
-                  playlist: [{
-                    sources: [
-                      {
-                        default: false,
-                        type: "hls",
-                        file: videoLink,
-                        drm: { fairplay: {} },
-                        label: "0"
-                      },
-                      {
-                        default: true,
-                        type: "hls",
-                        file: videoLink,
-                        drm: { widevine: {}, playready: {} },
-                        label: "1"
-                      }
-                    ]
-                  }],
-                  primary: "html5",
-                  hlshtml: true,
-                  width: "100%",
-                  height: "100%",
-                  aspectratio: "16:9",
-                  autostart: true,
-                  cast: true,
-                  hlsjsConfig: {
-                    debug: false,
-                    p2pConfig: { live: true }
+            jwplayer("player").setup({
+              playlist: [{
+                sources: [
+                  {
+                    default: false,
+                    type: "hls",
+                    file: videoLink,
+                    drm: { fairplay: {} },
+                    label: "0"
+                  },
+                  {
+                    default: true,
+                    type: "hls",
+                    file: videoLink,
+                    drm: { widevine: {}, playready: {} },
+                    label: "1"
                   }
-                });
-
-                playerInitialized = true;
-              } else {
-                showError("Link de vídeo não encontrado, tente novamente.");
+                ]
+              }],
+              primary: "html5",
+              hlshtml: true,
+              width: "100%",
+              height: "100%",
+              aspectratio: "16:9",
+              autostart: true,
+              cast: true,
+              hlsjsConfig: {
+                debug: false,
+                p2pConfig: { live: true }
               }
-            })
-            .catch(error => {
-              showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
-              console.error(error);
             });
-        }
 
-        fetchPlayerConfig();
-      } else {
-        showError("ID de vídeo não encontrado na URL.");
-      }
+            playerInitialized = true;
+          } else {
+            showError("Link de vídeo não encontrado, tente novamente.");
+          }
+        })
+        .catch(error => {
+          showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
+          console.error(error);
+        });
+    }
 
-      function showError(message) {
-        const playerDiv = document.getElementById('player');
-        playerDiv.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${message}</div>`;
-      }
-    });
+    fetchPlayerConfig();
+  } else {
+    showError("ID de vídeo não encontrado na URL.");
+  }
+
+  function showError(message) {
+    const playerDiv = document.getElementById('player');
+    playerDiv.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${message}</div>`;
+  }
+});
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
