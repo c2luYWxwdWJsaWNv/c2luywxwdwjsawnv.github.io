@@ -49,105 +49,91 @@
   <div id="player"></div>
 
   <script>
-window.addEventListener("load", function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const videoId = urlParams.get('m');
-  
-  if (!videoId) {
-    console.error("Parâmetro 'm' não encontrado na URL.");
-    alert("O parâmetro 'm' não foi fornecido para o vídeo.");
-    return;
+window.addEventListener("load", function() {
+  // Função para obter o parâmetro 'm' da URL
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
   }
 
-  const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
+  const videoId = getQueryParam('m');
+  let playerInitialized = false;
 
-  function fetchPlayerConfig() {
-    fetch(url)
-      .then(response => response.text())
-      .then(htmlContent => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, "text/html");
-        const scripts = doc.querySelectorAll("script");
-        let playerScript = null;
+  if (videoId) {
+    const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
 
-        // Encontrar o script que contém a configuração do player
-        scripts.forEach(script => {
-          if (script.textContent.includes("var playerInstance = jwplayer")) {
-            playerScript = script.textContent.trim();
-          }
-        });
+    function fetchPlayerConfig() {
+      if (playerInitialized) return;
 
-        if (playerScript) {
-          
-          const fileRegex = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g;
-          const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
+      // Fazendo a requisição diretamente, sem o proxy
+      fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(data, 'text/html');
 
-          let fileMatch = fileRegex.exec(playerScript);
-          let drmKeys = [];
-          let videoUrl = fileMatch ? fileMatch[1] : null;
-
-          let keyMatch;
-          while ((keyMatch = drmKeyRegex.exec(playerScript)) !== null) {
-            drmKeys.push({
-              keyId: keyMatch[1],
-              key: keyMatch[2]
-            });
-          }
-
-          // Configuração do player JWPlayer
-          const playerConfig = {
-            playlist: [{
-              sources: [{
-                default: false,
-                type: "hls",
-                file: videoUrl,
-                drm: { fairplay: {} },
-                label: "0"
-              },
-              {
-                default: true,
-                type: "hls",
-                file: videoUrl,
-                drm: { widevine: {}, playready: {} },
-                label: "1"
-              }]
-            }],
-            primary: "html5",
-            hlshtml: true,
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            cast: true,
-            hlsjsConfig: {
-              debug: false,
-              p2pConfig: { live: true }
+          // Procura pelo elemento <source> que contém o link do vídeo
+          const sourceElement = doc.querySelector('source');
+          if (sourceElement) {
+            const videoLink = sourceElement.getAttribute('src');
+            if (!videoLink) {
+              throw new Error("Link de vídeo não encontrado");
             }
-          };
 
-          // Configuração DRM, se houver
-          if (drmKeys.length > 0) {
-            playerConfig.playlist[0].sources[0].drm = {
-              clearkey: {
-                keyId: drmKeys[0].keyId,
-                key: drmKeys[0].key
+            // Configura o player com o link do vídeo
+            jwplayer("player").setup({
+              playlist: [{
+                sources: [
+                  {
+                    default: false,
+                    type: "hls",
+                    file: videoLink,
+                    drm: { fairplay: {} },
+                    label: "0"
+                  },
+                  {
+                    default: true,
+                    type: "hls",
+                    file: videoLink,
+                    drm: { widevine: {}, playready: {} },
+                    label: "1"
+                  }
+                ]
+              }],
+              primary: "html5",
+              hlshtml: true,
+              width: "100%",
+              height: "100%",
+              aspectratio: "16:9",
+              autostart: true,
+              cast: true,
+              hlsjsConfig: {
+                debug: false,
+                p2pConfig: { live: true }
               }
-            };
-          }
+            });
 
-          // Inicialização do player JWPlayer
-          var playerInstance = jwplayer("player");
-          playerInstance.setup(playerConfig);
-        } else {
-          console.error("Script do player não encontrado na página de vídeo.");
-        }
-      })
-      .catch(error => {
-        console.error("Erro ao acessar o conteúdo do vídeo:", error);
-      });
+            playerInitialized = true;
+          } else {
+            showError("Link de vídeo não encontrado, tente novamente.");
+          }
+        })
+        .catch(error => {
+          showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
+          console.error(error);
+        });
+    }
+
+    fetchPlayerConfig();
+  } else {
+    showError("ID de vídeo não encontrado na URL.");
   }
 
-  fetchPlayerConfig();
+  // Função para exibir mensagens de erro
+  function showError(message) {
+    const playerDiv = document.getElementById('player');
+    playerDiv.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${message}</div>`;
+  }
 });
   </script>
 
