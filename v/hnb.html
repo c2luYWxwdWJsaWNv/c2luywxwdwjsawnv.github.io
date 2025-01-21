@@ -37,6 +37,12 @@
   
   <script>
     window.addEventListener("load", function () {
+      // Evita recarregar a página se já tiver sido carregada
+      if (sessionStorage.getItem('pageLoaded')) {
+        return;
+      }
+      sessionStorage.setItem('pageLoaded', 'true');
+
       const urlParams = new URLSearchParams(window.location.search);
       const videoId = urlParams.get('m');
       
