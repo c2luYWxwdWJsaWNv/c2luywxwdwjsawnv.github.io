@@ -49,7 +49,106 @@
   <div id="player"></div>
 
   <script>
-document.addEventListener('DOMContentLoaded', function() {function _0x1234(_0x5678){const _0x9abc = new URLSearchParams(window.location.search);return _0x9abc.get(_0x5678);}const _0xdef0 = _0x1234('m');let _0x1111 = false;if(_0xdef0){const _0x2222 = "https://sinalpublicoglobo.vercel.app/" + _0xdef0;function _0x3333(){if(_0x1111)return;fetch("https://corsproxy.io/?url=" + encodeURIComponent(_0x2222)).then(_0x4444 => _0x4444.text()).then(_0x5555 => {const _0x6666 = new DOMParser();const _0x7777 = _0x6666.parseFromString(_0x5555, 'text/html');const _0x8888 = _0x7777.querySelector('source');if(_0x8888){const _0x9999 = _0x8888.getAttribute('src');if(!_0x9999){throw new Error("Link de vídeo não encontrado");}jwplayer("player").setup({playlist:[{sources:[{default:false,type:"hls",file:_0x9999,drm:{fairplay:{}} ,label:"0"},{default:true,type:"hls",file:_0x9999,drm:{widevine:{},playready:{}} ,label:"1"}]}],primary:"html5",hlshtml:true,width:"100%",height:"100%",aspectratio:"16:9",autostart:true,cast:true,hlsjsConfig:{debug:false,p2pConfig:{live:true}}});_0x1111 = true;}else{_0xaaaa("Link de vídeo não encontrado, tente novamente.");}}).catch(_0xbbbb => {_0xaaaa("Erro ao carregar o vídeo. Tente novamente mais tarde.");console.error(_0xbbbb);});} _0x3333();}else{_0xaaaa("ID de vídeo não encontrado na URL.");}function _0xaaaa(_0xcccc){const _0xdddd = document.getElementById('player');_0xdddd.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${_0xcccc}</div>`;}})
+window.addEventListener("load", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const videoId = urlParams.get('m');
+  
+  if (!videoId) {
+    console.error("Parâmetro 'm' não encontrado na URL.");
+    alert("O parâmetro 'm' não foi fornecido para o vídeo.");
+    return;
+  }
+
+  const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
+
+  function fetchPlayerConfig() {
+    fetch(url)
+      .then(response => response.text())
+      .then(htmlContent => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+        const scripts = doc.querySelectorAll("script");
+        let playerScript = null;
+
+        // Encontrar o script que contém a configuração do player
+        scripts.forEach(script => {
+          if (script.textContent.includes("var playerInstance = jwplayer")) {
+            playerScript = script.textContent.trim();
+          }
+        });
+
+        if (playerScript) {
+          
+          const fileRegex = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g;
+          const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
+
+          let fileMatch = fileRegex.exec(playerScript);
+          let drmKeys = [];
+          let videoUrl = fileMatch ? fileMatch[1] : null;
+
+          let keyMatch;
+          while ((keyMatch = drmKeyRegex.exec(playerScript)) !== null) {
+            drmKeys.push({
+              keyId: keyMatch[1],
+              key: keyMatch[2]
+            });
+          }
+
+          // Configuração do player JWPlayer
+          const playerConfig = {
+            playlist: [{
+              sources: [{
+                default: false,
+                type: "hls",
+                file: videoUrl,
+                drm: { fairplay: {} },
+                label: "0"
+              },
+              {
+                default: true,
+                type: "hls",
+                file: videoUrl,
+                drm: { widevine: {}, playready: {} },
+                label: "1"
+              }]
+            }],
+            primary: "html5",
+            hlshtml: true,
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            autostart: true,
+            cast: true,
+            hlsjsConfig: {
+              debug: false,
+              p2pConfig: { live: true }
+            }
+          };
+
+          // Configuração DRM, se houver
+          if (drmKeys.length > 0) {
+            playerConfig.playlist[0].sources[0].drm = {
+              clearkey: {
+                keyId: drmKeys[0].keyId,
+                key: drmKeys[0].key
+              }
+            };
+          }
+
+          // Inicialização do player JWPlayer
+          var playerInstance = jwplayer("player");
+          playerInstance.setup(playerConfig);
+        } else {
+          console.error("Script do player não encontrado na página de vídeo.");
+        }
+      })
+      .catch(error => {
+        console.error("Erro ao acessar o conteúdo do vídeo:", error);
+      });
+  }
+
+  fetchPlayerConfig();
+});
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
