@@ -49,7 +49,7 @@
   <div id="player"></div>
 
   <script>
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   // Função para obter o parâmetro 'm' da URL
   function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -59,75 +59,76 @@ window.addEventListener("load", function() {
   const videoId = getQueryParam('m');
   let playerInitialized = false;
 
-  if (videoId) {
-    const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
-
-    function fetchPlayerConfig() {
-      if (playerInitialized) return;
-
-      // Fazendo a requisição diretamente, sem o proxy
-      fetch(url)
-        .then(response => response.text())
-        .then(data => {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(data, 'text/html');
-
-          // Procura pelo elemento <source> que contém o link do vídeo
-          const sourceElement = doc.querySelector('source');
-          if (sourceElement) {
-            const videoLink = sourceElement.getAttribute('src');
-            if (!videoLink) {
-              throw new Error("Link de vídeo não encontrado");
-            }
-
-            // Configura o player com o link do vídeo
-            jwplayer("player").setup({
-              playlist: [{
-                sources: [
-                  {
-                    default: false,
-                    type: "hls",
-                    file: videoLink,
-                    drm: { fairplay: {} },
-                    label: "0"
-                  },
-                  {
-                    default: true,
-                    type: "hls",
-                    file: videoLink,
-                    drm: { widevine: {}, playready: {} },
-                    label: "1"
-                  }
-                ]
-              }],
-              primary: "html5",
-              hlshtml: true,
-              width: "100%",
-              height: "100%",
-              aspectratio: "16:9",
-              autostart: true,
-              cast: true,
-              hlsjsConfig: {
-                debug: false,
-                p2pConfig: { live: true }
-              }
-            });
-
-            playerInitialized = true;
-          } else {
-            showError("Link de vídeo não encontrado, tente novamente.");
-          }
-        })
-        .catch(error => {
-          showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
-          console.error(error);
-        });
-    }
-
-    fetchPlayerConfig();
-  } else {
-    showError("ID de vídeo não encontrado na URL.");
+  if (!videoId) {
+    showError("Parâmetro 'm' não encontrado na URL.");
+    return;
   }
+
+  const url = "https://sinalpublicoglobo.vercel.app/" + videoId;
+
+  function fetchPlayerConfig() {
+    if (playerInitialized) return;
+
+    // Fazendo a requisição diretamente (sem proxy CORS)
+    fetch(url)
+      .then(response => response.text())
+      .then(data => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data, 'text/html');
+
+        // Verifique a estrutura da página para encontrar o elemento <source>
+        const sourceElement = doc.querySelector('source');
+        if (sourceElement) {
+          const videoLink = sourceElement.getAttribute('src');
+          if (!videoLink) {
+            throw new Error("Link de vídeo não encontrado.");
+          }
+
+          // Configuração do JWPlayer com o link do vídeo
+          jwplayer("player").setup({
+            playlist: [{
+              sources: [
+                {
+                  default: false,
+                  type: "hls",
+                  file: videoLink,
+                  drm: { fairplay: {} },
+                  label: "0"
+                },
+                {
+                  default: true,
+                  type: "hls",
+                  file: videoLink,
+                  drm: { widevine: {}, playready: {} },
+                  label: "1"
+                }
+              ]
+            }],
+            primary: "html5",
+            hlshtml: true,
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            autostart: true,
+            cast: true,
+            hlsjsConfig: {
+              debug: false,
+              p2pConfig: { live: true }
+            }
+          });
+
+          playerInitialized = true;
+        } else {
+          showError("Link de vídeo não encontrado, tente novamente.");
+        }
+      })
+      .catch(error => {
+        showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
+        console.error(error);
+      });
+  }
+
+  fetchPlayerConfig();
 
   // Função para exibir mensagens de erro
   function showError(message) {
