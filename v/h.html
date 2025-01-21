@@ -38,11 +38,11 @@
   <script>
 window.addEventListener("load", function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const videoId = urlParams.get('id');
+  const videoId = urlParams.get('m');
   
   if (!videoId) {
-    console.error("Parâmetro 'id' não encontrado na URL.");
-    alert("O parâmetro 'id' não foi fornecido para o vídeo.");
+    console.error("Parâmetro 'm' não encontrado na URL.");
+    alert("O parâmetro 'm' não foi fornecido para o vídeo.");
     return;
   }
 
