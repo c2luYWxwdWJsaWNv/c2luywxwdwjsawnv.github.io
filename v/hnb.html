@@ -36,90 +36,89 @@
   <div id="player"></div>
   
   <script>
-    window.addEventListener("load", function () {
+window.addEventListener("load", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const videoId = urlParams.get('m');
+  
+  if (!videoId) {
+    console.error("Parâmetro 'm' não encontrado na URL.");
+    alert("O parâmetro 'm' não foi fornecido para o vídeo.");
+    return;
+  }
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const videoId = urlParams.get('m');
-      
-      if (!videoId) {
-        console.error("Parâmetro 'm' não encontrado na URL.");
-        alert("O parâmetro 'm' não foi fornecido para o vídeo.");
-        return;
-      }
+  const url = "https://sinalpublicocdntv.vercel.app/" + videoId;
 
-      const url = "https://sinalpublicocdntv.vercel.app/" + videoId;
+  function fetchPlayerConfig() {
+    fetch(url)
+      .then(response => response.text())
+      .then(htmlContent => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+        const scripts = doc.querySelectorAll("script");
+        let playerScript = null;
 
-      function fetchPlayerConfig() {
-        fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
-          .then(response => response.text())  
-          .then(htmlContent => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(htmlContent, "text/html");
-            const scripts = doc.querySelectorAll("script");
-            let playerScript = null;
+        scripts.forEach(script => {
+          if (script.textContent.includes("var playerInstance = jwplayer")) {
+            playerScript = script.textContent.trim();
+          }
+        });
 
-            scripts.forEach(script => {
-              if (script.textContent.includes("var playerInstance = jwplayer")) {
-                playerScript = script.textContent.trim();
-              }
+        if (playerScript) {
+          const fileRegex = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g;
+          const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
+
+          let fileMatch = fileRegex.exec(playerScript);
+          let drmKeys = [];
+          let videoUrl = fileMatch ? fileMatch[1] : null;
+
+          let keyMatch;
+          while ((keyMatch = drmKeyRegex.exec(playerScript)) !== null) {
+            drmKeys.push({
+              keyId: keyMatch[1],
+              key: keyMatch[2]
             });
+          }
 
-            if (playerScript) {
-              const fileRegex = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g;
-              const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
-              
-              let fileMatch = fileRegex.exec(playerScript);
-              let drmKeys = [];
-              let videoUrl = fileMatch ? fileMatch[1] : null;
+          const playerConfig = {
+            playlist: [{
+              sources: [{
+                default: false,
+                type: "application/dash+xml",
+                file: videoUrl,
+                label: '0'
+              }]
+            }],
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            autostart: true,
+            cast: null,
+            sharing: false,
+          };
 
-              let keyMatch;
-              while ((keyMatch = drmKeyRegex.exec(playerScript)) !== null) {
-                drmKeys.push({
-                  keyId: keyMatch[1],
-                  key: keyMatch[2]
-                });
+          if (drmKeys.length > 0) {
+            playerConfig.playlist[0].sources[0].drm = {
+              clearkey: {
+                keyId: drmKeys[0].keyId,
+                key: drmKeys[0].key
               }
+            };
+          }
 
-              const playerConfig = {
-                playlist: [{
-                  sources: [{
-                    default: false,
-                    type: "application/dash+xml",
-                    file: videoUrl,
-                    label: '0'
-                  }]
-                }],
-                width: "100%",
-                height: "100%",
-                aspectratio: "16:9",
-                autostart: true,
-                cast: null,  
-                sharing: false,  
-              };
+          var playerInstance = jwplayer("player");
+          playerInstance.setup(playerConfig);
+        } else {
+          console.error("Script do player não encontrado na página de vídeo.");
+        }
+      })
+      .catch(error => {
+        console.error("Erro ao acessar o conteúdo do vídeo:", error);
+      });
+  }
 
-              if (drmKeys.length > 0) {
-                playerConfig.playlist[0].sources[0].drm = {
-                  clearkey: {
-                    keyId: drmKeys[0].keyId,
-                    key: drmKeys[0].key
-                  }
-                };
-              }
-
-              var playerInstance = jwplayer("player");
-              playerInstance.setup(playerConfig);
-            } else {
-              console.error("Script do player não encontrado na página de vídeo.");
-            }
-          })
-          .catch(error => {
-            console.error("Erro ao acessar o conteúdo do vídeo:", error);
-          });
-      }
-
-      fetchPlayerConfig();
-    });
-  </script>
+  fetchPlayerConfig();
+});
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
