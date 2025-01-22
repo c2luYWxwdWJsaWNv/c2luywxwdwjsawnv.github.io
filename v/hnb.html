@@ -36,85 +36,87 @@
   <div id="player"></div>
   
   <script>
-window.addEventListener("load", function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const videoId = urlParams.get('m');
-  
-  if (!videoId) {
-    console.error("Parâmetro 'm' não encontrado na URL.");
-    alert("O parâmetro 'm' não foi fornecido para o vídeo.");
-    return;
-  }
+    window.addEventListener("load", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const videoId = urlParams.get('m');
 
-  const url = "https://sinalpublicocdntv.vercel.app/" + videoId;
+      if (!videoId) {
+        showError('Parâmetro "m" não encontrado na URL.');
+        return;
+      }
 
-  function fetchPlayerConfig() {
-    fetch(url)
-      .then(response => response.text())
-      .then(htmlContent => {
+      const url = `https://sinalpublicocdntv.vercel.app/${videoId}`;
+
+      async function fetchPlayerConfig() {
+        try {
+          const response = await fetch(url);
+          const htmlContent = await response.text();
+          const playerScript = extractPlayerScript(htmlContent);
+
+          if (playerScript) {
+            const videoUrl = extractVideoUrl(playerScript);
+            const drmKeys = extractDrmKeys(playerScript);
+
+            const playerConfig = {
+              playlist: [{
+                sources: [{
+                  default: false,
+                  type: "application/dash+xml",
+                  file: videoUrl,
+                  drm: drmKeys.length ? { clearkey: drmKeys[0] } : undefined,
+                  label: "0"
+                }]
+              }],
+              width: "100%",
+              height: "100%",
+              aspectratio: "16:9",
+              autostart: true,
+              cast: null,
+              sharing: false
+            };
+
+            const playerInstance = jwplayer("player");
+            playerInstance.setup(playerConfig);
+          } else {
+            showError('Script do player não encontrado na página de vídeo.');
+          }
+        } catch (error) {
+          showError(`Erro ao acessar o conteúdo do vídeo: ${error.message}`);
+        }
+      }
+
+      function extractPlayerScript(htmlContent) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlContent, "text/html");
-        const scripts = doc.querySelectorAll("script");
-        let playerScript = null;
+        return Array.from(doc.querySelectorAll("script"))
+          .map(script => script.textContent)
+          .find(script => script.includes("var playerInstance = jwplayer"));
+      }
 
-        scripts.forEach(script => {
-          if (script.textContent.includes("var playerInstance = jwplayer")) {
-            playerScript = script.textContent.trim();
-          }
-        });
+      function extractVideoUrl(script) {
+        const match = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g.exec(script);
+        return match ? match[1] : null;
+      }
 
-        if (playerScript) {
-          const fileRegex = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g;
-          const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
-
-          let fileMatch = fileRegex.exec(playerScript);
-          let drmKeys = [];
-          let videoUrl = fileMatch ? fileMatch[1] : null;
-
-          let keyMatch;
-          while ((keyMatch = drmKeyRegex.exec(playerScript)) !== null) {
-            drmKeys.push({
-              keyId: keyMatch[1],
-              key: keyMatch[2]
-            });
-          }
-
-          const playerConfig = {
-            playlist: [{
-              "sources": [{
-                "default": false,
-                "type": "application/dash+xml",
-                "file": videoUrl,
-                "drm": drmKeys.length > 0 ? {
-                  "clearkey": {
-                    "keyId": drmKeys[0].keyId,
-                    "key": drmKeys[0].key
-                  }
-                } : undefined,
-                "label": "0"
-              }]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: false,
-            cast: null,
-            sharing: false
-          };
-
-          var playerInstance = jwplayer("player");
-          playerInstance.setup(playerConfig);
-        } else {
-          console.error("Script do player não encontrado na página de vídeo.");
+      function extractDrmKeys(script) {
+        const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
+        const drmKeys = [];
+        let match;
+        while ((match = drmKeyRegex.exec(script)) !== null) {
+          drmKeys.push({ keyId: match[1], key: match[2] });
         }
-      })
-      .catch(error => {
-        console.error("Erro ao acessar o conteúdo do vídeo:", error);
-      });
-  }
+        return drmKeys;
+      }
 
-  fetchPlayerConfig();
-});
+      function showError(message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.classList.add('error-message');
+        errorDiv.textContent = message;
+        document.body.appendChild(errorDiv);
+      }
+
+      fetchPlayerConfig();
+    });
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
