@@ -38,7 +38,9 @@ window.addEventListener("load", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const videoId = urlParams.get('id');
   
+  
   if (!videoId) {
+    console.error("ID do vídeo não encontrado na URL.");
     return; 
   }
 
@@ -46,13 +48,19 @@ window.addEventListener("load", function () {
 
   function fetchPlayerConfig() {
     fetch(url)
-      .then(response => response.text())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao buscar conteúdo do vídeo.');
+        }
+        return response.text();
+      })
       .then(htmlContent => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlContent, "text/html");
         const scripts = doc.querySelectorAll("script");
         let playerScript = null;
 
+       
         scripts.forEach(script => {
           if (script.textContent.includes("var playerInstance = jwplayer")) {
             playerScript = script.textContent.trim();
@@ -73,10 +81,11 @@ window.addEventListener("load", function () {
               key: drmMatch[2]
             };
 
-            console.log("Video URL:", videoUrl);
-            console.log("DRM Key ID:", drmConfig.keyId);
-            console.log("DRM Key:", drmConfig.key);
+            console.log("URL do vídeo:", videoUrl);
+            console.log("ID do DRM:", drmConfig.keyId);
+            console.log("Chave do DRM:", drmConfig.key);
 
+            
             const playerConfig = {
               playlist: [{
                 "sources": [{
@@ -103,7 +112,11 @@ window.addEventListener("load", function () {
             var playerInstance = jwplayer("player");
             playerInstance.setup(playerConfig);
 
+          } else {
+            console.error("Não foi possível extrair informações do vídeo.");
           }
+        } else {
+          console.error("Script do player não encontrado.");
         }
       })
       .catch(error => {
@@ -112,11 +125,6 @@ window.addEventListener("load", function () {
   }
 
   fetchPlayerConfig();
-
-  // Função para recarregar a página a cada 25 segundos
-  setInterval(function() {
-    location.reload();
-  }, 25000); // 25 segundos
 });
  </script>
 
