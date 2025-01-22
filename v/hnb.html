@@ -6,9 +6,7 @@
   <meta charset="utf-8">
   <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Exibição de vídeo usando JWPlayer com suporte para DRM e transmissão.">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" async></script>
   <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js" async></script>
   <script> 
     jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; 
@@ -31,14 +29,6 @@
       border: 0;
       overflow: hidden;
     }
-
-    .error-message {
-      background-color: red;
-      color: white;
-      padding: 10px;
-      margin: 10px;
-      border-radius: 5px;
-    }
   </style>
 </head>
 <body>
@@ -50,11 +40,7 @@ window.addEventListener("load", function () {
   const videoId = urlParams.get('m');
   
   if (!videoId) {
-    const errorDiv = document.createElement('div');
-    errorDiv.classList.add('error-message');
-    errorDiv.textContent = "Parâmetro 'm' não encontrado na URL.";
-    document.body.appendChild(errorDiv);
-    return;
+    return; 
   }
 
   const url = "https://sinalpublicocdntv.vercel.app/" + videoId;
@@ -88,12 +74,10 @@ window.addEventListener("load", function () {
               key: drmMatch[2]
             };
 
-            
             console.log("Video URL:", videoUrl);
             console.log("DRM Key ID:", drmConfig.keyId);
             console.log("DRM Key:", drmConfig.key);
 
-            
             const playerConfig = {
               playlist: [{
                 "sources": [{
@@ -120,24 +104,11 @@ window.addEventListener("load", function () {
             var playerInstance = jwplayer("player");
             playerInstance.setup(playerConfig);
 
-          } else {
-            const errorDiv = document.createElement('div');
-            errorDiv.classList.add('error-message');
-            errorDiv.textContent = "Não foi possível extrair o URL do vídeo ou as chaves DRM.";
-            document.body.appendChild(errorDiv);
           }
-        } else {
-          const errorDiv = document.createElement('div');
-          errorDiv.classList.add('error-message');
-          errorDiv.textContent = "Script do player não encontrado na página de vídeo.";
-          document.body.appendChild(errorDiv);
         }
       })
       .catch(error => {
-        const errorDiv = document.createElement('div');
-        errorDiv.classList.add('error-message');
-        errorDiv.textContent = "Erro ao acessar o conteúdo do vídeo: " + error;
-        document.body.appendChild(errorDiv);
+        console.error("Erro ao acessar o conteúdo do vídeo: ", error); 
       });
   }
 
