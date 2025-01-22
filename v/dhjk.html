@@ -8,16 +8,9 @@
   <meta name="theme-color" content="black">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-  <script src="https://fastly.jsdelivr.net/npm/disable-devtool@latest/disable-devtool.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
-  <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwpsrv.js"></script>
-  <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/provider.hlsjs.js"></script>
-  <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/jwplayer.core.controls.js"></script>
-  <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/jwpsrv.js"></script>
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -96,7 +89,7 @@
 
         // Chamar a função para capturar o link de vídeo e configurar o player
         document.addEventListener('DOMContentLoaded', function() {
-            const urlExterna = getParametroUrl('id');
+            const urlExterna = getParametroUrl('m');
             if (urlExterna) {
                 capturarHTML(urlExterna);
             } else {
