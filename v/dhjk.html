@@ -51,93 +51,89 @@
   <button id="refreshButton">Atualizar</button>
   <div id="player"></div>
   <script>
-    window.addEventListener("load", function () {
-      // Exibir o botão "Atualizar"
-      const refreshButton = document.getElementById('refreshButton');
-      refreshButton.classList.remove('hidden');
-
-      // Fazer o botão desaparecer após 15 segundos
-      setTimeout(() => {
-        refreshButton.classList.add('hidden');
-      }, 15000);
-
-      // Adicionar o evento de clique para atualizar a página
-      refreshButton.addEventListener('click', function() {
-        window.location.reload();  // Recarregar a página
-      });
-
-      const urlParams = new URLSearchParams(window.location.search);
-      const videoId = urlParams.get('id');
-      
-      if (!videoId) {
-        console.error("ID do vídeo não encontrado na URL.");
-        return; 
+    document.addEventListener('DOMContentLoaded', function() {
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
       }
 
-      const url = "https://tvcodetabs.vercel.app/" + videoId;
+      const videoId = getQueryParam('id');
+      let playerInitialized = false;
 
-      function fetchPlayerConfig() {
-        fetch(url)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Erro ao buscar conteúdo do vídeo.');
-            }
-            return response.text();
-          })
-          .then(htmlContent => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(htmlContent, "text/html");
-            const scripts = doc.querySelectorAll("script");
-            let playerScript = null;
+      if (videoId) {
+        const url = "https://tvcodetabs.vercel.app/" + videoId;
 
-            scripts.forEach(script => {
-              if (script.textContent.includes("var playerInstance = jwplayer")) {
-                playerScript = script.textContent.trim();
-              }
-            });
+        function fetchPlayerConfig() {
+          if (playerInitialized) return;
 
-            if (playerScript) {
-              const fileRegex = /"file"\s*:\s*"([^"]+)"/g;
+          fetch("https://corsproxy.io/?url=" + encodeURIComponent(url))
+            .then(response => response.text())
+            .then(data => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(data, 'text/html');
+              
+              // Procurar a URL do vídeo no elemento <source>
+              const sourceElement = doc.querySelector('source');
+              if (sourceElement) {
+                const videoLink = sourceElement.getAttribute('src');
+                if (!videoLink) {
+                  throw new Error("Link de vídeo não encontrado");
+                }
 
-              let fileMatch = fileRegex.exec(playerScript);
-
-              if (fileMatch) {
-                const videoUrl = fileMatch[1];
-
-                console.log("URL do vídeo:", videoUrl);
-
-                const playerConfig = {
+                // Configurar o player JWPlayer com a URL do vídeo extraída
+                jwplayer("player").setup({
                   playlist: [{
-                    "sources": [{
-                      "default": false,
-                      "type": "application/dash+xml",
-                      "file": videoUrl,
-                    }]
+                    sources: [
+                      {
+                        default: false,
+                        type: "hls",
+                        file: videoLink,
+                        drm: { fairplay: {} },
+                        label: "0"
+                      },
+                      {
+                        default: true,
+                        type: "hls",
+                        file: videoLink,
+                        drm: { widevine: {}, playready: {} },
+                        label: "1"
+                      }
+                    ]
                   }],
+                  primary: "html5",
+                  hlshtml: true,
                   width: "100%",
                   height: "100%",
                   aspectratio: "16:9",
+                  stretching: "exactfit",
                   autostart: true,
-                  cast: {},
-                  sharing: false
-                };
+                  cast: true,
+                  hlsjsConfig: {
+                    debug: false,
+                    p2pConfig: { live: true }
+                  }
+                });
 
-                var playerInstance = jwplayer("player");
-                playerInstance.setup(playerConfig);
-
+                playerInitialized = true;
               } else {
-                console.error("Não foi possível extrair a URL do vídeo.");
+                showError("Link de vídeo não encontrado, tente novamente.");
               }
-            } else {
-              console.error("Script do player não encontrado.");
-            }
-          })
-          .catch(error => {
-            console.error("Erro ao acessar o conteúdo do vídeo: ", error); 
-          });
+            })
+            .catch(error => {
+              showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
+              console.error(error);
+            });
+        }
+
+        fetchPlayerConfig();
+      } else {
+        showError("ID de vídeo não encontrado na URL.");
       }
 
-      fetchPlayerConfig();
+      function showError(message) {
+        const playerDiv = document.getElementById('player');
+        playerDiv.innerHTML = `<div style="color: red; text-align: center; padding: 50px;">${message}</div>`;
+      }
     });
   </script>
 </body>
