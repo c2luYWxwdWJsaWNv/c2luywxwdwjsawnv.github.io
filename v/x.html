@@ -29,15 +29,47 @@
       border: 0;
       overflow: hidden;
     }
+
+    #refreshButton {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    #refreshButton.hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
+  <button id="refreshButton">Atualizar</button>
   <div id="player"></div>
   <script>
 window.addEventListener("load", function () {
+  // Exibir o botão "Atualizar"
+  const refreshButton = document.getElementById('refreshButton');
+  refreshButton.classList.remove('hidden');
+
+  // Fazer o botão desaparecer após 15 segundos
+  setTimeout(() => {
+    refreshButton.classList.add('hidden');
+  }, 15000);
+
+  // Adicionar o evento de clique para atualizar a página
+  refreshButton.addEventListener('click', function() {
+    window.location.reload();  // Recarregar a página
+  });
+
   const urlParams = new URLSearchParams(window.location.search);
   const videoId = urlParams.get('id');
-  
   
   if (!videoId) {
     console.error("ID do vídeo não encontrado na URL.");
@@ -60,7 +92,6 @@ window.addEventListener("load", function () {
         const scripts = doc.querySelectorAll("script");
         let playerScript = null;
 
-       
         scripts.forEach(script => {
           if (script.textContent.includes("var playerInstance = jwplayer")) {
             playerScript = script.textContent.trim();
@@ -85,7 +116,6 @@ window.addEventListener("load", function () {
             console.log("ID do DRM:", drmConfig.keyId);
             console.log("Chave do DRM:", drmConfig.key);
 
-            
             const playerConfig = {
               playlist: [{
                 "sources": [{
@@ -126,7 +156,7 @@ window.addEventListener("load", function () {
 
   fetchPlayerConfig();
 });
- </script>
+  </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
