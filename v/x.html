@@ -112,6 +112,11 @@ window.addEventListener("load", function () {
   }
 
   fetchPlayerConfig();
+
+  // Função para recarregar a página a cada 25 segundos
+  setInterval(function() {
+    location.reload();
+  }, 25000); // 25 segundos
 });
  </script>
 
