@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Exibição de vídeo usando JWPlayer com suporte para DRM e transmissão.">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" async></script>
   <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js" async></script>
@@ -30,94 +31,117 @@
       border: 0;
       overflow: hidden;
     }
+
+    .error-message {
+      background-color: red;
+      color: white;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
   <div id="player"></div>
   
   <script>
-    window.addEventListener("load", function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const videoId = urlParams.get('m');
+window.addEventListener("load", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const videoId = urlParams.get('m');
+  
+  if (!videoId) {
+    const errorDiv = document.createElement('div');
+    errorDiv.classList.add('error-message');
+    errorDiv.textContent = "Parâmetro 'm' não encontrado na URL.";
+    document.body.appendChild(errorDiv);
+    return;
+  }
 
-      if (!videoId) {
-        showError('Parâmetro "m" não encontrado na URL.');
-        return;
-      }
+  const url = "https://sinalpublicocdntv.vercel.app/" + videoId;
 
-      const url = `https://sinalpublicocdntv.vercel.app/${videoId}`;
+  function fetchPlayerConfig() {
+    fetch(url)
+      .then(response => response.text())
+      .then(htmlContent => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+        const scripts = doc.querySelectorAll("script");
+        let playerScript = null;
 
-      async function fetchPlayerConfig() {
-        try {
-          const response = await fetch(url);
-          const htmlContent = await response.text();
-          const playerScript = extractPlayerScript(htmlContent);
+        scripts.forEach(script => {
+          if (script.textContent.includes("var playerInstance = jwplayer")) {
+            playerScript = script.textContent.trim();
+          }
+        });
 
-          if (playerScript) {
-            const videoUrl = extractVideoUrl(playerScript);
-            const drmKeys = extractDrmKeys(playerScript);
+        if (playerScript) {
+          const fileRegex = /"file"\s*:\s*"([^"]+)"/g;
+          const drmRegex = /"clearkey"\s*:\s*{\s*"keyId"\s*:\s*"([a-f0-9]{32})"\s*,\s*"key"\s*:\s*"([a-f0-9]{32})"\s*}/g;
 
+          let fileMatch = fileRegex.exec(playerScript);
+          let drmMatch = drmRegex.exec(playerScript);
+
+          if (fileMatch && drmMatch) {
+            const videoUrl = fileMatch[1];
+            const drmConfig = {
+              keyId: drmMatch[1],
+              key: drmMatch[2]
+            };
+
+            // Exibe as informações no console (você pode usá-las para configurar o player depois)
+            console.log("Video URL:", videoUrl);
+            console.log("DRM Key ID:", drmConfig.keyId);
+            console.log("DRM Key:", drmConfig.key);
+            
+            // Aqui você pode fazer a configuração do JWPlayer ou outras ações.
             const playerConfig = {
               playlist: [{
-                sources: [{
-                  default: false,
-                  type: "application/dash+xml",
-                  file: videoUrl,
-                  drm: drmKeys.length ? { clearkey: drmKeys[0] } : undefined,
-                  label: "0"
+                "sources": [{
+                  "default": false,
+                  "type": "application/dash+xml",
+                  "file": videoUrl,
+                  "drm": {
+                    "clearkey": {
+                      "keyId": drmConfig.keyId,
+                      "key": drmConfig.key
+                    }
+                  },
+                  "label": "0"
                 }]
               }],
               width: "100%",
               height: "100%",
               aspectratio: "16:9",
-              autostart: true,
-              cast: null,
-              sharing: false
+              autostart: true
             };
 
-            const playerInstance = jwplayer("player");
+            var playerInstance = jwplayer("player");
             playerInstance.setup(playerConfig);
+
           } else {
-            showError('Script do player não encontrado na página de vídeo.');
+            const errorDiv = document.createElement('div');
+            errorDiv.classList.add('error-message');
+            errorDiv.textContent = "Não foi possível extrair o URL do vídeo ou as chaves DRM.";
+            document.body.appendChild(errorDiv);
           }
-        } catch (error) {
-          showError(`Erro ao acessar o conteúdo do vídeo: ${error.message}`);
+        } else {
+          const errorDiv = document.createElement('div');
+          errorDiv.classList.add('error-message');
+          errorDiv.textContent = "Script do player não encontrado na página de vídeo.";
+          document.body.appendChild(errorDiv);
         }
-      }
-
-      function extractPlayerScript(htmlContent) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, "text/html");
-        return Array.from(doc.querySelectorAll("script"))
-          .map(script => script.textContent)
-          .find(script => script.includes("var playerInstance = jwplayer"));
-      }
-
-      function extractVideoUrl(script) {
-        const match = /["']file["']\s*:\s*["'](https?:\/\/[^\s]+)["']/g.exec(script);
-        return match ? match[1] : null;
-      }
-
-      function extractDrmKeys(script) {
-        const drmKeyRegex = /["']keyId["']\s*:\s*["']([a-f0-9]{32})["']\s*,\s*["']key["']\s*:\s*["']([a-f0-9]{32})["']/g;
-        const drmKeys = [];
-        let match;
-        while ((match = drmKeyRegex.exec(script)) !== null) {
-          drmKeys.push({ keyId: match[1], key: match[2] });
-        }
-        return drmKeys;
-      }
-
-      function showError(message) {
+      })
+      .catch(error => {
         const errorDiv = document.createElement('div');
         errorDiv.classList.add('error-message');
-        errorDiv.textContent = message;
+        errorDiv.textContent = "Erro ao acessar o conteúdo do vídeo: " + error;
         document.body.appendChild(errorDiv);
-      }
+      });
+  }
 
-      fetchPlayerConfig();
-    });
-</script>
+  fetchPlayerConfig();
+});
+ </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
