@@ -57,7 +57,7 @@
         return urlParams.get(param);
       }
 
-      const videoId = getQueryParam('id');
+      const videoId = getQueryParam('m');
       let playerInitialized = false;
 
       if (videoId) {
@@ -72,14 +72,18 @@
               const parser = new DOMParser();
               const doc = parser.parseFromString(data, 'text/html');
               
-              // Procurar a URL do vídeo no elemento <source>
-              const sourceElement = doc.querySelector('source');
-              if (sourceElement) {
-                const videoLink = sourceElement.getAttribute('src');
-                if (!videoLink) {
-                  throw new Error("Link de vídeo não encontrado");
-                }
+              // Procurar no script a linha que define player.src
+              const scriptTags = doc.querySelectorAll('script');
+              let videoUrl = null;
 
+              scriptTags.forEach(script => {
+                const match = script.textContent.match(/player\.src\s*=\s*"([^"]+)"/);
+                if (match && match[1]) {
+                  videoUrl = match[1];  // Captura a URL do vídeo
+                }
+              });
+
+              if (videoUrl) {
                 // Configurar o player JWPlayer com a URL do vídeo extraída
                 jwplayer("player").setup({
                   playlist: [{
@@ -87,14 +91,14 @@
                       {
                         default: false,
                         type: "hls",
-                        file: videoLink,
+                        file: videoUrl,
                         drm: { fairplay: {} },
                         label: "0"
                       },
                       {
                         default: true,
                         type: "hls",
-                        file: videoLink,
+                        file: videoUrl,
                         drm: { widevine: {}, playready: {} },
                         label: "1"
                       }
