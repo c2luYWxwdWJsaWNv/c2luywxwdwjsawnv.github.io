@@ -57,7 +57,7 @@
         return urlParams.get(param);
       }
 
-      const videoId = getQueryParam('id');
+      const videoId = getQueryParam('m');
       let playerInitialized = false;
 
       if (videoId) {
@@ -84,38 +84,25 @@
               });
 
               if (videoUrl) {
-                // Configurar o player JWPlayer com a URL do vídeo extraída
-                jwplayer("player").setup({
-                  playlist: [{
-                    sources: [
-                      {
-                        default: false,
-                        type: "hls",
-                        file: videoUrl,
-                        drm: { fairplay: {} },
-                        label: "0"
-                      },
-                      {
-                        default: true,
-                        type: "hls",
-                        file: videoUrl,
-                        drm: { widevine: {}, playready: {} },
-                        label: "1"
-                      }
-                    ]
-                  }],
-                  primary: "html5",
-                  hlshtml: true,
+                // Configurar o player com a estrutura fornecida
+                var playerInstance = jwplayer("player");
+                playerInstance.setup({
+                  playlist: [
+                    {
+                      "file": videoUrl
+                    }
+                  ],
                   width: "100%",
                   height: "100%",
                   aspectratio: "16:9",
-                  stretching: "exactfit",
                   autostart: true,
-                  cast: true,
-                  hlsjsConfig: {
-                    debug: false,
-                    p2pConfig: { live: true }
-                  }
+                  mute: false,
+                  cast: {}
+                });
+
+                // Evento play para definir o áudio
+                playerInstance.on('play', function() {
+                  playerInstance.setCurrentAudioTrack(2);  // Define o áudio (se disponível)
                 });
 
                 playerInitialized = true;
