@@ -4,13 +4,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="robots" content="none">
   <meta name="theme-color" content="black">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
   <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-  <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
   <style>
     body {
       margin: 0;
@@ -27,7 +25,6 @@
       height: 100%;
       width: 100%;
       border: 0;
-      overflow: hidden;
     }
 
     #refreshButton {
@@ -52,110 +49,87 @@
 <body>
   <button id="refreshButton">Atualizar</button>
   <div id="player"></div>
+
   <script>
-window.addEventListener("load", function () {
-  // Exibir o botão "Atualizar"
-  const refreshButton = document.getElementById('refreshButton');
-  refreshButton.classList.remove('hidden');
+    async function carregarVideo() {
+      
+      const refreshButton = document.getElementById('refreshButton');
+      refreshButton.classList.remove('hidden');
+      setTimeout(() => refreshButton.classList.add('hidden'), 15000);
+      refreshButton.addEventListener('click', () => window.location.reload());
 
-  // Fazer o botão desaparecer após 15 segundos
-  setTimeout(() => {
-    refreshButton.classList.add('hidden');
-  }, 15000);
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const videoId = urlParams.get('m');
+      if (!videoId) return;
 
-  // Adicionar o evento de clique para atualizar a página
-  refreshButton.addEventListener('click', function() {
-    window.location.reload();  // Recarregar a página
-  });
+      const url = `https://consoledbtv.vercel.app/${videoId}`;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const videoId = urlParams.get('id');
-  
-  if (!videoId) {
-    console.error("ID do vídeo não encontrado na URL.");
-    return; 
-  }
+      // Buscar os dados do vídeo e configurar o player
+      const playerConfig = await fetchPlayerConfig(url);
+      if (playerConfig) {
+        setupJWPlayer(playerConfig);
+      }
+    }
 
-  const url = "https://sinalpublicobtv.vercel.app/" + videoId;
+    
+    async function fetchPlayerConfig(url) {
+      const response = await fetch(url);
+      const htmlContent = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlContent, "text/html");
+      const scripts = doc.querySelectorAll("script");
 
-  function fetchPlayerConfig() {
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao buscar conteúdo do vídeo.');
+      let playerScript = null;
+
+      
+      scripts.forEach(script => {
+        if (script.textContent.includes("var playerInstance = jwplayer")) {
+          playerScript = script.textContent.trim();
         }
-        return response.text();
-      })
-      .then(htmlContent => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, "text/html");
-        const scripts = doc.querySelectorAll("script");
-        let playerScript = null;
-
-        scripts.forEach(script => {
-          if (script.textContent.includes("var playerInstance = jwplayer")) {
-            playerScript = script.textContent.trim();
-          }
-        });
-
-        if (playerScript) {
-          const fileRegex = /"file"\s*:\s*"([^"]+)"/g;
-          const drmRegex = /"clearkey"\s*:\s*{\s*"keyId"\s*:\s*"([a-f0-9]{32})"\s*,\s*"key"\s*:\s*"([a-f0-9]{32})"\s*}/g;
-
-          let fileMatch = fileRegex.exec(playerScript);
-          let drmMatch = drmRegex.exec(playerScript);
-
-          if (fileMatch && drmMatch) {
-            const videoUrl = fileMatch[1];
-            const drmConfig = {
-              keyId: drmMatch[1],
-              key: drmMatch[2]
-            };
-
-            console.log("URL do vídeo:", videoUrl);
-            console.log("ID do DRM:", drmConfig.keyId);
-            console.log("Chave do DRM:", drmConfig.key);
-
-            const playerConfig = {
-              playlist: [{
-                "sources": [{
-                  "default": false,
-                  "type": "application/dash+xml",
-                  "file": videoUrl,
-                  "drm": {
-                    "clearkey": {
-                      "keyId": drmConfig.keyId,
-                      "key": drmConfig.key
-                    }
-                  },
-                  "label": "0"
-                }]
-              }],
-              width: "100%",
-              height: "100%",
-              aspectratio: "16:9",
-              autostart: true,
-              cast: {},
-              sharing: false
-            };
-
-            var playerInstance = jwplayer("player");
-            playerInstance.setup(playerConfig);
-
-          } else {
-            console.error("Não foi possível extrair informações do vídeo.");
-          }
-        } else {
-          console.error("Script do player não encontrado.");
-        }
-      })
-      .catch(error => {
-        console.error("Erro ao acessar o conteúdo do vídeo: ", error); 
       });
-  }
 
-  fetchPlayerConfig();
-});
+      if (playerScript) {
+        const fileRegex = /"file"\s*:\s*"([^"]+)"/g;
+        const drmRegex = /"clearkey"\s*:\s*{\s*"keyId"\s*:\s*"([a-f0-9]{32})"\s*,\s*"key"\s*:\s*"([a-f0-9]{32})"\s*}/g;
+
+        const fileMatch = fileRegex.exec(playerScript);
+        const drmMatch = drmRegex.exec(playerScript);
+
+        if (fileMatch && drmMatch) {
+          const videoUrl = fileMatch[1];
+          const drmConfig = { keyId: drmMatch[1], key: drmMatch[2] };
+
+          return {
+            playlist: [{
+              sources: [{
+                default: false,
+                type: "application/dash+xml",
+                file: videoUrl,
+                drm: {
+                  clearkey: drmConfig
+                },
+                label: "0"
+              }]
+            }],
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            autostart: true,
+            cast: {},
+            sharing: false
+          };
+        }
+      }
+    }
+
+    
+    function setupJWPlayer(config) {
+      const playerInstance = jwplayer("player");
+      playerInstance.setup(config);
+    }
+
+    window.addEventListener("load", carregarVideo);
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
