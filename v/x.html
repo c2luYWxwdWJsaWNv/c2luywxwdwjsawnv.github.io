@@ -59,7 +59,7 @@
       refreshButton.addEventListener('click', () => window.location.reload());
 
       const urlParams = new URLSearchParams(window.location.search);
-      const videoId = urlParams.get('m');
+      const videoId = urlParams.get('id');
       if (!videoId) return;
 
       const url = `https://consoledbtv.vercel.app/${videoId}`;
