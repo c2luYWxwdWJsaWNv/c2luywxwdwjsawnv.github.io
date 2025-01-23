@@ -64,7 +64,6 @@
 
       const url = `https://consoledbtv.vercel.app/${videoId}`;
 
-      // Buscar os dados do vídeo e configurar o player
       const playerConfig = await fetchPlayerConfig(url);
       if (playerConfig) {
         setupJWPlayer(playerConfig);
@@ -121,7 +120,6 @@
       }
     }
 
-    
     function setupJWPlayer(config) {
       const playerInstance = jwplayer("player");
       playerInstance.setup(config);
