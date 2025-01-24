@@ -66,12 +66,12 @@
               const videoUrl = videoUrlMatch[1]; 
               console.log("Link do vídeo encontrado:", videoUrl);
 
-              // Adicionar os links antes do link encontrado
-              videoLinks.forEach(link => {
-                console.log("Link adicionado:", link + videoUrl);
-              });
+              // Escolher um link da lista para adicionar antes do videoUrl
+              const chosenLink = videoLinks[0]; // Você pode escolher outro índice se preferir
+              console.log("Link escolhido para adicionar:", chosenLink + videoUrl);
 
-              setupPlayer(videoUrl);
+              // Adicionar os links ao player
+              setupPlayer(chosenLink + videoUrl, videoUrl);
             } else {
               console.log("Link do vídeo não encontrado.");
             }
@@ -81,14 +81,14 @@
           });
       }
 
-      function setupPlayer(videoUrl) {
+      function setupPlayer(chosenLink, videoUrl) {
         var playerInstance = jwplayer("player");
         playerInstance.setup({
           playlist: [{
             "sources": [{
               "default": false,
               "type": "hls",
-              "file": videoUrl,
+              "file": chosenLink, // Usando o link escolhido + videoUrl
               "drm": {
                 "fairplay": {}
               },
@@ -97,7 +97,7 @@
             {
               "default": true,
               "type": "hls",
-              "file": videoUrl,
+              "file": videoUrl, // Usando o videoUrl diretamente
               "drm": {
                 "widevine": {},
                 "playready": {}
