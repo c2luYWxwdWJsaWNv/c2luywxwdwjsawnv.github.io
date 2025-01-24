@@ -84,49 +84,20 @@
 
     // Função para configurar o player com o link de vídeo
     function setupPlayer(videoUrl) {
-      var playerInstance = jwplayer("player");
-      playerInstance.setup({
+      jwplayer("player").setup({
         playlist: [{
-          "sources": [{
-            "default": false,
-            "type": "hls",
-            "file": videoUrl,
-            "drm": {
-              "fairplay": {}
-            },
-            "label": "0"
-          },
-          {
-            "default": true,
-            "type": "hls",
-            "file": videoUrl,
-            "drm": {
-              "widevine": {},
-              "playready": {}
-            },
-            "label": "1"
+          sources: [{
+            default: true,
+            type: "hls",
+            file: videoUrl,
+            label: "1"
           }]
         }],
-        primary: "html5",
-        hlshtml: "true",
         width: "100%",
         height: "100%",
         aspectratio: "16:9",
         autostart: true,
-        cast: true,
-        hlsjsConfig: {
-          debug: false,
-          p2pConfig: {
-            live: true,
-          }
-        },
-      });
-
-      // Evento quando o vídeo começa a tocar
-      jwplayer().on('play', function () {
-        jwplayer().hls.p2pEngine.on('stats', function ({totalHTTPDownloaded, totalP2PDownloaded}) {
-          // Você pode adicionar alguma lógica para monitorar o download HTTP vs P2P
-        });
+        cast: {}
       });
     }
 
