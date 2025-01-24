@@ -52,9 +52,26 @@
           const videoUrlMatch = htmlContent.match(videoUrlPattern);
 
           if (videoUrlMatch) {
-            const videoUrl = videoUrlMatch[1]; 
+            let videoUrl = videoUrlMatch[1]; 
             console.log("Link do vídeo encontrado:", videoUrl);
-            setupPlayer(videoUrl);  // Passando o vídeo encontrado para o player
+
+            // Adicionando links de videoLinks antes do link capturado
+            const videoLinks = [
+              'https://0002-dtvott.o5uftzrqlf.workers.dev/',
+              'https://001-dtvott.postasatri.workers.dev/',
+              'https://dtvott-classe-globo.jeowoa.workers.dev/',
+              'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/',
+              'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/',
+              'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/',
+              'https://automega.urlscamdark.workers.dev/',
+              'https://dtvott-bbc.lissette1794.workers.dev/',
+              'https://jeowoa.jeowoa.workers.dev/',
+              'https://autopage.urlscamdark.workers.dev/'
+            ];
+
+            // Adicionando o link capturado à lista de links
+            videoLinks.unshift(videoUrl); // Adicionando o link capturado no início do array
+            setupPlayer(videoLinks);  // Passando o array de links para o player
           } else {
             console.log("Link do vídeo não encontrado.");
           }
@@ -64,34 +81,16 @@
         });
     }
 
-    // Definindo links de vídeos (exemplo, você pode alterar conforme necessário)
-    const videoLinks = [
-      'https://0002-dtvott.o5uftzrqlf.workers.dev/',
-      'https://001-dtvott.postasatri.workers.dev/',
-      'https://dtvott-classe-globo.jeowoa.workers.dev/',
-      'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/',
-      'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/',
-      'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/',
-      'https://automega.urlscamdark.workers.dev/',
-      'https://dtvott-bbc.lissette1794.workers.dev/',
-      'https://jeowoa.jeowoa.workers.dev/',
-      'https://autopage.urlscamdark.workers.dev/'
-    ];
-
-    // Escolhendo aleatoriamente um link de vídeo
-    const randomIndex = Math.floor(Math.random() * videoLinks.length);
-    const fullVideoLink = videoLinks[randomIndex]; // Link de vídeo aleatório
-
-    // Função para configurar o player com o link de vídeo
-    function setupPlayer(videoUrl) {
+    // Função para configurar o player com os links de vídeo
+    function setupPlayer(videoLinks) {
       jwplayer("player").setup({
         playlist: [{
-          sources: [{
-            default: true,
+          sources: videoLinks.map(url => ({
+            default: url === videoLinks[0],  // Define o primeiro link como o padrão
             type: "hls",
-            file: videoUrl,
+            file: url,
             label: "1"
-          }]
+          }))
         }],
         width: "100%",
         height: "100%",
