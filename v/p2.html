@@ -1,115 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="robots" content="none">
-  <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="black">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
-  <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-  <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
-  <style type="text/css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+<script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
+<style type="text/css">
     body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
     }
+
     #player {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 100%;
-      width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        border: 0;
+        overflow: hidden;
     }
-  </style>
-</head>
+</style>
+<div id="player"></div>
 
-<body>
-  <div id="player"></div>
-
-  <script>
-    // Função para obter parâmetros da URL
+<script>
     function getParametroUrl(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
     }
 
     // Função para capturar HTML e buscar o URL do vídeo
     function capturarHTML(encodedUrl) {
-      const url = "https://consoledglobo.vercel.app/" + encodeURIComponent(encodedUrl);
+        const url = "https://consoledglobo.vercel.app/" + encodeURIComponent(encodedUrl);
 
-      fetch(url)
-        .then(response => response.text())
-        .then(htmlContent => {
-          const videoUrlPattern = /const\s+videoUrl\s*=\s*['"]([^'"]+)['"]/i;
-          const videoUrlMatch = htmlContent.match(videoUrlPattern);
+        fetch(url)
+            .then(response => response.text())
+            .then(htmlContent => {
+                const videoUrlPattern = /const\s+videoUrl\s*=\s*['"]([^'"]+)['"]/i;
+                const videoUrlMatch = htmlContent.match(videoUrlPattern);
 
-          if (videoUrlMatch) {
-            let videoUrl = videoUrlMatch[1]; 
-            console.log("Link do vídeo encontrado:", videoUrl);
+                if (videoUrlMatch && videoUrlMatch[1]) {
+                    const videoLink = videoUrlMatch[1];
+                    const videoLinks = [
+                        'https://0002-dtvott.o5uftzrqlf.workers.dev/' + videoLink,
+                        'https://001-dtvott.postasatri.workers.dev/' + videoLink,
+                        'https://dtvott-classe-globo.jeowoa.workers.dev/' + videoLink,
+                        'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/' + videoLink,
+                        'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/' + videoLink,
+                        'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/' + videoLink,
+                        'https://automega.urlscamdark.workers.dev/' + videoLink,
+                        'https://dtvott-bbc.lissette1794.workers.dev/' + videoLink,
+                        'https://jeowoa.jeowoa.workers.dev/' + videoLink,
+                        'https://autopage.urlscamdark.workers.dev/' + videoLink
+                    ];
 
-            // Adicionando links de videoLinks antes do link capturado
-            const videoLinks = [
-              'https://0002-dtvott.o5uftzrqlf.workers.dev/',
-              'https://001-dtvott.postasatri.workers.dev/',
-              'https://dtvott-classe-globo.jeowoa.workers.dev/',
-              'https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/',
-              'https://orange-dtvott-o002.o5uftzrqlf.workers.dev/',
-              'https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/',
-              'https://automega.urlscamdark.workers.dev/',
-              'https://dtvott-bbc.lissette1794.workers.dev/',
-              'https://jeowoa.jeowoa.workers.dev/',
-              'https://autopage.urlscamdark.workers.dev/'
-            ];
+                    const randomIndex = Math.floor(Math.random() * videoLinks.length);
+                    const fullVideoLink = videoLinks[randomIndex];
 
-            // Adicionando o link capturado à lista de links
-            videoLinks.unshift(videoUrl); // Adicionando o link capturado no início do array
-            setupPlayer(videoLinks);  // Passando o array de links para o player
-          } else {
-            console.log("Link do vídeo não encontrado.");
-          }
-        })
-        .catch(error => {
-          console.error("Erro ao capturar o conteúdo:", error);
-        });
+                    // Inicializa o player JW
+                    jwplayer("player").setup({
+                        playlist: [{
+                            sources: [{
+                                default: true,
+                                type: "hls",
+                                file: fullVideoLink,
+                                label: "1"
+                            }]
+                        }],
+                        width: "100%",
+                        height: "100%",
+                        aspectratio: "16:9",
+                        autostart: true,
+                        cast: {}
+                    });
+                }
+            })
+            .catch(error => console.error("Erro ao carregar o vídeo:", error));
     }
 
-    // Função para configurar o player com os links de vídeo
-    function setupPlayer(videoLinks) {
-      jwplayer("player").setup({
-        playlist: [{
-          sources: videoLinks.map(url => ({
-            default: url === videoLinks[0],  // Define o primeiro link como o padrão
-            type: "hls",
-            file: url,
-            label: "1"
-          }))
-        }],
-        width: "100%",
-        height: "100%",
-        aspectratio: "16:9",
-        autostart: true,
-        cast: {}
-      });
+    // Exemplo de uso de capturarHTML
+    const encodedUrl = getParametroUrl('video'); // Exemplo, precisa do parâmetro "video" na URL
+    if (encodedUrl) {
+        capturarHTML(encodedUrl);
     }
-
-    // Executa quando o conteúdo da página é carregado
-    document.addEventListener("DOMContentLoaded", function () {
-      const idParametro = getParametroUrl('m');
-      if (idParametro) {
-        capturarHTML(idParametro);  // Chama a função para capturar o HTML com o parâmetro da URL
-      } else {
-        console.log("Parâmetro \"m\" não encontrado na URL.");
-      }
-    });
-  </script>
+</script>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
