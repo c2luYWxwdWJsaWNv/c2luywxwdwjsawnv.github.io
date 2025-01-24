@@ -70,55 +70,45 @@
               const chosenLink = videoLinks[2]; // Escolha o link desejado da lista (aqui é o 3º)
 
               // Concatenar o link escolhido com o videoUrl
-              const finalVideoUrl = chosenLink + videoUrl;
-              console.log("Link final para o player:", finalVideoUrl);
+              const fullVideoLink = chosenLink + videoUrl;
+              console.log("Link final para o player:", fullVideoLink);
 
-              // Adicionar ao player
-              setupPlayer(finalVideoUrl);
+              // Configuração do Player com o novo código que você forneceu
+              fetchPlayerConfig(fullVideoLink);
             } else {
-              console.log("Link do vídeo não encontrado.");
+              showError("Link de vídeo não encontrado no conteúdo.");
             }
           })
           .catch(error => {
-            console.error("Erro ao capturar o conteúdo:", error);
+            showError("Erro ao carregar o vídeo. Tente novamente mais tarde.");
+            console.error(error);
           });
       }
 
-      function setupPlayer(finalVideoUrl) {
-        var playerInstance = jwplayer("player");
-        playerInstance.setup({
+      function showError(message) {
+        console.error(message);
+        alert(message); // Exibe um alerta com o erro
+      }
+
+      function fetchPlayerConfig(fullVideoLink) {
+        jwplayer("player").setup({
           playlist: [{
-            "sources": [{
-              "default": true,
-              "type": "hls",
-              "file": finalVideoUrl, // Passa o link concatenado
-              "drm": {
-                "widevine": {},
-                "playready": {}
-              },
-              "label": "1"
+            sources: [{
+              default: true,
+              type: "hls",
+              file: fullVideoLink, // Usando o link concatenado
+              label: "1"
             }]
           }],
-          primary: "html5",
-          hlshtml: "true",
           width: "100%",
           height: "100%",
           aspectratio: "16:9",
           autostart: true,
-          cast: true,
-          hlsjsConfig: {
-            debug: false,
-            p2pConfig: {
-              live: true,
-            }
-          },
+          cast: {}
         });
 
-        jwplayer().on('play', function () {
-          jwplayer().hls.p2pEngine.on('stats', function ({totalHTTPDownloaded, totalP2PDownloaded}) {
-            // 
-          });
-        });
+        let playerInitialized = true; // Flag de inicialização do player
+        console.log("Player inicializado:", playerInitialized);
       }
 
       document.addEventListener("DOMContentLoaded", function () {
