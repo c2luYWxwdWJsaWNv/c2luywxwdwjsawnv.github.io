@@ -67,11 +67,14 @@
               console.log("Link do vídeo encontrado:", videoUrl);
 
               // Escolher um link da lista para adicionar antes do videoUrl
-              const chosenLink = videoLinks[0]; // Você pode escolher outro índice se preferir
-              console.log("Link escolhido para adicionar:", chosenLink + videoUrl);
+              const chosenLink = videoLinks[2]; // Escolha o link desejado da lista (aqui é o 3º)
 
-              // Adicionar os links ao player
-              setupPlayer(chosenLink + videoUrl, videoUrl);
+              // Concatenar o link escolhido com o videoUrl
+              const finalVideoUrl = chosenLink + videoUrl;
+              console.log("Link final para o player:", finalVideoUrl);
+
+              // Adicionar ao player
+              setupPlayer(finalVideoUrl);
             } else {
               console.log("Link do vídeo não encontrado.");
             }
@@ -81,23 +84,14 @@
           });
       }
 
-      function setupPlayer(chosenLink, videoUrl) {
+      function setupPlayer(finalVideoUrl) {
         var playerInstance = jwplayer("player");
         playerInstance.setup({
           playlist: [{
             "sources": [{
-              "default": false,
-              "type": "hls",
-              "file": chosenLink, // Usando o link escolhido + videoUrl
-              "drm": {
-                "fairplay": {}
-              },
-              "label": "0"
-            },
-            {
               "default": true,
               "type": "hls",
-              "file": videoUrl, // Usando o videoUrl diretamente
+              "file": finalVideoUrl, // Passa o link concatenado
               "drm": {
                 "widevine": {},
                 "playready": {}
@@ -119,7 +113,7 @@
             }
           },
         });
-        
+
         jwplayer().on('play', function () {
           jwplayer().hls.p2pEngine.on('stats', function ({totalHTTPDownloaded, totalP2PDownloaded}) {
             // 
