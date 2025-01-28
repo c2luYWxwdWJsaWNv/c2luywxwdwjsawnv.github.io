@@ -1,1 +1,58 @@
-const _0x199532=_0x559b;(function(_0x259491,_0x270a08){const _0x233635=_0x559b,_0x3c70bb=_0x259491();while(!![]){try{const _0x5ddd43=parseInt(_0x233635(0x1c8))/(-0x304+-0xddb+0x10e0)*(-parseInt(_0x233635(0x1d3))/(-0x1*-0x16a0+0x8cd*0x4+-0x39d2))+-parseInt(_0x233635(0x1cb))/(-0x12e*-0xe+-0x8f5+-0x78c)+-parseInt(_0x233635(0x1e0))/(-0xc*0x1df+0x1d04+0x1a3*-0x4)+parseInt(_0x233635(0x1dc))/(0xa74+0x18a4*0x1+-0x3*0xbb1)*(parseInt(_0x233635(0x1e9))/(-0x21*-0x1+0x6b*-0x2+0xbb))+-parseInt(_0x233635(0x1ca))/(0x277*0x2+0x2*-0xfdd+0x147*0x15)*(-parseInt(_0x233635(0x1e3))/(0xf73+0x5*0x455+-0x2514))+parseInt(_0x233635(0x1d4))/(-0x208b+0x68d*0x2+0x6*0x33f)*(-parseInt(_0x233635(0x1d7))/(-0x169c+-0xe8e+0x2534))+parseInt(_0x233635(0x1cd))/(-0x2615*0x1+0x25e6+-0x3a*-0x1);if(_0x5ddd43===_0x270a08)break;else _0x3c70bb['push'](_0x3c70bb['shift']());}catch(_0x517328){_0x3c70bb['push'](_0x3c70bb['shift']());}}}(_0x5784,0x8aff1+0x804bc+-0x576a1));function _0x559b(_0x37c993,_0x19b442){const _0x15c73a=_0x5784();return _0x559b=function(_0x11d2a8,_0x359f53){_0x11d2a8=_0x11d2a8-(0xf9a*-0x2+0x2*0x80f+-0x1a*-0xa6);let _0x2cec22=_0x15c73a[_0x11d2a8];return _0x2cec22;},_0x559b(_0x37c993,_0x19b442);}function getParametroUrl(_0x5e90f9){const _0x3c7068=_0x559b,_0x2d07dd=new URLSearchParams(window[_0x3c7068(0x1ea)][_0x3c7068(0x1cf)]);return _0x2d07dd[_0x3c7068(0x1e4)](_0x5e90f9);}async function capturarHTML(_0x3c98f6){const _0x5498ec=_0x559b,_0x1d6c1b={'efGDY':function(_0xe6ad05,_0x1f0957){return _0xe6ad05(_0x1f0957);},'CwKLU':function(_0x5101ff,_0x4d1725){return _0x5101ff+_0x4d1725;},'gXHcp':_0x5498ec(0x1da)+_0x5498ec(0x1db)+_0x5498ec(0x1d1)+'p/','ZTcUE':function(_0x3acf15,_0x15d420){return _0x3acf15(_0x15d420);},'MVcmf':_0x5498ec(0x1ef)+_0x5498ec(0x1ec)+_0x5498ec(0x1cc),'uJtBJ':_0x5498ec(0x1e1),'AjhMd':_0x5498ec(0x1d8),'Hfoin':_0x5498ec(0x1e7),'lUTwY':_0x5498ec(0x1d0)};try{const _0x4356ff=_0x1d6c1b[_0x5498ec(0x1e6)](atob,_0x3c98f6),_0x3f5e76=_0x1d6c1b[_0x5498ec(0x1d9)](_0x1d6c1b[_0x5498ec(0x1e5)],_0x1d6c1b[_0x5498ec(0x1eb)](encodeURIComponent,_0x4356ff)),_0x2f5f7e=await _0x1d6c1b[_0x5498ec(0x1eb)](fetch,_0x3f5e76),_0x20068c=await _0x2f5f7e[_0x5498ec(0x1de)](),_0x2935a3=/src\s*:\s*"([^"]+)"/i,_0x489f91=_0x20068c[_0x5498ec(0x1ce)](_0x2935a3);if(_0x489f91){const _0x59031e=_0x1d6c1b[_0x5498ec(0x1d9)](_0x1d6c1b[_0x5498ec(0x1c9)],_0x489f91[-0x1*0x2231+-0x1a05*-0x1+-0xa1*-0xd]),_0x24454d=_0x1d6c1b[_0x5498ec(0x1e6)](jwplayer,_0x1d6c1b[_0x5498ec(0x1c6)]);_0x24454d[_0x5498ec(0x1d2)]({'playlist':[{'sources':[{'default':![],'type':_0x1d6c1b[_0x5498ec(0x1e2)],'file':_0x59031e,'label':'0'}]}],'width':_0x1d6c1b[_0x5498ec(0x1dd)],'height':_0x1d6c1b[_0x5498ec(0x1dd)],'aspectratio':_0x1d6c1b[_0x5498ec(0x1d6)],'autostart':!![],'cast':!![],'sharing':![]});}}catch(_0x39b4e8){}}document[_0x199532(0x1d5)+_0x199532(0x1c7)](_0x199532(0x1df)+_0x199532(0x1e8),async function(){const _0xed80f7=_0x199532,_0x42cc7c={'wjYCS':function(_0xfbd963,_0x33d204){return _0xfbd963(_0x33d204);},'dvvKG':function(_0x134393,_0x9acb82){return _0x134393(_0x9acb82);}},_0x3b66cc=_0x42cc7c[_0xed80f7(0x1ed)](getParametroUrl,'id');_0x3b66cc&&await _0x42cc7c[_0xed80f7(0x1ee)](capturarHTML,_0x3b66cc);});function _0x5784(){const _0x11755e=['DOMContent','2567236YgPWhL','player','AjhMd','21072iEwucr','get','gXHcp','efGDY','100%','Loaded','10926IAByiA','location','ZTcUE','oraglobe.i','wjYCS','dvvKG','https://ch','uJtBJ','stener','2427SmhLic','MVcmf','77XXApLU','3438333JJSJNB','cu/','40653272IaDBTC','match','search','16:9','.vercel.ap','setup','458eitdLm','18Pohycy','addEventLi','lUTwY','3521680BcZsUz','hls','CwKLU','https://co','nsoledplay','165jyZIpk','Hfoin','text'];_0x5784=function(){return _0x11755e;};return _0x5784();}
+// Função para obter um parâmetro da URL com base no nome do parâmetro
+function getParametroUrl(paramName) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(paramName);
+}
+
+// Função assíncrona para capturar o HTML e configurar o player de vídeo
+async function capturarHTML(encodedUrl) {
+  try {
+    // Decodifica a URL base64
+    const decodedUrl = atob(encodedUrl);
+
+    // Cria a URL completa de destino com a URL codificada
+    const fullUrl = "https://consoledplay.vercel.app/" + encodeURIComponent(decodedUrl);
+
+    // Faz uma requisição para obter o conteúdo da URL
+    const response = await fetch(fullUrl);
+    const htmlContent = await response.text();
+
+    // Expressão regular para extrair a URL do vídeo
+    const videoSrcPattern = /src\s*:\s*"([^"]+)"/i;
+    const videoSrcMatch = htmlContent.match(videoSrcPattern);
+
+    if (videoSrcMatch) {
+      // Usa diretamente a URL extraída
+      const videoUrl = videoSrcMatch[1];
+
+      // Configura o player de vídeo usando o JWPlayer
+      const player = jwplayer("player");
+      player.setup({
+        'playlist': [{
+          'sources': [{
+            'default': false,
+            'type': "hls",
+            'file': videoUrl,  // Agora sem o domínio adicional
+            'label': '0'
+          }]
+        }],
+        'width': "100%",
+        'height': "100%",
+        'aspectratio': "16:9",
+        'autostart': true,
+        'cast': true,
+        'sharing': false
+      });
+    }
+  } catch (error) {
+    console.error("Erro ao capturar HTML:", error);
+  }
+}
+
+// Aguarda o carregamento do DOM e executa o processo de captura e configuração do player
+document.addEventListener("DOMContentLoaded", async function () {
+  const paramId = getParametroUrl('id');
+  if (paramId) {
+    await capturarHTML(paramId);
+  }
+});
