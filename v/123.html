@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV - Nova TV</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
+    <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+    <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            background-color: #1c1c1c;
+            color: #f1f1f1;
+            min-height: 100vh;
+        }
+
+        #sidebar {
+            width: 250px;
+            background-color: #333;
+            padding: 20px;
+            height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px;
+            color: #00bcd4;
+        }
+
+        #search-container {
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            background-color: #333;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        #search-input {
+            width: 80%;
+            padding: 10px 15px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #00bcd4;
+            background-color: #222;
+            color: #f1f1f1;
+            outline: none;
+            margin: 10px 0;
+        }
+
+        #search-input::placeholder {
+            color: #888;
+        }
+
+        .category-button {
+            background-color: #444;
+            color: #fff;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: left;
+        }
+
+        .category-button:hover {
+            background-color: #00bcd4;
+            transform: translateY(-3px);
+        }
+
+        #main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .categories {
+            margin-bottom: 20px;
+        }
+
+        #channel-list {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .channel-item {
+            background-color: #333;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .channel-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .channel-item img {
+            max-width: 100%;
+            max-height: 120px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .channel-item .info-bar {
+            margin-top: 10px;
+        }
+
+        .channel-item .channel-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .channel-item .category-name {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        #player-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 900px;
+            background-color: #222;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+        }
+
+        #player {
+            width: 100%;
+            height: 500px;
+        }
+
+        #close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 1100; /* Coloca o botão acima de outros elementos */
+        }
+
+        #loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid #fff;
+            border-top: 5px solid #00bcd4;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h1>Nova TV IPTV</h1>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="Pesquise por canais..." oninput="searchChannels()" />
+        </div>
+
+        <div class="categories" id="categories">
+            <!-- Categorias serão carregadas aqui dinamicamente -->
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div id="channel-list">
+            <!-- Canais serão carregados aqui dinamicamente -->
+        </div>
+    </div>
+
+    <div id="player-container">
+        <button id="close-button">X</button>
+        <div id="loading-spinner"></div>
+        <div id="player"></div>
+    </div>
+
+    <script>
+        const playlistUrl = "https://snippet.host/awqiye/raw";
+        let channels = [];
+        let categories = [];
+        let playerInstance;
+
+        // Função para carregar a lista de canais
+        async function loadPlaylist() {
+            try {
+                const response = await fetch(playlistUrl);
+                if (!response.ok) throw new Error('Erro ao carregar a lista de canais');
+
+                const data = await response.text();
+                parsePlaylist(data);
+            } catch (error) {
+                console.error(error);
+                alert('Falha ao carregar a lista de canais. Tente novamente mais tarde.');
+            }
+        }
+
+        // Função para analisar a playlist
+        function parsePlaylist(data) {
+            const lines = data.split('\n');
+            let currentCategory = '';
+
+            lines.forEach((line, index) => {
+                if (line.startsWith('#EXTINF')) {
+                    const channelInfo = line.split(',');
+                    const category = extractCategory(line);
+                    const name = channelInfo[1].trim();
+                    const url = lines[index + 1]; // URL está na linha seguinte ao #EXTINF
+
+                    if (!categories[category]) {
+                        categories[category] = [];
+                    }
+
+                    categories[category].push({
+                        name: name,
+                        url: url.trim(),
+                        category: category,
+                        logo: extractLogo(line)
+                    });
+                }
+            });
+
+            const sortedCategories = Object.keys(categories).sort((a, b) => categories[b].length - categories[a].length);
+            renderCategories(sortedCategories);
+            renderChannels();
+        }
+
+        // Função para extrair categoria
+        function extractCategory(line) {
+            const categoryMatch = line.match(/group-title="([^"]+)"/);
+            return categoryMatch ? categoryMatch[1] : 'Sem categoria';
+        }
+
+        // Função para extrair logo
+        function extractLogo(line) {
+            const logoMatch = line.match(/tvg-logo="([^"]+)"/);
+            return logoMatch ? logoMatch[1] : '';
+        }
+
+        // Função para renderizar categorias
+        function renderCategories(sortedCategories) {
+            const categoriesContainer = document.getElementById('categories');
+            categoriesContainer.innerHTML = '';
+
+            sortedCategories.forEach(category => {
+                const button = document.createElement('button');
+                button.classList.add('category-button');
+                button.textContent = `${category} (${categories[category].length})`;
+                button.addEventListener('click', () => filterChannels(category));
+                categoriesContainer.appendChild(button);
+            });
+        }
+
+        // Função para renderizar canais
+        function renderChannels(filteredChannels = []) {
+            const channelList = document.getElementById('channel-list');
+            channelList.innerHTML = '';
+
+            const channelsToRender = filteredChannels.length ? filteredChannels : Object.values(categories).flat();
+
+            channelsToRender.forEach(channel => {
+                const channelItem = document.createElement('div');
+                channelItem.classList.add('channel-item');
+
+                const logoContainer = document.createElement('div');
+                if (channel.logo) {
+                    const logo = document.createElement('img');
+                    logo.src = channel.logo;
+                    logo.alt = channel.name;
+                    logoContainer.appendChild(logo);
+                }
+
+                const infoBar = document.createElement('div');
+                infoBar.classList.add('info-bar');
+                const channelName = document.createElement('div');
+                channelName.classList.add('channel-name');
+                channelName.textContent = channel.name;
+
+                const categoryName = document.createElement('div');
+                categoryName.classList.add('category-name');
+                categoryName.textContent = channel.category;
+
+                infoBar.appendChild(channelName);
+                infoBar.appendChild(categoryName);
+                channelItem.appendChild(logoContainer);
+                channelItem.appendChild(infoBar);
+
+                channelItem.addEventListener('click', () => openPlayer(channel.url));
+
+                channelList.appendChild(channelItem);
+            });
+        }
+
+        // Função para filtrar canais por categoria
+        function filterChannels(category) {
+            renderChannels(categories[category]);
+        }
+
+        // Função de pesquisa de canais
+        function searchChannels() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const filteredChannels = Object.values(categories).flat().filter(channel => channel.name.toLowerCase().includes(searchInput));
+            renderChannels(filteredChannels);
+        }
+
+        // Função para abrir o player
+        function openPlayer(url) {
+            const playerContainer = document.getElementById('player-container');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            playerContainer.style.display = 'block';
+            loadingSpinner.style.display = 'block';
+
+            if (!playerInstance) {
+                playerInstance = jwplayer('player').setup({
+                    file: url,
+                    image: '',
+                    width: '100%',
+                    height: '100%'
+                });
+            } else {
+                playerInstance.load({ file: url });
+                playerInstance.play();
+            }
+
+            playerInstance.on('play', () => {
+                loadingSpinner.style.display = 'none';
+            });
+        }
+
+        // Função para fechar o player
+        function closePlayer() {
+            const playerContainer = document.getElementById('player-container');
+            const loadingSpinner = document.getElementById('loading-spinner');
+
+            if (playerInstance) {
+                playerInstance.stop();
+            }
+
+            playerContainer.style.display = 'none';
+            loadingSpinner.style.display = 'none';
+        }
+
+        // Chama a função para carregar a playlist ao iniciar
+        window.onload = loadPlaylist;
+
+        // Adiciona evento de clique no botão de fechar
+        document.getElementById('close-button').addEventListener('click', closePlayer);
+    </script>
+
+</body>
+</html>
