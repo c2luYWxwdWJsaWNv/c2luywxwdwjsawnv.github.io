@@ -22,7 +22,7 @@ async function capturarHTML(encodedUrl) {
     const videoSrcMatch = htmlContent.match(videoSrcPattern);
 
     if (videoSrcMatch) {
-      // Usa diretamente a URL extraída
+      // Usa diretamente a URL extraída para o parâmetro 'file' do player
       const videoUrl = videoSrcMatch[1];
 
       // Configura o player de vídeo usando o JWPlayer
@@ -32,7 +32,7 @@ async function capturarHTML(encodedUrl) {
           'sources': [{
             'default': false,
             'type': "hls",
-            'file': videoUrl,  // Agora sem o domínio adicional
+            'file': videoUrl,  // O URL extraído vai diretamente para o 'file' do player
             'label': '0'
           }]
         }],
