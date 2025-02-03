@@ -11,8 +11,6 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
   <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
   <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
   <style type="text/css">
@@ -22,13 +20,15 @@
       overflow: hidden;
     }
     #player {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       height: 100%;
       width: 100%;
+      border: 0;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -37,89 +37,62 @@
   <div id="player"></div>
 
   <script>
-      function getParametroUrl(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-      }
+    function getParametroUrl(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
 
-      function capturarHTML(encodedUrl) {
-        const url = "https://consoledglobo.vercel.app/" + encodeURIComponent(encodedUrl);
+    function capturarHTML(encodedUrl) {
+      const url = "https://consoledglobo.vercel.app/" + encodeURIComponent(encodedUrl);
 
-        fetch(url)
-          .then(response => response.text())
-          .then(htmlContent => {
-            const videoUrlPattern = /const\s+videoUrl\s*=\s*['"]([^'"]+)['"]/i;
-            const videoUrlMatch = htmlContent.match(videoUrlPattern);
+      fetch(url)
+        .then(response => response.text())
+        .then(htmlContent => {
+          const videoUrlPattern = /const\s+videoUrl\s*=\s*['"]([^'"]+)['"]/i;
+          const videoUrlMatch = htmlContent.match(videoUrlPattern);
 
-            if (videoUrlMatch) {
-              const videoUrl = videoUrlMatch[1]; 
-              console.log("Link do vídeo encontrado:", videoUrl);
-
-              //
-              setupPlayer(videoUrl);
-            } else {
-              console.log("Link do vídeo não encontrado.");
-            }
-          })
-          .catch(error => {
-            console.error("Erro ao capturar o conteúdo:", error);
-          });
-      }
-
-      function setupPlayer(videoUrl) {
-        var playerInstance = jwplayer("player");
-        playerInstance.setup({
-          playlist: [{
-            "sources": [{
-              "default": false,
-              "type": "hls",
-              "file": videoUrl,
-              "drm": {
-                "fairplay": {}
-              },
-              "label": "0"
-            },
-            {
-              "default": true,
-              "type": "hls",
-              "file": videoUrl,
-              "drm": {
-                "widevine": {},
-                "playready": {}
-              },
-              "label": "1"
-            }]
-          }],
-          primary: "html5",
-          hlshtml: "true",
-          width: "100%",
-          height: "100%",
-          aspectratio: "16:9",
-          autostart: true,
-          cast: {},
-          hlsjsConfig: {
-            debug: false,
-            p2pConfig: {
-              live: true,
-            }
-          },
+          if (videoUrlMatch) {
+            const videoUrl = videoUrlMatch[1];
+            console.log("Link do vídeo encontrado:", videoUrl);
+            setupPlayer(videoUrl);
+          } else {
+            console.log("Link do vídeo não encontrado.");
+          }
+        })
+        .catch(error => {
+          console.error("Erro ao capturar o conteúdo:", error);
         });
-        
-        jwplayer().on('play', function () {
-          jwplayer().hls.p2pEngine.on('stats', function ({totalHTTPDownloaded, totalP2PDownloaded}) {
-            // 
-          });
-        });
-      }
+    }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const idParametro = getParametroUrl('m');
-        if (idParametro) {
-          capturarHTML(idParametro);
-        } else {
-          console.log("Parâmetro \"m\" não encontrado na URL.");
-        }
+    function setupPlayer(videoUrl) {
+      var playerInstance = jwplayer("player");
+      playerInstance.setup({
+        playlist: [
+          {
+            "file": videoUrl,
+          }
+        ],
+        width: "100%",
+        height: "100%",
+        aspectratio: "16:9",
+        autostart: true,
+        mute: false,
+        cast: {}
       });
+
+      playerInstance.on('play', function() {
+        playerInstance.setCurrentAudioTrack(2); 
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const idParametro = getParametroUrl('m');
+      if (idParametro) {
+        capturarHTML(idParametro);
+      } else {
+        console.log("Parâmetro \"m\" não encontrado na URL.");
+      }
+    });
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
