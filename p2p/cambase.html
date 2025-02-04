@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embed Fullscreen</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #back-button, #mirror-button, #connect-button, #fullscreen-button {
+      position: absolute;
+      top: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    #back-button {
+      left: 10px;
+    }
+    #mirror-button {
+      left: 130px;
+    }
+    #connect-button {
+      left: 250px;
+    }
+    #fullscreen-button {
+      left: 370px;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+      flex-grow: 1;
+      transition: transform 0.3s;
+    }
+    .mirrored {
+      transform: scaleX(-1);
+    }
+  </style>
+</head>
+<body>
+
+
+<iframe id="embed-frame" src="" frameborder="0" allowfullscreen="true" 
+  sandbox="allow-scripts allow-same-origin"></iframe>
+
+
+  <script>
+    function getUrlParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        alert('Não há página anterior!');
+      }
+    }
+
+    function toggleMirror() {
+      const iframe = document.getElementById('embed-frame');
+      iframe.classList.toggle('mirrored');
+    }
+
+    function connectToCast() {
+      if (!window.chrome || !chrome.cast) {
+        alert('Cast API não está disponível neste navegador.');
+        return;
+      }
+
+      const sessionRequest = new chrome.cast.SessionRequest(chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID);
+      const apiConfig = new chrome.cast.ApiConfig(sessionRequest, session => {
+        session.loadMedia(new chrome.cast.media.MediaInfo(window.location.href), media => {
+          console.log('Transmisso iniciada');
+        }, err => {
+          console.error('Erro ao iniciar transmissão:', err);
+        });
+      }, receiverList => {
+        console.log('Receivers disponíveis:', receiverList);
+      });
+
+      chrome.cast.initialize(apiConfig, () => {
+        chrome.cast.requestSession(session => {
+          console.log('Sessão de transmissão iniciada:', session);
+        }, err => {
+          console.error('Erro ao iniciar sessão de transmissão:', err);
+        });
+      }, err => {
+        console.error('Erro ao inicializar o Cast API:', err);
+      });
+    }
+
+    function enterFullscreen() {
+      const iframe = document.getElementById('embed-frame');
+      if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+      } else if (iframe.mozRequestFullScreen) { // Firefox
+        iframe.mozRequestFullScreen();
+      } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari e Opera
+        iframe.webkitRequestFullscreen();
+      } else if (iframe.msRequestFullscreen) { // IE/Edge
+        iframe.msRequestFullscreen();
+      } else {
+        alert('Fullscreen não é suportado neste navegador.');
+      }
+    }
+
+    (function loadIframe() {
+      const embedUrl = getUrlParam('url');
+      if (embedUrl) {
+        document.getElementById('embed-frame').src = embedUrl;
+      } else {
+        alert('Nenhum URL fornecido.');
+      }
+    })();
+  </script>
+  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+
+</body>
+</html>
