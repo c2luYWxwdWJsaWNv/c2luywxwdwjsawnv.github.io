@@ -17,7 +17,7 @@ if (id == '#') {
 // Definindo os canais com suas URLs e chaves
 var channels = {
   'cnn': {
-    'url': "https://ottb.live.cf.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/zmpncidiwv/out/v1/56b839863a7642e2a99a8b5144341aea/cenc.mpd?amznDtid=AOAGZA014O5RE&encoding=segmentBase",
+    'url': "https://sinalpublico-tv-dash7.otte.live.cf.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/zmpncidiwv/out/v1/56b839863a7642e2a99a8b5144341aea/cenc.mpd?amznDtid=AOAGZA014O5RE&encoding=segmentBase",
     'key': "7685b7e26da7cdd166f53216783de078:89b8a2d4e233a8831693615fe0d03509"
   },
   'warner': {
