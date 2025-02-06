@@ -31,47 +31,50 @@
 <body>
   <div id="player"></div>
   <script>
-    // Código diretamente no script
     const videoId = new URLSearchParams(window.location.search).get('id');
-    if (!videoId) return;
+    if (videoId) {
+      // Simples requisição HTTP para pegar a página HTML
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', "https://consoledbtv.vercel.app/" + videoId, true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(xhr.responseText, "text/html");
+          const playerScript = Array.from(doc.querySelectorAll("script"))
+            .find(script => script.textContent.includes("var playerInstance = jwplayer"));
+          
+          if (playerScript) {
+            const fileMatch = /"file"\s*:\s*"([^"]+)"/.exec(playerScript.textContent);
+            const drmMatch = /"clearkey"\s*:\s*{\s*"keyId"\s*:\s*"([a-f0-9]{32})"\s*,\s*"key"\s*:\s*"([a-f0-9]{32})"\s*}/.exec(playerScript.textContent);
 
-    fetch("https://consoledbtv.vercel.app/" + videoId)
-      .then(response => response.text())
-      .then(htmlContent => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, "text/html");
-        const scripts = Array.from(doc.querySelectorAll("script"));
+            if (fileMatch && drmMatch) {
+              const [_, videoUrl] = fileMatch;
+              const [__, keyId, key] = drmMatch;
 
-        const playerScript = scripts.find(script => script.textContent.includes("var playerInstance = jwplayer"));
-        if (!playerScript) return;
-
-        const fileMatch = /"file"\s*:\s*"([^"]+)"/.exec(playerScript.textContent);
-        const drmMatch = /"clearkey"\s*:\s*{\s*"keyId"\s*:\s*"([a-f0-9]{32})"\s*,\s*"key"\s*:\s*"([a-f0-9]{32})"\s*}/.exec(playerScript.textContent);
-
-        if (fileMatch && drmMatch) {
-          const [_, videoUrl] = fileMatch;
-          const [__, keyId, key] = drmMatch;
-
-          jwplayer("player").setup({
-            playlist: [{
-              sources: [{
-                default: false,
-                type: "mpd",
-                file: videoUrl,
-                drm: { clearkey: { keyId, key } },
-                label: "0"
-              }]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            cast: {},
-            sharing: false
-          });
+              // Carrega o player diretamente
+              jwplayer("player").setup({
+                playlist: [{
+                  sources: [{
+                    default: false,
+                    type: "mpd",
+                    file: videoUrl,
+                    drm: { clearkey: { keyId, key } },
+                    label: "0"
+                  }]
+                }],
+                width: "100%",
+                height: "100%",
+                aspectratio: "16:9",
+                autostart: true,
+                cast: {},
+                sharing: false
+              });
+            }
+          }
         }
-      })
-      .catch(() => {});  // Erros de fetch são ignorados
+      };
+      xhr.send();
+    }
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
