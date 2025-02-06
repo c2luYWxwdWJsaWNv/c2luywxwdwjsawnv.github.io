@@ -26,106 +26,53 @@
       width: 100%;
       border: 0;
     }
-
-    #refreshButton {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    #refreshButton.hidden {
-      display: none;
-    }
   </style>
 </head>
 <body>
-  <button id="refreshButton">Atualizar</button>
   <div id="player"></div>
-
   <script>
-    async function carregarVideo() {
-      
-      const refreshButton = document.getElementById('refreshButton');
-      refreshButton.classList.remove('hidden');
-      setTimeout(() => refreshButton.classList.add('hidden'), 15000);
-      refreshButton.addEventListener('click', () => window.location.reload());
-
-      const urlParams = new URLSearchParams(window.location.search);
-      const videoId = urlParams.get('id');
+    window.addEventListener("load", function () {
+      const videoId = new URLSearchParams(window.location.search).get('id');
       if (!videoId) return;
 
-      const url = `https://consoledbtv.vercel.app/${videoId}`;
+      fetch("https://consoledbtv.vercel.app/" + videoId)
+        .then(response => response.text())
+        .then(htmlContent => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(htmlContent, "text/html");
+          const scripts = Array.from(doc.querySelectorAll("script"));
 
-      const playerConfig = await fetchPlayerConfig(url);
-      if (playerConfig) {
-        setupJWPlayer(playerConfig);
-      }
-    }
+          const playerScript = scripts.find(script => script.textContent.includes("var playerInstance = jwplayer"));
+          if (!playerScript) return;
 
-    async function fetchPlayerConfig(url) {
-      const response = await fetch(url);
-      const htmlContent = await response.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(htmlContent, "text/html");
-      const scripts = doc.querySelectorAll("script");
+          const fileMatch = /"file"\s*:\s*"([^"]+)"/.exec(playerScript.textContent);
+          const drmMatch = /"clearkey"\s*:\s*{\s*"keyId"\s*:\s*"([a-f0-9]{32})"\s*,\s*"key"\s*:\s*"([a-f0-9]{32})"\s*}/.exec(playerScript.textContent);
+          
+          if (fileMatch && drmMatch) {
+            const [_, videoUrl] = fileMatch;
+            const [__, keyId, key] = drmMatch;
 
-      let playerScript = null;
-
-      
-      scripts.forEach(script => {
-        if (script.textContent.includes("var playerInstance = jwplayer")) {
-          playerScript = script.textContent.trim();
-        }
-      });
-
-      if (playerScript) {
-        const fileRegex = /"file"\s*:\s*"([^"]+)"/g;
-        const drmRegex = /"clearkey"\s*:\s*{\s*"keyId"\s*:\s*"([a-f0-9]{32})"\s*,\s*"key"\s*:\s*"([a-f0-9]{32})"\s*}/g;
-
-        const fileMatch = fileRegex.exec(playerScript);
-        const drmMatch = drmRegex.exec(playerScript);
-
-        if (fileMatch && drmMatch) {
-          const videoUrl = fileMatch[1];
-          const drmConfig = { keyId: drmMatch[1], key: drmMatch[2] };
-
-          return {
-            playlist: [{
-              sources: [{
-                default: false,
-                type: "application/dash+xml",
-                file: videoUrl,
-                drm: {
-                  clearkey: drmConfig
-                },
-                label: "0"
-              }]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            cast: {},
-            sharing: false
-          };
-        }
-      }
-    }
-
-    function setupJWPlayer(config) {
-      const playerInstance = jwplayer("player");
-      playerInstance.setup(config);
-    }
-
-    window.addEventListener("load", carregarVideo);
+            jwplayer("player").setup({
+              playlist: [{
+                sources: [{
+                  default: false,
+                  type: "mpd",
+                  file: videoUrl,
+                  drm: { clearkey: { keyId, key } },
+                  label: "0"
+                }]
+              }],
+              width: "100%",
+              height: "100%",
+              aspectratio: "16:9",
+              autostart: true,
+              cast: {},
+              sharing: false
+            });
+          }
+        })
+        .catch(() => {});  // Erros de fetch são ignorados
+    });
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
