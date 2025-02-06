@@ -33,7 +33,7 @@
   <script>
     const videoId = new URLSearchParams(window.location.search).get('id');
     if (videoId) {
-      // Simples requisição HTTP para pegar a página HTML
+
       const xhr = new XMLHttpRequest();
       xhr.open('GET', "https://consoledbtv.vercel.app/" + videoId, true);
       xhr.onload = function() {
