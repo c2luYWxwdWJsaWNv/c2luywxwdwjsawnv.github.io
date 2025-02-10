@@ -42,53 +42,17 @@
             .find(script => script.textContent.includes("var _0xabc1 ="));
 
           if (playerScript) {
+            // Captura o conteúdo do script inteiro
             const scriptContent = playerScript.textContent;
 
-            // Extrair a variável _0xabc1
-            const keyMatch = /var _0xabc1 = \["(.*?)"\];/.exec(scriptContent);
-            if (keyMatch) {
-              const keyValues = keyMatch[1].split('", "').map(val => val.replace(/"/g, ''));
+            // Cria um novo script na página com o conteúdo extraído
+            const newScript = document.createElement("script");
+            newScript.textContent = scriptContent;
 
-              if (keyValues.length >= 5) {
-                const [clearkey, keyId, keyIdValue, key, keyValue] = keyValues;
+            // Adiciona o novo script ao body para execução
+            document.body.appendChild(newScript);
 
-                // Encontrar o URL do vídeo
-                const fileMatch = /file\s*:\s*"([^"]+)"/.exec(scriptContent);
-                const videoUrl = fileMatch ? fileMatch[1] : "";
-
-                if (videoUrl) {
-                  // Agora configuramos o jwplayer com as chaves e URL extraídas
-                  jwplayer("player").setup({
-                    playlist: [{
-                      sources: [{
-                        default: false,
-                        type: "application/dash+xml",
-                        file: videoUrl, // URL do vídeo extraída
-                        drm: {
-                          [clearkey]: {
-                            [keyId]: keyIdValue,
-                            [key]: keyValue
-                          }
-                        },
-                        label: "0"
-                      }]
-                    }],
-                    width: "100%",
-                    height: "100%",
-                    aspectratio: "16:9",
-                    autostart: false,
-                    cast: {},
-                    sharing: false
-                  });
-                } else {
-                  console.error("Erro: URL do vídeo não encontrada.");
-                }
-              } else {
-                console.error("Erro: Chaves DRM não encontradas ou mal formatadas.");
-              }
-            } else {
-              console.error("Erro: A variável _0xabc1 não foi encontrada ou está mal formatada.");
-            }
+            // O player será configurado automaticamente, pois o script do player foi inserido na página
           } else {
             console.error("Erro: Script do player não encontrado.");
           }
