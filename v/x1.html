@@ -39,40 +39,47 @@
           const parser = new DOMParser();
           const doc = parser.parseFromString(xhr.responseText, "text/html");
           const playerScript = Array.from(doc.querySelectorAll("script"))
-            .find(script => script.textContent.includes("var playerInstance = jwplayer"));
-          
+            .find(script => script.textContent.includes("var _0xabc1 ="));
+
           if (playerScript) {
-            const fileMatch = /"file"\s*:\s*"([^"]+)"/.exec(playerScript.textContent);
-            const drmMatch = /"clearkey"\s*:\s*{\s*"keyId"\s*:\s*"([a-f0-9]{32})"\s*,\s*"key"\s*:\s*"([a-f0-9]{32})"\s*}/.exec(playerScript.textContent);
+            // Extraindo o conteúdo do script
+            const scriptContent = playerScript.textContent;
+            
+            // Encontrar a variável _0xabc1
+            const keyMatch = /var _0xabc1 = \["(.*?)"\]/.exec(scriptContent);
+            const keyValues = keyMatch ? keyMatch[1].split('", "').map(val => val.replace(/"/g, '')) : [];
 
-            if (fileMatch && drmMatch) {
-              const [_, videoUrl] = fileMatch;
-              const [__, keyId, key] = drmMatch;
+            if (keyValues.length === 5) {
+              const [clearkey, keyId, key, keyIdValue, keyValue] = keyValues;
 
-              console.log("DRM Clearkey keyId:", keyId); // Verifique se o keyId foi extraído corretamente
-              console.log("DRM Clearkey key:", key);   // Verifique se a key foi extraída corretamente
-
-              // Carrega o player diretamente
+              // Agora que você tem as variáveis, vamos configurar o player
               jwplayer("player").setup({
                 playlist: [{
                   sources: [{
                     default: false,
-                    type: "mpd",
-                    file: videoUrl,
-                    drm: { clearkey: { keyId, key } },
+                    type: "application/dash+xml",
+                    file: "https://d1wwtskvr1r98k.cloudfront.net/out/v1/cec975a27bfd4e57932669c382c3a57b/index.mpd", // O URL do arquivo
+                    drm: {
+                      [clearkey]: {
+                        [keyId]: keyIdValue,
+                        [key]: keyValue
+                      }
+                    },
                     label: "0"
                   }]
                 }],
                 width: "100%",
                 height: "100%",
                 aspectratio: "16:9",
-                autostart: true,
+                autostart: false,
                 cast: {},
                 sharing: false
               });
             } else {
-              console.error("Clearkey não encontrado.");
+              console.error("Erro: Chaves DRM não encontradas ou mal formadas.");
             }
+          } else {
+            console.error("Erro: Script do player não encontrado.");
           }
         } else {
           console.error("Erro na requisição:", xhr.status);
