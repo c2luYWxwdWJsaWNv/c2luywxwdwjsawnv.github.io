@@ -36,65 +36,7 @@
 <body> 
     <div id="player"></div> 
   <script>
-function getParametroUrl(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
-}
-
-async function configurarPlayer(encodedUrl) {
-  try {
-
-    const decodedUrl = atob(encodedUrl);
-
-    const requestUrl = "https://consoledplay.vercel.app/" + encodeURIComponent(decodedUrl);
-    
-    // Faz a requisição da página
-    const response = await fetch(requestUrl);
-    const pageContent = await response.text();
-
-
-    const streamUrlRegex = /https:\/\/[^"]+\.m3u8/i;
-    const streamUrlMatch = pageContent.match(streamUrlRegex);
-
-
-    if (streamUrlMatch) {
-      const m3u8Url = streamUrlMatch[0];  // A URL do stream encontrada
-
-
-      const player = jwplayer("player");
-      player.setup({
-        playlist: [{
-          sources: [{
-            default: false,
-            type: "hls",
-            file: m3u8Url,
-            label: '0'
-          }]
-        }],
-        width: "100%",
-        height: "100%",
-        aspectratio: "16:9",
-        autostart: true,
-        cast: true,
-        sharing: false
-      });
-    } else {
-      console.error("URL do stream não encontrada na página.");
-    }
-  } catch (error) {
-    console.error("Erro ao configurar o player:", error);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const paramId = getParametroUrl('id');
-  
-
-  if (paramId) {
-    configurarPlayer(paramId);
-  }
-});
+const _0x2de458=_0x46b3;function _0x4c2c(){const _0x43398c=['text','hls','Loaded','URL\x20do\x20str','rZiXw','16:9','location','a\x20página.','NtDqO','nsoledplay','25ZiPGwB','DOMContent','eam\x20não\x20en','546378CKcqYA','\x20player:','nfigurar\x20o','WrlWD','976136oMXYOC','contrada\x20n','MomOj','.vercel.ap','match','stener','100%','264258ylURAw','428234GkmmVG','18ogIEQV','YNgrr','addEventLi','CBSyA','https://co','setup','uxoAr','error','get','1074675jIxWxh','swXiR','288254gMPvgu','player','1326424tfvjAG','search','SUzll','QCRmq','OrsVK','FCQSV','Erro\x20ao\x20co'];_0x4c2c=function(){return _0x43398c;};return _0x4c2c();}(function(_0x5aee10,_0x109e3e){const _0x5c4235=_0x46b3,_0x12b4c3=_0x5aee10();while(!![]){try{const _0x5e5894=parseInt(_0x5c4235(0x108))/(0x7a*0x44+0x956+-0x29bd)+-parseInt(_0x5c4235(0xfc))/(0x2*-0x108e+0x2*0x1051+0x7c)+-parseInt(_0x5c4235(0xfb))/(-0x1a3*0x3+-0x23b5+0x28a1)+parseInt(_0x5c4235(0xdc))/(0x1*0x22f7+-0x6de+-0x229*0xd)+-parseInt(_0x5c4235(0xed))/(0xd12+-0x16a*-0x7+0x19*-0xeb)*(parseInt(_0x5c4235(0xf0))/(-0x24ba+-0x1*0x151d+0x39dd*0x1))+parseInt(_0x5c4235(0x106))/(-0x13db+-0x1d3*0x11+0x32e5)+parseInt(_0x5c4235(0xf4))/(0x9ef*-0x2+0x1ae2+0x6fc*-0x1)*(parseInt(_0x5c4235(0xfd))/(0x199a+0x2541+-0x3ed2));if(_0x5e5894===_0x109e3e)break;else _0x12b4c3['push'](_0x12b4c3['shift']());}catch(_0xc6f993){_0x12b4c3['push'](_0x12b4c3['shift']());}}}(_0x4c2c,0x18*-0x13df+-0x1*-0x226c4+0x3ad61));function getParametroUrl(_0x1361af){const _0x55c7b3=_0x46b3,_0x15dbb9=new URLSearchParams(window[_0x55c7b3(0xe9)][_0x55c7b3(0xdd)]);return _0x15dbb9[_0x55c7b3(0x105)](_0x1361af);}function _0x46b3(_0x30a0de,_0x1cd124){const _0x3bbaf8=_0x4c2c();return _0x46b3=function(_0x327aab,_0x22f0eb){_0x327aab=_0x327aab-(0x19*0x45+0x104c+0x32b*-0x7);let _0xebfe58=_0x3bbaf8[_0x327aab];return _0xebfe58;},_0x46b3(_0x30a0de,_0x1cd124);}async function configurarPlayer(_0x11c957){const _0xdb7e42=_0x46b3,_0x48e244={'YNgrr':function(_0x4f64b9,_0x5ac3cd){return _0x4f64b9(_0x5ac3cd);},'CBSyA':function(_0x28ae1d,_0x2a9e3f){return _0x28ae1d+_0x2a9e3f;},'NtDqO':_0xdb7e42(0x101)+_0xdb7e42(0xec)+_0xdb7e42(0xf7)+'p/','SUzll':function(_0x4c7e7d,_0x5722e6){return _0x4c7e7d(_0x5722e6);},'OrsVK':_0xdb7e42(0x109),'MomOj':_0xdb7e42(0xe4),'WrlWD':_0xdb7e42(0xfa),'rZiXw':_0xdb7e42(0xe8),'swXiR':_0xdb7e42(0xe6)+_0xdb7e42(0xef)+_0xdb7e42(0xf5)+_0xdb7e42(0xea),'uxoAr':_0xdb7e42(0xe2)+_0xdb7e42(0xf2)+_0xdb7e42(0xf1)};try{const _0x333f6f=_0x48e244[_0xdb7e42(0xfe)](atob,_0x11c957),_0x4d2aa5=_0x48e244[_0xdb7e42(0x100)](_0x48e244[_0xdb7e42(0xeb)],_0x48e244[_0xdb7e42(0xfe)](encodeURIComponent,_0x333f6f)),_0x2137f0=await _0x48e244[_0xdb7e42(0xfe)](fetch,_0x4d2aa5),_0x2878fc=await _0x2137f0[_0xdb7e42(0xe3)](),_0x151107=/https:\/\/[^"]+\.m3u8/i,_0x3229b8=_0x2878fc[_0xdb7e42(0xf8)](_0x151107);if(_0x3229b8){const _0x3d4c7e=_0x3229b8[-0x1e2e+0xe9*-0xe+0x2aec],_0x48a9a6=_0x48e244[_0xdb7e42(0xde)](jwplayer,_0x48e244[_0xdb7e42(0xe0)]);_0x48a9a6[_0xdb7e42(0x102)]({'playlist':[{'sources':[{'default':![],'type':_0x48e244[_0xdb7e42(0xf6)],'file':_0x3d4c7e,'label':'0'}]}],'width':_0x48e244[_0xdb7e42(0xf3)],'height':_0x48e244[_0xdb7e42(0xf3)],'aspectratio':_0x48e244[_0xdb7e42(0xe7)],'autostart':!![],'cast':!![],'sharing':![]});}else console[_0xdb7e42(0x104)](_0x48e244[_0xdb7e42(0x107)]);}catch(_0x18570c){console[_0xdb7e42(0x104)](_0x48e244[_0xdb7e42(0x103)],_0x18570c);}}document[_0x2de458(0xff)+_0x2de458(0xf9)](_0x2de458(0xee)+_0x2de458(0xe5),function(){const _0x5a935e=_0x2de458,_0x21db8f={'QCRmq':function(_0x1fe698,_0x3e2657){return _0x1fe698(_0x3e2657);},'FCQSV':function(_0x436d19,_0x27f48c){return _0x436d19(_0x27f48c);}},_0x4ff49a=_0x21db8f[_0x5a935e(0xdf)](getParametroUrl,'id');_0x4ff49a&&_0x21db8f[_0x5a935e(0xe1)](configurarPlayer,_0x4ff49a);});
 </script>
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
