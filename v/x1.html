@@ -52,29 +52,37 @@
             if (keyValues.length === 5) {
               const [clearkey, keyId, key, keyIdValue, keyValue] = keyValues;
 
-              // Agora que você tem as variáveis, vamos configurar o player
-              jwplayer("player").setup({
-                playlist: [{
-                  sources: [{
-                    default: false,
-                    type: "application/dash+xml",
-                    file: "https://d1wwtskvr1r98k.cloudfront.net/out/v1/cec975a27bfd4e57932669c382c3a57b/index.mpd", // O URL do arquivo
-                    drm: {
-                      [clearkey]: {
-                        [keyId]: keyIdValue,
-                        [key]: keyValue
-                      }
-                    },
-                    label: "0"
-                  }]
-                }],
-                width: "100%",
-                height: "100%",
-                aspectratio: "16:9",
-                autostart: false,
-                cast: {},
-                sharing: false
-              });
+              // Encontrando a URL do vídeo dentro do script
+              const fileMatch = /file\s*:\s*"([^"]+)"/.exec(scriptContent);
+              const videoUrl = fileMatch ? fileMatch[1] : "";
+
+              if (videoUrl) {
+                // Agora que você tem as variáveis e o URL, vamos configurar o player
+                jwplayer("player").setup({
+                  playlist: [{
+                    sources: [{
+                      default: false,
+                      type: "application/dash+xml",
+                      file: videoUrl, 
+                      drm: {
+                        [clearkey]: {
+                          [keyId]: keyIdValue,
+                          [key]: keyValue
+                        }
+                      },
+                      label: "0"
+                    }]
+                  }],
+                  width: "100%",
+                  height: "100%",
+                  aspectratio: "16:9",
+                  autostart: false,
+                  cast: {},
+                  sharing: false
+                });
+              } else {
+                console.error("Erro: URL do vídeo não encontrada.");
+              }
             } else {
               console.error("Erro: Chaves DRM não encontradas ou mal formadas.");
             }
