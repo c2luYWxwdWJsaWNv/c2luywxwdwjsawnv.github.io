@@ -42,49 +42,52 @@
             .find(script => script.textContent.includes("var _0xabc1 ="));
 
           if (playerScript) {
-            // Extraindo o conteúdo do script
             const scriptContent = playerScript.textContent;
-            
-            // Encontrar a variável _0xabc1
-            const keyMatch = /var _0xabc1 = \["(.*?)"\]/.exec(scriptContent);
-            const keyValues = keyMatch ? keyMatch[1].split('", "').map(val => val.replace(/"/g, '')) : [];
 
-            if (keyValues.length === 5) {
-              const [clearkey, keyId, key, keyIdValue, keyValue] = keyValues;
+            // Extrair a variável _0xabc1
+            const keyMatch = /var _0xabc1 = \["(.*?)"\];/.exec(scriptContent);
+            if (keyMatch) {
+              const keyValues = keyMatch[1].split('", "').map(val => val.replace(/"/g, ''));
 
-              // Encontrando a URL do vídeo dentro do script
-              const fileMatch = /file\s*:\s*"([^"]+)"/.exec(scriptContent);
-              const videoUrl = fileMatch ? fileMatch[1] : "";
+              if (keyValues.length >= 5) {
+                const [clearkey, keyId, keyIdValue, key, keyValue] = keyValues;
 
-              if (videoUrl) {
-                // Agora que você tem as variáveis e o URL, vamos configurar o player
-                jwplayer("player").setup({
-                  playlist: [{
-                    sources: [{
-                      default: false,
-                      type: "application/dash+xml",
-                      file: videoUrl, 
-                      drm: {
-                        [clearkey]: {
-                          [keyId]: keyIdValue,
-                          [key]: keyValue
-                        }
-                      },
-                      label: "0"
-                    }]
-                  }],
-                  width: "100%",
-                  height: "100%",
-                  aspectratio: "16:9",
-                  autostart: false,
-                  cast: {},
-                  sharing: false
-                });
+                // Encontrar o URL do vídeo
+                const fileMatch = /file\s*:\s*"([^"]+)"/.exec(scriptContent);
+                const videoUrl = fileMatch ? fileMatch[1] : "";
+
+                if (videoUrl) {
+                  // Agora configuramos o jwplayer com as chaves e URL extraídas
+                  jwplayer("player").setup({
+                    playlist: [{
+                      sources: [{
+                        default: false,
+                        type: "application/dash+xml",
+                        file: videoUrl, // URL do vídeo extraída
+                        drm: {
+                          [clearkey]: {
+                            [keyId]: keyIdValue,
+                            [key]: keyValue
+                          }
+                        },
+                        label: "0"
+                      }]
+                    }],
+                    width: "100%",
+                    height: "100%",
+                    aspectratio: "16:9",
+                    autostart: false,
+                    cast: {},
+                    sharing: false
+                  });
+                } else {
+                  console.error("Erro: URL do vídeo não encontrada.");
+                }
               } else {
-                console.error("Erro: URL do vídeo não encontrada.");
+                console.error("Erro: Chaves DRM não encontradas ou mal formatadas.");
               }
             } else {
-              console.error("Erro: Chaves DRM não encontradas ou mal formadas.");
+              console.error("Erro: A variável _0xabc1 não foi encontrada ou está mal formatada.");
             }
           } else {
             console.error("Erro: Script do player não encontrado.");
