@@ -19,7 +19,9 @@ const substitutionLinks = [
   "https://x.tvcasecors.workers.dev/",
   "https://245ficodaw.ficodaw245.workers.dev/",
   "https://shinyhatybt.dpetftvwrc.workers.dev/",
+  "https://ponewe7659.ponewe7659.workers.dev/",
   "https://dtvott-classe-globo.jeowoa.workers.dev/",
+  "https://7659ponewe.ponewe7659.workers.dev/",
   "https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/",
   "https://orange-dtvott-o002.o5uftzrqlf.workers.dev/",
   "https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/"
