@@ -1,29 +1,23 @@
 function getParameterByName(parameterName) {
-
   parameterName = parameterName.replace(/[\[]/, '[').replace(/[\]]/, ']');
   
-  
   var regex = new RegExp("[?&]" + parameterName + "=([^&#]*)");
-  
-
   var result = regex.exec(location.search);
   
-
   return result === null ? '' : decodeURIComponent(result[1].replace(/\+/g, " "));
 }
 
-
 var id = getParameterByName('s');
-
 
 if (id == '#') {
   alert("Página Anterior");
 }
 
-
 const substitutionLinks = [
   "https://0002-dtvott.o5uftzrqlf.workers.dev/",
+  "https://ficodaw245.ficodaw245.workers.dev/",
   "https://x.tvcasecors.workers.dev/",
+  "https://245ficodaw.ficodaw245.workers.dev/",
   "https://shinyhatybt.dpetftvwrc.workers.dev/",
   "https://dtvott-classe-globo.jeowoa.workers.dev/",
   "https://empty-dtvott-9eed.a3ir7vydoy.workers.dev/",
@@ -31,9 +25,24 @@ const substitutionLinks = [
   "https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/"
 ];
 
+var usedLinks = [];
 
-var randomLink = substitutionLinks[Math.floor(Math.random() * substitutionLinks.length)];
+function getRandomLink() {
+  var availableLinks = substitutionLinks.filter(link => !usedLinks.includes(link));
+  
+  if (availableLinks.length === 0) {
+    // Se todos os links foram usados, reinicia a lista
+    usedLinks = [];
+    availableLinks = [...substitutionLinks];
+  }
 
+  var randomLink = availableLinks[Math.floor(Math.random() * availableLinks.length)];
+  usedLinks.push(randomLink);
+  
+  return randomLink;
+}
+
+var randomLink = getRandomLink();
 
 var channels = {
   'sportv1': {
@@ -70,9 +79,7 @@ var channels = {
   }
 };
 
-
 var channel = channels[id];
-
 
 if (channel) {
   var key = channel.key;
@@ -87,14 +94,12 @@ if (channel) {
     }
   };
 
-
   if (typeof k2 !== "undefined") {
     drmConfig.clearkey2 = {
       'keyId': k2.substr(0, 32),
       'key': k2.substr(33, 65)
     };
   }
-  
 
   playerInstance.setup({
     'playlist': [{
@@ -114,6 +119,5 @@ if (channel) {
     'sharing': false
   });
 } else {
-
   alert("Canal não encontrado!");
 }
