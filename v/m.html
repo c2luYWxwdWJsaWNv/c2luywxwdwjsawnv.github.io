@@ -41,7 +41,7 @@ function getParameterByName(parameterName) {
   return result === null ? '' : decodeURIComponent(result[1].replace(/\+/g, " "));
 }
 
-var id = getParameterByName('m');
+var id = getParameterByName('s');
 
 if (id == '#') {
   alert("Página Anterior");
@@ -119,7 +119,7 @@ var channels = {
   'espn6': {
     'url': randomLink + "espn6/tracks-v1a1/mono.m3u8"
   },
-  'sportv': {
+  'sportv1': {
     'url': randomLink + "sportv/tracks-v1a1/mono.m3u8"
   },
   'sportv2': {
@@ -128,20 +128,29 @@ var channels = {
   'sportv3': {
     'url': randomLink + "sportv3/tracks-v1a1/mono.m3u8"
   },
-  'pre1': {
+  'premiere1': {
     'url': randomLink + "pre1/tracks-v1a1/mono.m3u8"
   },
-  'pre2': {
+  'premiere2': {
     'url': randomLink + "pre2/tracks-v1a1/mono.m3u8"
   },
-  'pre3': {
+  'premiere3': {
     'url': randomLink + "pre3/tracks-v1a1/mono.m3u8"
   },
-  'pre4': {
+  'premiere4': {
     'url': randomLink + "pre4/tracks-v1a1/mono.m3u8"
   },
-  'pre5': {
+  'premiere5': {
     'url': randomLink + "pre5/tracks-v1a1/mono.m3u8"
+  },
+  'premiere6': {
+    'url': randomLink + "pre6/tracks-v1a1/mono.m3u8"
+  },
+  'premiere7': {
+    'url': randomLink + "pre7/tracks-v1a1/mono.m3u8"
+  },
+  'premiere8': {
+    'url': randomLink + "pre8/tracks-v1a1/mono.m3u8"
   }
 };
 
