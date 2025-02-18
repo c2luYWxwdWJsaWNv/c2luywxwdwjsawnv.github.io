@@ -74,70 +74,70 @@ var randomLink = getRandomLink();
 
 var channels = {
   'adultswim': {
-    'url': randomLink + "adultswim/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "adultswim/manifest.mpd"
   },
   'disneychannel': {
-    'url': randomLink + "disneychannel/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "disneychannel/manifest.mpd"
   },
   'cartoonnetwork': {
-    'url': randomLink + "cartoonnetwork/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "cartoonnetwork/manifest.mpd"
   },
   'hbo': {
-    'url': randomLink + "hbo/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "hbo/manifest.mpd"
   },
   'hbofamily': {
-    'url': randomLink + "hbofamily/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "hbofamily/manifest.mpd"
   },
   'espn1': {
-    'url': randomLink + "espn/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "espn/manifest.mpd"
   },
   'espn2': {
-    'url': randomLink + "espn2/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "espn2/manifest.mpd"
   },
   'espn3': {
-    'url': randomLink + "espn3/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "espn3/manifest.mpd"
   },
   'espn4': {
-    'url': randomLink + "espn4/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "espn4/manifest.mpd"
   },
   'espn5': {
-    'url': randomLink + "espn5/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "espn5/manifest.mpd"
   },
   'espn6': {
-    'url': randomLink + "espn6/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "espn6/manifest.mpd"
   },
   'sportv1': {
-    'url': randomLink + "sportv/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "sportv/manifest.mpd"
   },
   'sportv2': {
-    'url': randomLink + "sportv2/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "sportv2/manifest.mpd"
   },
   'sportv3': {
-    'url': randomLink + "sportv3/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "sportv3/manifest.mpd"
   },
   'combate': {
-    'url': randomLink + "combate/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "combate/manifest.mpd"
   },
   'starchannel': {
-    'url': randomLink + "starchannel/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "starchannel/manifest.mpd"
   },
   'animalplanet': {
-    'url': randomLink + "animalplanet/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "animalplanet/manifest.mpd"
   },
   'discoveryid': {
-    'url': randomLink + "discoveryid/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "discoveryid/manifest.mpd"
   },
   'discoveryturbo': {
-    'url': randomLink + "discoveryturbo/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "discoveryturbo/manifest.mpd"
   },
   'space': {
-    'url': randomLink + "space/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "space/manifest.mpd"
   },
   'premiere7': {
     'url': randomLink + "premiere7/tracks-v1a1/mono.m3u8"
   },
   'premiere8': {
-    'url': randomLink + "premiere8/tracks-v1a1/mono.m3u8"
+    'url': randomLink + "premiere8/anifest.mpd"
   }
 };
 
@@ -152,7 +152,7 @@ if (channel) {
     'playlist': [{
       'sources': [{
         'default': false,
-        'type': "hls",
+        'type': "mpd",
         'file': url,
         'label': '0'
       }]
