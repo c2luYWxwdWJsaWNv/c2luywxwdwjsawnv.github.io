@@ -32,69 +32,49 @@
   <div id="player"></div>
 
   <script>
-function getParametroUrl(parametro) {
-  const parametrosUrl = new URLSearchParams(window.location.search);
-  return parametrosUrl.get(parametro);
-}
-
-
 async function configurarPlayer(codigoBase64) {
   try {
-
     const urlDecodificada = atob(codigoBase64);
-
     const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
-    
 
-    const resposta = await fetch(urlStream);
-    const conteudo = await resposta.text();
-    
-
-    const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
-    const urlM3u8 = conteudo.match(expressaoRegular);
-    
-
-    if (urlM3u8) {
-      const urlStreamM3u8 = urlM3u8[0];
-
-
-      var playerInstance = jwplayer("player");
-      playerInstance.setup({
-        playlist: [{
-          "sources": [
-            {
-              "image": "https://seucreditodigital.com.br/wp-content/uploads/2022/09/band.jpg",
-              "default": false,
-              "type": "hls",
-              "file": urlStreamM3u8, 
-              "label": "0"
-            }
-          ]
-        }],
-        width: "100%",
-        height: "100%",
-        aspectratio: "16:9",
-        autostart: false,
-        cast: {},
-        sharing: false
-      });
-    } else {
-      console.error("URL do stream não encontrada na página.");
-    }
+    var playerInstance = jwplayer("player");
+    playerInstance.setup({
+      playlist: [{
+        "sources": [
+          {
+            "image": "https://seucreditodigital.com.br/wp-content/uploads/2022/09/band.jpg",
+            "default": false,
+            "type": "hls",
+            "file": urlStream,  // Corrigido aqui, use a variável urlStream
+            "label": "0"
+          }
+        ]
+      }],
+      width: "100%",
+      height: "100%",
+      aspectratio: "16:9",
+      autostart: false,
+      cast: {},
+      sharing: false
+    });
   } catch (erro) {
     console.error("Erro ao configurar o player:", erro);
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function getParametroUrl(nome) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(nome);
+}
 
+document.addEventListener("DOMContentLoaded", function () {
   const parametroId = getParametroUrl('id');
   
   if (parametroId) {
     configurarPlayer(parametroId);
   }
 });
- </script>
+  </script>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
