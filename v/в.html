@@ -7,6 +7,7 @@
   <meta name="theme-color" content="black">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
   <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
   <style>
     body {
@@ -21,8 +22,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      width: 100vw;  
-      height: 100vh; 
+      width: 100vw;
+      height: 100vh;
       border: 0;
     }
   </style>
@@ -31,49 +32,62 @@
   <div id="player"></div>
 
   <script>
-async function configurarPlayer(codigoBase64) {
-  try {
-    const urlDecodificada = atob(codigoBase64);
-    const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
+    function getParametroUrl(parametro) {
+      const parametrosUrl = new URLSearchParams(window.location.search);
+      return parametrosUrl.get(parametro);
+    }
 
-    var playerInstance = jwplayer("player");
-    playerInstance.setup({
-      playlist: [{
-        "sources": [
-          {
-            "image": "https://seucreditodigital.com.br/wp-content/uploads/2022/09/band.jpg",
-            "default": false,
-            "type": "hls",
-            "file": urlStream,  // Corrigido aqui, use a variável urlStream
-            "label": "0"
-          }
-        ]
-      }],
-      width: "100%",
-      height: "100%",
-      aspectratio: "16:9",
-      autostart: false,
-      cast: {},
-      sharing: false
+    async function configurarPlayer(codigoBase64) {
+      try {
+        const urlDecodificada = atob(codigoBase64);
+        const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
+        
+        const resposta = await fetch(urlStream);
+        const conteudo = await resposta.text();
+        
+        const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
+        const urlM3u8 = conteudo.match(expressaoRegular);
+
+        if (urlM3u8) {
+          const urlStreamM3u8 = urlM3u8[0];
+
+          var playerInstance = jwplayer("player");
+          playerInstance.setup({
+            playlist: [{
+              "sources": [
+                {
+                  "file": urlStreamM3u8,
+                  "label": "0",
+                  "type": "hls"
+                }
+              ],
+              "image": "https://seucreditodigital.com.br/wp-content/uploads/2022/09/band.jpg",  // Imagem de capa
+            }],
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            autostart: false,
+            cast: {},
+            sharing: false
+          });
+        } else {
+          console.error("URL do stream não encontrada na página.");
+        }
+      } catch (erro) {
+        console.error("Erro ao configurar o player:", erro);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const parametroId = getParametroUrl('id');
+      
+      if (parametroId) {
+        configurarPlayer(parametroId);
+      }
     });
-  } catch (erro) {
-    console.error("Erro ao configurar o player:", erro);
-  }
-}
-
-function getParametroUrl(nome) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(nome);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const parametroId = getParametroUrl('id');
-  
-  if (parametroId) {
-    configurarPlayer(parametroId);
-  }
-});
   </script>
+
+
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
