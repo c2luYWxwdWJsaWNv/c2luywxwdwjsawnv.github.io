@@ -57,14 +57,24 @@
             playlist: [{
               "sources": [
                 {
-                  "default": false,
-                  "file": urlStreamM3u8,
-                  "label": "0",
-                  "type": "hls"
-                }
-              ],
-              "image": "",  // Imagem de capa
-            }],
+                                        default: false,
+                                        type: "hls",
+                                        file: urlStreamM3u8,
+                                        drm: {
+                                            fairplay: {}
+                                        },
+                                        label: "0"
+                                    }, {
+                                        default: true,
+                                        type: "hls",
+                                        file: urlStreamM3u8,
+                                        drm: {
+                                            widevine: {},
+                                            playready: {}
+                                        },
+                                        label: "1"
+                                    }]
+                                }],
                                 primary: "html5",
                                 hlshtml: "true",
                                 width: "100%",
@@ -77,7 +87,15 @@
                                     debug: false,
                                     p2pConfig: {
                                         live: true,
-          });
+                                    }
+                                },
+                            });
+    
+                            playerInstance.on('play', function() {
+                                playerInstance.hls.p2pEngine.on('stats', function({totalHTTPDownloaded, totalP2PDownloaded}) {
+                                    // Obtenha totalHTTPDownloaded e totalP2PDownloaded aqui
+                                });
+                            });
         } else {
           console.error("URL do stream não encontrada na página.");
         }
