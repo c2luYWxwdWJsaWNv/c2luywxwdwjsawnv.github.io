@@ -90,12 +90,6 @@
                                     }
                                 },
                             });
-    
-                            playerInstance.on('play', function() {
-                                playerInstance.hls.p2pEngine.on('stats', function({totalHTTPDownloaded, totalP2PDownloaded}) {
-                                    // Obtenha totalHTTPDownloaded e totalP2PDownloaded aqui
-                                });
-                            });
         } else {
           console.error("URL do stream não encontrada na página.");
         }
