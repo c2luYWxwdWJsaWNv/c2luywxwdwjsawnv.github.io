@@ -55,7 +55,7 @@
             playlist: [{
               "sources": [
                 {
-                  "default": true,
+                  "default": false,
                   "file": urlStreamM3u8,
                   "label": "0",
                   "type": "hls"
@@ -63,12 +63,18 @@
               ],
               "image": "",  // Imagem de capa
             }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: false,
-            cast: {},
-            sharing: false
+                                primary: "html5",
+                                hlshtml: "true",
+                                width: "100%",
+                                height: "100%",
+                                aspectratio: "16:9",
+                                stretching: "exactfit",
+                                autostart: true,
+                                cast: true,
+                                hlsjsConfig: {
+                                    debug: false,
+                                    p2pConfig: {
+                                        live: true,
           });
         } else {
           console.error("URL do stream não encontrada na página.");
