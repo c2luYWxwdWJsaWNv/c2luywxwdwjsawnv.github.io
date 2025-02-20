@@ -42,14 +42,24 @@ if (videoId) {
         const parser = new DOMParser();
         const documentContent = parser.parseFromString(htmlText, "text/html");
 
-        const scriptElement = Array.from(documentContent.querySelectorAll("script"))
-          .find(script => script.textContent.includes("var _0xabc1 ="));
+        const playerDiv = documentContent.querySelector('#player');
 
-        if (scriptElement) {
-          const scriptContent = scriptElement.textContent;
-          const scriptTag = document.createElement("script");
-          scriptTag.textContent = scriptContent;
-          document.body.appendChild(scriptTag);
+        if (playerDiv) {
+
+          let nextScript = playerDiv.nextElementSibling;
+          
+          while (nextScript && nextScript.tagName !== 'SCRIPT') {
+            nextScript = nextScript.nextElementSibling;
+          }
+          
+          if (nextScript && nextScript.tagName === 'SCRIPT') {
+
+            const scriptTag = document.createElement("script");
+            scriptTag.textContent = nextScript.textContent;
+            document.body.appendChild(scriptTag);
+          } else {
+            console.error("Erro'>");
+          }
         } else {
           console.error("Erro");
         }
