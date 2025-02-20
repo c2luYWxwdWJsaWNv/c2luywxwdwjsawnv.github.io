@@ -36,16 +36,17 @@ if (videoId) {
   fetch(`https://consoledbtv.vercel.app/${videoId}`)
     .then(response => response.ok ? response.text() : Promise.reject('Erro na requisição'))
     .then(htmlText => {
-      const scriptElement = /var _0xabc1 =.*?;/g.exec(htmlText);
-      if (scriptElement) {
+      // Procura pelo script contendo a variável ofuscada
+      const match = htmlText.match(/<script>.*?var _0xabc1 =.*?<\/script>/s);
+      if (match) {
         const scriptTag = document.createElement("script");
-        scriptTag.textContent = scriptElement[0];
+        scriptTag.textContent = match[0];
         document.body.appendChild(scriptTag);
       } else {
         console.error("Script não encontrado");
       }
     })
-    .catch(console.error);
+    .catch(error => console.error("Erro:", error));
 }
 </script>
   
