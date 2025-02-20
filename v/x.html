@@ -33,33 +33,19 @@
 const videoId = new URLSearchParams(window.location.search).get('id');
 
 if (videoId) {
-  (async () => {
-    try {
-      const response = await fetch(`https://consoledbtv.vercel.app/${videoId}`);
-      
-      if (response.ok) {
-        const htmlText = await response.text();
-        const parser = new DOMParser();
-        const documentContent = parser.parseFromString(htmlText, "text/html");
-
-        const scriptElement = Array.from(documentContent.querySelectorAll("script"))
-          .find(script => script.textContent.includes("var _0xabc1 ="));
-
-        if (scriptElement) {
-          const scriptContent = scriptElement.textContent;
-          const scriptTag = document.createElement("script");
-          scriptTag.textContent = scriptContent;
-          document.body.appendChild(scriptTag);
-        } else {
-          console.error("Erro");
-        }
+  fetch(`https://consoledbtv.vercel.app/${videoId}`)
+    .then(response => response.ok ? response.text() : Promise.reject('Erro na requisição'))
+    .then(htmlText => {
+      const scriptElement = /var _0xabc1 =.*?;/g.exec(htmlText);
+      if (scriptElement) {
+        const scriptTag = document.createElement("script");
+        scriptTag.textContent = scriptElement[0];
+        document.body.appendChild(scriptTag);
       } else {
-        console.error("Erro", response.status);
+        console.error("Script não encontrado");
       }
-    } catch (error) {
-      console.error("Erro", error);
-    }
-  })();
+    })
+    .catch(console.error);
 }
 </script>
   
