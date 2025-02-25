@@ -38,78 +38,92 @@
 <body> 
     <div id="player"></div> 
 <script>
-    function getParametroUrl(parametro) {
-      const parametrosUrl = new URLSearchParams(window.location.search);
-      return parametrosUrl.get(parametro);
+function getParametroUrl(parametro) {
+  const parametrosUrl = new URLSearchParams(window.location.search);
+  return parametrosUrl.get(parametro);
+}
+
+async function configurarPlayer(codigoBase64) {
+  try {
+    // Decodificando a URL Base64
+    const urlDecodificada = atob(codigoBase64);
+    const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
+
+    // Fazendo a requisição HTTP para buscar o conteúdo
+    const resposta = await fetch(urlStream);
+    if (!resposta.ok) {
+      throw new Error(`Erro na requisição: ${resposta.statusText}`);
+    }
+    
+    const conteudo = await resposta.text();
+    
+    // Expressão regular para encontrar a URL do stream .m3u8
+    const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
+    const urlM3u8 = conteudo.match(expressaoRegular);
+    
+    if (!urlM3u8 || urlM3u8.length === 0) {
+      throw new Error("URL do stream .m3u8 não encontrada.");
     }
 
-    async function configurarPlayer(codigoBase64) {
-      try {
-        const urlDecodificada = atob(codigoBase64);
-        const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
-        
-        const resposta = await fetch(urlStream);
-        const conteudo = await resposta.text();
-        
-        const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
-        const urlM3u8 = conteudo.match(expressaoRegular);
+    const urlStreamM3u8 = urlM3u8[0];
 
-        if (urlM3u8) {
-          const urlStreamM3u8 = urlM3u8[0];
-
-           var playerInstance = jwplayer("player");
-          playerInstance.setup({
-            playlist: [{
-              "sources": [
-                {
-                  default: false,
-                  type: "hls",
-                  file: urlStreamM3u8,
-                  drm: {
-                    fairplay: {}
-                  },
-                  label: "0"
-                }, {
-                  default: true,
-                  type: "hls",
-                  file: urlStreamM3u8,
-                  drm: {
-                    widevine: {},
-                    playready: {}
-                  },
-                  label: "1"
-                }]
-            }],
-            primary: "html5",
-            hlshtml: "true",
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            cast: true,
-            hlsjsConfig: {
-              debug: false,
-              p2pConfig: {
-                live: true,
-              }
+    // Configurando o player
+    var playerInstance = jwplayer("player");
+    playerInstance.setup({
+      playlist: [{
+        "sources": [
+          {
+            default: false,
+            type: "hls",
+            file: urlStreamM3u8,
+            drm: {
+              fairplay: {}
             },
-          });
-        } else {
-          console.error("URL do stream não encontrada na página.");
+            label: "0"
+          }, 
+          {
+            default: true,
+            type: "hls",
+            file: urlStreamM3u8,
+            drm: {
+              widevine: {},
+              playready: {}
+            },
+            label: "1"
+          }
+        ]
+      }],
+      primary: "html5",
+      hlshtml: true,
+      width: "100%",
+      height: "100%",
+      aspectratio: "16:9",
+      autostart: true,
+      cast: true,
+      hlsjsConfig: {
+        debug: false,
+        p2pConfig: {
+          live: true,
         }
-      } catch (erro) {
-        console.error("Erro ao configurar o player:", erro);
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const parametroId = getParametroUrl('id');
-      
-      if (parametroId) {
-        configurarPlayer(parametroId);
-      }
+      },
     });
-  </script>
+
+  } catch (erro) {
+    // Exibindo erro detalhado no console
+    console.error("Erro ao configurar o player:", erro.message);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const parametroId = getParametroUrl('id');
+  
+  if (parametroId) {
+    configurarPlayer(parametroId);
+  } else {
+    console.error("Parâmetro 'id' não encontrado na URL.");
+  }
+});
+</script>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script disable-devtool-auto="" src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script> 
