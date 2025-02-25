@@ -43,9 +43,10 @@
       return parametrosUrl.get(parametro);
     }
 
-    async function configurarPlayer(codigoUrl) {
+    async function configurarPlayer(codigoBase64) {
       try {
-        const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(codigoUrl);
+        const urlDecodificada = atob(codigoBase64);
+        const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
         
         const resposta = await fetch(urlStream);
         const conteudo = await resposta.text();
@@ -56,7 +57,7 @@
         if (urlM3u8) {
           const urlStreamM3u8 = urlM3u8[0];
 
-          var playerInstance = jwplayer("player");
+           var playerInstance = jwplayer("player");
           playerInstance.setup({
             playlist: [{
               "sources": [
@@ -94,10 +95,10 @@
             },
           });
         } else {
-          console.error("Erro");
+          console.error("URL do stream não encontrada na página.");
         }
       } catch (erro) {
-        console.error("Erro", erro);
+        console.error("Erro ao configurar o player:", erro);
       }
     }
 
