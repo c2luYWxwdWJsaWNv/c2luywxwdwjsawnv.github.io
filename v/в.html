@@ -32,16 +32,15 @@
 </head>
 <body> 
     <div id="player"></div> 
-<script>
+  <script>
     function getParametroUrl(parametro) {
       const parametrosUrl = new URLSearchParams(window.location.search);
       return parametrosUrl.get(parametro);
     }
 
-    async function configurarPlayer(codigoBase64) {
+    async function configurarPlayer(codigoUrl) {
       try {
-        const urlDecodificada = atob(codigoBase64);
-        const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
+        const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(codigoUrl);
         
         const resposta = await fetch(urlStream);
         const conteudo = await resposta.text();
@@ -57,25 +56,43 @@
             playlist: [{
               "sources": [
                 {
-                  "file": urlStreamM3u8,
-                  "label": "0",
-                  "type": "hls"
-                }
-              ],
-              "image": "https://seucreditodigital.com.br/wp-content/uploads/2022/09/band.jpg",  // Imagem de capa
+                  default: false,
+                  type: "hls",
+                  file: urlStreamM3u8,
+                  drm: {
+                    fairplay: {}
+                  },
+                  label: "0"
+                }, {
+                  default: true,
+                  type: "hls",
+                  file: urlStreamM3u8,
+                  drm: {
+                    widevine: {},
+                    playready: {}
+                  },
+                  label: "1"
+                }]
             }],
+            primary: "html5",
+            hlshtml: "true",
             width: "100%",
             height: "100%",
             aspectratio: "16:9",
-            autostart: false,
-            cast: {},
-            sharing: false
+            autostart: true,
+            cast: true,
+            hlsjsConfig: {
+              debug: false,
+              p2pConfig: {
+                live: true,
+              }
+            },
           });
         } else {
-          console.error("URL do stream não encontrada na página.");
+          console.error("Erro");
         }
       } catch (erro) {
-        console.error("Erro ao configurar o player:", erro);
+        console.error("Erro", erro);
       }
     }
 
