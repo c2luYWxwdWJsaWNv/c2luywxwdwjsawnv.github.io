@@ -45,19 +45,17 @@ function getParametroUrl(parametro) {
 
 async function configurarPlayer(codigoBase64) {
   try {
-    // Decodificando a URL Base64
+
     const urlDecodificada = atob(codigoBase64);
     const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlDecodificada);
 
-    // Fazendo a requisição HTTP para buscar o conteúdo
     const resposta = await fetch(urlStream);
     if (!resposta.ok) {
-      throw new Error(`Erro na requisição: ${resposta.statusText}`);
+      throw new Error(`Erro: ${resposta.statusText}`);
     }
     
     const conteudo = await resposta.text();
     
-    // Expressão regular para encontrar a URL do stream .m3u8
     const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
     const urlM3u8 = conteudo.match(expressaoRegular);
     
@@ -67,7 +65,6 @@ async function configurarPlayer(codigoBase64) {
 
     const urlStreamM3u8 = urlM3u8[0];
 
-    // Configurando o player
     var playerInstance = jwplayer("player");
     playerInstance.setup({
       playlist: [{
@@ -109,8 +106,8 @@ async function configurarPlayer(codigoBase64) {
     });
 
   } catch (erro) {
-    // Exibindo erro detalhado no console
-    console.error("Erro ao configurar o player:", erro.message);
+
+    console.error("Erro", erro.message);
   }
 }
 
@@ -120,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (parametroId) {
     configurarPlayer(parametroId);
   } else {
-    console.error("Parâmetro 'id' não encontrado na URL.");
+    console.error("Erro");
   }
 });
 </script>
