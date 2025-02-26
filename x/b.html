@@ -38,65 +38,74 @@
 <body>
   <div id="player"></div> 
   <script>
-    async function configurarPlayer(urlbase) {
-  try {
-    const urlStream = "https://consoledplay.vercel.app/" + encodeURIComponent(urlbase);
-
-    const resposta = await fetch(urlStream);
-    if (!resposta.ok) {
-      throw new Error(`Erro: ${resposta.statusText}`);
+    function getParametroUrl(parametro) {
+      const parametrosUrl = new URLSearchParams(window.location.search);
+      return parametrosUrl.get(parametro);
     }
 
-    const conteudo = await resposta.text();
+    async function configurarPlayer(codigoUrl) {
+      try {
+        const urlStream = "https://consoledglobo.vercel.app/" + encodeURIComponent(codigoUrl);
+        
+        const resposta = await fetch(urlStream);
+        const conteudo = await resposta.text();
+        
+        const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
+        const urlM3u8 = conteudo.match(expressaoRegular);
 
-    const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
-    const urlM3u8 = conteudo.match(expressaoRegular);
+        if (urlM3u8) {
+          const urlStreamM3u8 = urlM3u8[0];
 
-    if (!urlM3u8 || urlM3u8.length === 0) {
-      throw new Error("URL do stream .m3u8 não encontrada.");
-    }
-
-    const urlStreamM3u8 = urlM3u8[0];
-
-    var playerInstance = jwplayer("player");
-        playerInstance.setup({
-          playlist: [{
-            "sources": [
-              {
-                default: false,
-                type: "hls",
-                file: urlStreamM3u8,
-                label: "0"
+          var playerInstance = jwplayer("player");
+          playerInstance.setup({
+            playlist: [{
+              "sources": [
+                {
+                  default: false,
+                  type: "hls",
+                  file: urlStreamM3u8,
+                  drm: {
+                    fairplay: {}
+                  },
+                  label: "0"
+                }, {
+                  default: true,
+                  type: "hls",
+                  file: urlStreamM3u8,
+                  drm: {
+                    widevine: {},
+                    playready: {}
+                  },
+                  label: "1"
+                }]
+            }],
+            primary: "html5",
+            hlshtml: "true",
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            autostart: true,
+            cast: true,
+            hlsjsConfig: {
+              debug: false,
+              p2pConfig: {
+                live: true,
               }
-            ]
-          }],
-          primary: "html5",
-          hlshtml: true,
-          width: "100%",
-          height: "100%",
-          aspectratio: "16:9",
-          autostart: true,
-          cast: true,
-          hlsjsConfig: {
-            debug: false,
-            p2pConfig: {
-              live: true,
-            }
-          },
-        });
-
+            },
+          });
+        } else {
+          console.error("Erro");
+        }
       } catch (erro) {
-        console.error("Erro ao configurar o player:", erro.message);
+        console.error("Erro", erro);
       }
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-      const parametroId = getParametroUrl('id');
+      const parametroId = getParametroUrl('m');
       
       if (parametroId) {
         configurarPlayer(parametroId);
-      } else {
-        console.error("Parâmetro 'id' não encontrado na URL.");
       }
     });
   </script>
