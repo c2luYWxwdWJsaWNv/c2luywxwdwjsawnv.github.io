@@ -46,20 +46,24 @@
 
     var getURL = getParameterByName('id');
     var getIMG = getParameterByName('img');
+
     if (getURL == "#") {
         alert('Anterior');
     }
+
+    getURL = atob(getURL); 
+    getIMG = getIMG ? atob(getIMG) : ""; 
 
     var playerInstance = jwplayer("player");
 
     playerInstance.setup({
         playlist: [{
-            "image": "",
+            "image": getIMG, 
             "sources": [
                 {
                     "default": false,
                     "type": "hls",
-                    "file": atob(getURL),
+                    "file": getURL, 
                     "label": "0"
                 }
             ]
@@ -67,7 +71,7 @@
         width: "100%",
         height: "100%",
         aspectratio: "16:9",
-        autostart: false,
+        autostart: true,
         mute: false,
         cast: {},
     });
