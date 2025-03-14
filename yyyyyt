@@ -1,0 +1,60 @@
+https://xexever586.xexever586.workers.dev/
+https://jalimhabaro.xexever586.workers.dev/
+const allowedOrigins = [
+  'https://c2luywxwdwjsawnv.github.io',
+  'https://sinalpublico.vercel.app',
+  'https://developer-tools.jwplayer.com'
+];
+
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request));
+});
+
+async function handleRequest(request) {
+  const url = new URL(request.url);
+  const targetUrl = url.pathname.slice(1); // Extrai o link após a barra
+
+  // Obtém a origem da solicitação (cabeçalho 'Origin')
+  const origin = request.headers.get('Origin');
+
+  // Verifica se a origem está permitida
+  if (!allowedOrigins.includes(origin)) {
+      return new Response('Acesso proibido: Origem não permitida', { status: 403 });
+  }
+
+  if (!targetUrl) {
+      return new Response('URL é obrigatória', { status: 400 });
+  }
+
+  try {
+      // Faz a solicitação para o arquivo MPD
+      const response = await fetch(decodeURIComponent(targetUrl), {
+          method: request.method,
+          headers: {
+              ...request.headers,
+              'Origin': '', // Remove o cabeçalho de origem
+          },
+      });
+
+      // Verifica se a resposta foi bem-sucedida
+      if (!response.ok) {
+          return new Response('Erro ao buscar o arquivo MPD', { status: response.status });
+      }
+
+      // Retorna a resposta do arquivo MPD
+      return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers: {
+              ...response.headers,
+              'Content-Type': 'application/dash+xml', // Define o tipo de conteúdo para o manifesto MPD
+              'Access-Control-Allow-Origin': '*', // Permite CORS
+              // Adicione outros cabeçalhos conforme necessário
+          },
+      });
+  } catch (error) {
+      // Log de erro apenas se for necessário depurar
+      console.error('Erro ao buscar o arquivo MPD:', error);
+      return new Response('Erro ao buscar o arquivo MPD', { status: 500 });
+  }
+}
