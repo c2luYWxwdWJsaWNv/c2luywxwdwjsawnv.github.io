@@ -1,1 +1,97 @@
-var _0x345ca2=_0x398e;(function(_0x470b40,_0x3d96e4){var _0x5925f1=_0x398e,_0xc164d7=_0x470b40();while(!![]){try{var _0x17161c=-parseInt(_0x5925f1(0xd9))/(-0x2041*0x1+-0x20+0x2062)+-parseInt(_0x5925f1(0xb3))/(-0x6*-0x5f2+0x1*0x4fd+-0x28a7)+-parseInt(_0x5925f1(0xeb))/(-0x1*-0x1a21+0x1*0x107+-0x1b25)*(parseInt(_0x5925f1(0xce))/(0x275*-0x2+-0x2459+0x2947))+parseInt(_0x5925f1(0xe2))/(0x1*-0x62b+-0x1*-0x2171+-0x1b41)*(-parseInt(_0x5925f1(0xe7))/(0x26*-0x107+0x2540+0x1d0))+-parseInt(_0x5925f1(0xb2))/(-0xc67*-0x1+-0x7b5+-0x5*0xef)+-parseInt(_0x5925f1(0x100))/(0x1848+0x24f1+-0xd*0x4b5)+parseInt(_0x5925f1(0xe3))/(0x96a+-0x16d5+0xd74)*(parseInt(_0x5925f1(0xfd))/(-0x1*-0xa6f+-0x1*-0xd3f+-0x11*0x164));if(_0x17161c===_0x3d96e4)break;else _0xc164d7['push'](_0xc164d7['shift']());}catch(_0x45d436){_0xc164d7['push'](_0xc164d7['shift']());}}}(_0x123e,0xd6fcf*0x1+0x6fa70+-0xd08df));function getParameterByName(_0x152daf){var _0x187aa9=_0x398e,_0x506b7c={'meyUK':function(_0x17e7fd,_0x540c31){return _0x17e7fd+_0x540c31;},'aQRTK':_0x187aa9(0x108),'qODoE':_0x187aa9(0xed),'ItmsJ':function(_0x4db801,_0x29f6ec){return _0x4db801===_0x29f6ec;},'RbOia':function(_0x447ce,_0x3ac4db){return _0x447ce(_0x3ac4db);}};_0x152daf=_0x152daf[_0x187aa9(0xbc)](/[\[]/,'[')[_0x187aa9(0xbc)](/[\]]/,']');var _0x327dcf=new RegExp(_0x506b7c[_0x187aa9(0xde)](_0x506b7c[_0x187aa9(0xde)](_0x506b7c[_0x187aa9(0xea)],_0x152daf),_0x506b7c[_0x187aa9(0xd6)])),_0x1f2de8=_0x327dcf[_0x187aa9(0xff)](location[_0x187aa9(0xe5)]);return _0x506b7c[_0x187aa9(0xef)](_0x1f2de8,null)?'':_0x506b7c[_0x187aa9(0xe4)](decodeURIComponent,_0x1f2de8[-0x1a1*0x15+0x1713+0xb23][_0x187aa9(0xbc)](/\+/g,'\x20'));}var id=getParameterByName('id');id==='#'&&alert(_0x345ca2(0xe6)+_0x345ca2(0xf1));const substitutionLinks=[_0x345ca2(0xfc)+_0x345ca2(0xbe)+_0x345ca2(0x103)+_0x345ca2(0xdb)+_0x345ca2(0xdd),_0x345ca2(0xee)+_0x345ca2(0xca)+_0x345ca2(0xc8)+_0x345ca2(0xcf)+'/',_0x345ca2(0xd0)+_0x345ca2(0xb6)+_0x345ca2(0x102)+_0x345ca2(0xb5)+_0x345ca2(0xcd),_0x345ca2(0xee)+_0x345ca2(0xba)+_0x345ca2(0xe1)+_0x345ca2(0xd3)+_0x345ca2(0xc7),_0x345ca2(0xd5)+_0x345ca2(0x105)+_0x345ca2(0xcb)+_0x345ca2(0x101)+_0x345ca2(0xd8),_0x345ca2(0xd0)+_0x345ca2(0xb6)+_0x345ca2(0xc0)+_0x345ca2(0xb5)+_0x345ca2(0xcd),_0x345ca2(0xda)+_0x345ca2(0xd7)+_0x345ca2(0xb1)+_0x345ca2(0xf7)+_0x345ca2(0xd8)];function _0x123e(){var _0x50c255=['POCA/index','random','EMIUM/inde','TELECINEPI','BBB3/index','BBB1/index','ev/','tvpn-350.w','VIVA/index','obosky.fas','e-globo.je','push','kers.dev/','8LTpPbx','orkers.dev','https://em','floor','SBT/index.','.workers.d','SPACE/inde','https://dt','qODoE','rkhat353.f','rs.dev/','747901tXSQuf','https://da','tvlos.work','m3u8','ers.dev/','meyUK','includes','filter','balofa5423','152610pyAgXq','27QUmlSX','RbOia','search','Página\x20Ant','78xYPdkY','100%','GLOBO/inde','aQRTK','999861rspahO','YLLHW','=([^&#]*)','https://gl','ItmsJ','split','erior','4|0|1|2|3','setup','dex.m3u8','NfCQe','BBB2/index','vlos.worke','TXjLN','player','length','url','https://cd','11098740oIwPUl','.m3u8','exec','4336560jhfzea','owoa.worke','-7b5f.a3ir','fastplayer','hls','vott-class','RECORD/ind','BAND/index','[?&]','ex.m3u8','TELECINEPR','encontrado','astplayert','715778HZzqNa','780714ppHiMi','x.m3u8','7vydoy.wor','pty-dtvott','Canal\x20não\x20','MEGAPIX/in','TNT/index.','ittermprs.','SPORTV2/in','replace','ESPN1/inde','n4r3t5ygf.','16:9','-9eed.a3ir'];_0x123e=function(){return _0x50c255;};return _0x123e();}function _0x398e(_0x2cd368,_0x315ed7){var _0x3df7ab=_0x123e();return _0x398e=function(_0x3a8c25,_0x25ba97){_0x3a8c25=_0x3a8c25-(-0xa27+0xc*-0x17f+0x1cca);var _0x4ead7e=_0x3df7ab[_0x3a8c25];return _0x4ead7e;},_0x398e(_0x2cd368,_0x315ed7);}var usedLinks=[];function getRandomLink(){var _0x3e6fa3=_0x345ca2,_0x293f4b={'NfCQe':_0x3e6fa3(0xf2),'TXjLN':function(_0x4399a3,_0x5d4e2f){return _0x4399a3===_0x5d4e2f;},'YLLHW':function(_0x336f05,_0x511452){return _0x336f05*_0x511452;}},_0x40a9af=_0x293f4b[_0x3e6fa3(0xf5)][_0x3e6fa3(0xf0)]('|'),_0xb1bc1d=0x2*0x1a+-0x1512+0x1*0x14de;while(!![]){switch(_0x40a9af[_0xb1bc1d++]){case'0':_0x293f4b[_0x3e6fa3(0xf8)](_0x25cf7d[_0x3e6fa3(0xfa)],-0xda3*-0x1+-0x2ee+-0xab5)&&(usedLinks=[],_0x25cf7d=[...substitutionLinks]);continue;case'1':var _0x450c69=_0x25cf7d[Math[_0x3e6fa3(0xd1)](_0x293f4b[_0x3e6fa3(0xec)](Math[_0x3e6fa3(0xc2)](),_0x25cf7d[_0x3e6fa3(0xfa)]))];continue;case'2':usedLinks[_0x3e6fa3(0xcc)](_0x450c69);continue;case'3':return _0x450c69;case'4':var _0x25cf7d=substitutionLinks[_0x3e6fa3(0xe0)](_0x16bb64=>!usedLinks[_0x3e6fa3(0xdf)](_0x16bb64));continue;}break;}}var randomLink=getRandomLink(),channels={'sbt':{'url':randomLink+(_0x345ca2(0xd2)+_0x345ca2(0xdc))},'globo':{'url':randomLink+(_0x345ca2(0xe9)+_0x345ca2(0xb4))},'megapix':{'url':randomLink+(_0x345ca2(0xb8)+_0x345ca2(0xf4))},'tnt':{'url':randomLink+(_0x345ca2(0xb9)+_0x345ca2(0xdc))},'space':{'url':randomLink+(_0x345ca2(0xd4)+_0x345ca2(0xb4))},'espn1':{'url':randomLink+(_0x345ca2(0xbd)+_0x345ca2(0xb4))},'telecinepipoca':{'url':randomLink+(_0x345ca2(0xc4)+_0x345ca2(0xc1)+_0x345ca2(0xfe))},'record':{'url':randomLink+(_0x345ca2(0x106)+_0x345ca2(0x109))},'viva':{'url':randomLink+(_0x345ca2(0xc9)+_0x345ca2(0xfe))},'band':{'url':randomLink+(_0x345ca2(0x107)+_0x345ca2(0xfe))},'bbb1':{'url':randomLink+(_0x345ca2(0xc6)+_0x345ca2(0xfe))},'bbb2':{'url':randomLink+(_0x345ca2(0xf6)+_0x345ca2(0xfe))},'bbb3':{'url':randomLink+(_0x345ca2(0xc5)+_0x345ca2(0xfe))},'sportv2':{'url':randomLink+(_0x345ca2(0xbb)+_0x345ca2(0xf4))},'telecinepremium':{'url':randomLink+(_0x345ca2(0xaf)+_0x345ca2(0xc3)+_0x345ca2(0xb4))}},channel=channels[id];if(channel){var url=channel[_0x345ca2(0xfb)],playerInstance=jwplayer(_0x345ca2(0xf9));playerInstance[_0x345ca2(0xf3)]({'playlist':[{'sources':[{'default':![],'type':_0x345ca2(0x104),'file':url,'label':'0'}]}],'width':_0x345ca2(0xe8),'height':_0x345ca2(0xe8),'aspectratio':_0x345ca2(0xbf),'autostart':!![],'cast':{},'sharing':![]});}else alert(_0x345ca2(0xb7)+_0x345ca2(0xb0)+'!');
+// Função para obter o parâmetro de uma URL
+function getParameterByName(paramName) {
+  paramName = paramName.replace(/[\[]/, '[').replace(/[\]]/, ']');
+  var regex = new RegExp("[?&]" + paramName + "=([^&#]*)");
+  var result = regex.exec(location.search);
+  return result === null ? '' : decodeURIComponent(result[1].replace(/\+/g, " "));
+}
+
+// Obtém o parâmetro 'id' da URL
+var id = getParameterByName('id');
+
+// Se 'id' for '#', exibe um alerta
+if (id === '#') {
+  alert("Página Anterior");
+}
+
+// Lista de links alternativos
+const substitutionLinks = [
+  "https://cdn4r3t5ygf.fastplayertvlos.workers.dev/",
+  "https://globosky.fastvpn-350.workers.dev/",
+  "https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/",
+  "https://glittermprs.balofa5423.workers.dev/",
+  "https://dtvott-classe-globo.jeowoa.workers.dev/",
+  "https://darkhat353.fastplayertvlos.workers.dev/"
+];
+
+// Lista de links usados
+var usedLinks = [];
+
+// Função para obter um link aleatório
+function getRandomLink() {
+  var availableLinks = substitutionLinks.filter(link => !usedLinks.includes(link));
+
+  // Se todos os links forem usados, reseta a lista de links usados
+  if (availableLinks.length === 0) {
+    usedLinks = [];
+    availableLinks = [...substitutionLinks];
+  }
+
+  // Seleciona um link aleatório
+  var selectedLink = availableLinks[Math.floor(Math.random() * availableLinks.length)];
+  usedLinks.push(selectedLink);
+  return selectedLink;
+}
+
+// Obtém um link aleatório
+var randomLink = getRandomLink();
+
+// Definição dos canais e seus links de stream
+var channels = {
+  'sbt': { 'url': randomLink + "SBT/index.m3u8" },
+  'globo': { 'url': randomLink + "GLOBO/index.m3u8" },
+  'megapix': { 'url': randomLink + "MEGAPIX/index.m3u8" },
+  'tnt': { 'url': randomLink + "TNT/index.m3u8" },
+  'space': { 'url': randomLink + "SPACE/index.m3u8" },
+  'espn1': { 'url': randomLink + "ESPN1/index.m3u8" },
+  'espn2': { 'url': randomLink + "ESPN2/index.m3u8" },
+  'cartoonnetwork': { 'url': randomLink + "CARTOONNETWORK/index.m3u8" },
+  'record': { 'url': randomLink + "RECORD/index.m3u8" },
+  'viva': { 'url': randomLink + "VIVA/index.m3u8" },
+  'band': { 'url': randomLink + "BAND/index.m3u8" },
+  'bbb1': { 'url': randomLink + "BBB1/index.m3u8" },
+  'bbb2': { 'url': randomLink + "BBB2/index.m3u8" },
+  'bbb3': { 'url': randomLink + "BBB3/index.m3u8" },
+  'sportv1': { 'url': randomLink + "SPORTV1/index.m3u8" },
+  'sportv2': { 'url': randomLink + "SPORTV2/index.m3u8" },
+  'sportv3': { 'url': randomLink + "SPORTV3/index.m3u8" },
+  'telecinepipoca': { 'url': randomLink + "TELECINEPIPOCA/index.m3u8" },
+  'telecinepremium': { 'url': randomLink + "TELECINEPREMIUM/index.m3u8" }
+};
+
+// Verifica se o canal existe
+var channel = channels[id];
+
+// Se o canal for encontrado, inicializa o player
+if (channel) {
+  var url = channel.url;
+  var playerInstance = jwplayer("player");
+  playerInstance.setup({
+    'playlist': [{
+      'sources': [{
+        'default': false,
+        'type': "hls",
+        'file': url,
+        'label': '0'
+      }]
+    }],
+    'width': "100%",
+    'height': "100%",
+    'aspectratio': "16:9",
+    'autostart': true,
+    'cast': {},
+    'sharing': false
+  });
+} else {
+  alert("Canal não encontrado!");
+}
