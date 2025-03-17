@@ -1,1 +1,148 @@
-var _0x39d348=_0x1877;function _0x1877(_0x1f0131,_0x5aab86){var _0x52384b=_0x33cf();return _0x1877=function(_0x3ae478,_0x4e9855){_0x3ae478=_0x3ae478-(-0x4*-0x7b5+-0x1d6d+0x1*0xe);var _0x4e0714=_0x52384b[_0x3ae478];return _0x4e0714;},_0x1877(_0x1f0131,_0x5aab86);}(function(_0xe860e6,_0x92146){var _0x4c3fec=_0x1877,_0x3d264c=_0xe860e6();while(!![]){try{var _0x3d0d67=-parseInt(_0x4c3fec(0x196))/(0x1087+-0x3b*0x53+-0x1*-0x29b)+-parseInt(_0x4c3fec(0x1ec))/(-0x1a3+-0x3*0x803+0x19ae)*(parseInt(_0x4c3fec(0x193))/(-0x5d2*0x1+-0x317+0x8ec*0x1))+-parseInt(_0x4c3fec(0x18e))/(-0x2623+-0x1d*-0x4f+0x2*0xe9a)*(-parseInt(_0x4c3fec(0x207))/(0x1616+-0x1a63+0x452))+-parseInt(_0x4c3fec(0x1e1))/(-0xa7*0x17+-0xed3+0x1dda)*(-parseInt(_0x4c3fec(0x1a5))/(-0x20*-0x98+0x33*-0x51+0x6*-0x79))+parseInt(_0x4c3fec(0x1f7))/(-0x24f4+0x12*-0xed+-0x147*-0x2a)+-parseInt(_0x4c3fec(0x1a8))/(-0x20*-0xab+-0x224f+-0x53*-0x28)+-parseInt(_0x4c3fec(0x1b7))/(-0x3b3*-0x3+0x4c8+-0xfd7);if(_0x3d0d67===_0x92146)break;else _0x3d264c['push'](_0x3d264c['shift']());}catch(_0x4badf2){_0x3d264c['push'](_0x3d264c['shift']());}}}(_0x33cf,-0x2073+-0x7*-0x14053+0x235a4));function getParameterByName(_0x359ae1){var _0x3350f1=_0x1877,_0x297c3c={'MyRbN':function(_0x5f0f99,_0x110990){return _0x5f0f99+_0x110990;},'XSJaM':function(_0x413ad4,_0x576863){return _0x413ad4+_0x576863;},'bckkX':_0x3350f1(0x1e3),'pfniM':_0x3350f1(0x1fa),'zKMxs':function(_0x10940d,_0x59d6b9){return _0x10940d===_0x59d6b9;},'EqGul':function(_0x4eef7c,_0x3e05a9){return _0x4eef7c(_0x3e05a9);}};_0x359ae1=_0x359ae1[_0x3350f1(0x1a0)](/[\[]/,'[')[_0x3350f1(0x1a0)](/[\]]/,']');var _0x4a03fc=new RegExp(_0x297c3c[_0x3350f1(0x1b4)](_0x297c3c[_0x3350f1(0x17b)](_0x297c3c[_0x3350f1(0x180)],_0x359ae1),_0x297c3c[_0x3350f1(0x1c9)])),_0x697019=_0x4a03fc[_0x3350f1(0x1fb)](location[_0x3350f1(0x1da)]);return _0x297c3c[_0x3350f1(0x197)](_0x697019,null)?'':_0x297c3c[_0x3350f1(0x1e6)](decodeURIComponent,_0x697019[0x24*-0x95+-0x1241*-0x1+0x15a*0x2][_0x3350f1(0x1a0)](/\+/g,'\x20'));}var id=getParameterByName('s');id=='#'&&alert(_0x39d348(0x198)+_0x39d348(0x17d));const substitutionLinks=[_0x39d348(0x1dd)+_0x39d348(0x185)+_0x39d348(0x1d7)+_0x39d348(0x1cf)+_0x39d348(0x1eb),_0x39d348(0x1e7)+_0x39d348(0x1c1)+_0x39d348(0x20b)+_0x39d348(0x1bd)+'v/',_0x39d348(0x194)+_0x39d348(0x19a)+_0x39d348(0x1cf)+_0x39d348(0x1eb),_0x39d348(0x20e)+_0x39d348(0x1d4)+_0x39d348(0x20b)+_0x39d348(0x1bd)+'v/',_0x39d348(0x1e0)+_0x39d348(0x192)+_0x39d348(0x1c7)+_0x39d348(0x1cf)+_0x39d348(0x1eb),_0x39d348(0x1c4)+_0x39d348(0x19e)+_0x39d348(0x1a1)+_0x39d348(0x1bd)+'v/',_0x39d348(0x1a3)+_0x39d348(0x20a)+_0x39d348(0x1fc)+_0x39d348(0x1b3)+_0x39d348(0x1d8),_0x39d348(0x1a4)+_0x39d348(0x1d5)+_0x39d348(0x1a1)+_0x39d348(0x1bd)+'v/',_0x39d348(0x1ea)+_0x39d348(0x200)+_0x39d348(0x204)+_0x39d348(0x1a6)+_0x39d348(0x1bf),_0x39d348(0x18b)+_0x39d348(0x1b9)+_0x39d348(0x189)+_0x39d348(0x1b1)+_0x39d348(0x19d),_0x39d348(0x1ea)+_0x39d348(0x200)+_0x39d348(0x1a7)+_0x39d348(0x1a6)+_0x39d348(0x1bf)];var usedLinks=[];function _0x33cf(){var _0x5607d7=['filter','a6917','02-dtvott.','e2b4cb47b6','clearkey2','fe8eb9849e','t-o002.o5u','url','https://or','length','eb5f30faa7','4489316KLWEQB','10f1553974','encontrado','fac780af8d','inyhatybt.','13074rtDPed','https://x.','6a59055e8f','267876PkaFbk','zKMxs','Página\x20Ant','annel/SPON','tvcasecors','includes','undefined','rkers.dev/','newe7659.p','P3HD/dsc1/','replace','onewe7659.','dash','https://dt','https://76','2517634hGVcxU','7vydoy.wor','-7b5f.a3ir','5625306UbXlZp','f82c2','eb:6c09fe0','e2f67cb96b','floor','ef68b4b8d5','86304dfad0','559680804e','2b34adbd40','ftzrqlf.wo','cd302f9a2b','owoa.worke','MyRbN','annel/SPOS','mpd','617970ZjcTTU','4|1|0|2|3','ange-dtvot','ed94b20950','e423fbe43c','fb:40f8874','workers.de','4d7d333084','kers.dev/','c7aaab7024','codaw245.f','9114148022','89ec1','https://po','vIkCM','annel/SPOC','dpetftvwrc','key','pfniM','d2f51','PCHD/dsc2/','GPSep','70a7f6a136','split','.workers.d','a56a3','a624aebe5d','8e:09ad243','player','5ficodaw.f','59ponewe.p','eeb194d31d','o5uftzrqlf','rs.dev/','b361dadd3a','search','b6e2dcbd87','a28d1306dc','https://00','af92c52e00','97:6743b3b','https://sh','12ezbDKx','setup','[?&]','829775c8dc','b12ed','EqGul','https://fi','4fc4ec2fd1','6e91a26ee0','https://em','ev/','334YkyfOf','0285a52ed8','9bd6e16d00','PTHD/dsc2/','scOug','CR1HD/dsc1','5f4b1','2e23c1de48','CR2HD/dsc2','random','c43876c82d','4410864MnKrjJ','cef7f91dbd','be07e6a876','=([^&#]*)','exec','e-globo.je','74b78','22:3b842d5','100%','pty-dtvott','Canal\x20não\x20','2|5|4|3|1|','9d3feca84a','-9eed.a3ir','Content/Ch','manifest.m','5eBnnxQ','P2HD/dsc2/','3019de8a3a','vott-class','icodaw245.','push','84:4fedf21','https://24','a433f6810f','annel/SPOT','16:9','OR3HD/dsc3','cb:4959f6d','substr','1f49753627','/manifest.','XSJaM','562de1e4e5','erior','71358b975f','b230fda35c','bckkX','NTHD/dsc3/','b1:32ebb70'];_0x33cf=function(){return _0x5607d7;};return _0x33cf();}function getRandomLink(){var _0x2b1f5e=_0x39d348,_0x69c936={'vIkCM':_0x2b1f5e(0x1b8),'GPSep':function(_0x45a107,_0x4aa1ab){return _0x45a107*_0x4aa1ab;},'scOug':function(_0x358317,_0x4867e7){return _0x358317===_0x4867e7;}},_0x5a3a99=_0x69c936[_0x2b1f5e(0x1c5)][_0x2b1f5e(0x1ce)]('|'),_0x209482=-0xd3*0x3+0x2f2*0x1+-0x79;while(!![]){switch(_0x5a3a99[_0x209482++]){case'0':var _0x16a751=_0x38a44b[Math[_0x2b1f5e(0x1ac)](_0x69c936[_0x2b1f5e(0x1cc)](Math[_0x2b1f5e(0x1f5)](),_0x38a44b[_0x2b1f5e(0x18c)]))];continue;case'1':_0x69c936[_0x2b1f5e(0x1f0)](_0x38a44b[_0x2b1f5e(0x18c)],0x6d*0x31+0x26b4+-0x3b91)&&(usedLinks=[],_0x38a44b=[...substitutionLinks]);continue;case'2':usedLinks[_0x2b1f5e(0x20c)](_0x16a751);continue;case'3':return _0x16a751;case'4':var _0x38a44b=substitutionLinks[_0x2b1f5e(0x183)](_0x2423c8=>!usedLinks[_0x2b1f5e(0x19b)](_0x2423c8));continue;}break;}}var randomLink=getRandomLink(),channels={'sportv1':{'url':randomLink+(_0x39d348(0x205)+_0x39d348(0x1b5)+_0x39d348(0x1ef)+_0x39d348(0x206)+'pd'),'key':_0x39d348(0x1ba)+_0x39d348(0x195)+_0x39d348(0x1ed)+_0x39d348(0x182)+_0x39d348(0x1f3)+_0x39d348(0x1ee)+_0x39d348(0x1e5)},'sportv2':{'url':randomLink+(_0x39d348(0x205)+_0x39d348(0x1b5)+_0x39d348(0x208)+_0x39d348(0x206)+'pd'),'key':_0x39d348(0x18d)+_0x39d348(0x1b2)+_0x39d348(0x1dc)+_0x39d348(0x1aa)+_0x39d348(0x1c2)+_0x39d348(0x1ab)+_0x39d348(0x184)},'sportv3':{'url':randomLink+(_0x39d348(0x205)+_0x39d348(0x1b5)+_0x39d348(0x19f)+_0x39d348(0x206)+'pd'),'key':_0x39d348(0x209)+_0x39d348(0x1bb)+_0x39d348(0x1ae)+_0x39d348(0x1d2)+_0x39d348(0x188)+_0x39d348(0x1e4)+_0x39d348(0x1f2)},'space':{'url':randomLink+(_0x39d348(0x205)+_0x39d348(0x1b5)+_0x39d348(0x1cb)+_0x39d348(0x206)+'pd'),'key':_0x39d348(0x1e8)+_0x39d348(0x17e)+_0x39d348(0x1db)+_0x39d348(0x1bc)+_0x39d348(0x1c0)+_0x39d348(0x1de)+_0x39d348(0x1c3)},'tnt':{'url':randomLink+(_0x39d348(0x205)+_0x39d348(0x210)+_0x39d348(0x181)+_0x39d348(0x206)+'pd'),'key':_0x39d348(0x1be)+_0x39d348(0x1b0)+_0x39d348(0x1f9)+_0x39d348(0x1df)+_0x39d348(0x1cd)+_0x39d348(0x1d9)+_0x39d348(0x1d0)},'nossofutebol1':{'url':randomLink+(_0x39d348(0x205)+_0x39d348(0x1c6)+_0x39d348(0x1f1)+_0x39d348(0x17a)+_0x39d348(0x1b6)),'key':_0x39d348(0x1af)+_0x39d348(0x203)+_0x39d348(0x18f)+_0x39d348(0x20d)+_0x39d348(0x186)+_0x39d348(0x179)+_0x39d348(0x1fd)},'nossofutebol2':{'url':randomLink+(_0x39d348(0x205)+_0x39d348(0x1c6)+_0x39d348(0x1f4)+_0x39d348(0x17a)+_0x39d348(0x1b6)),'key':_0x39d348(0x1ad)+_0x39d348(0x17f)+_0x39d348(0x1d1)+_0x39d348(0x177)+_0x39d348(0x1f6)+_0x39d348(0x17c)+_0x39d348(0x1ca)},'nossofutebol3':{'url':randomLink+(_0x39d348(0x205)+_0x39d348(0x199)+_0x39d348(0x176)+_0x39d348(0x17a)+_0x39d348(0x1b6)),'key':_0x39d348(0x1e9)+_0x39d348(0x20f)+_0x39d348(0x1f8)+_0x39d348(0x1fe)+_0x39d348(0x1d6)+_0x39d348(0x191)+_0x39d348(0x1a9)}},channel=channels[id];if(channel){var vjTNeA=(_0x39d348(0x202)+'0')[_0x39d348(0x1ce)]('|'),PcJTST=0x1967+0x232f*0x1+-0x3c96;while(!![]){switch(vjTNeA[PcJTST++]){case'0':playerInstance[_0x39d348(0x1e2)]({'playlist':[{'sources':[{'default':![],'type':_0x39d348(0x1a2),'file':url,'drm':drmConfig,'label':'0'}]}],'width':_0x39d348(0x1ff),'height':_0x39d348(0x1ff),'aspectratio':_0x39d348(0x175),'autostart':!![],'cast':{},'sharing':![]});continue;case'1':typeof k2!==_0x39d348(0x19c)&&(drmConfig[_0x39d348(0x187)]={'keyId':k2[_0x39d348(0x178)](-0x1*-0xe30+0x151*0x5+0x14c5*-0x1,-0xa*0x167+-0x1*-0x1652+-0x82c),'key':k2[_0x39d348(0x178)](-0x1d35*-0x1+-0xa0b+-0x1309,-0x1*-0xddc+0x26e1+-0x347c)});continue;case'2':var key=channel[_0x39d348(0x1c8)];continue;case'3':var drmConfig={'clearkey':{'keyId':key[_0x39d348(0x178)](-0x17a7+-0xc9*0xb+0x204a*0x1,0x7eb+0x195+-0x960),'key':key[_0x39d348(0x178)](-0xf73+0x1f62+-0x11*0xee,0x21d8*-0x1+0xa19+0x1800*0x1)}};continue;case'4':var playerInstance=jwplayer(_0x39d348(0x1d3));continue;case'5':var url=channel[_0x39d348(0x18a)];continue;}break;}}else alert(_0x39d348(0x201)+_0x39d348(0x190)+'!');
+// Função para obter parâmetros da URL
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, '[').replace(/[\]]/, ']');
+  const regex = new RegExp("[?&]" + name + "=([^&#]*)");
+  const result = regex.exec(location.search);
+  return result === null ? '' : decodeURIComponent(result[1].replace(/\+/g, " "));
+}
+
+// Obtém o parâmetro 's' da URL
+const id = getParameterByName('s');
+
+// Se o parâmetro 's' for igual a '#', exibe um alerta
+if (id === '#') {
+  alert("Página Anterior");
+}
+
+// Lista de links de substituição
+const substitutionLinks = [
+  "https://x.tvcasecors.workers.dev/",
+  "https://0002-dtvott.o5uftzrqlf.workers.dev/",
+  "https://ficodaw245.ficodaw245.workers.dev/",
+  "https://shinyhatybt.dpetftvwrc.workers.dev/",
+  "https://ponewe7659.ponewe7659.workers.dev/",
+  "https://dpetftvwrc.dpetftvwrc.workers.dev/"
+];
+
+// Armazena os links usados
+let usedLinks = [];
+
+// Função para obter um link aleatório
+function getRandomLink() {
+  let availableLinks = substitutionLinks.filter(link => !usedLinks.includes(link));
+  if (availableLinks.length === 0) {
+    usedLinks = [];
+    availableLinks = [...substitutionLinks];
+  }
+  const randomLink = availableLinks[Math.floor(Math.random() * availableLinks.length)];
+  usedLinks.push(randomLink);
+  return randomLink;
+}
+
+// Obtém um link aleatório
+const randomLink = getRandomLink();
+
+// Definindo canais e suas URLs
+const channels = {
+  'sportv1': {
+    'url': randomLink + "Content/Channel/SPOSPTHD/dsc2/manifest.mpd",
+    'key': "ed94b209506a59055e8f0285a52ed8b1:32ebb702e23c1de489bd6e16d00b12ed"
+  },
+  'sportv2': {
+    'url': randomLink + "Content/Channel/SPOSP2HD/dsc2/manifest.mpd",
+    'key': "eb5f30faa7cd302f9a2ba28d1306dceb:6c09fe09114148022e2f67cb96ba6917"
+  },
+  'sportv3': {
+    'url': randomLink + "Content/Channel/SPOSP3HD/dsc1/manifest.mpd",
+    'key': "3019de8a3ae423fbe43c86304dfad08e:09ad243fe8eb9849e829775c8dc5f4b1"
+  },
+  'espn1': {
+    'url': randomLink + "Content/Channel/SPOESBHD/dsc4/manifest.mpd",
+    'key': "3b43a1fbcf57cfe04109fbc1b381ac79:a23de064124dfddeaf3c23490d96328b"
+  },
+  'espn2': {
+    'url': randomLink + "Content/Channel/SPOESIHD/dsc4/manifest.mpd",
+    'key': "3b43a1fbcf57cfe04109fbc1b381ac79:a23de064124dfddeaf3c23490d96328b"
+  },
+  'espn3': {
+    'url': randomLink + "Content/Channel/SPOESPHD/dsc4/manifest.mpd",
+    'key': "3b43a1fbcf57cfe04109fbc1b381ac79:a23de064124dfddeaf3c23490d96328b"
+  },
+  'espn4': {
+    'url': randomLink + "Content/Channel/SPOFSTHD/dsc4/manifest.mpd",
+    'key': "3b43a1fbcf57cfe04109fbc1b381ac79:a23de064124dfddeaf3c23490d96328b"
+  },
+  'espn5': {
+    'url': randomLink + "Content/Channel/SPOFST2HD/dsc1/manifest.mpd",
+    'key': "3b43a1fbcf57cfe04109fbc1b381ac79:a23de064124dfddeaf3c23490d96328b"
+  },
+  'espn6': {
+    'url': randomLink + "Content/Channel/SPOESTHD/dsc4/manifest.mpd",
+    'key': "3b43a1fbcf57cfe04109fbc1b381ac79:a23de064124dfddeaf3c23490d96328b"
+  },
+  'space': {
+    'url': randomLink + "Content/Channel/SPOSPCHD/dsc2/manifest.mpd",
+    'key': "4fc4ec2fd171358b975fb6e2dcbd87fb:40f8874c7aaab7024af92c52e0089ec1"
+  },
+  'tnt': {
+    'url': randomLink + "Content/Channel/SPOTNTHD/dsc3/manifest.mpd",
+    'key': "4d7d3330842b34adbd40be07e6a87697:6743b3b70a7f6a136b361dadd3aa56a3"
+  },
+  'nossofutebol1': {
+    'url': randomLink + "Content/Channel/SPOCCR1HD/dsc1/manifest.mpd",
+    'key': "559680804e9d3feca84a10f155397484:4fedf21e2b4cb47b61f4975362774b78"
+  },
+  'nossofutebol2': {
+    'url': randomLink + "Content/Channel/SPOCCR2HD/dsc2/manifest.mpd",
+    'key': "ef68b4b8d5b230fda35ca624aebe5dcb:4959f6dc43876c82d562de1e4e5d2f51"
+  },
+  'nossofutebol3': {
+    'url': randomLink + "Content/Channel/SPONOR3HD/dsc3/manifest.mpd",
+    'key': "6e91a26ee0a433f6810fcef7f91dbd22:3b842d5eeb194d31dfac780af8df82c2"
+  }
+};
+
+// Verifica se o canal existe
+const channel = channels[id];
+
+// Se o canal for encontrado, configura o player
+if (channel) {
+  const key = channel.key;
+  const url = channel.url;
+  const playerInstance = jwplayer("player");
+
+  const drmConfig = {
+    'clearkey': {
+      'keyId': key.substr(0, 32),
+      'key': key.substr(33, 65)
+    }
+  };
+
+  // Se 'k2' estiver definido, adiciona a configuração de 'clearkey2'
+  if (typeof k2 !== "undefined") {
+    drmConfig.clearkey2 = {
+      'keyId': k2.substr(0, 32),
+      'key': k2.substr(33, 65)
+    };
+  }
+
+  playerInstance.setup({
+    'playlist': [{
+      'sources': [{
+        'default': false,
+        'type': "dash",
+        'file': url,
+        'drm': drmConfig,
+        'label': '0'
+      }]
+    }],
+    'width': "100%",
+    'height': "100%",
+    'aspectratio': "16:9",
+    'autostart': true,
+    'cast': {},
+    'sharing': false
+  });
+} else {
+  alert("Canal não encontrado!");
+}
