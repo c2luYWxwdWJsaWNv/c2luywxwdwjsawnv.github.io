@@ -1,1 +1,105 @@
-var _0x438cf0=_0x450b;(function(_0x1beb9d,_0x13a134){var _0x36d4b0=_0x450b,_0x4a11d1=_0x1beb9d();while(!![]){try{var _0x6ec32f=-parseInt(_0x36d4b0(0x81))/(-0x1a1f*0x1+-0xd3*0x17+0x2d15)*(-parseInt(_0x36d4b0(0x8f))/(-0x1eaf+0x17*0x11a+0x55b))+parseInt(_0x36d4b0(0x8c))/(-0x2359*-0x1+-0x8cc+0x2*-0xd45)+parseInt(_0x36d4b0(0xbd))/(-0x17fb*0x1+-0x1362+-0x1*-0x2b61)+-parseInt(_0x36d4b0(0xd9))/(-0x1dab+0xf6c+0xe44)+-parseInt(_0x36d4b0(0xb3))/(-0x1e80+-0x692+-0x2518*-0x1)+-parseInt(_0x36d4b0(0x90))/(-0x10ab+0xa2a*-0x2+0x2506)+parseInt(_0x36d4b0(0xa7))/(0x11c6+-0x154d+0x38f)*(parseInt(_0x36d4b0(0x76))/(-0x266b+-0x771+-0x1f*-0x17b));if(_0x6ec32f===_0x13a134)break;else _0x4a11d1['push'](_0x4a11d1['shift']());}catch(_0x58c4cd){_0x4a11d1['push'](_0x4a11d1['shift']());}}}(_0x240d,-0x1*0x1347c3+0x9c367+0x4*0x53dc6));function _0x240d(){var _0x141748=['s-v1a1/mon','https://st','ybluetv.sk','ubes/track','setup','57ygnqIp','v1a1/mono.','espn/track','encontrado','workers.de','espn2/trac','m3u8','Página\x20Ant','acks-v1a1/','3u8','premiere2/','1572882sehedE','illdarknes','space/trac','47206ldHRRo','5757409CVtGPP','o.m3u8','cks-v1a1/m','mono.m3u8','-v1a1/mono','sportv3/tr','ono.m3u8','=([^&#]*)','et/tracks-','hbofamily/','espn6/trac','disneychan','player','WfSYe','random','2|0|1|4|3','100%','premierecl','37.workers','s.gonero16','no.m3u8','discoveryt','ytvzimer.s','533488PIUVih','starchanne','.dev/','sportv/tra','tracks-v1a','premiere4/','url','kystream.w','https://sk','onero1637.','rkers.dev/','ystream.wo','870690eZRYmG','search','Canal\x20não\x20','s.dev/','tptv.ucdtv','work/track','ldbrook.uc','exec','.m3u8','includes','305300SIQOKA','1/mono.m3u','premiere8/','nero1637.g','adultswim/','nel/tracks','mTXcx','erior','cartoonnet','replace','EFRvU','.workers.d','https://uz','Qlniz','filter','dtv.worker','l/tracks-v','animalplan','pywTs','[?&]','push','ev/','combate/tr','qdDEo','espn4/trac','sportv2/tr','orkers.dev','hbo/tracks','2474320huIvvt','SVcLW','premiere3/','premiere5/','https://go','espn5/trac','16:9','length','floor','urbo/track','premiere7/','espn3/trac','discoveryi','1a1/mono.m','https://co','d/tracks-v','tnt/tracks','36KkOBdD','hls','split','ks-v1a1/mo','premiere6/','PfsoM'];_0x240d=function(){return _0x141748;};return _0x240d();}function getParameterByName(_0x139c15){var _0x4aada8=_0x450b,_0x10fec7={'Qlniz':function(_0x15ae27,_0x12dada){return _0x15ae27+_0x12dada;},'SVcLW':_0x4aada8(0xd0),'EFRvU':_0x4aada8(0x97),'pywTs':function(_0x52f184,_0x20b278){return _0x52f184===_0x20b278;},'mTXcx':function(_0xe4ce73,_0x379017){return _0xe4ce73(_0x379017);}};_0x139c15=_0x139c15[_0x4aada8(0xc6)](/[\[]/,'[')[_0x4aada8(0xc6)](/[\]]/,']');var _0x45c118=new RegExp(_0x10fec7[_0x4aada8(0xca)](_0x10fec7[_0x4aada8(0xca)](_0x10fec7[_0x4aada8(0xda)],_0x139c15),_0x10fec7[_0x4aada8(0xc7)])),_0x221b05=_0x45c118[_0x4aada8(0xba)](location[_0x4aada8(0xb4)]);return _0x10fec7[_0x4aada8(0xcf)](_0x221b05,null)?'':_0x10fec7[_0x4aada8(0xc3)](decodeURIComponent,_0x221b05[-0x109+0x19d5*0x1+-0x18cb][_0x4aada8(0xc6)](/\+/g,'\x20'));}var id=getParameterByName('id');id=='#'&&alert(_0x438cf0(0x88)+_0x438cf0(0xc4));const substitutionLinks=[_0x438cf0(0x73)+_0x438cf0(0xb9)+_0x438cf0(0xcc)+_0x438cf0(0xb6),_0x438cf0(0xaf)+_0x438cf0(0x7e)+_0x438cf0(0xb2)+_0x438cf0(0xb1),_0x438cf0(0x7d)+_0x438cf0(0x8d)+_0x438cf0(0xa3)+_0x438cf0(0xa2)+_0x438cf0(0xa9),_0x438cf0(0xaf)+_0x438cf0(0xa6)+_0x438cf0(0xae)+_0x438cf0(0xd7)+'/',_0x438cf0(0xc9)+_0x438cf0(0xb7)+_0x438cf0(0xc8)+_0x438cf0(0xd2),_0x438cf0(0xdd)+_0x438cf0(0xc0)+_0x438cf0(0xb0)+_0x438cf0(0x85)+'v/'];var usedLinks=[];function _0x450b(_0x4daa2a,_0x3bfc33){var _0x41663b=_0x240d();return _0x450b=function(_0x3527f6,_0x21100c){_0x3527f6=_0x3527f6-(0x10c8+-0x1f*0x89+0x2*0x20);var _0x480379=_0x41663b[_0x3527f6];return _0x480379;},_0x450b(_0x4daa2a,_0x3bfc33);}function getRandomLink(){var _0x562ff=_0x438cf0,_0x4b946a={'qdDEo':_0x562ff(0x9f),'PfsoM':function(_0x106c76,_0x32e6e2){return _0x106c76===_0x32e6e2;},'WfSYe':function(_0x575905,_0x1e1ea){return _0x575905*_0x1e1ea;}},_0x32b2ee=_0x4b946a[_0x562ff(0xd4)][_0x562ff(0x78)]('|'),_0x46ae35=0x1cb1+-0x17fd+-0x4b4;while(!![]){switch(_0x32b2ee[_0x46ae35++]){case'0':_0x4b946a[_0x562ff(0x7b)](_0x421c53[_0x562ff(0xe0)],-0xa53*-0x3+0x1dd+0x106b*-0x2)&&(usedLinks=[],_0x421c53=[...substitutionLinks]);continue;case'1':var _0x31dabb=_0x421c53[Math[_0x562ff(0xe1)](_0x4b946a[_0x562ff(0x9d)](Math[_0x562ff(0x9e)](),_0x421c53[_0x562ff(0xe0)]))];continue;case'2':var _0x421c53=substitutionLinks[_0x562ff(0xcb)](_0x2f6324=>!usedLinks[_0x562ff(0xbc)](_0x2f6324));continue;case'3':return _0x31dabb;case'4':usedLinks[_0x562ff(0xd1)](_0x31dabb);continue;}break;}}var randomLink=getRandomLink(),channels={'adultswim':{'url':randomLink+(_0x438cf0(0xc1)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')},'disneychannel':{'url':randomLink+(_0x438cf0(0x9b)+_0x438cf0(0xc2)+_0x438cf0(0x94)+_0x438cf0(0xbb))},'cartoonnetwork':{'url':randomLink+(_0x438cf0(0xc5)+_0x438cf0(0xb8)+_0x438cf0(0x7c)+_0x438cf0(0x91))},'tnt':{'url':randomLink+(_0x438cf0(0x75)+_0x438cf0(0x94)+_0x438cf0(0xbb))},'hbo':{'url':randomLink+(_0x438cf0(0xd8)+_0x438cf0(0x94)+_0x438cf0(0xbb))},'hbofamily':{'url':randomLink+(_0x438cf0(0x99)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')},'espn1':{'url':randomLink+(_0x438cf0(0x83)+_0x438cf0(0x7c)+_0x438cf0(0x91))},'espn2':{'url':randomLink+(_0x438cf0(0x86)+_0x438cf0(0x79)+_0x438cf0(0xa4))},'espn3':{'url':randomLink+(_0x438cf0(0xe4)+_0x438cf0(0x79)+_0x438cf0(0xa4))},'espn4':{'url':randomLink+(_0x438cf0(0xd5)+_0x438cf0(0x79)+_0x438cf0(0xa4))},'espn5':{'url':randomLink+(_0x438cf0(0xde)+_0x438cf0(0x79)+_0x438cf0(0xa4))},'espn6':{'url':randomLink+(_0x438cf0(0x9a)+_0x438cf0(0x79)+_0x438cf0(0xa4))},'sportv1':{'url':randomLink+(_0x438cf0(0xaa)+_0x438cf0(0x92)+_0x438cf0(0x96))},'sportv2':{'url':randomLink+(_0x438cf0(0xd6)+_0x438cf0(0x89)+_0x438cf0(0x93))},'sportv3':{'url':randomLink+(_0x438cf0(0x95)+_0x438cf0(0x89)+_0x438cf0(0x93))},'combate':{'url':randomLink+(_0x438cf0(0xd3)+_0x438cf0(0x89)+_0x438cf0(0x93))},'starchannel':{'url':randomLink+(_0x438cf0(0xa8)+_0x438cf0(0xcd)+_0x438cf0(0x72)+_0x438cf0(0x8a))},'animalplanet':{'url':randomLink+(_0x438cf0(0xce)+_0x438cf0(0x98)+_0x438cf0(0x82)+_0x438cf0(0x87))},'discoveryid':{'url':randomLink+(_0x438cf0(0x71)+_0x438cf0(0x74)+_0x438cf0(0x72)+_0x438cf0(0x8a))},'discoveryturbo':{'url':randomLink+(_0x438cf0(0xa5)+_0x438cf0(0xe2)+_0x438cf0(0x7c)+_0x438cf0(0x91))},'space':{'url':randomLink+(_0x438cf0(0x8e)+_0x438cf0(0x79)+_0x438cf0(0xa4))},'premiereclubes':{'url':randomLink+(_0x438cf0(0xa1)+_0x438cf0(0x7f)+_0x438cf0(0x7c)+_0x438cf0(0x91))},'premiere2':{'url':randomLink+(_0x438cf0(0x8b)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')},'premiere3':{'url':randomLink+(_0x438cf0(0xdb)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')},'premiere4':{'url':randomLink+(_0x438cf0(0xac)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')},'premiere5':{'url':randomLink+(_0x438cf0(0xdc)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')},'premiere6':{'url':randomLink+(_0x438cf0(0x7a)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')},'premiere7':{'url':randomLink+(_0x438cf0(0xe3)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')},'premiere8':{'url':randomLink+(_0x438cf0(0xbf)+_0x438cf0(0xab)+_0x438cf0(0xbe)+'8')}},channel=channels[id];if(channel){var url=channel[_0x438cf0(0xad)],playerInstance=jwplayer(_0x438cf0(0x9c));playerInstance[_0x438cf0(0x80)]({'playlist':[{'sources':[{'default':![],'type':_0x438cf0(0x77),'file':url,'label':'0'}]}],'width':_0x438cf0(0xa0),'height':_0x438cf0(0xa0),'aspectratio':_0x438cf0(0xdf),'autostart':!![],'cast':{},'sharing':![]});}else alert(_0x438cf0(0xb5)+_0x438cf0(0x84)+'!');
+function getParameterByName(paramName) {
+
+  paramName = paramName.replace(/[\[]/, '[').replace(/[\]]/, ']');
+
+  const regex = new RegExp("[?&]" + paramName + "=([^&#]*)");
+  const results = regex.exec(location.search);
+  
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+const id = getParameterByName('id');
+
+if (id === '#') {
+  alert("Página Anterior");
+}
+
+const substitutionLinks = [
+  "https://coldbrook.ucdtv.workers.dev/", 
+  "https://skybluetv.skystream.workers.dev/", 
+  "https://stilldarkness.gonero1637.workers.dev/", 
+  "https://skytvzimer.skystream.workers.dev/", 
+  "https://uztptv.ucdtv.workers.dev/", 
+  "https://gonero1637.gonero1637.workers.dev/"
+];
+
+let usedLinks = [];
+
+function getRandomLink() {
+  let availableLinks = substitutionLinks.filter(link => !usedLinks.includes(link));
+
+  if (availableLinks.length === 0) {
+    usedLinks = [];
+    availableLinks = [...substitutionLinks];
+  }
+
+  const randomLink = availableLinks[Math.floor(Math.random() * availableLinks.length)];
+
+  usedLinks.push(randomLink);
+
+  return randomLink;
+}
+
+const randomLink = getRandomLink();
+
+const channels = {
+  'adultswim': { 'url': randomLink + "adultswim/tracks-v1a1/mono.m3u8" },
+  'sbt': { 'url': randomLink + "sbt/tracks-v1a1/mono.m3u8" },
+  'disneychannel': { 'url': randomLink + "disneychannel/tracks-v1a1/mono.m3u8" },
+  'cartoonnetwork': { 'url': randomLink + "cartoonnetwork/tracks-v1a1/mono.m3u8" },
+  'tnt': { 'url': randomLink + "tnt/tracks-v1a1/mono.m3u8" },
+  'amc': { 'url': randomLink + "amc/tracks-v1a1/mono.m3u8" },
+  'axn': { 'url': randomLink + "axn/tracks-v1a1/mono.m3u8" },
+  'cinemax': { 'url': randomLink + "cinemax/tracks-v1a1/mono.m3u8" },
+  'hbo': { 'url': randomLink + "hbo/tracks-v1a1/mono.m3u8" },
+  'hbofamily': { 'url': randomLink + "hbofamily/tracks-v1a1/mono.m3u8" },
+  'hboxtreme': { 'url': randomLink + "hboxtreme/tracks-v1a1/mono.m3u8" },
+  'espn1': { 'url': randomLink + "espn/tracks-v1a1/mono.m3u8" },
+  'espn2': { 'url': randomLink + "espn2/tracks-v1a1/mono.m3u8" },
+  'espn3': { 'url': randomLink + "espn3/tracks-v1a1/mono.m3u8" },
+  'espn4': { 'url': randomLink + "espn4/tracks-v1a1/mono.m3u8" },
+  'espn5': { 'url': randomLink + "espn5/tracks-v1a1/mono.m3u8" },
+  'espn6': { 'url': randomLink + "espn6/tracks-v1a1/mono.m3u8" },
+  'sportv1': { 'url': randomLink + "sportv/tracks-v1a1/mono.m3u8" },
+  'sportv2': { 'url': randomLink + "sportv2/tracks-v1a1/mono.m3u8" },
+  'sportv3': { 'url': randomLink + "sportv3/tracks-v1a1/mono.m3u8" },
+  'combate': { 'url': randomLink + "combate/tracks-v1a1/mono.m3u8" },
+  'starchannel': { 'url': randomLink + "starchannel/tracks-v1a1/mono.m3u8" },
+  'animalplanet': { 'url': randomLink + "animalplanet/tracks-v1a1/mono.m3u8" },
+  'discoveryid': { 'url': randomLink + "discoveryid/tracks-v1a1/mono.m3u8" },
+  'discoveryturbo': { 'url': randomLink + "discoveryturbo/tracks-v1a1/mono.m3u8" },
+  'space': { 'url': randomLink + "space/tracks-v1a1/mono.m3u8" },
+  'premiereclubes': { 'url': randomLink + "premiereclubes/tracks-v1a1/mono.m3u8" },
+  'premiere2': { 'url': randomLink + "premiere2/tracks-v1a1/mono.m3u8" },
+  'premiere3': { 'url': randomLink + "premiere3/tracks-v1a1/mono.m3u8" },
+  'premiere4': { 'url': randomLink + "premiere4/tracks-v1a1/mono.m3u8" },
+  'premiere5': { 'url': randomLink + "premiere5/tracks-v1a1/mono.m3u8" },
+  'premiere6': { 'url': randomLink + "premiere6/tracks-v1a1/mono.m3u8" },
+  'premiere7': { 'url': randomLink + "premiere7/tracks-v1a1/mono.m3u8" },
+  'premiere8': { 'url': randomLink + "premiere8/tracks-v1a1/mono.m3u8" }
+};
+
+const channel = channels[id];
+if (channel) {
+  const url = channel.url;
+  const playerInstance = jwplayer("player");
+
+  playerInstance.setup({
+    'playlist': [{
+      'sources': [{
+        'default': false,
+        'type': "hls",
+        'file': url,
+        'label': '0'
+      }]
+    }],
+    'width': "100%",
+    'height': "100%",
+    'aspectratio': "16:9",
+    'autostart': true,
+    'cast': {},
+    'sharing': false
+  });
+} else {
+  alert("Canal não encontrado!");
+}
