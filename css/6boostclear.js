@@ -15,6 +15,7 @@ const baseLink = "https://consoledbtv.vercel.app/";
 
 const channels = {
   'adultswim': { 'url': baseLink + "adultswim/tracks-v1a1/mono.m3u8" },
+  'globosp': { 'url': baseLink + "globosp-globosaopaulo/tracks-v1a1/mono.m3u8" },
   'sbt': { 'url': baseLink + "sbt/tracks-v1a1/mono.m3u8" },
   'disneychannel': { 'url': baseLink + "disneychannel/tracks-v1a1/mono.m3u8" },
   'cartoonnetwork': { 'url': baseLink + "cartoonnetwork/tracks-v1a1/mono.m3u8" },
