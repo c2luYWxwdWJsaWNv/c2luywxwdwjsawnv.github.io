@@ -19,22 +19,20 @@ async function configurarPlayer(url) {
 
       var player = jwplayer("player");
       player.setup({
-    'playlist': [{
-      'sources': [{
-        'default': false,
-        'type': "hls",
-        'file': videoUrl,
-        'label': '0'
-      }]
-    }],
-    'width': "100%",
-    'height': "100%",
-    'aspectratio': "16:9",
-    'autostart': true,
-    'cast': {},
-    'sharing': false
-          }
-        }
+        'playlist': [{
+          'sources': [{
+            'default': false,
+            'type': "hls",
+            'file': videoUrl,
+            'label': '0'
+          }]
+        }],
+        'width': "100%",
+        'height': "100%",
+        'aspectratio': "16:9",
+        'autostart': true,
+        'cast': {},
+        'sharing': false
       });
     } else {
       console.error("Erro ao obter o URL do vídeo");
