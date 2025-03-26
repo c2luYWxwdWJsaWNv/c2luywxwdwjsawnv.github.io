@@ -15,6 +15,7 @@ const channels = {
   'adultswim': { 'url': "https://consoledplay.vercel.app/adultswim/tracks-v1a1/mono.m3u8" },
   'globosp': { 'url': "https://consoledplay.vercel.app/globosp/tracks-v1a1/mono.m3u8" },
   'globonews': { 'url': "https://consoledplay.vercel.app/globonews/tracks-v1a1/mono.m3u8" },
+  'bandsports': { 'url': "https://consoledplay.vercel.app/bandsports/tracks-v1a1/mono.m3u8" },
   'sbt': { 'url': "https://consoledplay.vercel.app/sbtsp/tracks-v1a1/mono.m3u8" },
   'disneychannel': { 'url': "https://consoledplay.vercel.app/disneychannel/tracks-v1a1/mono.m3u8" },
   'cartoonnetwork': { 'url': "https://consoledplay.vercel.app/cartoonnetwork/tracks-v1a1/mono.m3u8" },
