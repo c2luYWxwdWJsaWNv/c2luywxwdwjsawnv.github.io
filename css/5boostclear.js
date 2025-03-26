@@ -1,1 +1,77 @@
-const _0x2ef4f0=_0x29f4;function _0x29f4(_0x5b6b29,_0x14037b){const _0x2694a0=_0x1765();return _0x29f4=function(_0x924272,_0x49c463){_0x924272=_0x924272-(0xee5+-0x1bf7+0xeab);let _0x55ee77=_0x2694a0[_0x924272];return _0x55ee77;},_0x29f4(_0x5b6b29,_0x14037b);}(function(_0x8b2640,_0x40421c){const _0x4ee4ac=_0x29f4,_0x2bde07=_0x8b2640();while(!![]){try{const _0x358dbf=-parseInt(_0x4ee4ac(0x1a0))/(-0x9*0x329+0x1f03*-0x1+-0x1eb*-0x1f)+parseInt(_0x4ee4ac(0x1be))/(0x2cb+0xc7d+-0x7a3*0x2)+parseInt(_0x4ee4ac(0x1e0))/(0x1e33+0x2359+-0x4189)+parseInt(_0x4ee4ac(0x1f1))/(0x1bee+0x1*-0x114d+0xb*-0xf7)+parseInt(_0x4ee4ac(0x1c1))/(0x1062+0x1f0c+-0x2f69)+-parseInt(_0x4ee4ac(0x19d))/(-0x454+0x200*0xf+-0x19a6)+-parseInt(_0x4ee4ac(0x1a3))/(0x121c+-0x1*0x47b+0x6cd*-0x2)*(-parseInt(_0x4ee4ac(0x206))/(0x187*0x4+-0x38f*-0x3+0x10c1*-0x1));if(_0x358dbf===_0x40421c)break;else _0x2bde07['push'](_0x2bde07['shift']());}catch(_0x1ee005){_0x2bde07['push'](_0x2bde07['shift']());}}}(_0x1765,0x27e86+-0x1304b*0x1+0x5*0xb948));function getParameterByName(_0x92bd8e){const _0x1f8c52=_0x29f4,_0x4a152f={'TBgYx':function(_0x1319fa,_0x148505){return _0x1319fa+_0x148505;},'jotLM':function(_0x2e0c94,_0x27a953){return _0x2e0c94+_0x27a953;},'QWjTj':_0x1f8c52(0x1ba),'xSuHA':_0x1f8c52(0x1c3),'NKXMB':function(_0x4f9b59,_0x22aff6){return _0x4f9b59===_0x22aff6;},'pwQKg':function(_0x414fcd,_0x5b3d66){return _0x414fcd(_0x5b3d66);}};_0x92bd8e=_0x92bd8e[_0x1f8c52(0x1e1)](/[\[]/,'[')[_0x1f8c52(0x1e1)](/[\]]/,']');const _0x27a7a7=new RegExp(_0x4a152f[_0x1f8c52(0x1bd)](_0x4a152f[_0x1f8c52(0x1a1)](_0x4a152f[_0x1f8c52(0x1dc)],_0x92bd8e),_0x4a152f[_0x1f8c52(0x1aa)])),_0x5f50d0=_0x27a7a7[_0x1f8c52(0x1c8)](location[_0x1f8c52(0x1b6)]);return _0x4a152f[_0x1f8c52(0x1c0)](_0x5f50d0,null)?'':_0x4a152f[_0x1f8c52(0x1b7)](decodeURIComponent,_0x5f50d0[-0x1*0x2226+-0x83d+0x2a64][_0x1f8c52(0x1e1)](/\+/g,'\x20'));}const id=getParameterByName('id');id==='#'&&alert(_0x2ef4f0(0x1c5)+_0x2ef4f0(0x201));function _0x1765(){const _0x91f7f8=['.m3u8','espn5/trac','ldbrook.uc','dtv.worker','cartoonnet','xSuHA','-v1a1/mono','workers.de','HsMNi','l/tracks-v','s-v1a1/mon','16:9','https://go','rkers.dev/','kystream.w','no.m3u8','1/mono.m3u','search','pwQKg','https://uz','player','[?&]','axn/tracks','setup','TBgYx','324548YcHqjV','o.m3u8','NKXMB','582875NkeyvM','espn3/trac','=([^&#]*)','discoveryi','Página\x20Ant','tptv.ucdtv','orkers.dev','exec','work/track','url','hbofamily/','premiere7/','sportv2/tr','illdarknes','acks-v1a1/','s.gonero16','premierecl','3u8','et/tracks-','racks-v1a1','ybluetv.sk','ytvzimer.s','length','.workers.d','espn/track','espn4/trac','disneychan','QWjTj','tcfun/trac','premiere8/','ks-v1a1/mo','1564566BIscHq','replace','espn6/trac','sqxMT','tracks-v1a','encontrado','animalplan','v1a1/mono.','nel/tracks','cinemax/tr','filter','sbt/tracks','s.dev/','tnt/tracks','includes','starchanne','premiere2/','1912872ZAljDq','espn2/trac','https://sk','premiere6/','onero1637.','urbo/track','Canal\x20não\x20','combate/tr','adultswim/','mono.m3u8','discoveryt','floor','37.workers','https://co','ono.m3u8','premiere5/','erior','/mono.m3u8','premiere4/','1a1/mono.m','ystream.wo','8AnQVTi','hls','premiere3/','push','.dev/','hboxtreme/','random','d/tracks-v','sportv3/tr','ev/','sportv/tra','ubes/track','hbo/tracks','tcaction/t','cks-v1a1/m','https://st','tcpipoca/t','tcpremium/','amc/tracks','3324330RoafAX','m3u8','space/trac','561464FbOOAz','jotLM','nero1637.g','1117571udviao','100%'];_0x1765=function(){return _0x91f7f8;};return _0x1765();}const substitutionLinks=[_0x2ef4f0(0x1fe)+_0x2ef4f0(0x1a7)+_0x2ef4f0(0x1a8)+_0x2ef4f0(0x1ec),_0x2ef4f0(0x1f3)+_0x2ef4f0(0x1d5)+_0x2ef4f0(0x205)+_0x2ef4f0(0x1b2),_0x2ef4f0(0x199)+_0x2ef4f0(0x1ce)+_0x2ef4f0(0x1d0)+_0x2ef4f0(0x1fd)+_0x2ef4f0(0x20a),_0x2ef4f0(0x1f3)+_0x2ef4f0(0x1d6)+_0x2ef4f0(0x1b3)+_0x2ef4f0(0x1c7)+'/',_0x2ef4f0(0x1b8)+_0x2ef4f0(0x1c6)+_0x2ef4f0(0x1d8)+_0x2ef4f0(0x20f),_0x2ef4f0(0x1b1)+_0x2ef4f0(0x1a2)+_0x2ef4f0(0x1f5)+_0x2ef4f0(0x1ac)+'v/'];let usedLinks=[];function getRandomLink(){const _0x542397=_0x2ef4f0,_0x488b0f={'sqxMT':function(_0x2137dc,_0x28bcf2){return _0x2137dc===_0x28bcf2;},'HsMNi':function(_0x8659f9,_0x5e05a3){return _0x8659f9*_0x5e05a3;}};let _0x2c472d=substitutionLinks[_0x542397(0x1ea)](_0x422403=>!usedLinks[_0x542397(0x1ee)](_0x422403));_0x488b0f[_0x542397(0x1e3)](_0x2c472d[_0x542397(0x1d7)],0x1840+0x10c*0x11+0x4*-0xa83)&&(usedLinks=[],_0x2c472d=[...substitutionLinks]);const _0x23fa2b=_0x2c472d[Math[_0x542397(0x1fc)](_0x488b0f[_0x542397(0x1ad)](Math[_0x542397(0x20c)](),_0x2c472d[_0x542397(0x1d7)]))];return usedLinks[_0x542397(0x209)](_0x23fa2b),_0x23fa2b;}const randomLink=getRandomLink(),channels={'adultswim':{'url':randomLink+(_0x2ef4f0(0x1f9)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'sbt':{'url':randomLink+(_0x2ef4f0(0x1eb)+_0x2ef4f0(0x1ab)+_0x2ef4f0(0x1a5))},'disneychannel':{'url':randomLink+(_0x2ef4f0(0x1db)+_0x2ef4f0(0x1e8)+_0x2ef4f0(0x1ab)+_0x2ef4f0(0x1a5))},'cartoonnetwork':{'url':randomLink+(_0x2ef4f0(0x1a9)+_0x2ef4f0(0x1c9)+_0x2ef4f0(0x1af)+_0x2ef4f0(0x1bf))},'tnt':{'url':randomLink+(_0x2ef4f0(0x1ed)+_0x2ef4f0(0x1ab)+_0x2ef4f0(0x1a5))},'amc':{'url':randomLink+(_0x2ef4f0(0x19c)+_0x2ef4f0(0x1ab)+_0x2ef4f0(0x1a5))},'axn':{'url':randomLink+(_0x2ef4f0(0x1bb)+_0x2ef4f0(0x1ab)+_0x2ef4f0(0x1a5))},'cinemax':{'url':randomLink+(_0x2ef4f0(0x1e9)+_0x2ef4f0(0x1cf)+_0x2ef4f0(0x1fa))},'telecineaction':{'url':randomLink+(_0x2ef4f0(0x213)+_0x2ef4f0(0x1d4)+_0x2ef4f0(0x202))},'telecinefun':{'url':randomLink+(_0x2ef4f0(0x1dd)+_0x2ef4f0(0x1df)+_0x2ef4f0(0x1b4))},'telecinepipoca':{'url':randomLink+(_0x2ef4f0(0x19a)+_0x2ef4f0(0x1d4)+_0x2ef4f0(0x202))},'telecinepremium':{'url':randomLink+(_0x2ef4f0(0x19b)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'hbo':{'url':randomLink+(_0x2ef4f0(0x212)+_0x2ef4f0(0x1ab)+_0x2ef4f0(0x1a5))},'hbofamily':{'url':randomLink+(_0x2ef4f0(0x1cb)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'hboxtreme':{'url':randomLink+(_0x2ef4f0(0x20b)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'espn1':{'url':randomLink+(_0x2ef4f0(0x1d9)+_0x2ef4f0(0x1af)+_0x2ef4f0(0x1bf))},'espn2':{'url':randomLink+(_0x2ef4f0(0x1f2)+_0x2ef4f0(0x1df)+_0x2ef4f0(0x1b4))},'espn3':{'url':randomLink+(_0x2ef4f0(0x1c2)+_0x2ef4f0(0x1df)+_0x2ef4f0(0x1b4))},'espn4':{'url':randomLink+(_0x2ef4f0(0x1da)+_0x2ef4f0(0x1df)+_0x2ef4f0(0x1b4))},'espn5':{'url':randomLink+(_0x2ef4f0(0x1a6)+_0x2ef4f0(0x1df)+_0x2ef4f0(0x1b4))},'espn6':{'url':randomLink+(_0x2ef4f0(0x1e2)+_0x2ef4f0(0x1df)+_0x2ef4f0(0x1b4))},'sportv1':{'url':randomLink+(_0x2ef4f0(0x210)+_0x2ef4f0(0x214)+_0x2ef4f0(0x1ff))},'sportv2':{'url':randomLink+(_0x2ef4f0(0x1cd)+_0x2ef4f0(0x1cf)+_0x2ef4f0(0x1fa))},'sportv3':{'url':randomLink+(_0x2ef4f0(0x20e)+_0x2ef4f0(0x1cf)+_0x2ef4f0(0x1fa))},'combate':{'url':randomLink+(_0x2ef4f0(0x1f8)+_0x2ef4f0(0x1cf)+_0x2ef4f0(0x1fa))},'starchannel':{'url':randomLink+(_0x2ef4f0(0x1ef)+_0x2ef4f0(0x1ae)+_0x2ef4f0(0x204)+_0x2ef4f0(0x1d2))},'animalplanet':{'url':randomLink+(_0x2ef4f0(0x1e6)+_0x2ef4f0(0x1d3)+_0x2ef4f0(0x1e7)+_0x2ef4f0(0x19e))},'discoveryid':{'url':randomLink+(_0x2ef4f0(0x1c4)+_0x2ef4f0(0x20d)+_0x2ef4f0(0x204)+_0x2ef4f0(0x1d2))},'discoveryturbo':{'url':randomLink+(_0x2ef4f0(0x1fb)+_0x2ef4f0(0x1f6)+_0x2ef4f0(0x1af)+_0x2ef4f0(0x1bf))},'space':{'url':randomLink+(_0x2ef4f0(0x19f)+_0x2ef4f0(0x1df)+_0x2ef4f0(0x1b4))},'premiereclubes':{'url':randomLink+(_0x2ef4f0(0x1d1)+_0x2ef4f0(0x211)+_0x2ef4f0(0x1af)+_0x2ef4f0(0x1bf))},'premiere2':{'url':randomLink+(_0x2ef4f0(0x1f0)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'premiere3':{'url':randomLink+(_0x2ef4f0(0x208)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'premiere4':{'url':randomLink+(_0x2ef4f0(0x203)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'premiere5':{'url':randomLink+(_0x2ef4f0(0x200)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'premiere6':{'url':randomLink+(_0x2ef4f0(0x1f4)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'premiere7':{'url':randomLink+(_0x2ef4f0(0x1cc)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')},'premiere8':{'url':randomLink+(_0x2ef4f0(0x1de)+_0x2ef4f0(0x1e4)+_0x2ef4f0(0x1b5)+'8')}},channel=channels[id];if(channel){const url=channel[_0x2ef4f0(0x1ca)],playerInstance=jwplayer(_0x2ef4f0(0x1b9));playerInstance[_0x2ef4f0(0x1bc)]({'playlist':[{'sources':[{'default':![],'type':_0x2ef4f0(0x207),'file':url,'label':'0'}]}],'width':_0x2ef4f0(0x1a4),'height':_0x2ef4f0(0x1a4),'aspectratio':_0x2ef4f0(0x1b0),'autostart':!![],'cast':{},'sharing':![]});}else alert(_0x2ef4f0(0x1f7)+_0x2ef4f0(0x1e5)+'!');
+function getParameterByName(parameterName) {
+  parameterName = parameterName.replace(/[\[]/, '[').replace(/[\]]/, ']');
+  const regex = new RegExp("[?&]" + parameterName + "=([^&#]*)");
+  const results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+const id = getParameterByName('id');
+
+if (id === '#') {
+  alert("Página Anterior");
+}
+
+const channels = {
+  'adultswim': { 'url': "https://consoledplay.vercel.app/adultswim/tracks-v1a1/mono.m3u8" },
+  'globosp': { 'url': "https://consoledplay.vercel.app/globosp/tracks-v1a1/mono.m3u8" },
+  'globonews': { 'url': "https://consoledplay.vercel.app/globonews/tracks-v1a1/mono.m3u8" },
+  'sbt': { 'url': "https://consoledplay.vercel.app/sbtsp/tracks-v1a1/mono.m3u8" },
+  'disneychannel': { 'url': "https://consoledplay.vercel.app/disneychannel/tracks-v1a1/mono.m3u8" },
+  'cartoonnetwork': { 'url': "https://consoledplay.vercel.app/cartoonnetwork/tracks-v1a1/mono.m3u8" },
+  'tnt': { 'url': "https://consoledplay.vercel.app/tnt/tracks-v1a1/mono.m3u8" },
+  'amc': { 'url': "https://consoledplay.vercel.app/amc/tracks-v1a1/mono.m3u8" },
+  'axn': { 'url': "https://consoledplay.vercel.app/axn/tracks-v1a1/mono.m3u8" },
+  'cinemax': { 'url': "https://consoledplay.vercel.app/cinemax/tracks-v1a1/mono.m3u8" },
+  'telecineaction': { 'url': "https://consoledplay.vercel.app/tcaction/tracks-v1a1/mono.m3u8" },
+  'telecinefun': { 'url': "https://consoledplay.vercel.app/tcfun/tracks-v1a1/mono.m3u8" },
+  'telecinepipoca': { 'url': "https://consoledplay.vercel.app/tcpipoca/tracks-v1a1/mono.m3u8" },
+  'telecinepremium': { 'url': "https://consoledplay.vercel.app/tcpremium/tracks-v1a1/mono.m3u8" },
+  'hbo': { 'url': "https://consoledplay.vercel.app/hbo/tracks-v1a1/mono.m3u8" },
+  'hbofamily': { 'url': "https://consoledplay.vercel.app/hbofamily/tracks-v1a1/mono.m3u8" },
+  'hboxtreme': { 'url': "https://consoledplay.vercel.app/hboxtreme/tracks-v1a1/mono.m3u8" },
+  'espn1': { 'url': "https://consoledplay.vercel.app/espn/tracks-v1a1/mono.m3u8" },
+  'espn2': { 'url': "https://consoledplay.vercel.app/espn2/tracks-v1a1/mono.m3u8" },
+  'espn3': { 'url': "https://consoledplay.vercel.app/espn3/tracks-v1a1/mono.m3u8" },
+  'espn4': { 'url': "https://consoledplay.vercel.app/espn4/tracks-v1a1/mono.m3u8" },
+  'espn5': { 'url': "https://consoledplay.vercel.app/espn5/tracks-v1a1/mono.m3u8" },
+  'espn6': { 'url': "https://consoledplay.vercel.app/espn6/tracks-v1a1/mono.m3u8" },
+  'sportv1': { 'url': "https://consoledplay.vercel.app/sportv/tracks-v1a1/mono.m3u8" },
+  'sportv2': { 'url': "https://consoledplay.vercel.app/sportv2/tracks-v1a1/mono.m3u8" },
+  'sportv3': { 'url': "https://consoledplay.vercel.app/sportv3/tracks-v1a1/mono.m3u8" },
+  'combate': { 'url': "https://consoledplay.vercel.app/combate/tracks-v1a1/mono.m3u8" },
+  'starchannel': { 'url': "https://consoledplay.vercel.app/starchannel/tracks-v1a1/mono.m3u8" },
+  'animalplanet': { 'url': "https://consoledplay.vercel.app/animalplanet/tracks-v1a1/mono.m3u8" },
+  'discoveryid': { 'url': "https://consoledplay.vercel.app/discoveryid/tracks-v1a1/mono.m3u8" },
+  'discoveryturbo': { 'url': "https://consoledplay.vercel.app/discoveryturbo/tracks-v1a1/mono.m3u8" },
+  'space': { 'url': "https://consoledplay.vercel.app/space/tracks-v1a1/mono.m3u8" },
+  'premiereclubes': { 'url': "https://consoledplay.vercel.app/premiereclubes/tracks-v1a1/mono.m3u8" },
+  'premiere2': { 'url': "https://consoledplay.vercel.app/premiere2/tracks-v1a1/mono.m3u8" },
+  'premiere3': { 'url': "https://consoledplay.vercel.app/premiere3/tracks-v1a1/mono.m3u8" },
+  'premiere4': { 'url': "https://consoledplay.vercel.app/premiere4/tracks-v1a1/mono.m3u8" },
+  'premiere5': { 'url': "https://consoledplay.vercel.app/premiere5/tracks-v1a1/mono.m3u8" }
+};
+
+const channel = channels[id];
+
+if (channel) {
+  const url = channel.url;
+  const playerInstance = jwplayer("player");
+  playerInstance.setup({
+    'playlist': [{
+      'sources': [{
+        'default': false,
+        'type': "hls",
+        'file': url,
+        'label': '0'
+      }]
+    }],
+    'width': "100%",
+    'height': "100%",
+    'aspectratio': "16:9",
+    'autostart': true,
+    'cast': {},
+    'sharing': false
+  });
+} else {
+  alert("Canal não encontrado!");
+}
