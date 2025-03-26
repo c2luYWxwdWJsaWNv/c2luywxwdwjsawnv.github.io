@@ -44,6 +44,7 @@ const channels = {
   'discoveryid': { 'url': "https://consoledplay.vercel.app/discoveryid/tracks-v1a1/mono.m3u8" },
   'discoveryturbo': { 'url': "https://consoledplay.vercel.app/discoveryturbo/tracks-v1a1/mono.m3u8" },
   'space': { 'url': "https://consoledplay.vercel.app/space/tracks-v1a1/mono.m3u8" },
+  'nossofutebol': { 'url': "https://consoledplay.vercel.app/nossofutebol/tracks-v1a1/mono.m3u8" },
   'premiereclubes': { 'url': "https://consoledplay.vercel.app/premiereclubes/tracks-v1a1/mono.m3u8" },
   'premiere2': { 'url': "https://consoledplay.vercel.app/premiere2/tracks-v1a1/mono.m3u8" },
   'premiere3': { 'url': "https://consoledplay.vercel.app/premiere3/tracks-v1a1/mono.m3u8" },
