@@ -19,37 +19,20 @@ async function configurarPlayer(url) {
 
       var player = jwplayer("player");
       player.setup({
-        'playlist': [{
-          'sources': [{
-            'default': false,
-            'type': "hls",
-            'file': videoUrl,
-            'drm': {
-              'fairplay': {}
-            },
-            'label': '0'
-          }, {
-            'default': true,
-            'type': "hls",
-            'file': videoUrl,
-            'drm': {
-              'widevine': {},
-              'playready': {}
-            },
-            'label': '1'
-          }]
-        }],
-        'primary': "html5",
-        'hlshtml': "true",
-        'width': "100%",
-        'height': "100%",
-        'aspectratio': "16:9",
-        'autostart': true,
-        'cast': true,
-        'hlsjsConfig': {
-          'debug': false,
-          'p2pConfig': {
-            'live': true
+    'playlist': [{
+      'sources': [{
+        'default': false,
+        'type': "hls",
+        'file': videoUrl,
+        'label': '0'
+      }]
+    }],
+    'width': "100%",
+    'height': "100%",
+    'aspectratio': "16:9",
+    'autostart': true,
+    'cast': {},
+    'sharing': false
           }
         }
       });
