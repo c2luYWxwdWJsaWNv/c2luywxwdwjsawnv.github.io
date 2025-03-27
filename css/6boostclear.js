@@ -168,7 +168,7 @@ const channels = {
   "max3": {
     "url": "https://consoledbtv.vercel.app/max3/tracks-v1a1/mono.m3u8"
   },
-  "espn": {
+  "espn1": {
     "url": "https://consoledbtv.vercel.app/espn/tracks-v1a1/mono.m3u8"
   },
   "espn2": {
@@ -186,7 +186,7 @@ const channels = {
   "espn6": {
     "url": "https://consoledbtv.vercel.app/espn6/tracks-v1a1/mono.m3u8"
   },
-  "sportv": {
+  "sportv1": {
     "url": "https://consoledbtv.vercel.app/sportv/tracks-v1a1/mono.m3u8"
   },
   "sportv2": {
@@ -381,7 +381,7 @@ const channels = {
   "lifetime": {
     "url": "https://consoledbtv.vercel.app/lifetime/tracks-v1a1/mono.m3u8"
   },
-  "agro+": {
+  "agro": {
     "url": "https://consoledbtv.vercel.app/agromais/tracks-v1a1/mono.m3u8"
   },
   "arte1": {
@@ -402,7 +402,7 @@ const channels = {
   "canalbrasil": {
     "url": "https://consoledbtv.vercel.app/canalbrasil/tracks-v1a1/mono.m3u8"
   },
-  "e!": {
+  "e": {
     "url": "https://consoledbtv.vercel.app/e/tracks-v1a1/mono.m3u8"
   },
   "fx": {
@@ -495,7 +495,7 @@ const channels = {
   "viva": {
     "url": "https://consoledbtv.vercel.app/viva/tracks-v1a1/mono.m3u8"
   },
-  "a&e": {
+  "aee": {
     "url": "https://consoledbtv.vercel.app/aee/tracks-v1a1/mono.m3u8"
   },
   "tnt": {
@@ -522,13 +522,13 @@ const channels = {
   "empreender": {
     "url": "https://consoledbtv.vercel.app/empreender/tracks-v1a1/mono.m3u8"
   },
-  "sabor&arte": {
+  "saborearte": {
     "url": "https://consoledbtv.vercel.app/saborearte/tracks-v1a1/mono.m3u8"
   },
   "aparecida": {
     "url": "https://consoledbtv.vercel.app/aparecida/tracks-v1a1/mono.m3u8"
   },
-  "ra-tim-bum": {
+  "ratimbum": {
     "url": "https://consoledbtv.vercel.app/ratimbum/tracks-v1a1/mono.m3u8"
   },
   "tntnovelas": {
@@ -543,7 +543,7 @@ const channels = {
   "fashiontv": {
     "url": "https://consoledbtv.vercel.app/fashiontv/tracks-v1a1/mono.m3u8"
   },
-  "curta!": {
+  "curta": {
     "url": "https://consoledbtv.vercel.app/curta/tracks-v1a1/mono.m3u8"
   },
   "hgtv": {
@@ -561,7 +561,7 @@ const channels = {
   "mtv00s": {
     "url": "https://consoledbtv.vercel.app/mtvs_00/tracks-v1a1/mono.m3u8"
   },
-  "film&artsbrazil": {
+  "filmeartsbrazil": {
     "url": "https://consoledbtv.vercel.app/filmearts/tracks-v1a1/mono.m3u8"
   },
   "primeboxbrazil": {
