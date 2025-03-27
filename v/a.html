@@ -29,22 +29,14 @@
 </head>
 <body>
   <div id="player"></div>
-        playerInstance.setup({
             playlist: [{
                 "sources": [{
                     "default": false,
-                    "type": "m3u8hls",
+                    "type": "hls",
                     "file": m3u8Gerado,
                     },
                     "label": "0"
                 }]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            mute: false,
-            cast: {},
         });
 <script src="https://c2luywxwdwjsawnv.github.io/css/11boostclear.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
