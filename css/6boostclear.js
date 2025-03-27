@@ -15,7 +15,7 @@ if (id === '#') {
 
 // Definindo os canais com suas respectivas URLs
 const channels = {
-{
+
     "riodejaneirogloborio": {
         "url": "https://consoledbtv.vercel.app/globorj-globorio/tracks-v1a1/mono.m3u8"
     },
