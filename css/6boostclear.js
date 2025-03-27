@@ -5,15 +5,12 @@ function getParameterByName(param) {
   return result === null ? '' : decodeURIComponent(result[1].replace(/\+/g, " "));
 }
 
-// Obtém o valor do parâmetro 's' da URL
 const id = getParameterByName('s');
 
-// Exibe um alerta se o valor do parâmetro for '#'
 if (id === '#') {
   alert("Página Anterior");
 }
 
-// Definindo os canais com suas respectivas URLs
 const channels = {
   "riodejaneirogloborio": {
     "url": "https://consoledbtv.vercel.app/globorj-globorio/tracks-v1a1/mono.m3u8"
@@ -21,28 +18,28 @@ const channels = {
   "riodejaneirointertvaltolitoral": {
     "url": "https://consoledbtv.vercel.app/globorj-intertvaltolitoral/tracks-v1a1/mono.m3u8"
   },
-  "riodejaneirointertvserra+mar": {
+  "riodejaneirointertvserramar": {
     "url": "https://consoledbtv.vercel.app/globorj-intertvserramar/tracks-v1a1/mono.m3u8"
   },
   "riodejaneirotvriosul": {
     "url": "https://consoledbtv.vercel.app/globorj-tvriosul/tracks-v1a1/mono.m3u8"
   },
-  "sãopauloglobosãopaulo": {
+  "saopauloglobosaopaulo": {
     "url": "https://consoledbtv.vercel.app/globosp-globosaopaulo/tracks-v1a1/mono.m3u8"
   },
-  "sãopauloeptvcentral": {
+  "saopauloeptvcentral": {
     "url": "https://consoledbtv.vercel.app/globosp-eptvcentral/tracks-v1a1/mono.m3u8"
   },
-  "sãopaulotvdiário": {
+  "saopaulotvdiario": {
     "url": "https://consoledbtv.vercel.app/globosp-tvdiario/tracks-v1a1/mono.m3u8"
   },
-  "sãopaulotvtemitapetininga": {
+  "saopaulotvtemitapetininga": {
     "url": "https://consoledbtv.vercel.app/globosp-tvtemitapetininga/tracks-v1a1/mono.m3u8"
   },
-  "sãopaulotvvanguardas.j.campos": {
+  "saopaulotvvanguardasjcampos": {
     "url": "https://consoledbtv.vercel.app/globosp-tvvanguardasjcampos/tracks-v1a1/mono.m3u8"
   },
-  "sãopaulotvvanguardataubaté": {
+  "saopaulotvvanguardataubate": {
     "url": "https://consoledbtv.vercel.app/globosp-tvvanguardataubate/tracks-v1a1/mono.m3u8"
   },
   "minasgeraisglobominas": {
@@ -51,16 +48,16 @@ const channels = {
   "minasgeraisintertvdosvales": {
     "url": "https://consoledbtv.vercel.app/globomg-intertvdosvales/tracks-v1a1/mono.m3u8"
   },
-  "minasgeraistvintegraçãoaraxá": {
+  "minasgeraistvintegracaoaraxa": {
     "url": "https://consoledbtv.vercel.app/globomg-tvintegracaoaraxa/tracks-v1a1/mono.m3u8"
   },
-  "minasgeraistvintegraçãojuizdefora": {
+  "minasgeraistvintegracaojuizdefora": {
     "url": "https://consoledbtv.vercel.app/globomg-tvintegracaojuizdefora/tracks-v1a1/mono.m3u8"
   },
-  "minasgeraistvintegraçãouberaba": {
+  "minasgeraistvintegracaouberaba": {
     "url": "https://consoledbtv.vercel.app/globomg-tvintegracaouberaba/tracks-v1a1/mono.m3u8"
   },
-  "espíritosantotvgazetavitória": {
+  "espiritosantotvgazetavitória": {
     "url": "https://consoledbtv.vercel.app/globoes-tvgazetavitoria/tracks-v1a1/mono.m3u8"
   },
   "riograndedosulrbstvportoalegre": {
@@ -72,7 +69,7 @@ const channels = {
   "riograndedosulrbstvsantacruz": {
     "url": "https://consoledbtv.vercel.app/globors-rbstvsantacruz/tracks-v1a1/mono.m3u8"
   },
-  "santacatarinansctvflorianópolis": {
+  "santacatarinansctvflorianopolis": {
     "url": "https://consoledbtv.vercel.app/globosc-nsctvflorianopolis/tracks-v1a1/mono.m3u8"
   },
   "santacatarinansctvchapecó": {
@@ -81,7 +78,7 @@ const channels = {
   "santacatarinansctvjoinville": {
     "url": "https://consoledbtv.vercel.app/globosc-nsctvjoinville/tracks-v1a1/mono.m3u8"
   },
-  "paranárpccuritiba": {
+  "paranarpccuritiba": {
     "url": "https://consoledbtv.vercel.app/globopr-rpccuritiba/tracks-v1a1/mono.m3u8"
   },
   "pernambucoglobonordeste": {
@@ -99,34 +96,34 @@ const channels = {
   "bahiatvsudoeste": {
     "url": "https://consoledbtv.vercel.app/globoba-tvsudoeste/tracks-v1a1/mono.m3u8"
   },
-  "cearátvverdesmaresfortaleza": {
+  "cearatvverdesmaresfortaleza": {
     "url": "https://consoledbtv.vercel.app/globoce-tvverdesmaresfortaleza/tracks-v1a1/mono.m3u8"
   },
-  "cearátvverdesmarescariri": {
+  "cearatvverdesmarescariri": {
     "url": "https://consoledbtv.vercel.app/globoce-tvverdesmarescariri/tracks-v1a1/mono.m3u8"
   },
-  "piauítvclube": {
+  "piauitvclube": {
     "url": "https://consoledbtv.vercel.app/globopi-tvclube/tracks-v1a1/mono.m3u8"
   },
-  "maranhãotvmirantesãoluís": {
+  "maranhaotvmirantesaoluis": {
     "url": "https://consoledbtv.vercel.app/globoma-tvmirantessaoluis/tracks-v1a1/mono.m3u8"
   },
   "riograndedonorteintertvcabugi": {
     "url": "https://consoledbtv.vercel.app/globorn-intertvcabugi/tracks-v1a1/mono.m3u8"
   },
-  "paraíbatvcabobranco": {
+  "paraibatvcabobranco": {
     "url": "https://consoledbtv.vercel.app/globopb-tvcabobranco/tracks-v1a1/mono.m3u8"
   },
-  "brasíliaglobobrasília": {
+  "brasiliaglobobrasilia": {
     "url": "https://consoledbtv.vercel.app/globodf-globobrasilia/tracks-v1a1/mono.m3u8"
   },
-  "goiástvanhangueragoiânia": {
+  "goiastvanhangueragoiânia": {
     "url": "https://consoledbtv.vercel.app/globogo-tvanhangueragoiania/tracks-v1a1/mono.m3u8"
   },
-  "amazonasredeamazônicamanaus": {
+  "amazonasredeamazonicamanaus": {
     "url": "https://consoledbtv.vercel.app/globoam-redeamazonicamanaus/tracks-v1a1/mono.m3u8"
   },
-  "parátvliberalbelém": {
+  "paratvliberalbelem": {
     "url": "https://consoledbtv.vercel.app/globopa-tvliberalbelem/tracks-v1a1/mono.m3u8"
   },
   "sbt": {
@@ -138,7 +135,7 @@ const channels = {
   "recordsp": {
     "url": "https://consoledbtv.vercel.app/recordsp/tracks-v1a1/mono.m3u8"
   },
-  "redetv!": {
+  "redetv": {
     "url": "https://consoledbtv.vercel.app/redetv/tracks-v1a1/mono.m3u8"
   },
   "tvcultura": {
@@ -531,7 +528,7 @@ const channels = {
   "aparecida": {
     "url": "https://consoledbtv.vercel.app/aparecida/tracks-v1a1/mono.m3u8"
   },
-  "rá-tim-bum": {
+  "ra-tim-bum": {
     "url": "https://consoledbtv.vercel.app/ratimbum/tracks-v1a1/mono.m3u8"
   },
   "tntnovelas": {
@@ -666,21 +663,19 @@ const channels = {
   "primevideo4": {
     "url": "https://consoledbtv.vercel.app/primevideo4/tracks-v1a1/mono.m3u8"
   },
-  "cazétv": {
+  "cazetv": {
     "url": "https://consoledbtv.vercel.app/cazetv/tracks-v1a1/mono.m3u8"
   },
-  "cazétv2": {
+  "cazetv2": {
     "url": "https://consoledbtv.vercel.app/cazetv2/tracks-v1a1/mono.m3u8"
   },
-  "cazétv3": {
+  "cazetv3": {
     "url": "https://consoledbtv.vercel.app/cazetv3/tracks-v1a1/mono.m3u8"
   }
 };
 
-// Verifica se o canal existe
 const channel = channels[id];
 
-// Se o canal existir, configura o player de vídeo
 if (channel) {
   const url = channel.url;
   const playerInstance = jwplayer("player");
