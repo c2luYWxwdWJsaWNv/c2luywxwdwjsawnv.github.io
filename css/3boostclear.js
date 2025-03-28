@@ -1,1 +1,71 @@
-const _0x4a2459=_0x1a91;function _0x2600(){const _0x3e2aa0=['https://si','OhGcq','nfigurar\x20o','2100609ibOJqu','search','do\x20vídeo','3541563ZmPkAe','4244012LxyRsc','2mhMjbh','8XlCtgf','27588xddbnu','player','o.vercel.a','QCgHb','addEventLi','Loaded','tvplayer.v','get','16:9','zRkYL','87462ztsZQh','FfxIZ','location','Erro\x20ao\x20co','nalpublico','ter\x20o\x20URL\x20','bxGSU','\x20player','820FkvWCW','DjfnI','dHUgd','DOMContent','error','YWAto','aszRy','nsoledglob','stener','SaZMf','text','Erro\x20ao\x20ob','3195535MMwXHy','100%','hls','6573500AMqdwc','ercel.app/','HXeUr','JeBvO','replace','https://co','match','wAjan','setup','dATgK','pp/'];_0x2600=function(){return _0x3e2aa0;};return _0x2600();}(function(_0x3d09f9,_0x2de2c6){const _0x44e25c=_0x1a91,_0x31ff23=_0x3d09f9();while(!![]){try{const _0x1f249e=parseInt(_0x44e25c(0xac))/(0x4bd*-0x7+-0x83c+0x2968)+parseInt(_0x44e25c(0xd6))/(0x1487+-0x5*-0x2cd+0xb82*-0x3)*(-parseInt(_0x44e25c(0xd1))/(0x1*-0x24e2+0x829+-0x1*-0x1cbc))+-parseInt(_0x44e25c(0xd5))/(0x1*0xef+0x132*-0x1a+0x1e29)+-parseInt(_0x44e25c(0xb4))/(-0x2a*-0x49+-0x26a1+0x1aac)*(-parseInt(_0x44e25c(0xd8))/(-0x1b0*-0x7+0xe9e+-0x1a68))+parseInt(_0x44e25c(0xc0))/(-0x7*0x1b4+0x175f+-0xac*0x11)*(parseInt(_0x44e25c(0xd7))/(-0x15*-0x61+0xa54*-0x1+0x267*0x1))+parseInt(_0x44e25c(0xd4))/(0xd10+0x212f+-0x2e36)+parseInt(_0x44e25c(0xc3))/(0x1d6d+-0x1428+0x11*-0x8b);if(_0x1f249e===_0x2de2c6)break;else _0x31ff23['push'](_0x31ff23['shift']());}catch(_0x192fb9){_0x31ff23['push'](_0x31ff23['shift']());}}}(_0x2600,0x3cb6e*0x2+-0x56faa*-0x2+-0x1*0x97e86));function obterParametroUrl(_0x3cef43){const _0x19b1bd=_0x1a91,_0x21ce2b=new URLSearchParams(window[_0x19b1bd(0xae)][_0x19b1bd(0xd2)]);return _0x21ce2b[_0x19b1bd(0xa9)](_0x3cef43);}async function configurarPlayer(_0x1ac98f){const _0x1831fe=_0x1a91,_0x3c5b7c={'aszRy':function(_0x4b0491,_0x595a46){return _0x4b0491+_0x595a46;},'bxGSU':_0x1831fe(0xc8)+_0x1831fe(0xbb)+_0x1831fe(0xda)+_0x1831fe(0xcd),'QCgHb':function(_0x5325d3,_0x2ae9d7){return _0x5325d3(_0x2ae9d7);},'DjfnI':function(_0xd970b5,_0x4a1187){return _0xd970b5(_0x4a1187);},'wAjan':_0x1831fe(0xce)+_0x1831fe(0xb0)+_0x1831fe(0xde)+_0x1831fe(0xc4),'FfxIZ':function(_0x17f60b,_0x4a737c){return _0x17f60b(_0x4a737c);},'OhGcq':_0x1831fe(0xd9),'dHUgd':_0x1831fe(0xc2),'dATgK':_0x1831fe(0xc1),'JeBvO':_0x1831fe(0xaa),'SaZMf':_0x1831fe(0xbf)+_0x1831fe(0xb1)+_0x1831fe(0xd3),'HXeUr':_0x1831fe(0xaf)+_0x1831fe(0xd0)+_0x1831fe(0xb3)};try{const _0xc28765=_0x3c5b7c[_0x1831fe(0xba)](_0x3c5b7c[_0x1831fe(0xb2)],_0x3c5b7c[_0x1831fe(0xdb)](encodeURIComponent,_0x1ac98f)),_0x3d88ff=await _0x3c5b7c[_0x1831fe(0xb5)](fetch,_0xc28765),_0x3f32fd=await _0x3d88ff[_0x1831fe(0xbe)](),_0x453725=/https:\/\/[^"]+\.m3u8/i,_0x49937b=_0x3f32fd[_0x1831fe(0xc9)](_0x453725);if(_0x49937b){let _0x309402=_0x49937b[0x2603+0x2*-0x342+-0x1f7f];_0x309402=_0x309402[_0x1831fe(0xc7)](/^https:\/\//,_0x3c5b7c[_0x1831fe(0xca)]);const _0x4d68e6=_0x3c5b7c[_0x1831fe(0xad)](jwplayer,_0x3c5b7c[_0x1831fe(0xcf)]);_0x4d68e6[_0x1831fe(0xcb)]({'playlist':[{'sources':[{'default':![],'type':_0x3c5b7c[_0x1831fe(0xb6)],'file':_0x309402,'label':'0'}]}],'width':_0x3c5b7c[_0x1831fe(0xcc)],'height':_0x3c5b7c[_0x1831fe(0xcc)],'aspectratio':_0x3c5b7c[_0x1831fe(0xc6)],'autostart':!![],'cast':{},'sharing':![]});}else console[_0x1831fe(0xb8)](_0x3c5b7c[_0x1831fe(0xbd)]);}catch(_0x1fa755){console[_0x1831fe(0xb8)](_0x3c5b7c[_0x1831fe(0xc5)],_0x1fa755);}}function _0x1a91(_0x42d007,_0x508dcd){const _0x327c49=_0x2600();return _0x1a91=function(_0x28c467,_0x5914bb){_0x28c467=_0x28c467-(-0x1d20+-0x2343+-0x2d4*-0x17);let _0x2d65fa=_0x327c49[_0x28c467];return _0x2d65fa;},_0x1a91(_0x42d007,_0x508dcd);}document[_0x4a2459(0xdc)+_0x4a2459(0xbc)](_0x4a2459(0xb7)+_0x4a2459(0xdd),function(){const _0x55d374=_0x4a2459,_0x5815f5={'zRkYL':function(_0x5d7b76,_0x57338a){return _0x5d7b76(_0x57338a);},'YWAto':function(_0x28e44e,_0x1a1cab){return _0x28e44e(_0x1a1cab);}},_0x3b69b1=_0x5815f5[_0x55d374(0xab)](obterParametroUrl,'m');_0x3b69b1&&_0x5815f5[_0x55d374(0xb9)](configurarPlayer,_0x3b69b1);});
+// Função para obter o parâmetro da URL
+function getParametroUrl(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+// Função assíncrona para configurar o player de vídeo
+async function configurarPlayer(encodedParam) {
+  try {
+    // Decodifica o parâmetro base64
+    const decodedParam = atob(encodedParam);
+    // Cria a URL do arquivo de configuração do player
+    const url = "https://consoledplay.vercel.app/" + encodeURIComponent(decodedParam);
+    
+    // Faz uma requisição para pegar os dados do player
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Erro: " + response.statusText);
+    }
+    
+    // Pega o conteúdo retornado e busca pela URL do stream .m3u8
+    const responseText = await response.text();
+    const streamUrlRegex = /https:\/\/[^"]+\.m3u8/i;
+    const streamUrlMatch = responseText.match(streamUrlRegex);
+    
+    if (!streamUrlMatch || streamUrlMatch.length === 0) {
+      throw new Error("URL do stream .m3u8 não encontrada.");
+    }
+    
+    // Pega o primeiro link encontrado
+    const streamUrl = streamUrlMatch[0];
+    
+    // Configura o player JWPlayer
+    var player = jwplayer("player");
+    player.setup({
+      'playlist': [{
+        'sources': [{
+          'default': false,
+          'type': "hls",
+          'file': streamUrl,
+          'label': '0'
+        }]
+      }],
+      'primary': "html5",
+      'hlshtml': true,
+      'width': "100%",
+      'height': "100%",
+      'aspectratio': "16:9",
+      'autostart': true,
+      'cast': true,
+      'hlsjsConfig': {
+        'debug': false,
+        'p2pConfig': {
+          'live': true
+        }
+      }
+    });
+  } catch (error) {
+    console.error("Erro ao configurar o player:", error.message);
+  }
+}
+
+// Quando o DOM estiver carregado, tenta configurar o player com o parâmetro 'id' da URL
+document.addEventListener("DOMContentLoaded", function () {
+  const parametroId = getParametroUrl('id');
+  if (parametroId) {
+    configurarPlayer(parametroId);
+  } else {
+    console.error("Parâmetro 'id' não encontrado na URL.");
+  }
+});
