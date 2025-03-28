@@ -1,71 +1,57 @@
 // Função para obter o parâmetro da URL
-function getParametroUrl(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
+function obterParametroUrl(parametro) {
+  const parametros = new URLSearchParams(window.location.search);
+  return parametros.get(parametro);
 }
 
-// Função assíncrona para configurar o player de vídeo
-async function configurarPlayer(encodedParam) {
+// Função assíncrona para configurar o player
+async function configurarPlayer(videoId) {
   try {
-    // Decodifica o parâmetro base64
-    const decodedParam = atob(encodedParam);
-    // Cria a URL do arquivo de configuração do player
-    const url = "https://consoledglobo.vercel.app/" + encodeURIComponent(decodedParam);
+    // URL da API com o videoId codificado
+    const url = "https://consoledglobo.vercel.app/" + encodeURIComponent(videoId);
     
-    // Faz uma requisição para pegar os dados do player
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("Erro: " + response.statusText);
+    // Realiza a requisição para buscar a URL do vídeo
+    const resposta = await fetch(url);
+    const conteudo = await resposta.text();
+    
+    // Expressão regular para encontrar a URL do vídeo
+    const regex = /https:\/\/[^"]+\.m3u8/i;
+    const urlVideo = conteudo.match(regex);
+    
+    // Se a URL do vídeo for encontrada, configura o player
+    if (urlVideo) {
+      const videoUrl = urlVideo[0];
+      
+      // Configura o JWPlayer diretamente com o URL m3u8
+      const player = jwplayer("player");
+      player.setup({
+        playlist: [{
+          sources: [{
+            default: false,
+            type: "hls",
+            file: videoUrl,
+            label: '0'
+          }]
+        }],
+        width: "100%",
+        height: "100%",
+        aspectratio: "16:9",
+        autostart: true,
+        cast: {},
+        sharing: false
+      });
+    } else {
+      console.error("Erro ao obter o URL do vídeo");
     }
-    
-    // Pega o conteúdo retornado e busca pela URL do stream .m3u8
-    const responseText = await response.text();
-    const streamUrlRegex = /https:\/\/[^"]+\.m3u8/i;
-    const streamUrlMatch = responseText.match(streamUrlRegex);
-    
-    if (!streamUrlMatch || streamUrlMatch.length === 0) {
-      throw new Error("URL do stream .m3u8 não encontrada.");
-    }
-    
-    // Pega o primeiro link encontrado
-    const streamUrl = streamUrlMatch[0];
-    
-    // Configura o player JWPlayer
-    var player = jwplayer("player");
-    player.setup({
-      'playlist': [{
-        'sources': [{
-          'default': false,
-          'type': "hls",
-          'file': streamUrl,
-          'label': '0'
-        }]
-      }],
-      'primary': "html5",
-      'hlshtml': true,
-      'width': "100%",
-      'height': "100%",
-      'aspectratio': "16:9",
-      'autostart': true,
-      'cast': true,
-      'hlsjsConfig': {
-        'debug': false,
-        'p2pConfig': {
-          'live': true
-        }
-      }
-    });
-  } catch (error) {
-    console.error("Erro ao configurar o player:", error.message);
+  } catch (erro) {
+    console.error("Erro ao configurar o player", erro);
   }
 }
 
-// Quando o DOM estiver carregado, tenta configurar o player com o parâmetro 'id' da URL
+// Evento para quando o conteúdo da página for carregado
 document.addEventListener("DOMContentLoaded", function () {
-  const parametroId = getParametroUrl('id');
-  if (parametroId) {
-    configurarPlayer(parametroId);
-  } else {
-    console.error("Parâmetro 'id' não encontrado na URL.");
+  const parametroVideo = obterParametroUrl('m');
+  if (parametroVideo) {
+    configurarPlayer(parametroVideo);
   }
 });
