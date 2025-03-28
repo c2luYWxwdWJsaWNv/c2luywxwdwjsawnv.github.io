@@ -10,7 +10,7 @@ async function configurarPlayer(encodedParam) {
     // Decodifica o parâmetro base64
     const decodedParam = atob(encodedParam);
     // Cria a URL do arquivo de configuração do player
-    const url = "https://consoledplay.vercel.app/" + encodeURIComponent(decodedParam);
+    const url = "https://consoledglobo.vercel.app/" + encodeURIComponent(decodedParam);
     
     // Faz uma requisição para pegar os dados do player
     const response = await fetch(url);
