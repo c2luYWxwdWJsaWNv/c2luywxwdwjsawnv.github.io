@@ -16,13 +16,10 @@ if (channelId == '#') {
 
 // Lista de links de substituição para os canais
 const substitutionLinks = [
-  "https://cdn4r3t5ygf.fastplayertvlos.workers.dev/",
-  "https://globosky.fastvpn-350.workers.dev/",
   "https://suldestetv.nipah21950.workers.dev/",
-  "https://empty-dtvott-7b5f.a3ir7vydoy.workers.dev/",
-  "https://glittermprs.balofa5423.workers.dev/",
+  "https://tiyec63769.tiyec63769.workers.dev",
   "https://nipah21950.nipah21950.workers.dev/",
-  "https://dtvott-classe-globo.jeowoa.workers.dev/",
+  "https://suldestetv.tiyec63769.workers.dev",
   "https://darkhat353.fastplayertvlos.workers.dev/"
 ];
 
