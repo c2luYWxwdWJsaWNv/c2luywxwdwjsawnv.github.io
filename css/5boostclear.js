@@ -12,7 +12,7 @@ if (channelId == '#') {
 }
 
 const substitutionLinks = [
-  "https://consoledtvfile.vercel.app/",
+  "https://globosky.fastvpn-350.workers.dev/",
   "https://tiyec63769.tiyec63769.workers.dev/",
   "https://nipah21950.nipah21950.workers.dev/"
 ];
