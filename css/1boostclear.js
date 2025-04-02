@@ -1,4 +1,3 @@
-// Função para obter o valor de um parâmetro da URL
 function getParameterByName(paramName) {
   paramName = paramName.replace(/[\[]/, '[').replace(/[\]]/, ']');
   const regex = new RegExp("[?&]" + paramName + "=([^&#]*)");
@@ -6,15 +5,12 @@ function getParameterByName(paramName) {
   return result === null ? '' : decodeURIComponent(result[1].replace(/\+/g, " "));
 }
 
-// Obtém o parâmetro 's' da URL
 const id = getParameterByName('s');
 
-// Se o id for '#', mostra um alerta
 if (id === '#') {
   alert("Página Anterior");
 }
 
-// Lista de links de substituição
 const substitutionLinks = [
   "https://x.tvcasecors.workers.dev/",
   "https://o5uftzrqlf.o5uftzrqlf.workers.dev/",
@@ -24,11 +20,9 @@ const substitutionLinks = [
 
 let usedLinks = [];
 
-// Função para obter um link aleatório
 function getRandomLink() {
   let availableLinks = substitutionLinks.filter(link => !usedLinks.includes(link));
   
-  // Se não houver links disponíveis, reinicia a lista de links usados
   if (availableLinks.length === 0) {
     usedLinks = [];
     availableLinks = [...substitutionLinks];
@@ -39,11 +33,8 @@ function getRandomLink() {
   return randomLink;
 }
 
-// Obtém um link aleatório
 const randomLink = getRandomLink();
 
-// Definição dos canais com URLs e chaves
-const channels = {
 const channels = {
   'sportv1': {
     'url': randomLink + "Content/Channel/SPOSPTHD/dsc2/manifest.mpd",
@@ -154,10 +145,8 @@ const channels = {
     'key': "6e91a26ee0a433f6810fcef7f91dbd22:3b842d5eeb194d31dfac780af8df82c2"
   }
 };
-// Obtém o canal correspondente ao id
 const channel = channels[id];
 
-// Se o canal for encontrado, configura o player
 if (channel) {
   const key = channel.key;
   const url = channel.url;
@@ -170,7 +159,6 @@ if (channel) {
     }
   };
 
-  // Se k2 estiver definido, adiciona um segundo key
   if (typeof k2 !== "undefined") {
     drmConfig.clearkey2 = {
       'keyId': k2.substr(0, 32),
