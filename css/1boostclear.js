@@ -17,7 +17,7 @@ if (id === '#') {
 // Lista de links de substituição
 const substitutionLinks = [
   "https://x.tvcasecors.workers.dev/",
-  "https://0002-dtvott.o5uftzrqlf.workers.dev/",
+  "https://o5uftzrqlf.o5uftzrqlf.workers.dev/",
   "https://ficodaw245.ficodaw245.workers.dev/",
   "https://shinyhatybt.dpetftvwrc.workers.dev/"
 ];
