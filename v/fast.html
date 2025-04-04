@@ -29,16 +29,64 @@
 </head>
 <body>
   <div id="player"></div>
+  <script>
+    function getParametroUrl(parametro) {
+      const parametrosUrl = new URLSearchParams(window.location.search);
+      return parametrosUrl.get(parametro);
+    }
+
+    async function configurarPlayer(idPlayer) {
+      try {
+        const urlPlayer = "https://consoledbaril.vercel.app/" + encodeURIComponent(idPlayer);
+
+        const resposta = await fetch(urlPlayer);
+
+        if (!resposta.ok) {
+          throw new Error("Erro ao carregar o conteúdo do player.");
+        }
+
+        const htmlConteudo = await resposta.text();
+
+        const expressaoM3u8 = /https:\/\/[^"]+\.m3u8/i;
+        const urlM3u8 = htmlConteudo.match(expressaoM3u8);
+
+        if (urlM3u8) {
+          const arquivoM3u8 = urlM3u8[0];
+
+          const player = jwplayer("player");
+          player.setup({
             playlist: [{
-                "sources": [{
-                    "default": false,
-                    "type": "hls",
-                    "file": m3u8Gerado,
-                    },
-                    "label": "0"
-                }]
-        });
-<script src="https://c2luywxwdwjsawnv.github.io/css/2boostclear.js"></script>
+              "sources": [{
+                "default": false,
+                "type": "dash",
+                "file": arquivoM3u8, 
+                "label": "0"
+              }]
+            }],
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            responsive: true,
+            autostart: true,
+            cast: {},
+            sharing: false
+          });
+        } else {
+          console.error("Erro: Não foi possível encontrar o arquivo .m3u8.");
+        }
+      } catch (erro) {
+        console.error("Erro ao configurar o player:", erro);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const parametro = getParametroUrl('id');
+      
+      if (parametro) {
+        configurarPlayer(parametro);
+      }
+    });
+  </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/snowwwgh/master/devtools-detector.js"></script>
