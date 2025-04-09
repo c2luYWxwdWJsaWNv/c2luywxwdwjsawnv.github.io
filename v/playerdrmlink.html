@@ -33,46 +33,39 @@
     }
 </style>
 <script>
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-
-    var getURL = getParameterByName('id');
-
-    if (getURL == "#") {
-        alert('Vuelva a la página anterior');
-    }
-
-    var play = getParameterByName('play');
-    play = (play == "2") ? "true" : "false";
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
+            var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        var id = getParameterByName('id');
+        if (id == "#") {
+            alert('Pagina Anterior');
+        }
 </script>
 
 <div id="player"></div>
 <script>
-    var playerInstance = jwplayer("player");
-    playerInstance.setup({
-   	playlist: [{
+var playerInstance = jwplayer("player");
+playerInstance.setup({
+	playlist: [{
 		"sources": [
 			{
 				"default": false,
 				"type": "hls",
-        "file": atob(getURL)
-            }
-        ],
-        width: "100%",
-        height: "100%",
-        aspectratio: "16:9",
-        autostart: true,
-        mute: false,
-        cast: {}
-    });
-
-    playerInstance.on('play', function() {
-        playerInstance.setCurrentAudioTrack(2); 
-    });
+				"file": id,
+				"label": "0"
+			}
+		]
+	}],
+	width: "100%",
+	height: "100%",
+	aspectratio: "16:9",
+	autostart: false,
+	cast: {},
+	sharing: false
+});
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
