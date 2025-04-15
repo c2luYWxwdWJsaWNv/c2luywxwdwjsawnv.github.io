@@ -45,14 +45,12 @@ async function configurarPlayer(codigoCanal) {
     if (matchUrl) {
       let urlStream = matchUrl[0];
 
-      urlStream = urlStream.replace(/^https:\/\//, "https://globoplay.tiyec63769.workers.dev/");
-
       const player = jwplayer("player");
       player.setup({
         playlist: [{
           sources: [{
             default: false,
-            type: "hls",
+            type: "dash",
             file: urlStream,
             label: '0'
           }]
@@ -71,7 +69,6 @@ async function configurarPlayer(codigoCanal) {
     console.error("Erro ao configurar o player", erro);
   }
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const parametroM = obterParametroUrl('id');
