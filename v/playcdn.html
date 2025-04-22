@@ -30,61 +30,49 @@
 <body>
 <div id="player"></div>
 <script> 
-function obterParametroUrl(parametro) {
-  const parametrosUrl = new URLSearchParams(window.location.search);
-  return parametrosUrl.get(parametro);
-}
+  const videoId = new URLSearchParams(window.location.search).get('id');
 
-async function configurarPlayer(codigoCanal) {
-  try {
-    const urlApi = "https://consoledcdn.vercel.app/" + encodeURIComponent(codigoCanal);
-    const resposta = await fetch(urlApi);
+if (videoId) {
+  (async () => {
+    try {
 
-    if (!resposta.ok) {
-      throw new Error("Erro ao buscar dados da API");
+      const response = await fetch(`https://consoledcdn.vercel.app/${videoId}`);
+      
+      if (response.ok) {
+
+        const responseText = await response.text();
+        
+        const parser = new DOMParser();
+        const documentContent = parser.parseFromString(responseText, "text/html");
+        
+        const playerElement = documentContent.querySelector("#player");
+        
+        if (playerElement) {
+          let siblingElement = playerElement.nextElementSibling;
+          
+
+          while (siblingElement && siblingElement.tagName !== "SCRIPT") {
+            siblingElement = siblingElement.nextElementSibling;
+          }
+
+          if (siblingElement && siblingElement.tagName === "SCRIPT") {
+            const scriptElement = document.createElement("script");
+            scriptElement.textContent = siblingElement.textContent;
+            document.body.appendChild(scriptElement);
+          } else {
+            console.error("Erro: Script não encontrado.");
+          }
+        } else {
+          console.error("Erro: Player não encontrado.");
+        }
+      } else {
+        console.error("Erro: Requisição falhou com status", response.status);
+      }
+    } catch (error) {
+      console.error("Erro: Exceção capturada", error);
     }
-
-    const conteudo = await resposta.text();
-
-    const regexM3U8 = /https:\/\/[^"]+\.m3u8/i;
-    const matchUrl = conteudo.match(regexM3U8);
-
-    if (matchUrl) {
-      let urlStream = matchUrl[0];
-
-      var playerInstance = jwplayer("player");
-      playerInstance.setup({
-        playlist: [{
-          "sources": [{
-            "default": false,
-            "type": "dash",
-            "file": urlStream,
-            "label": "0"
-          }]
-        }],
-        width: "100%",
-        height: "100%",
-        aspectratio: "16:9",
-        responsive: true,
-        autostart: true,
-        cast: {},
-        sharing: false
-      });
-
-    } else {
-      console.error("Erro ao obter o URL do vídeo");
-    }
-  } catch (erro) {
-    console.error("Erro ao configurar o player", erro);
-  }
+  })();
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  const parametroM = obterParametroUrl('id');
-  if (parametroM) {
-    configurarPlayer(parametroM);
-  }
-});
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
