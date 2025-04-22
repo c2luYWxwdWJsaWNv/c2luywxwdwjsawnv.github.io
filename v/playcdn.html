@@ -39,31 +39,38 @@ async function configurarPlayer(codigoCanal) {
   try {
     const urlApi = "https://consoledcdn.vercel.app/" + encodeURIComponent(codigoCanal);
     const resposta = await fetch(urlApi);
+
+    if (!resposta.ok) {
+      throw new Error("Erro ao buscar dados da API");
+    }
+
     const conteudo = await resposta.text();
 
     const regexM3U8 = /https:\/\/[^"]+\.m3u8/i;
     const matchUrl = conteudo.match(regexM3U8);
 
     if (matchUrl) {
-      let urlStream = matchUrl[0]; // Não faz mais replace
+      let urlStream = matchUrl[0];
 
-      const player = jwplayer("player");
-      player.setup({
+      var playerInstance = jwplayer("player");
+      playerInstance.setup({
         playlist: [{
-          sources: [{
-            default: false,
-            type: "hls",
-            file: urlStream,
-            label: '0'
+          "sources": [{
+            "default": false,
+            "type": "dash",
+            "file": urlStream,
+            "label": "0"
           }]
         }],
         width: "100%",
         height: "100%",
         aspectratio: "16:9",
+        responsive: true,
         autostart: true,
         cast: {},
         sharing: false
       });
+
     } else {
       console.error("Erro ao obter o URL do vídeo");
     }
