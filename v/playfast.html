@@ -45,9 +45,7 @@ async function configurarPlayer(codigoCanal) {
     const matchUrl = conteudo.match(regexM3U8);
 
     if (matchUrl) {
-      let urlStream = matchUrl[0];
-
-      urlStream = urlStream.replace(/^https:\/\//, "https://globoplay.tiyec63769.workers.dev/");
+      let urlStream = matchUrl[0]; // Não faz mais replace
 
       const player = jwplayer("player");
       player.setup({
@@ -73,7 +71,6 @@ async function configurarPlayer(codigoCanal) {
     console.error("Erro ao configurar o player", erro);
   }
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const parametroM = obterParametroUrl('id');
