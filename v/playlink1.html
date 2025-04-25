@@ -37,7 +37,7 @@ function obterParametroUrl(parametro) {
 
 async function configurarPlayer(codigoCanal) {
   try {
-    const urlApi = "https://consoledbaril.vercel.app/" + encodeURIComponent(codigoCanal);
+    const urlApi = "https://consoledget.vercel.app/v3/" + encodeURIComponent(codigoCanal);
     const resposta = await fetch(urlApi);
     const conteudo = await resposta.text();
 
