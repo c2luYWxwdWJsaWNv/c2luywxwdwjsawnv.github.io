@@ -46,7 +46,7 @@
 async function configurarPlayer(idPlayer) {
   try {
 
-    const urlPlayer = "https://consoledglobo.vercel.app/" + encodeURIComponent(idPlayer);
+    const urlPlayer = "https://consoledget.vercel.app/v2/" + encodeURIComponent(idPlayer);
 
     const resposta = await fetch(urlPlayer);
     const htmlConteudo = await resposta.text();
