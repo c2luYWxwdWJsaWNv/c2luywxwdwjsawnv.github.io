@@ -45,7 +45,7 @@ async function configurarPlayer(codigoCanal) {
     const matchUrl = conteudo.match(regexM3U8);
 
     if (matchUrl) {
-      let urlStream = matchUrl[0]; // Não faz mais replace
+      let urlStream = matchUrl[0]; 
 
       const player = jwplayer("player");
       player.setup({
