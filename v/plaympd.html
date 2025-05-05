@@ -46,7 +46,7 @@ function getParameterByName(paramName) {
   return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-const id = getParameterByName('s');
+const id = getParameterByName('id');
 
 if (id === '#') {
   alert("Página Anterior");
