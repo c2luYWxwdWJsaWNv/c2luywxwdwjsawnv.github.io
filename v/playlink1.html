@@ -8,16 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-  <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.4.0/dist/clappr.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/mux.js@5.6.7/dist/mux.min.js"></script>
-  <script src='//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js'></script>
-  <script src='//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js'></script>
-  <script src='//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js'></script>
-  <script src='//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js'></script>
-  <script src="//cdn.jsdelivr.net/npm/shaka-player@latest/dist/shaka-player.compiled.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.external.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/cdnbye-shaka@latest"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
   <style>
     body {
       margin: 0;
@@ -54,35 +45,25 @@ async function configurarPlayer(codigoCanal) {
     const matchUrl = conteudo.match(regexM3U8);
 
     if (matchUrl) {
-      let urlStream = matchUrl[0];
+      let urlStream = matchUrl[0]; 
 
-      const player = new Clappr.Player({
-        source: urlStream,
-        mimeType: 'application/vnd.apple.mpegurl',
+      const player = jwplayer("player");
+      player.setup({
+        playlist: [{
+          sources: [{
+            default: false,
+            type: "hls",
+            file: urlStream,
+            label: '0'
+          }]
+        }],
         width: "100%",
         height: "100%",
-        autoPlay: true,
-        mute: false,
-        preload: 'auto',
-        parentId: "#player",
-        plugins: [
-          LevelSelector,
-          DashShakaPlayback,
-          ChromecastPlugin,
-          ClapprPip.PipButton,
-          ClapprPip.PipPlugin,
-          Clappr.MediaControl
-        ],
-        events: {
-          onReady: function () {
-            console.log("Player pronto");
-          },
-          onError: function (error) {
-            console.error("Erro no player: ", error);
-          }
-        }
+        aspectratio: "16:9",
+        autostart: true,
+        cast: {},
+        sharing: false
       });
-
     } else {
       console.error("Erro ao obter o URL do vídeo");
     }
