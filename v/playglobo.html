@@ -11,16 +11,12 @@
   <script src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
   <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-  <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.4.0/dist/clappr.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/mux.js@5.6.7/dist/mux.min.js"></script>
-  <script src='//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js'></script>
-  <script src='//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js'></script>
-  <script src='//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js'></script>
-  <script src='//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js'></script>
-  <script src="//cdn.jsdelivr.net/npm/shaka-player@latest/dist/shaka-player.compiled.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.external.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/cdnbye-shaka@latest"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@clappr/player@0.8/dist/clappr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.min.js"></script>
+  <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+  <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
   <style>
     body {
       margin: 0;
@@ -42,7 +38,7 @@
 <body> 
       <div id="player"></div>
 <script>
-function getParametroUrl(parametro) {
+function getParametroUrl(parametro) { 
   const parametrosUrl = new URLSearchParams(window.location.search);
   return parametrosUrl.get(parametro);
 }
@@ -50,44 +46,47 @@ function getParametroUrl(parametro) {
 async function configurarPlayer(idPlayer) {
   try {
     const urlPlayer = "https://consoledglobo.vercel.app/" + encodeURIComponent(idPlayer);
+
     const resposta = await fetch(urlPlayer);
     const htmlConteudo = await resposta.text();
 
-    const expressaoM3u8 = /https:\/\/[^"]+\.m3u8/i;
-    const urlM3u8 = htmlConteudo.match(expressaoM3u8);
+    // Captura o ÚNICO link .m3u8 com parâmetros completos
+    const expressaoM3u8 = /https?:\/\/[^\s"'<>]+\.m3u8(?:\?[^\s"'<>]*)?/i;
+    const resultado = htmlConteudo.match(expressaoM3u8);
 
-    if (urlM3u8) {
-      const arquivoM3u8 = urlM3u8[0];
+    if (resultado && resultado[0]) {
+      const arquivoM3u8 = resultado[0];
 
-      var player = new Clappr.Player({
-        source: arquivoM3u8,
-        mimeType: 'application/vnd.apple.mpegurl',
-        height: '100%',
-        width: '100%',
-        autoPlay: true,
-        mute: false,
-        preload: 'auto',
-        parentId: "#player",
-        plugins: [
-          LevelSelector,
-          DashShakaPlayback,
-          ChromecastPlugin,
-          ClapprPip.PipButton,
-          ClapprPip.PipPlugin,
-          Clappr.MediaControl
-        ],
-        events: {
-          onReady: function () {
-            console.log("Player pronto");
-          },
-          onError: function (error) {
-            console.error("Erro no player: ", error);
-          }
+      jwplayer("player").setup({
+        playlist: [{
+          sources: [{
+            default: false,
+            type: "hls",
+            file: arquivoM3u8,
+            drm: { fairplay: {} },
+            label: '0'
+          }, {
+            default: true,
+            type: "hls",
+            file: arquivoM3u8,
+            drm: { widevine: {}, playready: {} },
+            label: '1'
+          }]
+        }],
+        primary: "html5",
+        hlshtml: true,
+        width: "100%",
+        height: "100%",
+        aspectratio: "16:9",
+        autostart: true,
+        cast: true,
+        hlsjsConfig: {
+          debug: false,
+          p2pConfig: { live: true }
         }
       });
-
     } else {
-      console.error("Erro: Não foi possível encontrar o arquivo .m3u8.");
+      console.error("Erro: Link .m3u8 não encontrado.");
     }
   } catch (erro) {
     console.error("Erro ao configurar o player:", erro);
@@ -96,7 +95,6 @@ async function configurarPlayer(idPlayer) {
 
 document.addEventListener("DOMContentLoaded", function () {
   const parametro = getParametroUrl('id');
-
   if (parametro) {
     configurarPlayer(parametro);
   }
