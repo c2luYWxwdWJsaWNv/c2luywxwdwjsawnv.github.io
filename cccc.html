@@ -2,11 +2,19 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
+  <meta name="robots" content="none">
   <meta name="theme-color" content="black">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <script src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@clappr/player@0.8/dist/clappr.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.min.js"></script>
   <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+  <script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
   <style>
     body {
       margin: 0;
@@ -25,56 +33,71 @@
     }
   </style>
 </head>
-<body>
-<div id="player"></div>
-<script> 
-function obterParametroUrl(parametro) {
-  const parametrosUrl = new URLSearchParams(window.location.search);
+<body> 
+      <div id="player"></div>
+<script>
+const parametrosUrl = new URLSearchParams(window.location.search);
+
+function getParametroUrl(parametro) {
   return parametrosUrl.get(parametro);
 }
 
-async function configurarPlayer(codigoCanal) {
+async function configurarPlayer(idPlayer) {
+  const urlPlayer = `https://sinal0.vercel.app/${encodeURIComponent(idPlayer)}`;
+
   try {
-    const urlApi = "https://consoledplay.vercel.app/api/v1/" + encodeURIComponent(codigoCanal);
-    const resposta = await fetch(urlApi);
-    const conteudo = await resposta.text();
+    const resposta = await fetch(urlPlayer);
+    if (!resposta.ok) throw new Error("Falha na requisição");
 
-    const regexM3U8 = /https:\/\/[^"]+\.m3u8/i;
-    const matchUrl = conteudo.match(regexM3U8);
+    const htmlConteudo = await resposta.text();
+    const match = htmlConteudo.match(/https?:\/\/[^\s"'<>]+\.m3u8(?:\?[^\s"'<>]*)?/i);
 
-    if (matchUrl) {
-      let urlStream = matchUrl[0]; 
+    if (!match) {
+      console.error("Erro: Link .m3u8 não encontrado.");
+      return;
+    }
 
-      const player = jwplayer("player");
-      player.setup({
-        playlist: [{
-          sources: [{
+    const arquivoM3u8 = match[0];
+
+    jwplayer("player").setup({
+      playlist: [{
+        sources: [
+          {
             default: false,
             type: "hls",
-            file: urlStream,
+            file: arquivoM3u8,
+            drm: { fairplay: {} },
             label: '0'
-          }]
-        }],
-        width: "100%",
-        height: "100%",
-        aspectratio: "16:9",
-        autostart: true,
-        cast: {},
-        sharing: false
-      });
-    } else {
-      console.error("Erro ao obter o URL do vídeo");
-    }
+          },
+          {
+            default: true,
+            type: "hls",
+            file: arquivoM3u8,
+            drm: { widevine: {}, playready: {} },
+            label: '1'
+          }
+        ]
+      }],
+      primary: "html5",
+      hlshtml: true,
+      width: "100%",
+      height: "100%",
+      aspectratio: "16:9",
+      autostart: true,
+      cast: true,
+      hlsjsConfig: {
+        debug: false,
+        p2pConfig: { live: true }
+      }
+    });
   } catch (erro) {
-    console.error("Erro ao configurar o player", erro);
+    console.error("Erro ao configurar o player:", erro);
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const parametroM = obterParametroUrl('id');
-  if (parametroM) {
-    configurarPlayer(parametroM);
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const parametro = getParametroUrl('id');
+  if (parametro) configurarPlayer(parametro);
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
