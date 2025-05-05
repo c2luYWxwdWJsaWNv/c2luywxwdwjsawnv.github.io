@@ -3,36 +3,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta content='width=device-width, initial-scale=1' name='viewport'>
-<meta http-equiv="Content-Language" content="pt-br" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
-<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
-    
-<style type="text/css">
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+  <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.4.0/dist/clappr.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/mux.js@5.6.7/dist/mux.min.js"></script>
+  <script src='//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js'></script>
+  <script src='//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js'></script>
+  <script src='//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js'></script>
+  <script src='//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js'></script>
+  <script src="//cdn.jsdelivr.net/npm/shaka-player@latest/dist/shaka-player.compiled.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.external.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/cdnbye-shaka@latest"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <style>
     body {
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
     }
-
     #player {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        height: 100%;
-        width: 100%;
-        border: 0;
-        overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
     }
-</style>
-<script>
+  </style>
+</head>
+<body>
+  <script>
     function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
@@ -40,7 +43,7 @@
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    var getURL = getParameterByName('id');
+    var getURL = getParameterByName('m');
 
     if (getURL == "#") {
         alert('Vuelva a la página anterior');
@@ -49,29 +52,28 @@
     var play = getParameterByName('play');
     play = (play == "2") ? "true" : "false";
 </script>
-
-<div id="player"></div>
-<script>
-    var playerInstance = jwplayer("player");
-    playerInstance.setup({
-        playlist: [
-            {
-                "file": atob(getURL)
-            }
-        ],
-        width: "100%",
-        height: "100%",
-        aspectratio: "16:9",
-        autostart: true,
-        mute: false,
-        cast: {}
+  <div id="player"></div>
+  <script>
+    var player = new Clappr.Player({
+      source: atob(getURL),
+      mimeType: 'video/m3u8',
+      height: '100%',
+      width: '100%',
+      autoPlay: true,
+      mute: false,
+      preload: 'auto',
+      parentId: "#player",
+      plugins: [LevelSelector, DashShakaPlayback, ChromecastPlugin, ClapprPip.PipButton, ClapprPip.PipPlugin, Clappr.MediaControl],
+      events: {
+        onReady: function() {
+          console.log("Player pronto");
+        },
+        onError: function(error) {
+          console.error("Erro no player: ", error);
+        }
+      }
     });
-
-    playerInstance.on('play', function() {
-        playerInstance.setCurrentAudioTrack(2); 
-    });
-</script>
-
+  </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/snowwwgh/master/devtools-detector.js"></script>
