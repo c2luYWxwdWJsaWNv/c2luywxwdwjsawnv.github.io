@@ -38,20 +38,20 @@
 <body> 
       <div id="player"></div>
 <script>
-  function getParametroUrl(parametro) {
+function getParametroUrl(parametro) {
   const parametrosUrl = new URLSearchParams(window.location.search);
   return parametrosUrl.get(parametro);
 }
 
 async function configurarPlayer(idPlayer) {
   try {
-
     const urlPlayer = "https://consoledtvlink.vercel.app/" + encodeURIComponent(idPlayer);
 
     const resposta = await fetch(urlPlayer);
     const htmlConteudo = await resposta.text();
 
-    const expressaoM3u8 = /https:\/\/[^"]+\.m3u8/i;
+    // Expressão regular atualizada para capturar a URL completa do .m3u8 com parâmetros
+    const expressaoM3u8 = /https:\/\/[^"'\\s]+\.m3u8(?:\?[^"'\\s]*)?/i;
     const urlM3u8 = htmlConteudo.match(expressaoM3u8);
 
     if (urlM3u8) {
@@ -102,7 +102,6 @@ async function configurarPlayer(idPlayer) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
   const parametro = getParametroUrl('id');
   
   if (parametro) {
