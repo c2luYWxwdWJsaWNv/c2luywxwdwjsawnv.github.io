@@ -45,7 +45,7 @@ function getParametroUrl(parametro) {
 
 async function configurarPlayer(idPlayer) {
   try {
-    const urlPlayer = "https://consoledtvlink.vercel.app/" + encodeURIComponent(idPlayer);
+    const urlPlayer = "https://sinal5.vercel.app/" + encodeURIComponent(idPlayer);
 
     const resposta = await fetch(urlPlayer);
     const htmlConteudo = await resposta.text();
