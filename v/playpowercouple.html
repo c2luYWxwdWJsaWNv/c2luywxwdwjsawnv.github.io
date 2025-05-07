@@ -43,7 +43,7 @@ const parametrosUrl = new URLSearchParams(window.location.search);
 const getParametroUrl = (parametro) => parametrosUrl.get(parametro);
 
 const configurarPlayer = async (idPlayer) => {
-  const urlPlayer = `https://consoledplay.vercel.app/api/v5/${encodeURIComponent(idPlayer)}`;
+  const urlPlayer = `https://consoledplay.vercel.app/exec/v5/${encodeURIComponent(idPlayer)}`;
 
   try {
     const resposta = await fetch(urlPlayer);
