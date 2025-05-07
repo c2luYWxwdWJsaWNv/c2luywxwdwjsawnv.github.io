@@ -38,68 +38,76 @@
 <body> 
       <div id="player"></div>
 <script>
-const parametrosUrl = new URLSearchParams(window.location.search);
-
-function getParametroUrl(parametro) {
+  function getParametroUrl(parametro) {
+  const parametrosUrl = new URLSearchParams(window.location.search);
   return parametrosUrl.get(parametro);
 }
 
 async function configurarPlayer(idPlayer) {
-  const urlPlayer = `https://consoledplay.vercel.app/exec/v2/${encodeURIComponent(idPlayer)}`;
-
   try {
+
+    const urlPlayer = "https://consoledplay.vercel.app/exec/v2/" + encodeURIComponent(idPlayer);
+
     const resposta = await fetch(urlPlayer);
-    if (!resposta.ok) throw new Error("Falha na requisição");
-
     const htmlConteudo = await resposta.text();
-    const match = htmlConteudo.match(/https?:\/\/[^\s"'<>]+\.m3u8(?:\?[^\s"'<>]*)?/i);
 
-    if (!match) {
-      console.error("Erro: Link .m3u8 não encontrado.");
-      return;
-    }
+    const expressaoM3u8 = /https:\/\/[^"]+\.m3u8/i;
+    const urlM3u8 = htmlConteudo.match(expressaoM3u8);
 
-    const arquivoM3u8 = match[0];
+    if (urlM3u8) {
+      const arquivoM3u8 = urlM3u8[0];
 
-    jwplayer("player").setup({
-      playlist: [{
-        sources: [
-          {
+      const player = jwplayer("player");
+      player.setup({
+        playlist: [{
+          sources: [{
             default: false,
             type: "hls",
             file: arquivoM3u8,
-            drm: { fairplay: {} },
+            drm: {
+              fairplay: {}
+            },
             label: '0'
-          },
-          {
+          }, {
             default: true,
             type: "hls",
             file: arquivoM3u8,
-            drm: { widevine: {}, playready: {} },
+            drm: {
+              widevine: {},
+              playready: {}
+            },
             label: '1'
+          }]
+        }],
+        primary: "html5",
+        hlshtml: "true",
+        width: "100%",
+        height: "100%",
+        aspectratio: "16:9",
+        autostart: true,
+        cast: true,
+        hlsjsConfig: {
+          debug: false,
+          p2pConfig: {
+            live: true
           }
-        ]
-      }],
-      primary: "html5",
-      hlshtml: true,
-      width: "100%",
-      height: "100%",
-      aspectratio: "16:9",
-      autostart: true,
-      cast: true,
-      hlsjsConfig: {
-        debug: false,
-        p2pConfig: { live: true }
-      }
-    });
+        }
+      });
+    } else {
+      console.error("Erro: Não foi possível encontrar o arquivo .m3u8.");
+    }
   } catch (erro) {
     console.error("Erro ao configurar o player:", erro);
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+
   const parametro = getParametroUrl('m');
-  if (parametro) configurarPlayer(parametro);
+  
+  if (parametro) {
+    configurarPlayer(parametro);
+  }
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
