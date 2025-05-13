@@ -37,80 +37,92 @@
 <body>
 <div id="player"></div>
 <script> 
-    function obterParametroUrl(parametro) {
-      const parametrosUrl = new URLSearchParams(window.location.search);
-      return parametrosUrl.get(parametro);
+function getParametroUrl(parametro) {
+  const parametrosUrl = new URLSearchParams(window.location.search);
+  return parametrosUrl.get(parametro);
+}
+
+async function obterUrlM3u8(codigoUrl) {
+  try {
+    const urlStream = `https://consoledplay.vercel.app/exec/v5/${encodeURIComponent(codigoUrl)}`;
+    const resposta = await fetch(urlStream);
+
+    if (!resposta.ok) {
+      throw new Error(`Falha ao obter o conteúdo: ${resposta.statusText}`);
     }
 
-    async function configurarPlayer(codigoCanal, tentativas = 0) {
-      const MAX_TENTATIVAS = 10;
-      try {
-        const urlApi = "https://consoledplay.vercel.app/exec/v5/" + encodeURIComponent(codigoCanal);
-        const resposta = await fetch(urlApi);
-        const conteudo = await resposta.text();
+    const conteudo = await resposta.text();
+    const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
+    const urlM3u8 = conteudo.match(expressaoRegular);
 
-        const regexM3U8 = /https:\/\/[^"]+\.m3u8/i;
-        const matchUrl = conteudo.match(regexM3U8);
-
-        if (matchUrl) {
-          let urlStream = matchUrl[0];
-
-          var playerInstance = jwplayer("player");
-          playerInstance.setup({
-            playlist: [{
-              "sources": [
-                {
-                  "default": true,
-                  "type": "hls",
-                  "file": urlStream,
-                  "label": "HD"
-                }
-              ]
-            }],
-            width: "100%",
-            height: "100%",
-            aspectratio: "16:9",
-            autostart: true,
-            cast: {},
-            sharing: false
-          });
-
-          playerInstance.on('error', function () {
-            if (tentativas < MAX_TENTATIVAS) {
-              console.warn(`Erro ao carregar player. Tentando novamente... (${tentativas + 1}/${MAX_TENTATIVAS})`);
-              setTimeout(() => {
-                configurarPlayer(codigoCanal, tentativas + 1);
-              }, 1000); 
-            } else {
-              console.error("Máximo de tentativas alcançado. Recarregando página...");
-              location.reload();
-            }
-          });
-
-        } else {
-          throw new Error("URL .m3u8 não encontrada");
-        }
-
-      } catch (erro) {
-        console.error("Erro ao configurar player:", erro);
-        if (tentativas < MAX_TENTATIVAS) {
-          setTimeout(() => {
-            configurarPlayer(codigoCanal, tentativas + 1);
-          }, 1000);
-        } else {
-          location.reload();
-        }
-      }
+    if (urlM3u8) {
+      return urlM3u8[0];
+    } else {
+      throw new Error("URL m3u8 não encontrada.");
     }
+  } catch (erro) {
+    console.error("Erro ao obter URL m3u8:", erro);
+    throw erro;
+  }
+}
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const parametroM = obterParametroUrl('id');
-      if (parametroM) {
-        configurarPlayer(parametroM);
-      } else {
-        console.warn("Parâmetro 'id' não encontrado na URL.");
+function configurarPlayer(urlM3u8) {
+  const playerInstance = jwplayer("player");
+
+  playerInstance.setup({
+    playlist: [{
+      "sources": [
+        {
+          default: false,
+          type: "hls",
+          file: urlM3u8,
+          drm: {
+            fairplay: {}
+          },
+          label: "0"
+        },
+        {
+          default: true,
+          type: "hls",
+          file: urlM3u8,
+          drm: {
+            widevine: {},
+            playready: {}
+          },
+          label: "1"
+        }
+      ]
+    }],
+    primary: "html5",
+    hlshtml: "true",
+    width: "100%",
+    height: "100%",
+    aspectratio: "16:9",
+    autostart: true,
+    cast: true,
+    hlsjsConfig: {
+      debug: false,
+      p2pConfig: {
+        live: true,
       }
-    });
+    },
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const parametroId = getParametroUrl('id');
+  
+  if (parametroId) {
+    try {
+      const urlM3u8 = await obterUrlM3u8(parametroId);
+      configurarPlayer(urlM3u8);
+    } catch (erro) {
+      console.error("Erro ao configurar o player:", erro);
+    }
+  } else {
+    console.error("ID não fornecido na URL.");
+  }
+});
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
