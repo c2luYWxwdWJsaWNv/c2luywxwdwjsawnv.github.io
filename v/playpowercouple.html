@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player</title>
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
   <style>
     * {
@@ -59,63 +60,77 @@
 
   <div class="video-wrapper">
     <video id="player" controls poster="">
-      <source id="video-source" src="" type="application/x-mpegURL" />
-      Seu navegador não suporta a tag de vídeo.
+      <source src="" type="application/x-mpegURL" />
+
     </video>
   </div>
 
   <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-    async function getStreamUrl(code) {
+
+    function getParametroUrl(parametro) {
+      const parametrosUrl = new URLSearchParams(window.location.search);
+      return parametrosUrl.get(parametro);
+    }
+
+    async function obterUrlM3u8(codigoUrl) {
       try {
-        const response = await fetch(`https://consoledplay.vercel.app/exec/v5/${encodeURIComponent(code)}`);
-        const text = await response.text();
-        const match = text.match(/https:\/\/[^"]+\.m3u8/i);
-        if (match) return match[0];
-        else throw new Error("URL .m3u8 não encontrada.");
-      } catch (error) {
-        console.error("Erro ao obter URL m3u8:", error);
-        return null;
-      }
-    }
+        const urlStream = `https://consoledplay.vercel.app/exec/v5/${encodeURIComponent(codigoUrl)}`;
+        const resposta = await fetch(urlStream);
 
-    function getURLParam(name) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(name);
-    }
-
-    function changePlayerUrl(video, url) {
-      if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
-      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = url;
-      } else {
-        console.error("HLS não suportado neste navegador.");
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", async () => {
-      const video = document.getElementById("player");
-      const idParam = getURLParam("id");
-      const imgParam = getURLParam("img");
-
-      if (imgParam) {
-        video.setAttribute("poster", imgParam);
-      }
-
-      if (idParam) {
-        const m3u8Url = await getStreamUrl(idParam);
-        if (m3u8Url) {
-          changePlayerUrl(video, m3u8Url);
+        if (!resposta.ok) {
+          throw new Error(`Falha ao obter o conteúdo: ${resposta.statusText}`);
         }
+
+        const conteudo = await resposta.text();
+        const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
+        const urlM3u8 = conteudo.match(expressaoRegular);
+
+        if (urlM3u8) {
+          return urlM3u8[0];
+        } else {
+          throw new Error("URL m3u8 não encontrada.");
+        }
+      } catch (erro) {
+        console.error("Erro ao obter URL m3u8:", erro);
+        throw erro;
+      }
+    }
+    
+    document.addEventListener("DOMContentLoaded", async function () {
+      const video = document.getElementById("player");
+      const parametroId = getParametroUrl('id');
+      const parametroImg = getParametroUrl('img');
+
+      if (parametroImg) {
+        video.setAttribute("poster", parametroImg);
       }
 
-      const player = new Plyr(video);
+      if (parametroId) {
+        try {
+          const urlM3u8 = await obterUrlM3u8(parametroId);
+
+          if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(urlM3u8);
+            hls.attachMedia(video);
+          } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = urlM3u8;
+          } else {
+            console.error("HLS não suportado neste navegador.");
+          }
+
+          const player = new Plyr(video);
+        } catch (erro) {
+          console.error("Erro ao configurar o player:", erro);
+        }
+      } else {
+        console.error("Parâmetro 'id' não encontrado na URL.");
+      }
     });
   </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/snowwwgh/master/devtools-detector.js"></script>
