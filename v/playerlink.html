@@ -32,27 +32,29 @@
         overflow: hidden;
     }
 </style>
+</script>
+
+<div id="player"></div>
 <script>
     function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "=([^&#]*)"),
+            results = regex.exec(window.location.search);
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
     var getURL = getParameterByName('id');
 
-    if (getURL == "#") {
-        alert('Vuelva a la página anterior');
+    if (!getURL || getURL === "#") {
+        alert('URL inválida ou ausente.');
+        throw new Error("inválida ou ausente");
     }
 
     var play = getParameterByName('play');
-    play = (play == "2") ? "true" : "false";
-</script>
+    var shouldPlay = (play === "2");
 
-<div id="player"></div>
-<script>
     var playerInstance = jwplayer("player");
+
     playerInstance.setup({
         playlist: [
             {
@@ -67,8 +69,26 @@
         cast: {}
     });
 
-    playerInstance.on('play', function() {
-        playerInstance.setCurrentAudioTrack(2); 
+    playerInstance.on('play', function () {
+        try {
+            playerInstance.setCurrentAudioTrack(2);
+        } catch (e) {
+            console.warn("Falha ao definir faixa de áudio", e);
+        }
+    });
+
+    playerInstance.on('error', function (error) {
+        console.error("Erro", error);
+        setTimeout(function () {
+            location.reload();
+        }, 3000); 
+    });
+
+    playerInstance.on('idle', function () {
+        console.warn("Recarregando");
+        setTimeout(function () {
+            location.reload();
+        }, 5000); 
     });
 </script>
 
