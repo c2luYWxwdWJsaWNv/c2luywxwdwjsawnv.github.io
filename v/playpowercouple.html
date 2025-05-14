@@ -5,7 +5,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Player</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/sinalpublico/ply@main/assets/css/player-v3.1.min.css">
+  <script src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js"></script>
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
   <style>
     * {
@@ -107,9 +110,8 @@
       video.play();
     }
 
-    // Executar ao carregar a página
     window.addEventListener('DOMContentLoaded', async () => {
-      const codigo = getParametroUrl('id'); // ex: ?url=algumvalor
+      const codigo = getParametroUrl('id'); 
       if (codigo) {
         try {
           const urlM3u8 = await obterUrlM3u8(codigo);
