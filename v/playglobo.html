@@ -37,6 +37,35 @@
 <body> 
 <div id="player"></div>
 <script>
+function getParametroUrl(parametro) {
+  const parametrosUrl = new URLSearchParams(window.location.search);
+  return parametrosUrl.get(parametro);
+}
+
+async function obterUrlM3u8(codigoUrl) {
+  try {
+    const urlStream = `https://consoledplay.vercel.app/exec/v2/${encodeURIComponent(codigoUrl)}`;
+    const resposta = await fetch(urlStream);
+
+    if (!resposta.ok) {
+      throw new Error(`Falha ao obter o conteúdo: ${resposta.statusText}`);
+    }
+
+    const conteudo = await resposta.text();
+    const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
+    const urlM3u8 = conteudo.match(expressaoRegular);
+
+    if (urlM3u8) {
+      return urlM3u8[0];
+    } else {
+      throw new Error("URL m3u8 não encontrada.");
+    }
+  } catch (erro) {
+    console.error("Erro ao obter URL m3u8:", erro);
+    throw erro;
+  }
+}
+
 function configurarPlayer(urlM3u8) {
   const playerInstance = jwplayer("player");
 
@@ -79,14 +108,39 @@ function configurarPlayer(urlM3u8) {
     },
   });
 
-  playerInstance.on('error', function(error) {
-    console.warn("Erro no player detectado:", error.message || error);
-    setTimeout(() => {
-      console.log("Recarregando o player...");
-      configurarPlayer(urlM3u8); 
+  playerInstance.on('error', function (erro) {
+    console.warn("Erro no player detectado:", erro.message || erro);
+
+    setTimeout(async () => {
+      console.log("Tentando recarregar o player...");
+
+      try {
+        const parametroId = getParametroUrl('id');
+        if (parametroId) {
+          const novaUrlM3u8 = await obterUrlM3u8(parametroId);
+          configurarPlayer(novaUrlM3u8); 
+        }
+      } catch (e) {
+        console.error("Falha ao recarregar o player:", e);
+      }
     }, 3000); 
   });
 }
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const parametroId = getParametroUrl('id');
+
+  if (parametroId) {
+    try {
+      const urlM3u8 = await obterUrlM3u8(parametroId);
+      configurarPlayer(urlM3u8);
+    } catch (erro) {
+      console.error("Erro ao configurar o player:", erro);
+    }
+  } else {
+    console.error("ID não fornecido na URL.");
+  }
+});
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
