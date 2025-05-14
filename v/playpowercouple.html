@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player</title>
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
   <style>
     * {
@@ -56,70 +57,75 @@
   </style>
 </head>
 <body>
-
   <div class="video-wrapper">
     <video id="player" controls poster="">
-      <source src="" type="application/x-mpegURL" />
-
+      <source id="video-source" src="" type="application/x-mpegURL" />
+      Seu navegador não suporta a tag de vídeo.
     </video>
   </div>
+<script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+  function getParametroUrl(parametro) {
+    const parametrosUrl = new URLSearchParams(window.location.search);
+    return parametrosUrl.get(parametro);
+  }
 
-  <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <script>
-    function getParametroUrl(parametro) {
-      const parametrosUrl = new URLSearchParams(window.location.search);
-      return parametrosUrl.get(parametro);
-    }
+  async function obterUrlM3u8(codigoUrl) {
+    try {
+      const urlStream = `https://consoledplay.vercel.app/exec/v5/${encodeURIComponent(codigoUrl)}`;
+      const resposta = await fetch(urlStream);
 
-    async function obterUrlM3u8(codigoUrl) {
-      try {
-        const urlStream = `https://consoledplay.vercel.app/exec/v5/${encodeURIComponent(codigoUrl)}`;
-        const resposta = await fetch(urlStream);
-
-        if (!resposta.ok) {
-          throw new Error(`Falha ao obter o conteúdo: ${resposta.statusText}`);
-        }
-
-        const conteudo = await resposta.text();
-        const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
-        const urlM3u8 = conteudo.match(expressaoRegular);
-
-        if (urlM3u8) {
-          return urlM3u8[0];
-        } else {
-          throw new Error("URL m3u8 não encontrada.");
-        }
-      } catch (erro) {
-        console.error("Erro ao obter URL m3u8:", erro);
-        throw erro;
+      if (!resposta.ok) {
+        throw new Error(`Falha ao obter o conteúdo: ${resposta.statusText}`);
       }
-    }
 
-    function configurarPlayer(urlM3u8) {
-      const video = document.getElementById('meuVideo');
-      const source = document.createElement('source');
-      source.src = urlM3u8;
-      source.type = 'application/x-mpegURL';
-      video.appendChild(source);
-      video.load();
-      video.play();
-    }
+      const conteudo = await resposta.text();
+      const expressaoRegular = /https:\/\/[^"]+\.m3u8/i;
+      const urlM3u8 = conteudo.match(expressaoRegular);
 
-    window.addEventListener('DOMContentLoaded', async () => {
-      const codigo = getParametroUrl('id'); 
-      if (codigo) {
-        try {
-          const urlM3u8 = await obterUrlM3u8(codigo);
-          configurarPlayer(urlM3u8);
-        } catch (erro) {
-          console.error("Não foi possível configurar o player:", erro);
-        }
+      if (urlM3u8) {
+        return urlM3u8[0];
       } else {
-        console.warn("Parâmetro 'url' não encontrado na URL.");
+        throw new Error("URL m3u8 não encontrada.");
       }
-    });
-  </script>
+    } catch (erro) {
+      console.error("Erro ao obter URL m3u8:", erro);
+      throw erro;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", async function () {
+    const video = document.getElementById("player");
+    let hls;
+    const player = new Plyr(video);
+
+    const codigo = getParametroUrl("id");
+    const imagem = getParametroUrl("img");
+
+    if (imagem) {
+      video.setAttribute("poster", imagem);
+    }
+
+    if (codigo) {
+      try {
+        const urlM3u8 = await obterUrlM3u8(codigo);
+
+        if (Hls.isSupported()) {
+          hls = new Hls();
+          hls.loadSource(urlM3u8);
+          hls.attachMedia(video);
+        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+          video.src = urlM3u8;
+        }
+
+        video.play();
+      } catch (erro) {
+        console.error("Erro ao iniciar o vídeo:", erro);
+      }
+    }
+  });
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
