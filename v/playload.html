@@ -70,10 +70,9 @@ async function configurarPlayer(codigoCanal) {
         sharing: false
       });
 
-      // Adiciona listener para erro
       player.on('error', function() {
         console.warn("Erro detectado no player. Recarregando...");
-        setTimeout(() => configurarPlayer(codigoCanal), 3000); // tenta novamente após 3 segundos
+        setTimeout(() => configurarPlayer(codigoCanal), 3000); 
       });
 
     } else {
@@ -81,8 +80,8 @@ async function configurarPlayer(codigoCanal) {
     }
   } catch (erro) {
     console.error("Erro ao configurar o player", erro);
-    // Tentativa de recuperação após erro de rede ou parsing
-    setTimeout(() => configurarPlayer(codigoCanal), 3000); // tenta novamente após 3 segundos
+
+    setTimeout(() => configurarPlayer(codigoCanal), 3000); 
   }
 }
 
