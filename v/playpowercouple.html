@@ -68,7 +68,6 @@
   <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
-
     function getParametroUrl(parametro) {
       const parametrosUrl = new URLSearchParams(window.location.search);
       return parametrosUrl.get(parametro);
@@ -97,36 +96,29 @@
         throw erro;
       }
     }
-    
-    document.addEventListener("DOMContentLoaded", async function () {
-      const video = document.getElementById("player");
-      const parametroId = getParametroUrl('id');
-      const parametroImg = getParametroUrl('img');
 
-      if (parametroImg) {
-        video.setAttribute("poster", parametroImg);
-      }
+    function configurarPlayer(urlM3u8) {
+      const video = document.getElementById('meuVideo');
+      const source = document.createElement('source');
+      source.src = urlM3u8;
+      source.type = 'application/x-mpegURL';
+      video.appendChild(source);
+      video.load();
+      video.play();
+    }
 
-      if (parametroId) {
+    // Executar ao carregar a página
+    window.addEventListener('DOMContentLoaded', async () => {
+      const codigo = getParametroUrl('id'); // ex: ?url=algumvalor
+      if (codigo) {
         try {
-          const urlM3u8 = await obterUrlM3u8(parametroId);
-
-          if (Hls.isSupported()) {
-            const hls = new Hls();
-            hls.loadSource(urlM3u8);
-            hls.attachMedia(video);
-          } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = urlM3u8;
-          } else {
-            console.error("HLS não suportado neste navegador.");
-          }
-
-          const player = new Plyr(video);
+          const urlM3u8 = await obterUrlM3u8(codigo);
+          configurarPlayer(urlM3u8);
         } catch (erro) {
-          console.error("Erro ao configurar o player:", erro);
+          console.error("Não foi possível configurar o player:", erro);
         }
       } else {
-        console.error("Parâmetro 'id' não encontrado na URL.");
+        console.warn("Parâmetro 'url' não encontrado na URL.");
       }
     });
   </script>
