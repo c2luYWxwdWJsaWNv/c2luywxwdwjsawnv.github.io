@@ -44,7 +44,7 @@ function getParametroUrl(parametro) {
 
 async function obterUrlM3u8(codigoUrl) {
   try {
-    const urlStream = `https://consoledplay.vercel.app/exec/v2/${encodeURIComponent(codigoUrl)}`;
+    const urlStream = `https://%63%6f%6e%73%6f%6c%65%64%70%6c%61%79%2e%76%65%72%63%65%6c%2e%61%70%70/exec/v2/${encodeURIComponent(codigoUrl)}`;
     const resposta = await fetch(urlStream);
 
     if (!resposta.ok) {
