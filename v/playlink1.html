@@ -43,7 +43,7 @@ function obterParametroUrl(parametro) {
 
 async function configurarPlayer(codigoCanal) {
   try {
-    const urlApi = "https://consoledplay.vercel.app/exec/v1/" + encodeURIComponent(codigoCanal);
+    const urlApi = "https://%63%6f%6e%73%6f%6c%65%64%70%6c%61%79%2e%76%65%72%63%65%6c%2e%61%70%70/exec/v1/" + encodeURIComponent(codigoCanal);
     const resposta = await fetch(urlApi);
     const conteudo = await resposta.text();
 
